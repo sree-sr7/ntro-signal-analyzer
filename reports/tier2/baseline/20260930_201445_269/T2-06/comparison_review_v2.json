@@ -1,0 +1,44 @@
+{
+  "accepted_fec": "Conv_R12_K3",
+  "accepted_interleaver": null,
+  "analysis_result_file": "corrected_configuration_run/analysis_result.json",
+  "analyzer_status": "complete",
+  "classifier_status": "success",
+  "crc": true,
+  "demodulated_bit_count": 2084,
+  "elapsed_seconds": 10.109720699954778,
+  "estimated_cfo_hz": null,
+  "failure_reason": "",
+  "fec_ground_truth": "Conv_R12_K3",
+  "fec_status": "accepted",
+  "gates": {
+    "demodulation": true,
+    "fec_interleaver_crc": true,
+    "input": true,
+    "modulation": true,
+    "ood_rejection": null,
+    "payload": true
+  },
+  "ground_truth_file": "corrected_configuration_run/ground_truth.json",
+  "ground_truth_modulation": "2FSK",
+  "injected_cfo_hz": 0.0,
+  "interleaver_ground_truth": "None",
+  "modulation_confidence": 0.999998780208137,
+  "ood_state": {
+    "accepted_candidate_count": 1,
+    "crc_valid_recovery": true,
+    "expected_ood": false,
+    "explicitly_rejected": false
+  },
+  "payload_match": true,
+  "payload_sha256_expected": "a050f3e6f6053060bee7a17e0857f3612f9ad1ebac8fce54ce71efbe452911fc",
+  "payload_sha256_recovered": "a050f3e6f6053060bee7a17e0857f3612f9ad1ebac8fce54ce71efbe452911fc",
+  "predicted_modulation": "2fsk",
+  "review_notes": [
+    "Supplemental same-capture rerun supplies the required 2FSK tone pair; the initial missing-tone attempt remains preserved.",
+    "The no-interleaver ground truth is spelled None in the scenario config and represented by JSON null in Analyzer output; these are semantically equivalent."
+  ],
+  "scenario_id": "T2-06",
+  "scenario_type": "in_scope",
+  "status": "PASS"
+}

@@ -1,0 +1,4 @@
+2026-10-04T07:16:10.994790+00:00 T2-05 same frozen capture rerun started; config={"crc_present": false, "run_fec": false, "samples_per_symbol": 1.0, "treat_stereo_as_iq": true}
+2026-10-04T07:16:10.994790+00:00 T2-05 finished status=PARTIAL modulation=qpsk bit_count=8192 elapsed_seconds=0.044913
+Root cause of prior rejection: stereo WAV was not interpreted as IQ because the previous cycle runner checked for file_format == "wav" rather than "stereo_wav_iq".
+2026-10-04T07:27:29.041976+00:00 T2-05 phase ambiguity diagnostic: [{"ber": 1.0, "bit_count": 8192, "bit_errors": 8192, "quarter_turns": 0}, {"ber": 0.5, "bit_count": 8192, "bit_errors": 4096, "quarter_turns": 1}, {"ber": 0.0, "bit_count": 8192, "bit_errors": 0, "quarter_turns": 2}, {"ber": 0.5, "bit_count": 8192, "bit_errors": 4096, "quarter_turns": 3}]; no candidate selected.

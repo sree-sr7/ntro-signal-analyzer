@@ -1,0 +1,50 @@
+{
+  "scenario": "T2-03",
+  "baseline": {
+    "status": "partial",
+    "reviewed_outcome": "PARTIAL",
+    "modulation": "8psk",
+    "confidence": 0.9999980433091609,
+    "demodulated_bit_count": 4140,
+    "fec_candidate_count": 81,
+    "crc_pass": false,
+    "runtime_seconds": 20.65391659992747
+  },
+  "after": {
+    "status": "complete",
+    "modulation": "8psk",
+    "confidence": 0.9999999485259768,
+    "demodulated_bit_count": 4140,
+    "fec_status": "accepted",
+    "fec_type": "Conv_R12_K7",
+    "interleaver_type": "Convolutional_Depth_12",
+    "candidate_count": 81,
+    "total_candidate_count": 89,
+    "candidate_count_after_structural_pruning": 5,
+    "crc_pass": true,
+    "ood_gate": {
+      "status": "passed",
+      "decision": "signal_candidate",
+      "reason": "At least one supported modulation has sufficient geometric signal fit.",
+      "stage": "signal_detection",
+      "strongest_supported_modulation": "8psk",
+      "geometric_fit_score": 0.5754217321820402,
+      "minimum_geometric_fit_score": 0.35,
+      "score_interpretation": "bounded geometric fit score; not a probability or OOD probability"
+    },
+    "phase_ambiguity_resolution": {
+      "status": "crc_selected",
+      "method": "CRC-validated FEC candidate across PSK rotations",
+      "candidate_count": 8,
+      "candidates_tested": 2,
+      "selected_candidate_index": 1,
+      "selected_phase_reference_rad": 1.1311655810025008,
+      "reason": "A CRC-accepted candidate selected the phase rotation."
+    },
+    "ground_truth_payload_exact_match": true,
+    "runtime_seconds": 3.880432000005385
+  },
+  "change": "Carrier phase fitting was rejected; a CRC-selected PSK phase rotation resolves the ambiguity.",
+  "root_cause": "Carrier phase fitting was rejected; a CRC-selected PSK phase rotation resolves the ambiguity.",
+  "remaining_limitation": "CRC phase search requires caller-supplied expected payload length and CRC presence."
+}

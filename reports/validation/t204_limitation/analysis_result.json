@@ -1,0 +1,329 @@
+{
+  "status": "rejected",
+  "filename": "capture.iq",
+  "input_path": "C:\\Users\\HP\\Documents\\NTRO-Signal-Analyzer\\reports\\tier2\\baseline\\20260930_201445_269\\T2-04\\capture.iq",
+  "file_format": "iq",
+  "validation_status": "valid_with_warnings",
+  "file_metadata": {
+    "filename": "capture.iq",
+    "format": "iq",
+    "sample_count": 130560,
+    "sample_rate_hz": 1000000.0,
+    "duration_seconds": 0.13056,
+    "center_frequency_hz": null,
+    "channel_count": 1,
+    "dtype": "complex64",
+    "iq_layout": "complex_native",
+    "endianness": "little",
+    "source_metadata": {}
+  },
+  "signal_statistics": {
+    "sample_count": 130560,
+    "rms_amplitude": 1.0173554420471191,
+    "peak_amplitude": 1.754543662071228,
+    "mean_i": -0.0009084514458663762,
+    "mean_q": 0.0018332742620259523,
+    "standard_deviation_i": 0.7212392091751099,
+    "standard_deviation_q": 0.7175109386444092
+  },
+  "synchronization": {
+    "preprocessing": {
+      "input_sample_count": 130560,
+      "cfo_correction_applied": false,
+      "matched_filter_applied": false,
+      "timing_recovery_requested": false,
+      "timing_recovery_applied": false,
+      "samples_per_symbol_supplied": null,
+      "output_sample_count": 130560,
+      "effective_samples_per_symbol": null,
+      "classifier_input": "waveform samples",
+      "classifier_feature_assumptions": "PSK/QAM features assume symbol-rate input; FSK features use waveform samples and samples_per_symbol.",
+      "classifier_timing_transient_discarded_samples": 0
+    },
+    "spectrum_measurements": {
+      "peak_frequency_hz": 449218.75,
+      "occupied_bandwidth_hz": 989257.8125,
+      "noise_floor": 9.794182233235916e-07,
+      "warnings": []
+    },
+    "dominant_spectral_peaks": [
+      {
+        "frequency_hz": 449218.75,
+        "power": 1.275790850741032e-06
+      },
+      {
+        "frequency_hz": -187500.0,
+        "power": 1.2033672192046652e-06
+      },
+      {
+        "frequency_hz": 38085.9375,
+        "power": 1.2015220818284433e-06
+      },
+      {
+        "frequency_hz": -6835.9375,
+        "power": 1.1979669807260507e-06
+      },
+      {
+        "frequency_hz": -338867.1875,
+        "power": 1.1935114798689028e-06
+      },
+      {
+        "frequency_hz": -302734.375,
+        "power": 1.1934747590203187e-06
+      },
+      {
+        "frequency_hz": 291992.1875,
+        "power": 1.190297894027026e-06
+      },
+      {
+        "frequency_hz": 203125.0,
+        "power": 1.187118982670654e-06
+      },
+      {
+        "frequency_hz": 318359.375,
+        "power": 1.1807230748672737e-06
+      },
+      {
+        "frequency_hz": 235351.5625,
+        "power": 1.1806770316979964e-06
+      }
+    ],
+    "classifier_cfo_correction": {
+      "status": "not_applied",
+      "reason": "No accepted PSK classification required classifier-side CFO correction.",
+      "modulation_before": "unknown",
+      "confidence_before": 0.05423551766129037
+    }
+  },
+  "features": {
+    "names": [
+      "amplitude_coefficient_of_variation",
+      "amplitude_kurtosis",
+      "normalized_moment_2",
+      "normalized_moment_4",
+      "normalized_moment_8",
+      "psk2_residual",
+      "psk2_phase_entropy",
+      "psk4_residual",
+      "psk4_phase_entropy",
+      "psk8_residual",
+      "psk8_phase_entropy",
+      "qam16_residual",
+      "fsk_quality",
+      "fsk_tone_separation_norm",
+      "fsk_frequency_repeat_fraction",
+      "spectral_entropy",
+      "spectral_peak_fraction"
+    ],
+    "values": [
+      0.34726924296078737,
+      2.1799754102586584,
+      0.004177827954120512,
+      0.002261818718059613,
+      0.0023590636404505127,
+      0.8904854691809382,
+      0.9999952791775407,
+      0.5461683335831842,
+      0.9999979420701564,
+      0.39832222352738444,
+      0.9999867303684844,
+      0.2614826054917314,
+      0.0,
+      0.0,
+      0.0,
+      0.964366289571667,
+      9.348261494064444e-05
+    ],
+    "by_name": {
+      "amplitude_coefficient_of_variation": 0.34726924296078737,
+      "amplitude_kurtosis": 2.1799754102586584,
+      "normalized_moment_2": 0.004177827954120512,
+      "normalized_moment_4": 0.002261818718059613,
+      "normalized_moment_8": 0.0023590636404505127,
+      "psk2_residual": 0.8904854691809382,
+      "psk2_phase_entropy": 0.9999952791775407,
+      "psk4_residual": 0.5461683335831842,
+      "psk4_phase_entropy": 0.9999979420701564,
+      "psk8_residual": 0.39832222352738444,
+      "psk8_phase_entropy": 0.9999867303684844,
+      "qam16_residual": 0.2614826054917314,
+      "fsk_quality": 0.0,
+      "fsk_tone_separation_norm": 0.0,
+      "fsk_frequency_repeat_fraction": 0.0,
+      "spectral_entropy": 0.964366289571667,
+      "spectral_peak_fraction": 9.348261494064444e-05
+    },
+    "sample_count": 130560,
+    "diagnostics": {
+      "rms_amplitude": 1.0173554894883674,
+      "mean_amplitude": 0.9610549346348681,
+      "phase_reference_rad": -0.4710876353124914
+    },
+    "warnings": [],
+    "input_samples_per_symbol": 1.0
+  },
+  "classification": {
+    "modulation": "unknown",
+    "confidence": 0.05423551766129037,
+    "method": "onnx",
+    "probabilities": {
+      "16qam": 0.5271039238297136,
+      "8psk": 0.47286840616842324,
+      "bpsk": 2.0229044275789556e-05,
+      "2fsk": 7.411836224832904e-06,
+      "qpsk": 2.9121362585401565e-08
+    },
+    "top_candidates": [
+      [
+        "16qam",
+        0.5271039238297136
+      ],
+      [
+        "8psk",
+        0.47286840616842324
+      ],
+      [
+        "bpsk",
+        2.0229044275789556e-05
+      ]
+    ],
+    "warnings": [
+      "Class evidence is weak or ambiguous; returning ranked candidates",
+      "ONNX scores did not meet the baseline acceptance margin"
+    ],
+    "errors": [],
+    "status": "success",
+    "features": {
+      "amplitude_coefficient_of_variation": 0.34726924296078737,
+      "amplitude_kurtosis": 2.1799754102586584,
+      "normalized_moment_2": 0.004177827954120512,
+      "normalized_moment_4": 0.002261818718059613,
+      "normalized_moment_8": 0.0023590636404505127,
+      "psk2_residual": 0.8904854691809382,
+      "psk2_phase_entropy": 0.9999952791775407,
+      "psk4_residual": 0.5461683335831842,
+      "psk4_phase_entropy": 0.9999979420701564,
+      "psk8_residual": 0.39832222352738444,
+      "psk8_phase_entropy": 0.9999867303684844,
+      "qam16_residual": 0.2614826054917314,
+      "fsk_quality": 0.0,
+      "fsk_tone_separation_norm": 0.0,
+      "fsk_frequency_repeat_fraction": 0.0,
+      "spectral_entropy": 0.964366289571667,
+      "spectral_peak_fraction": 9.348261494064444e-05
+    },
+    "signal_detection_gate": {
+      "status": "passed",
+      "decision": "signal_candidate",
+      "reason": "At least one supported modulation has sufficient geometric signal fit.",
+      "stage": "signal_detection",
+      "strongest_supported_modulation": "16qam",
+      "geometric_fit_score": 0.5780948681531969,
+      "minimum_geometric_fit_score": 0.35,
+      "score_interpretation": "bounded geometric fit score; not a probability or OOD probability"
+    },
+    "rejection": {
+      "decision": "unknown",
+      "reason": "The configured classifier returned no supported modulation.",
+      "stage": "classification"
+    }
+  },
+  "demodulation": {
+    "status": "unavailable",
+    "reason": "No supported modulation was accepted by the configured classifier.",
+    "bit_count": 0,
+    "llr_count": 0
+  },
+  "fec": {
+    "status": "unavailable",
+    "reason": "Demodulation did not produce bits."
+  },
+  "frames": {
+    "status": "unavailable",
+    "reason": "Demodulation did not produce a bitstream."
+  },
+  "visualization": {
+    "spectrum_frequency_hz": {
+      "shape": [
+        1024
+      ],
+      "dtype": "float64"
+    },
+    "spectrum_power": {
+      "shape": [
+        1024
+      ],
+      "dtype": "float64"
+    },
+    "waveform_sample_index": {
+      "shape": [
+        4080
+      ],
+      "dtype": "int64"
+    },
+    "waveform_i": {
+      "shape": [
+        4080
+      ],
+      "dtype": "float32"
+    },
+    "waveform_q": {
+      "shape": [
+        4080
+      ],
+      "dtype": "float32"
+    },
+    "waterfall_frequency": {
+      "shape": [
+        256
+      ],
+      "dtype": "float64"
+    },
+    "waterfall_time_seconds": {
+      "shape": [
+        1019
+      ],
+      "dtype": "float64"
+    },
+    "waterfall_magnitude_db": {
+      "shape": [
+        256,
+        1019
+      ],
+      "dtype": "float64"
+    },
+    "waterfall_frequency_unit": "Hz",
+    "waterfall_time_unit": "seconds"
+  },
+  "stages": [
+    {
+      "name": "file_load_and_validation",
+      "status": "complete"
+    },
+    {
+      "name": "preprocessing_and_spectrum",
+      "status": "complete"
+    },
+    {
+      "name": "classification",
+      "status": "complete",
+      "modulation": "unknown",
+      "model_modulation_before_signal_gate": "unknown",
+      "classifier_status": "success"
+    },
+    {
+      "name": "signal_detection_gate",
+      "status": "passed",
+      "decision": "signal_candidate",
+      "reason": "At least one supported modulation has sufficient geometric signal fit."
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "Center frequency not provided",
+    "Class evidence is weak or ambiguous; returning ranked candidates",
+    "ONNX scores did not meet the baseline acceptance margin"
+  ],
+  "source": "FILE",
+  "demo": null
+}

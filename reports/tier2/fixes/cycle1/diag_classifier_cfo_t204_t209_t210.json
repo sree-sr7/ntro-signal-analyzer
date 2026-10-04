@@ -1,0 +1,395 @@
+﻿{
+ "T2-04": {
+  "gt_mod": "16QAM",
+  "snr_db": 18.0,
+  "cfo_hz": 100.0,
+  "n": 130560,
+  "raw_rms": 1.0173554903874165,
+  "raw_amp_cv": 0.3472692431959391,
+  "cycles_of_cfo_rotation_over_capture": 13.056,
+  "as_analyzed(raw, CFO uncorrected)": {
+   "mod": "unknown",
+   "conf": 0.0542,
+   "probs": {
+    "16qam": 0.5271,
+    "8psk": 0.4729,
+    "bpsk": 0.0,
+    "2fsk": 0.0,
+    "qpsk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.3473,
+    "amplitude_kurtosis": 2.18,
+    "normalized_moment_2": 0.0042,
+    "normalized_moment_4": 0.0023,
+    "normalized_moment_8": 0.0024,
+    "psk2_residual": 0.8905,
+    "psk2_phase_entropy": 1.0,
+    "psk4_residual": 0.5462,
+    "psk4_phase_entropy": 1.0,
+    "psk8_residual": 0.3983,
+    "psk8_phase_entropy": 1.0,
+    "qam16_residual": 0.2615,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9644,
+    "spectral_peak_fraction": 0.0001
+   }
+  },
+  "DIAG_oracle_cfo_removed": {
+   "mod": "16qam",
+   "conf": 1.0,
+   "probs": {
+    "16qam": 1.0,
+    "bpsk": 0.0,
+    "qpsk": 0.0,
+    "2fsk": 0.0,
+    "8psk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.3473,
+    "amplitude_kurtosis": 2.18,
+    "normalized_moment_2": 0.0011,
+    "normalized_moment_4": 0.2907,
+    "normalized_moment_8": 0.04,
+    "psk2_residual": 0.8766,
+    "psk2_phase_entropy": 1.0,
+    "psk4_residual": 0.4745,
+    "psk4_phase_entropy": 1.0,
+    "psk8_residual": 0.4044,
+    "psk8_phase_entropy": 1.0,
+    "qam16_residual": 0.125,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9644,
+    "spectral_peak_fraction": 0.0001
+   }
+  },
+  "est_cfo_order2": {
+   "hz": null,
+   "conf": 0.008
+  },
+  "est_cfo_order4": {
+   "hz": 99.97978406932121,
+   "conf": 0.492
+  },
+  "DIAG_est_cfo_order4_removed": {
+   "mod": "16qam",
+   "conf": 1.0,
+   "probs": {
+    "16qam": 1.0,
+    "bpsk": 0.0,
+    "qpsk": 0.0,
+    "2fsk": 0.0,
+    "8psk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.3473,
+    "amplitude_kurtosis": 2.18,
+    "normalized_moment_2": 0.0011,
+    "normalized_moment_4": 0.2907,
+    "normalized_moment_8": 0.04,
+    "psk2_residual": 0.877,
+    "psk2_phase_entropy": 1.0,
+    "psk4_residual": 0.4745,
+    "psk4_phase_entropy": 1.0,
+    "psk8_residual": 0.4044,
+    "psk8_phase_entropy": 1.0,
+    "qam16_residual": 0.1251,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9644,
+    "spectral_peak_fraction": 0.0001
+   }
+  },
+  "est_cfo_order8": {
+   "hz": 99.99120346595336,
+   "conf": 0.604
+  },
+  "DIAG_est_cfo_order8_removed": {
+   "mod": "16qam",
+   "conf": 1.0,
+   "probs": {
+    "16qam": 1.0,
+    "bpsk": 0.0,
+    "qpsk": 0.0,
+    "2fsk": 0.0,
+    "8psk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.3473,
+    "amplitude_kurtosis": 2.18,
+    "normalized_moment_2": 0.0011,
+    "normalized_moment_4": 0.2907,
+    "normalized_moment_8": 0.04,
+    "psk2_residual": 0.8768,
+    "psk2_phase_entropy": 1.0,
+    "psk4_residual": 0.4745,
+    "psk4_phase_entropy": 1.0,
+    "psk8_residual": 0.4044,
+    "psk8_phase_entropy": 1.0,
+    "qam16_residual": 0.125,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9644,
+    "spectral_peak_fraction": 0.0001
+   }
+  }
+ },
+ "T2-09": {
+  "gt_mod": "Noise-only",
+  "snr_db": null,
+  "cfo_hz": 0.0,
+  "n": 4096,
+  "raw_rms": 1.4465775035738742,
+  "raw_amp_cv": 0.5293538911564277,
+  "cycles_of_cfo_rotation_over_capture": 0.0,
+  "as_analyzed(raw, CFO uncorrected)": {
+   "mod": "16qam",
+   "conf": 1.0,
+   "probs": {
+    "16qam": 1.0,
+    "8psk": 0.0,
+    "bpsk": 0.0,
+    "2fsk": 0.0,
+    "qpsk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.5294,
+    "amplitude_kurtosis": 3.5136,
+    "normalized_moment_2": 0.0038,
+    "normalized_moment_4": 0.0076,
+    "normalized_moment_8": 0.002,
+    "psk2_residual": 0.935,
+    "psk2_phase_entropy": 0.9995,
+    "psk4_residual": 0.6378,
+    "psk4_phase_entropy": 0.9996,
+    "psk8_residual": 0.5266,
+    "psk8_phase_entropy": 0.9996,
+    "qam16_residual": 0.351,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9488,
+    "spectral_peak_fraction": 0.0019
+   }
+  },
+  "DIAG_oracle_cfo_removed": {
+   "mod": "16qam",
+   "conf": 1.0,
+   "probs": {
+    "16qam": 1.0,
+    "8psk": 0.0,
+    "bpsk": 0.0,
+    "2fsk": 0.0,
+    "qpsk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.5294,
+    "amplitude_kurtosis": 3.5136,
+    "normalized_moment_2": 0.0038,
+    "normalized_moment_4": 0.0076,
+    "normalized_moment_8": 0.002,
+    "psk2_residual": 0.935,
+    "psk2_phase_entropy": 0.9995,
+    "psk4_residual": 0.6378,
+    "psk4_phase_entropy": 0.9996,
+    "psk8_residual": 0.5266,
+    "psk8_phase_entropy": 0.9996,
+    "qam16_residual": 0.351,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9488,
+    "spectral_peak_fraction": 0.0019
+   }
+  },
+  "est_cfo_order2": {
+   "hz": null,
+   "conf": 0.053
+  },
+  "est_cfo_order4": {
+   "hz": null,
+   "conf": 0.101
+  },
+  "est_cfo_order8": {
+   "hz": 16100.515472031408,
+   "conf": 0.286
+  },
+  "DIAG_est_cfo_order8_removed": {
+   "mod": "16qam",
+   "conf": 1.0,
+   "probs": {
+    "16qam": 1.0,
+    "8psk": 0.0,
+    "bpsk": 0.0,
+    "2fsk": 0.0,
+    "qpsk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.5294,
+    "amplitude_kurtosis": 3.5136,
+    "normalized_moment_2": 0.0176,
+    "normalized_moment_4": 0.0046,
+    "normalized_moment_8": 0.0073,
+    "psk2_residual": 0.9299,
+    "psk2_phase_entropy": 0.9998,
+    "psk4_residual": 0.637,
+    "psk4_phase_entropy": 0.9996,
+    "psk8_residual": 0.5261,
+    "psk8_phase_entropy": 0.9994,
+    "qam16_residual": 0.3526,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9486,
+    "spectral_peak_fraction": 0.0018
+   }
+  }
+ },
+ "T2-10": {
+  "gt_mod": "OFDM",
+  "snr_db": 20.0,
+  "cfo_hz": 0.0,
+  "n": 1600,
+  "raw_rms": 0.7948074290922906,
+  "raw_amp_cv": 0.527869023765714,
+  "cycles_of_cfo_rotation_over_capture": 0.0,
+  "as_analyzed(raw, CFO uncorrected)": {
+   "mod": "16qam",
+   "conf": 1.0,
+   "probs": {
+    "16qam": 1.0,
+    "8psk": 0.0,
+    "bpsk": 0.0,
+    "2fsk": 0.0,
+    "qpsk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.5279,
+    "amplitude_kurtosis": 3.1491,
+    "normalized_moment_2": 0.014,
+    "normalized_moment_4": 0.0322,
+    "normalized_moment_8": 0.0319,
+    "psk2_residual": 0.9289,
+    "psk2_phase_entropy": 0.9999,
+    "psk4_residual": 0.6333,
+    "psk4_phase_entropy": 0.9997,
+    "psk8_residual": 0.5245,
+    "psk8_phase_entropy": 0.9987,
+    "qam16_residual": 0.3462,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9147,
+    "spectral_peak_fraction": 0.006
+   }
+  },
+  "DIAG_oracle_cfo_removed": {
+   "mod": "16qam",
+   "conf": 1.0,
+   "probs": {
+    "16qam": 1.0,
+    "8psk": 0.0,
+    "bpsk": 0.0,
+    "2fsk": 0.0,
+    "qpsk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.5279,
+    "amplitude_kurtosis": 3.1491,
+    "normalized_moment_2": 0.014,
+    "normalized_moment_4": 0.0322,
+    "normalized_moment_8": 0.0319,
+    "psk2_residual": 0.9289,
+    "psk2_phase_entropy": 0.9999,
+    "psk4_residual": 0.6333,
+    "psk4_phase_entropy": 0.9997,
+    "psk8_residual": 0.5245,
+    "psk8_phase_entropy": 0.9987,
+    "qam16_residual": 0.3462,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9147,
+    "spectral_peak_fraction": 0.006
+   }
+  },
+  "est_cfo_order2": {
+   "hz": null,
+   "conf": 0.108
+  },
+  "est_cfo_order4": {
+   "hz": -50891.537475498306,
+   "conf": 0.172
+  },
+  "DIAG_est_cfo_order4_removed": {
+   "mod": "16qam",
+   "conf": 1.0,
+   "probs": {
+    "16qam": 1.0,
+    "8psk": 0.0,
+    "bpsk": 0.0,
+    "2fsk": 0.0,
+    "qpsk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.5279,
+    "amplitude_kurtosis": 3.1491,
+    "normalized_moment_2": 0.0016,
+    "normalized_moment_4": 0.0292,
+    "normalized_moment_8": 0.0113,
+    "psk2_residual": 0.9355,
+    "psk2_phase_entropy": 0.9991,
+    "psk4_residual": 0.632,
+    "psk4_phase_entropy": 0.9997,
+    "psk8_residual": 0.5256,
+    "psk8_phase_entropy": 0.9989,
+    "qam16_residual": 0.3442,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9117,
+    "spectral_peak_fraction": 0.0088
+   }
+  },
+  "est_cfo_order8": {
+   "hz": -60756.056724444155,
+   "conf": 0.216
+  },
+  "DIAG_est_cfo_order8_removed": {
+   "mod": "16qam",
+   "conf": 1.0,
+   "probs": {
+    "16qam": 1.0,
+    "8psk": 0.0,
+    "bpsk": 0.0,
+    "2fsk": 0.0,
+    "qpsk": 0.0
+   },
+   "features": {
+    "amplitude_coefficient_of_variation": 0.5279,
+    "amplitude_kurtosis": 3.1491,
+    "normalized_moment_2": 0.0194,
+    "normalized_moment_4": 0.003,
+    "normalized_moment_8": 0.0088,
+    "psk2_residual": 0.919,
+    "psk2_phase_entropy": 1.0,
+    "psk4_residual": 0.6392,
+    "psk4_phase_entropy": 0.9998,
+    "psk8_residual": 0.5264,
+    "psk8_phase_entropy": 0.9995,
+    "qam16_residual": 0.3521,
+    "fsk_quality": 0.0,
+    "fsk_tone_separation_norm": 0.0,
+    "fsk_frequency_repeat_fraction": 0.0,
+    "spectral_entropy": 0.9141,
+    "spectral_peak_fraction": 0.0069
+   }
+  }
+ }
+}

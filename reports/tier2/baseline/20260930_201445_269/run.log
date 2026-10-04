@@ -1,0 +1,33 @@
+2026-09-30T15:15:35.755043+00:00 Tier-2 run 20260930_201445_269 started; scenario_count=10
+2026-09-30T15:15:35.764811+00:00 generator_import_audit={"audit_pass": true, "direct_imports": ["__future__", "argparse", "hashlib", "json", "komm", "math", "numpy", "pathlib", "platform", "scipy.io", "typing"], "forbidden_imports": [], "generator_file": "tools\\tier2\\generate_signals.py", "scope": "static AST audit of independent generator only; analyzer imports are expected in runner"}
+2026-09-30T15:15:35.793103+00:00 T2-01 generation started
+2026-09-30T15:15:35.843918+00:00 T2-01 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-09-30T15:16:03.624272+00:00 T2-01 complete status=FAIL analyzer_status=partial elapsed_seconds=27.724
+2026-09-30T15:16:03.624272+00:00 T2-02 generation started
+2026-09-30T15:16:03.687794+00:00 T2-02 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-09-30T15:17:06.118807+00:00 T2-02 complete status=FAIL analyzer_status=partial elapsed_seconds=62.358
+2026-09-30T15:17:06.118807+00:00 T2-03 generation started
+2026-09-30T15:17:06.193526+00:00 T2-03 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-09-30T15:17:26.893323+00:00 T2-03 complete status=PARTIAL analyzer_status=partial elapsed_seconds=20.654
+2026-09-30T15:17:26.893323+00:00 T2-04 generation started
+2026-09-30T15:17:31.132069+00:00 T2-04 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-09-30T15:17:32.301321+00:00 T2-04 complete status=REJECTED analyzer_status=rejected elapsed_seconds=0.632
+2026-09-30T15:17:32.301321+00:00 T2-05 generation started
+2026-09-30T15:17:32.338919+00:00 T2-05 Analyzer.analyze_file started with keys=['crc_present', 'run_fec', 'samples_per_symbol', 'treat_stereo_as_iq']
+2026-09-30T15:17:32.503360+00:00 T2-05 complete status=PASS analyzer_status=complete elapsed_seconds=0.097
+2026-09-30T15:17:32.509332+00:00 T2-06 generation started
+2026-09-30T15:17:32.573076+00:00 T2-06 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-09-30T15:17:32.752200+00:00 T2-06 complete status=FAIL analyzer_status=partial elapsed_seconds=0.068
+2026-09-30T15:17:32.752200+00:00 T2-07 generation started
+2026-09-30T15:17:36.431299+00:00 T2-07 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-09-30T16:01:16.163246+00:00 T2-07 complete status=FAIL analyzer_status=partial elapsed_seconds=2618.441
+2026-09-30T16:01:16.166610+00:00 T2-08 generation started
+2026-09-30T16:01:16.290133+00:00 T2-08 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-09-30T16:03:01.498207+00:00 T2-08 complete status=FAIL analyzer_status=partial elapsed_seconds=105.133
+2026-09-30T16:03:01.498207+00:00 T2-09 generation started
+2026-09-30T16:03:01.520859+00:00 T2-09 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec']
+2026-09-30T16:05:50.308246+00:00 T2-09 complete status=FAIL analyzer_status=partial elapsed_seconds=168.713
+2026-09-30T16:05:50.309265+00:00 T2-10 generation started
+2026-09-30T16:05:50.338364+00:00 T2-10 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec']
+2026-09-30T16:06:32.966619+00:00 T2-10 complete status=FAIL analyzer_status=partial elapsed_seconds=42.606
+2026-09-30T16:06:32.981659+00:00 Tier-2 run finished scenarios=10

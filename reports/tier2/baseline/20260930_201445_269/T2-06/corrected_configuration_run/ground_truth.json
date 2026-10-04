@@ -1,0 +1,84 @@
+{
+  "analyzer_configuration_allowed": {
+    "crc_present": true,
+    "raw_iq_sample_rate_hz": 48000.0,
+    "run_fec": true,
+    "samples_per_symbol": 8,
+    "stereo_wav_as_iq": false,
+    "tone_frequencies_hz": [
+      -3000.0,
+      3000.0
+    ]
+  },
+  "carrier_offset_hz": 0.0,
+  "crc": "CRC-16/CCITT-FALSE",
+  "duration_seconds": 0.3473333333333333,
+  "encoded_modulation_input_bit_count": 2084,
+  "fec": "Conv_R12_K3",
+  "file_format": "complex64_le_iq",
+  "file_path": "capture.iq",
+  "file_sha256": "9f0f3085362853bc54b5a2e6cdc5f74bd80b2d779d8e11ae8bad2ee4416d9fea",
+  "gain": 1.3034932371113457,
+  "generator": {
+    "channel_method": "NumPy complex baseband mapping, explicit CFO/phase/gain, and AWGN; OFDM constructed with NumPy IFFT",
+    "configuration": {
+      "cfo_hz": 0.0,
+      "fec": "Conv_R12_K3",
+      "interleaver": "None",
+      "modulation": "2FSK",
+      "payload_bits": 1024,
+      "sample_rate_key": "fsk",
+      "samples_per_symbol": 8,
+      "scenario_id": "T2-06",
+      "seed": 7106061,
+      "snr_db": 10.0,
+      "tone_frequencies_hz": [
+        -3000.0,
+        3000.0
+      ]
+    },
+    "fec_method": "Komm ConvolutionalCode for convolutional coding; local GF(256) RS encoder (alpha=2, primitive 0x11d, fcr=0); locally implemented CRC and interleaver mappings",
+    "file_conversion": "stereo WAV is signed PCM16 with channel 0=I, channel 1=Q; raw IQ is little-endian complex64",
+    "import_allowlist": [
+      "stdlib",
+      "numpy",
+      "scipy.io.wavfile",
+      "komm"
+    ],
+    "komm_version": "0.36.0",
+    "language": "Python",
+    "name": "tier2-independent-numpy-komm-1.0.0",
+    "numpy_version": "2.5.3",
+    "python_version": "3.12.10"
+  },
+  "initial_phase_rad": -3.086820549952192,
+  "interleaver": "None",
+  "modulation": "2FSK",
+  "ood": false,
+  "payload_bit_count": 1024,
+  "payload_bits_file": "payload_bits.bin",
+  "payload_packed_bitorder": "big",
+  "payload_sha256": "a050f3e6f6053060bee7a17e0857f3612f9ad1ebac8fce54ce71efbe452911fc",
+  "random_seed": 7106061,
+  "sample_count": 16672,
+  "sample_rate_hz": 48000.0,
+  "samples_per_symbol": 8,
+  "scenario_id": "T2-06",
+  "snr_db": 10.0,
+  "timing_offset_samples": 0,
+  "tone_frequencies_hz": [
+    -3000.0,
+    3000.0
+  ],
+  "unknown_to_analyzer": [
+    "payload bits",
+    "random seed",
+    "transmitted modulation",
+    "FEC identity",
+    "interleaver identity",
+    "gain",
+    "initial phase",
+    "injected SNR",
+    "carrier offset"
+  ]
+}

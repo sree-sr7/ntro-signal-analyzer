@@ -1,0 +1,43 @@
+{
+  "accepted_fec": null,
+  "accepted_interleaver": null,
+  "analysis_result_file": "analysis_result.json",
+  "analyzer_status": "complete",
+  "classifier_status": "success",
+  "crc": null,
+  "demodulated_bit_count": 8192,
+  "elapsed_seconds": 0.09668580000288785,
+  "estimated_cfo_hz": 0.03724615310063768,
+  "failure_reason": "failed gates: payload",
+  "fec_ground_truth": "None",
+  "fec_status": "NOT_REQUIRED",
+  "gates": {
+    "demodulation": true,
+    "fec_interleaver_crc": true,
+    "input": true,
+    "modulation": true,
+    "ood_rejection": null,
+    "payload": false
+  },
+  "ground_truth_file": "ground_truth_reviewed.json",
+  "ground_truth_modulation": "QPSK",
+  "injected_cfo_hz": 0.0,
+  "interleaver_ground_truth": "None",
+  "modulation_confidence": 0.9979265862527592,
+  "ood_state": {
+    "accepted_candidate_count": 0,
+    "crc_valid_recovery": false,
+    "expected_ood": false,
+    "explicitly_rejected": false
+  },
+  "payload_match": false,
+  "payload_sha256_expected": "29bc83b65d0584f026647e5717cdd170843cc9b0a2592690b8e318a4ca8ae339",
+  "payload_sha256_recovered": "36ee3029c4eaf8d51e525c2c28a0d1273e28026de1f0b79978d877ad0df06aa2",
+  "predicted_modulation": "qpsk",
+  "review_notes": [
+    "Payload gate reviewed against recovered_bits; the first runner comparison omitted direct demodulated-payload comparison."
+  ],
+  "scenario_id": "T2-05",
+  "scenario_type": "in_scope",
+  "status": "PARTIAL"
+}

@@ -1,0 +1,45 @@
+{
+  "accepted_fec": null,
+  "accepted_interleaver": null,
+  "analysis_result_file": "analysis_result.json",
+  "analyzer_status": "partial",
+  "classifier_status": "success",
+  "crc": null,
+  "demodulated_bit_count": 6400,
+  "elapsed_seconds": 42.60592670016922,
+  "estimated_cfo_hz": null,
+  "failure_reason": "classifier accepted 16qam with confidence 0.9999999999198896; analyzer reported 45 accepted trial candidates",
+  "fec_ground_truth": "None",
+  "fec_status": "NOT_REQUIRED",
+  "gates": {
+    "demodulation": null,
+    "fec_interleaver_crc": null,
+    "input": true,
+    "modulation": null,
+    "ood_rejection": false,
+    "payload": null
+  },
+  "ground_truth_file": "ground_truth_reviewed.json",
+  "ground_truth_modulation": "OFDM",
+  "injected_cfo_hz": 0.0,
+  "interleaver_ground_truth": "None",
+  "modulation_confidence": 0.9999999999198896,
+  "ood_state": {
+    "accepted_candidate_count": 45,
+    "best_candidate_accepted": true,
+    "crc_valid_recovery": false,
+    "expected_ood": true,
+    "explicitly_rejected": false,
+    "fec_search_status": "no_fec_candidate"
+  },
+  "payload_match": null,
+  "payload_sha256_expected": null,
+  "payload_sha256_recovered": null,
+  "predicted_modulation": "16qam",
+  "review_notes": [
+    "OOD label promoted from the generator configuration saved before analysis."
+  ],
+  "scenario_id": "T2-10",
+  "scenario_type": "OOD",
+  "status": "OOD_FAIL"
+}

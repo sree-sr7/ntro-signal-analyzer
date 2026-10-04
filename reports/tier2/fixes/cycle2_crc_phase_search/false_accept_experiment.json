@@ -1,0 +1,39 @@
+{
+  "label": "Cycle 2 controlled randomized negative test of CRC-only phase search",
+  "seed": 2614701,
+  "random_qpsk_frames": 80,
+  "symbols_per_frame": 512,
+  "expected_payload_length": null,
+  "crc_present": true,
+  "phase_rotations_per_frame": 4,
+  "fec_interleaver_hypotheses_per_phase": 89,
+  "total_hypotheses": 28480,
+  "actual_trial_evaluations": 27520,
+  "structurally_compatible_trial_evaluations": 16000,
+  "fec_valid_candidate_outputs": 12800,
+  "crc_accepts": 1,
+  "accepted_candidate_hypotheses": 1,
+  "final_accepted_garbage_frames": 1,
+  "final_accepted_garbage_phase_candidates": 1,
+  "phase_searches_with_any_crc_accept": 1,
+  "runtime_seconds": 44.510257200017804,
+  "crc16_caveat": "For an independent random candidate, CRC-16 has an approximate 2^-16 collision probability before additional FEC and structural validation; this experiment is an observation, not proof of zero false positives. (2^-16 = 0.0015259% per independent candidate.)",
+  "phase_hypothesis_count": 320,
+  "accepting_candidate_details": [
+    {
+      "random_frame_index": 1,
+      "phase_index": 0,
+      "phase_rotation_rad": 0.0,
+      "fec_type": null,
+      "interleaver_type": "Convolutional_Depth_12",
+      "valid": true,
+      "structure_match": true,
+      "crc_pass": true,
+      "accepted": true,
+      "decoded_payload_bit_count": 1008,
+      "random_input_sha256": "283a0efc09cc795940f1bfe82170c9c5510cf94ccff20c1d3448f8db5e848117",
+      "candidate_trial_count": 86,
+      "candidate_total_hypotheses": 89
+    }
+  ]
+}

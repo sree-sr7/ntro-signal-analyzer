@@ -1,0 +1,630 @@
+{
+  "manifest_version": 1,
+  "harness_version": "0.1.0",
+  "recorded_at_local": "2026-09-30T20:14:45+05:30",
+  "run_id": "20260930_201445_269",
+  "repository": {
+    "path": "C:\\Users\\HP\\Documents\\NTRO-Signal-Analyzer",
+    "git_available": false,
+    "git_status": "git status --short --branch failed: not a git repository",
+    "revision": null,
+    "snapshot_file_count": 118,
+    "snapshot_sha256": "f7afd5e055ca91474950f0bc6ab0853d87fff23c949e6468e5f9b2763d2cffbc",
+    "snapshot_files": [
+      {
+        "path": "NTRO_26147_STEP79_BACKUP.zip",
+        "size_bytes": 326223,
+        "sha256": "99dcc376836f061a52aabb631715c6d99c839f2855665d3dbe0b181342690a51"
+      },
+      {
+        "path": "README.md",
+        "size_bytes": 13302,
+        "sha256": "2ec399c1cbacc11e37f5547446f5ca65795685c11604713e7ec748dac0276f64"
+      },
+      {
+        "path": "ntro_source_for_colab.zip",
+        "size_bytes": 131307,
+        "sha256": "a0ca57dffc4af82b1705680e0c5dca32da21b9b251a936603da5f8db489fb365"
+      },
+      {
+        "path": "pyproject.toml",
+        "size_bytes": 494,
+        "sha256": "b33e219a391c7bf9ecd2dc90c5b6a1daa1ad329745e71aada95ede0b73f8a936"
+      },
+      {
+        "path": "requirements-lock.txt",
+        "size_bytes": 2084,
+        "sha256": "c0923ff655c000d406bdd3c8c81a173dc938d96fcac233b43d6266eacbc71a8f"
+      },
+      {
+        "path": "requirements.txt",
+        "size_bytes": 234,
+        "sha256": "9cd5c0f36cde3d923ab4d07438ebd747073349f028acaa42d3b5c931b110a4c9"
+      },
+      {
+        "path": "step78_audit.py",
+        "size_bytes": 17806,
+        "sha256": "12fe2a186a2d40bf81ba5ca32579b0773e2608c92c81513b82deba51d4bf4f16"
+      },
+      {
+        "path": "step78_repository_audit.json",
+        "size_bytes": 13485,
+        "sha256": "4455edd319e96d659662251a9318b8ccbbb04c2f9d1c19606c90caac8c575e93"
+      },
+      {
+        "path": "configs/default_config.yaml",
+        "size_bytes": 762,
+        "sha256": "982647f6ccc5280207c342f9c8c1dbd687bfea6a0299ace68fd8c595cb2f5f3b"
+      },
+      {
+        "path": "core/__init__.py",
+        "size_bytes": 7,
+        "sha256": "e3300b082c5f4b2cce28d981fd8f91d40d225213e908eaca6e4275b2b256cb1a"
+      },
+      {
+        "path": "core/bitstream/__init__.py",
+        "size_bytes": 855,
+        "sha256": "792553d8e061c7c77c2d15d717a37766ae137e0f7da5048e67657ff262a80407"
+      },
+      {
+        "path": "core/bitstream/correlator.py",
+        "size_bytes": 1729,
+        "sha256": "49bdbb910083d45e01823780ac1326bd380bc92c4e4e946196d8733287445b6a"
+      },
+      {
+        "path": "core/bitstream/crc.py",
+        "size_bytes": 3252,
+        "sha256": "086ceab4ca349b5252f38ffa16a0b9bac53dbaea1fb6d7ea804e18918e01bc9c"
+      },
+      {
+        "path": "core/bitstream/extractor.py",
+        "size_bytes": 4641,
+        "sha256": "1db1ac919881627f0e3d53d3aefa499068577e4cf8273099edff0f917ea2b380"
+      },
+      {
+        "path": "core/bitstream/frame_analyzer.py",
+        "size_bytes": 7387,
+        "sha256": "d58acd00a5a9b71582bae246cd523d70b10662df857323040c3be5d843b517b8"
+      },
+      {
+        "path": "core/common/__init__.py",
+        "size_bytes": 916,
+        "sha256": "3d843206ddf8377eecb8c763e50cd207c0babad2c1cf9f181053d51213310a52"
+      },
+      {
+        "path": "core/common/enums.py",
+        "size_bytes": 1666,
+        "sha256": "7b0ab702572673f124e81fa4d322bb1e52f344dc36ab7be02059f2ac59d71aac"
+      },
+      {
+        "path": "core/common/exceptions.py",
+        "size_bytes": 676,
+        "sha256": "1522b3711c96e92e86c97503b1f6af00bf160eb76c77322825e5d93d24edb34c"
+      },
+      {
+        "path": "core/common/models.py",
+        "size_bytes": 8744,
+        "sha256": "c42f2d21e35851481dd367bb0bfd4846cb8a9da5f6a3f31698314ac147b0263d"
+      },
+      {
+        "path": "core/common/validation.py",
+        "size_bytes": 3454,
+        "sha256": "7b55c8adb0ff2d50564d76fd077d3d065c1dc2663d821298f342b400d096bb0e"
+      },
+      {
+        "path": "core/dsp/__init__.py",
+        "size_bytes": 753,
+        "sha256": "d236a91a43408bdf45222c338d6985dd98647b4567977c51bdfbdb76c1d0a705"
+      },
+      {
+        "path": "core/dsp/_soft.py",
+        "size_bytes": 2218,
+        "sha256": "dab7758ef023b9178af62181afb076fcca66eecb04962d42fe0aa080d84505bc"
+      },
+      {
+        "path": "core/dsp/_validation.py",
+        "size_bytes": 881,
+        "sha256": "981f96a5d2ff25e59127f141b7b5e0000a961e9a0fa6d7ab03d7b1b7c0f32864"
+      },
+      {
+        "path": "core/dsp/demod_fsk.py",
+        "size_bytes": 3328,
+        "sha256": "b71483e9d77aa1c3c4a0cb56f2eaf8b32049abb98b1e96e72a6717770620df85"
+      },
+      {
+        "path": "core/dsp/demod_psk.py",
+        "size_bytes": 5518,
+        "sha256": "f2fb9975b082c9d4f8814a2b1d383e6ba19ae42cdc2c78b62659244de470f2bf"
+      },
+      {
+        "path": "core/dsp/demod_qam.py",
+        "size_bytes": 3085,
+        "sha256": "281dea0ff3a995f6a2423f4f1ac3d2ea58caaee198a5eb7aa447080c08570ced"
+      },
+      {
+        "path": "core/dsp/demodulation.py",
+        "size_bytes": 1035,
+        "sha256": "34fd210a948b24599a4ce26362aa873644adc1871074b3e919e79a9f1bca7c72"
+      },
+      {
+        "path": "core/dsp/energy_detector.py",
+        "size_bytes": 4104,
+        "sha256": "b063ed8f7426f546c7a4b0be0d8f35b70119a573cc74f7d2d0a8eff348c51fe2"
+      },
+      {
+        "path": "core/dsp/modulation_features.py",
+        "size_bytes": 8072,
+        "sha256": "ab2d5ac367ca0dd28bd49d792867a2bbdbe8adc6ba9a5949a466479c73ca6713"
+      },
+      {
+        "path": "core/dsp/pulse_shaping.py",
+        "size_bytes": 3445,
+        "sha256": "e8b01e6eef5b9363319359d4ebb99e79cc2b8c54a5f9ca01db0e863bb8374438"
+      },
+      {
+        "path": "core/dsp/spectral.py",
+        "size_bytes": 3539,
+        "sha256": "9bd31e27f226420fdb910a8aa325a35c3a749700c77c97e927892d3609d443aa"
+      },
+      {
+        "path": "core/dsp/symbol_rate.py",
+        "size_bytes": 9192,
+        "sha256": "9fdbd3f80b74f7673b1436ed169a05670bd4b60b5684ae4310626bc17875f25c"
+      },
+      {
+        "path": "core/fec/__init__.py",
+        "size_bytes": 2079,
+        "sha256": "c26d8839ddc3ec23cabf0b215a5a15eeb9c361dc2432e74115cb7dad0f28fe13"
+      },
+      {
+        "path": "core/fec/concatenated.py",
+        "size_bytes": 6047,
+        "sha256": "4aaf0f14ade0995393fea682e97200a0bdf943e7872a5617b6c6b999b8e7b5dc"
+      },
+      {
+        "path": "core/fec/convolutional.py",
+        "size_bytes": 11181,
+        "sha256": "6b46f135fee20474d40f179bef3181d59c13b38dec3c3e2345a6461a8c2fdfec"
+      },
+      {
+        "path": "core/fec/ldpc_decoder.py",
+        "size_bytes": 23147,
+        "sha256": "7e18d4c62985893d6a71c594a38d7352be9906196282cb2d66a81a293084beca"
+      },
+      {
+        "path": "core/fec/reed_solomon.py",
+        "size_bytes": 6181,
+        "sha256": "cfdba165732f0ecd61fd8e0edb6d04dfb727ca668dea350fa326317f10341406"
+      },
+      {
+        "path": "core/fec/trial_engine.py",
+        "size_bytes": 40886,
+        "sha256": "6954eb5cf3906b142f1e47fb2b3a187f4d6f932779bccbe9d47b76b825616d27"
+      },
+      {
+        "path": "core/file_io/__init__.py",
+        "size_bytes": 509,
+        "sha256": "af6e6f009826e7b29482e0d3a5645302bead7734f417fd434a39d65db804c164"
+      },
+      {
+        "path": "core/file_io/format_detector.py",
+        "size_bytes": 1612,
+        "sha256": "4fbd2d4787d13b1b2106e5cf26a9b6f2cabcb42f98b38d01544b94ff94e5da94"
+      },
+      {
+        "path": "core/file_io/iq_loader.py",
+        "size_bytes": 6355,
+        "sha256": "2e9749a7e8015a7775d5d29661f98815bf6ef7f1d937af2f9c27c396e058c5ad"
+      },
+      {
+        "path": "core/file_io/metadata.py",
+        "size_bytes": 2366,
+        "sha256": "9b2edd23b21615ba56a1a6981b86e4cfa1f0720fc9da3c06dab8ca255786c2ae"
+      },
+      {
+        "path": "core/file_io/sigmf_loader.py",
+        "size_bytes": 4139,
+        "sha256": "393c1f5cd41671e6efe46337912337fc7f4044fc8da586f5a4a6447ae3b2cff6"
+      },
+      {
+        "path": "core/file_io/wav_loader.py",
+        "size_bytes": 4728,
+        "sha256": "a8b33b31438a06bb9c71ddb111a06214176d3cae42432fb456d62c47bd459314"
+      },
+      {
+        "path": "core/interleaver/__init__.py",
+        "size_bytes": 951,
+        "sha256": "bffe833854bdef33618c6512fb393c3d42915272d018b7c68a409f007988fbbd"
+      },
+      {
+        "path": "core/interleaver/block.py",
+        "size_bytes": 1912,
+        "sha256": "5bd68327594e79854c709eba54050aa79e3a2b137ab867d5cdeeeafaa55eca44"
+      },
+      {
+        "path": "core/interleaver/convolutional.py",
+        "size_bytes": 3153,
+        "sha256": "444cb852eafbeb90bdcdfa14f6931ed6885a40e8151a02e706d1ad4c6d170802"
+      },
+      {
+        "path": "core/interleaver/diagonal.py",
+        "size_bytes": 2418,
+        "sha256": "a271cc84e51af8cb2dc4fa4a346d169a3d56419eae7d3473eb106bb20772f649"
+      },
+      {
+        "path": "core/interleaver/pseudorandom.py",
+        "size_bytes": 6550,
+        "sha256": "e667216997168b7b515ebdc4880ec7588b852d890cf9c2ba9403a4913595b36b"
+      },
+      {
+        "path": "core/ml/__init__.py",
+        "size_bytes": 284,
+        "sha256": "4ae825c5d202436a6be7abef38e30fce2d04bff52a369140bb95dfecdf0828e9"
+      },
+      {
+        "path": "core/ml/classifier.py",
+        "size_bytes": 14397,
+        "sha256": "8992d2aba1ac4bd4a5a2f6756c9fd5d1d5ecad80a34e47632181da46eb0d841f"
+      },
+      {
+        "path": "core/ml/model_def.py",
+        "size_bytes": 857,
+        "sha256": "a2e44eee82a5dfcd1029248287171d13fd0a1944a68077c80d738635882a3295"
+      },
+      {
+        "path": "core/pipeline/__init__.py",
+        "size_bytes": 162,
+        "sha256": "92f588f9a773c6888264641ccb5df027a352422979a979928378fa341d2193eb"
+      },
+      {
+        "path": "core/pipeline/analyzer.py",
+        "size_bytes": 43199,
+        "sha256": "5fd3ddc1660409453c064f0efe5ea51310ba84c9403b83d069d56bd2546b9d78"
+      },
+      {
+        "path": "core/pipeline/demo.py",
+        "size_bytes": 10690,
+        "sha256": "1cb18ec874f616c7f381d146fb5528c7e4d784c890f91cd321098fac59273974"
+      },
+      {
+        "path": "core/sync/__init__.py",
+        "size_bytes": 377,
+        "sha256": "30972834e5b269ab7e67737b1f86a8bdd9e9748ac2af60669972bff0a1db27a6"
+      },
+      {
+        "path": "core/sync/carrier_recovery.py",
+        "size_bytes": 2845,
+        "sha256": "46cbea8d58738780e96fb1e1fe57689f7912b3844114015f228a4c74d759372c"
+      },
+      {
+        "path": "core/sync/cfo_estimator.py",
+        "size_bytes": 3641,
+        "sha256": "aec650bfc12e7704889180d03b1c00c6440f07ad2f080658673ab196408a3a05"
+      },
+      {
+        "path": "core/sync/phase_ambiguity.py",
+        "size_bytes": 1156,
+        "sha256": "9f38390a969b0d9c8fea0ce605e78053fb27881b375b2f254cb4581bf56b795b"
+      },
+      {
+        "path": "core/sync/timing_recovery.py",
+        "size_bytes": 4729,
+        "sha256": "b4efdb3a3b45cc7dd7fa10b9e2284c680492b0ac8194ad745ae138ba725a0921"
+      },
+      {
+        "path": "docs/diagonal_interleaver_note.md",
+        "size_bytes": 2572,
+        "sha256": "3024a7825c5d815b744a88cb9f51779ac44b8c0e72072ef49498dfea3d95bf0b"
+      },
+      {
+        "path": "docs/ieee_ldpc_research_note.md",
+        "size_bytes": 7090,
+        "sha256": "62d9d3796ef53734df997dbea5716ac3abc29b30d4adeef17d82502e9077899e"
+      },
+      {
+        "path": "docs/references.bib",
+        "size_bytes": 3980,
+        "sha256": "4f4dfb1acb4beec35a2f8e94f0eabffc93d7fcdf9a83f0341e675b04075297cc"
+      },
+      {
+        "path": "docs/research_references.md",
+        "size_bytes": 13703,
+        "sha256": "f5bf11455ab9de20af02f25d4963da2527eeb340946b7fd1d81686b96473aae2"
+      },
+      {
+        "path": "generators/__init__.py",
+        "size_bytes": 7,
+        "sha256": "e3300b082c5f4b2cce28d981fd8f91d40d225213e908eaca6e4275b2b256cb1a"
+      },
+      {
+        "path": "gui/__init__.py",
+        "size_bytes": 101,
+        "sha256": "ba42dbf379a4692e613a1ab69098d0d2526392924e27441e412e7802c1ff7466"
+      },
+      {
+        "path": "gui/__main__.py",
+        "size_bytes": 83,
+        "sha256": "f4e9f2cbe4e4921de80a5a75499163c0c2e65699f64ba9f5c109d3a47aa92771"
+      },
+      {
+        "path": "gui/app.py",
+        "size_bytes": 447,
+        "sha256": "7cb3d3066d1acf7abe093fa8a41d07fc391ccec708b09d0d3dbb4740c08e1528"
+      },
+      {
+        "path": "gui/main_window.py",
+        "size_bytes": 51230,
+        "sha256": "808733573bbf9fe293a90c20cf3aef91eb659564d46d0f6aa7ddb50a21aa5181"
+      },
+      {
+        "path": "gui/worker.py",
+        "size_bytes": 1848,
+        "sha256": "4a25aeaf7d15f2a5ab2f9c724f9cc9d3057335ec2fc7ba194ae4d1a329625887"
+      },
+      {
+        "path": "gui/panels/__init__.py",
+        "size_bytes": 7,
+        "sha256": "e3300b082c5f4b2cce28d981fd8f91d40d225213e908eaca6e4275b2b256cb1a"
+      },
+      {
+        "path": "libs/__init__.py",
+        "size_bytes": 540,
+        "sha256": "2053a7836747c8d44813c4d8f4df2aead994655201ae56edfdb7afdcd9df3c73"
+      },
+      {
+        "path": "libs/modulation_library.py",
+        "size_bytes": 6118,
+        "sha256": "856d3b785ebf64e6def3bb6069d40b783ff8183a5d2eb9b2ed30a6ff9517d3d1"
+      },
+      {
+        "path": "models/production_mlp_final.onnx",
+        "size_bytes": 16754,
+        "sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677"
+      },
+      {
+        "path": "tests/__init__.py",
+        "size_bytes": 7,
+        "sha256": "e3300b082c5f4b2cce28d981fd8f91d40d225213e908eaca6e4275b2b256cb1a"
+      },
+      {
+        "path": "tests/modulation_helpers.py",
+        "size_bytes": 1345,
+        "sha256": "d8c06c7c5a2a85c51cc821c5d91e479d81914045f9cfc3491d9e3a922b01fce7"
+      },
+      {
+        "path": "tests/signal_helpers.py",
+        "size_bytes": 1719,
+        "sha256": "b5a4b2eac1c238db93bdd0b6ac0b6f603d0a76c30bbd5f7059c45cc301ea78b9"
+      },
+      {
+        "path": "tests/gui/test_main_window.py",
+        "size_bytes": 6871,
+        "sha256": "00f576e6eefad763f4d08dbbf3b497bc2d57a6efc7b9efd662d15cd6c2a0eeda"
+      },
+      {
+        "path": "tests/integration/__init__.py",
+        "size_bytes": 7,
+        "sha256": "e3300b082c5f4b2cce28d981fd8f91d40d225213e908eaca6e4275b2b256cb1a"
+      },
+      {
+        "path": "tests/integration/test_analyzer_pipeline.py",
+        "size_bytes": 11204,
+        "sha256": "1882642388a056483422fd32f2ef3c76b5a55d0693313a9a55914a89b7609941"
+      },
+      {
+        "path": "tests/integration/test_dsp_pipeline.py",
+        "size_bytes": 3220,
+        "sha256": "20142f7452b3a9e0da1e2d72fe7b713772108bf6d733a52b6db93c71fd0cd754"
+      },
+      {
+        "path": "tests/integration/test_fec_trial.py",
+        "size_bytes": 23653,
+        "sha256": "70ce3295fb786fdce46528d6ed54eb5b714142066cbe2fde30d71bd9f00d952e"
+      },
+      {
+        "path": "tests/integration/test_ldpc_trial.py",
+        "size_bytes": 2070,
+        "sha256": "8888912db138cccc8d7a6b632b1dbf349464872f8f4c1cd7315936739a550427"
+      },
+      {
+        "path": "tests/integration/test_modulation_demod_pipeline.py",
+        "size_bytes": 3122,
+        "sha256": "b17b36234f74c1a97e4d095a2a598b2d5bceef67ae2e2c2271af13886c490226"
+      },
+      {
+        "path": "tests/tier1/__init__.py",
+        "size_bytes": 7,
+        "sha256": "e3300b082c5f4b2cce28d981fd8f91d40d225213e908eaca6e4275b2b256cb1a"
+      },
+      {
+        "path": "tests/tier2/__init__.py",
+        "size_bytes": 7,
+        "sha256": "e3300b082c5f4b2cce28d981fd8f91d40d225213e908eaca6e4275b2b256cb1a"
+      },
+      {
+        "path": "tests/unit/__init__.py",
+        "size_bytes": 7,
+        "sha256": "e3300b082c5f4b2cce28d981fd8f91d40d225213e908eaca6e4275b2b256cb1a"
+      },
+      {
+        "path": "tests/unit/test_bitstream.py",
+        "size_bytes": 3285,
+        "sha256": "6df6401b4e7062ebd87cce15befca88f84c3c32385840d1b6290fc3f7457f851"
+      },
+      {
+        "path": "tests/unit/test_block_interleaver.py",
+        "size_bytes": 1785,
+        "sha256": "52605770d780b5eef82f12978f97018761d3ffec607bfdb419c33cfe13b61111"
+      },
+      {
+        "path": "tests/unit/test_carrier_recovery.py",
+        "size_bytes": 1989,
+        "sha256": "591c421155244dafcc432e15ff748daea96a9a5a4ee330f342697a15aedf4693"
+      },
+      {
+        "path": "tests/unit/test_cfo_estimator.py",
+        "size_bytes": 1620,
+        "sha256": "9badf1fc5bb17e3366e188245464b9dabaf63dfc85db6019119ecbbb79c360b1"
+      },
+      {
+        "path": "tests/unit/test_classifier.py",
+        "size_bytes": 2514,
+        "sha256": "32674af887785dacea05d2b7854f0af79136453128da3c55bd19d301c4d57b99"
+      },
+      {
+        "path": "tests/unit/test_concatenated.py",
+        "size_bytes": 4550,
+        "sha256": "cfd460db4c404f55ae4675c24446f2347bea1ff7bf0fe20cd56f1c2d5c52768a"
+      },
+      {
+        "path": "tests/unit/test_conv_interleaver.py",
+        "size_bytes": 2374,
+        "sha256": "a4f68bee34cdf84e08a4ee5728db281ab5da1e6ed14b31546360c713db82c0a6"
+      },
+      {
+        "path": "tests/unit/test_convolutional_fec.py",
+        "size_bytes": 4787,
+        "sha256": "3bd881dc7fc3bc8d7ae8f0ef283293d7425b7e416e37c05a238d089273b91671"
+      },
+      {
+        "path": "tests/unit/test_crc.py",
+        "size_bytes": 1023,
+        "sha256": "ee8656edea124180b8de11ec067cd6d5cf224f936ccca914c1bb37479aaade77"
+      },
+      {
+        "path": "tests/unit/test_demo.py",
+        "size_bytes": 4487,
+        "sha256": "7fb1a467f5cb6ea024ecf2c23e26074c17533c91168d6bc912a9a5bee98aac11"
+      },
+      {
+        "path": "tests/unit/test_demod_fsk.py",
+        "size_bytes": 2175,
+        "sha256": "d9a7a272c0ef6ab952f585360800a437ad4dddc495d7a5327e512a46625b599a"
+      },
+      {
+        "path": "tests/unit/test_demod_psk.py",
+        "size_bytes": 2553,
+        "sha256": "6e7378829970f39413a204a44b8cb443ef92b8a57e9764b5fbb1f8455e72971a"
+      },
+      {
+        "path": "tests/unit/test_demod_qam.py",
+        "size_bytes": 1528,
+        "sha256": "2e1adc0ba3d76beb024806b7e7f1a11cf5c1ec50bec7f28391c7841b8d7851ea"
+      },
+      {
+        "path": "tests/unit/test_diagonal_interleaver.py",
+        "size_bytes": 6092,
+        "sha256": "3811ca94db6a76b915e85286a95467d74feee9b5b2f3a67106d3d2298624f513"
+      },
+      {
+        "path": "tests/unit/test_energy_detector.py",
+        "size_bytes": 2285,
+        "sha256": "8eab0bb21cf3a12768ff952e7673a7a6a060cdee69fcd99477bac532a692ff47"
+      },
+      {
+        "path": "tests/unit/test_format_detector.py",
+        "size_bytes": 2511,
+        "sha256": "d82205d0f24ffde36c48eae008f64a549437ca66776212f55477c5a7bf3a84da"
+      },
+      {
+        "path": "tests/unit/test_iq_loader.py",
+        "size_bytes": 6703,
+        "sha256": "0a87fbe4926cf15fecf53b59f49ff8bd9ddce169919f459625960ecd465e5a75"
+      },
+      {
+        "path": "tests/unit/test_ldpc_decoder.py",
+        "size_bytes": 7806,
+        "sha256": "aedd87981e0f5fbff7190961fe97288b484d42ea7c8957b4815a5a7dd349337c"
+      },
+      {
+        "path": "tests/unit/test_models.py",
+        "size_bytes": 3943,
+        "sha256": "0307af013feec43abf358f9b90a2c2e4185b40d5976b18aed88b7069ca9be2bb"
+      },
+      {
+        "path": "tests/unit/test_modulation_features.py",
+        "size_bytes": 2798,
+        "sha256": "4b88cd2e71da1734046400e3abf733e43999c2f4ee4c8a9159fe1cbfb3881c6c"
+      },
+      {
+        "path": "tests/unit/test_modulation_library.py",
+        "size_bytes": 1101,
+        "sha256": "98a929f34062d61c16e16026eca25d0a84cad564ec525569d42fd09535b74f23"
+      },
+      {
+        "path": "tests/unit/test_phase_ambiguity.py",
+        "size_bytes": 1100,
+        "sha256": "205cb21162395c23bc9425884729bc075360a7f7095e16b3843816001bb6ad80"
+      },
+      {
+        "path": "tests/unit/test_pseudorandom_interleaver.py",
+        "size_bytes": 4832,
+        "sha256": "79e4bb9b05c1ae828226cf5db1761e698f047d1a3b1d94edbf90ef01868b94ca"
+      },
+      {
+        "path": "tests/unit/test_pulse_shaping.py",
+        "size_bytes": 1641,
+        "sha256": "5b8f3bd0b7e0cf1a64a3b71f3ff5268862161d35002f105617e58e56e7c254cc"
+      },
+      {
+        "path": "tests/unit/test_reed_solomon.py",
+        "size_bytes": 4913,
+        "sha256": "6f4fc79410a11fd327ecb2cc14489ca87233b80223bd3a7efc3eb10ef5f9ee2f"
+      },
+      {
+        "path": "tests/unit/test_sigmf_loader.py",
+        "size_bytes": 4320,
+        "sha256": "24be92cc8f49ea8e49ac32d1cb45cfcfd18baac2525da0b4b4b145a34d425df0"
+      },
+      {
+        "path": "tests/unit/test_spectral.py",
+        "size_bytes": 2805,
+        "sha256": "947106d39cbd90127da9d3f67c5c3b20741b006db0f664603cb5ee3d18fd2e22"
+      },
+      {
+        "path": "tests/unit/test_symbol_rate.py",
+        "size_bytes": 2202,
+        "sha256": "e4a3c8cb56d949b14d1bc9ebc89db9e48ce33c51d039f599376d9d91e60e9a81"
+      },
+      {
+        "path": "tests/unit/test_timing_recovery.py",
+        "size_bytes": 1859,
+        "sha256": "7f4b234b130cda12b2c2022b3db0d055cde059d93d633924344b888db25ebe4c"
+      },
+      {
+        "path": "tests/unit/test_validation.py",
+        "size_bytes": 3768,
+        "sha256": "a52abdae85c2927c313d8041d62417121f30adf16f9a0da4fea038bc3ac76bb1"
+      },
+      {
+        "path": "tests/unit/test_wav_loader.py",
+        "size_bytes": 3754,
+        "sha256": "b668f7a6916d6a2c492e858f5210c621f70b0903729bee4cae2a34e2d337445a"
+      }
+    ],
+    "tier2_paths_existed_before_harness": false
+  },
+  "model": {
+    "path": "models/production_mlp_final.onnx",
+    "exists": true,
+    "current_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+    "previously_validated_sha256": null,
+    "comparison": "unavailable: no prior validated hash found in repository documentation, reports, or supplied task history"
+  },
+  "environment": {
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "os": "Windows-11-10.0.26200-SP0",
+    "gnu_radio_version": null,
+    "gnu_radio_available": false,
+    "packages": {
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "onnxruntime": "1.30.0",
+      "PyQt6": "6.11.0",
+      "pyqtgraph": "0.14.0",
+      "komm": "0.36.0",
+      "reedsolo": "1.7.0"
+    }
+  },
+  "baseline_freeze": "Captured before creating or modifying Tier-2 source, tests, or report artifacts. Git metadata is absent; repository fingerprint covers files outside virtualenv and transient caches."
+}

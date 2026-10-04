@@ -1,0 +1,39 @@
+{
+  "accepted_fec": null,
+  "accepted_interleaver": null,
+  "analysis_result_file": "analysis_result.json",
+  "analyzer_status": "complete",
+  "classifier_status": "success",
+  "crc": null,
+  "demodulated_bit_count": 8192,
+  "elapsed_seconds": 0.09668580000288785,
+  "estimated_cfo_hz": 0.03724615310063768,
+  "failure_reason": "",
+  "fec_ground_truth": "None",
+  "fec_status": "NOT_REQUIRED",
+  "gates": {
+    "demodulation": true,
+    "fec_interleaver_crc": true,
+    "input": true,
+    "modulation": true,
+    "ood_rejection": null,
+    "payload": null
+  },
+  "ground_truth_modulation": "QPSK",
+  "injected_cfo_hz": 0.0,
+  "interleaver_ground_truth": "None",
+  "modulation_confidence": 0.9979265862527592,
+  "ood_state": {
+    "accepted_candidate_count": 0,
+    "crc_valid_recovery": false,
+    "expected_ood": false,
+    "explicitly_rejected": false
+  },
+  "payload_match": null,
+  "payload_sha256_expected": "29bc83b65d0584f026647e5717cdd170843cc9b0a2592690b8e318a4ca8ae339",
+  "payload_sha256_recovered": null,
+  "predicted_modulation": "qpsk",
+  "scenario_id": "T2-05",
+  "scenario_type": "in_scope",
+  "status": "PASS"
+}

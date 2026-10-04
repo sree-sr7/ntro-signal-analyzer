@@ -1,0 +1,40 @@
+{
+  "label": "Cycle 2 — runtime optimization only",
+  "scenario": "T2-07",
+  "capture": "reports/tier2/baseline/20260930_201445_269/T2-07/capture.iq",
+  "capture_sha256": "314a8b9b082cbaeb80cdac00727cc041e7617dcd068afe0d08e0f3ab42b0f5d3",
+  "analyzer_inputs": {
+    "sample_rate_hz": 1000000.0,
+    "crc_present": true,
+    "expected_payload_length": 114160,
+    "payload_contents_supplied": false
+  },
+  "runtime_seconds": 32.19339780000155,
+  "cycle1_runtime_seconds": 427.6461785,
+  "speedup_vs_cycle1": 13.283660866017051,
+  "percentage_runtime_reduction": 92.47195475640115,
+  "modulation": "qpsk",
+  "demodulated_bit_count": 261888,
+  "total_candidate_hypotheses": 89,
+  "trial_log_entries": 82,
+  "structurally_compatible_candidates": 9,
+  "accepted_fec": "Concat_RS223_Conv7",
+  "interleaver": "Block_16x16",
+  "crc_present": true,
+  "crc_pass": true,
+  "payload_bit_count": 114160,
+  "exact_payload_match": true,
+  "cycle1_payload_match": true,
+  "demodulated_bits_count_matches_cycle1": false,
+  "candidate_trial_logs_match_cycle1": true,
+  "outputs": {
+    "analysis_result": "T2-07/analysis_result.json",
+    "recovered_payload": "T2-07/recovered_payload_bits.bin",
+    "runtime": "T2-07/runtime.json",
+    "comparison": "T2-07/comparison.json"
+  },
+  "frozen_truth_packed_bytes": 14270,
+  "frozen_truth_unpacked_bits": 114160,
+  "cycle1_demodulated_bit_count": 261888,
+  "demodulated_bit_count_matches_cycle1": true
+}

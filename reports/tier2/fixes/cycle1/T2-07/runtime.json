@@ -1,0 +1,11 @@
+{
+  "baseline_seconds": 2618.440727500012,
+  "after_seconds": 427.6461784999992,
+  "speedup": 6.122913892705385,
+  "candidate_metrics": {
+    "baseline_trial_entries": 81,
+    "baseline_structurally_compatible": 36,
+    "after_total_hypotheses": 89,
+    "after_structurally_compatible": 9
+  }
+}

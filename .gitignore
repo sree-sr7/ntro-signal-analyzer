@@ -1,0 +1,17 @@
+# Local Python runtime and generated caches
+.venv/
+.pytest_cache/
+**/__pycache__/
+*.py[cod]
+
+# Local backup/audit artifacts excluded from the source package
+*.zip
+step78_audit.py
+step78_repository_audit.json
+data/
+
+# Local credentials and private keys
+.env
+.env.*
+*.pem
+*.key

@@ -1,0 +1,39 @@
+{
+  "scenario": "T2-01",
+  "capture": "reports/tier2/baseline/20260930_201445_269/T2-01/capture.iq",
+  "capture_sha256": "c8782b2dd35e97ade3711a443d1e169579891cc74551f675d1fa4d516926378f",
+  "analyzer_inputs": {
+    "expected_payload_length": null,
+    "crc_present": true,
+    "payload_contents_supplied": false,
+    "run_fec": true,
+    "raw_iq_sample_rate_hz": 1000000.0
+  },
+  "runtime_seconds": 2.909183400013717,
+  "modulation": "qpsk",
+  "expected_modulation": "qpsk",
+  "modulation_correct": true,
+  "demodulated_bit_count": 3904,
+  "total_candidate_hypotheses": 89,
+  "trial_log_entries": 81,
+  "structurally_compatible_candidates": 30,
+  "accepted_fec": "Conv_R12_K5",
+  "expected_fec": "Conv_R12_K5",
+  "fec_correct": true,
+  "interleaver": "Block_8x8",
+  "expected_interleaver": "Block_8x8",
+  "interleaver_correct": true,
+  "crc_present": true,
+  "crc_pass": true,
+  "payload_bits_recovered": 1932,
+  "payload_bits_expected": 1932,
+  "exact_payload_match": true,
+  "phase_resolution_status": "crc_selected",
+  "phase_candidates_tested": 4,
+  "expected_length_was_none": true,
+  "outputs": {
+    "analysis_result": "T2-01/analysis_result.json",
+    "recovered_payload": "T2-01/recovered_payload_bits.bin"
+  },
+  "expected_interleaver_normalized": "Block_8x8"
+}

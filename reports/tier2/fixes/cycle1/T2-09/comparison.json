@@ -1,0 +1,42 @@
+{
+  "scenario": "T2-09",
+  "baseline": {
+    "status": "partial",
+    "reviewed_outcome": "OOD_FAIL",
+    "modulation": "16qam",
+    "confidence": 0.9999999999999998,
+    "demodulated_bit_count": 16384,
+    "fec_candidate_count": 86,
+    "crc_pass": null,
+    "runtime_seconds": 168.71341519989073
+  },
+  "after": {
+    "status": "rejected",
+    "modulation": "unknown",
+    "confidence": null,
+    "demodulated_bit_count": 0,
+    "fec_status": "unavailable",
+    "fec_type": null,
+    "interleaver_type": null,
+    "candidate_count": null,
+    "total_candidate_count": null,
+    "candidate_count_after_structural_pruning": null,
+    "crc_pass": null,
+    "ood_gate": {
+      "status": "rejected",
+      "decision": "unknown_ood",
+      "reason": "No supported modulation has a sufficient geometric signal fit; the classifier label is treated as unknown/OOD.",
+      "stage": "signal_detection",
+      "strongest_supported_modulation": "16qam",
+      "geometric_fit_score": 0.1852922100726438,
+      "minimum_geometric_fit_score": 0.35,
+      "score_interpretation": "bounded geometric fit score; not a probability or OOD probability"
+    },
+    "phase_ambiguity_resolution": null,
+    "ground_truth_payload_exact_match": null,
+    "runtime_seconds": 0.021379799989517778
+  },
+  "change": "The frozen classifier assigned near-certain 16QAM to noise-only input; the geometric signal-support gate rejects it.",
+  "root_cause": "The frozen classifier assigned near-certain 16QAM to noise-only input; the geometric signal-support gate rejects it.",
+  "remaining_limitation": "The structural fit gate is not a calibrated general OOD detector; unknown signals that fit a supported geometry may pass."
+}

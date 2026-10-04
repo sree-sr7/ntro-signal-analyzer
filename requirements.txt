@@ -1,0 +1,15 @@
+numpy==2.5.3
+scipy==1.18.1
+matplotlib==3.11.2
+PyQt6==6.11.0
+pyqtgraph==0.14.0
+onnxruntime==1.30.0
+komm==0.36.0
+reedsolo==1.7.0
+ldpc==2.4.1
+sigmf==1.13.0
+h5py==3.16.0
+scikit-learn==1.9.1
+pytest==9.1.1
+tqdm==4.70.1
+PyInstaller==6.22.3

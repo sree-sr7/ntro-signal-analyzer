@@ -1,0 +1,66 @@
+{
+ "loader": {
+  "sample_count": 4096,
+  "sample_rate": 1000000.0,
+  "warnings": [],
+  "max_abs_diff_vs_manual_I=ch0,Q=ch1": 0.0,
+  "max_abs_diff_vs_swapped_IQ": 2.119637167017512
+ },
+ "wav_conversion": {
+  "gain": 1.1618452540964292,
+  "initial_phase_rad": 2.5516129220225663,
+  "noise_free_peak_component_amplitude_max": 1.1397312789387284,
+  "noise_free_component_abs_levels": [
+   0.226,
+   1.14
+  ],
+  "fraction_noise_free_components_beyond_PCM_range": 0.5,
+  "fraction_pcm_samples_at_full_scale": 0.2449951171875,
+  "noise_free_clip_error_rms_vs_unclipped": 0.09881597794448116,
+  "noise_free_clip_error_rms_relative_to_signal_rms": 0.12028012826624444,
+  "clip_angle_error_deg_max_noise_free": 1.5170231766721425
+ },
+ "analyzer": {
+  "demod_bit_count": 8192,
+  "payload_bit_count": 8192,
+  "carrier_recovery": {
+   "confidence": 0.9523050472113944,
+   "frequency_offset": -0.11095475940144571,
+   "phase_offset": 0.2216740297145188,
+   "recovered_samples": {
+    "dtype": "complex128",
+    "shape": [
+     4096
+    ]
+   },
+   "warnings": []
+  },
+  "coarse_cfo": {
+   "confidence": 0.951573496328748,
+   "estimated_offset_hz": 0.03724615310063768,
+   "method": "4th-power spectral peak",
+   "warnings": []
+  },
+  "direct_bit_error_rate": 0.7518310546875,
+  "bit_error_rate_after_undoing_k_quarter_turns": {
+   "rotate_back_0x90deg": 0.7518310546875,
+   "rotate_back_1x90deg": 0.2518310546875,
+   "rotate_back_2x90deg": 0.2481689453125,
+   "rotate_back_3x90deg": 0.7481689453125
+  },
+  "symbol_error_rate_after_undoing_k_quarter_turns": {
+   "rotate_back_0x90deg": 1.0,
+   "rotate_back_1x90deg": 0.503662109375,
+   "rotate_back_2x90deg": 0.496337890625,
+   "rotate_back_3x90deg": 1.0
+  },
+  "best_rotation": "rotate_back_2x90deg",
+  "residual_errors_at_best_rotation": {
+   "count": 2033,
+   "errors_among_symbols_with_a_clipped_component": 957,
+   "symbols_with_a_clipped_component": 2007,
+   "error_rate_when_clipped": 0.476831091180867,
+   "error_rate_when_not_clipped": 0.5150789851603638
+  }
+ }
+}

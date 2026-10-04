@@ -1,0 +1,20 @@
+{
+  "harness_version": "1.0.0",
+  "sample_rates_hz": {
+    "symbol_rate": 1000000,
+    "fsk": 48000,
+    "ofdm": 1000000
+  },
+  "scenarios": [
+    {"scenario_id":"T2-01","modulation":"QPSK","fec":"Conv_R12_K5","interleaver":"Block_8x8","snr_db":12.0,"cfo_hz":150.0,"seed":7101043,"payload_bits":1932,"sample_rate_key":"symbol_rate"},
+    {"scenario_id":"T2-02","modulation":"BPSK","fec":"Conv_R12_K7","interleaver":"None","snr_db":8.0,"cfo_hz":-200.0,"seed":7102049,"payload_bits":2048,"sample_rate_key":"symbol_rate"},
+    {"scenario_id":"T2-03","modulation":"8PSK","fec":"Conv_R12_K7","interleaver":"Convolutional_Depth_12","snr_db":15.0,"cfo_hz":400.0,"seed":7103051,"payload_bits":2048,"sample_rate_key":"symbol_rate"},
+    {"scenario_id":"T2-04","modulation":"16QAM","fec":"RS_255_223","interleaver":"Block_32x32","snr_db":18.0,"cfo_hz":100.0,"seed":7104053,"payload_bytes":57086,"sample_rate_key":"symbol_rate","rs_codewords":256},
+    {"scenario_id":"T2-05","modulation":"QPSK","fec":"None","interleaver":"None","snr_db":20.0,"cfo_hz":0.0,"seed":7105057,"payload_bits":8192,"sample_rate_key":"symbol_rate","file_format":"stereo_wav_iq"},
+    {"scenario_id":"T2-06","modulation":"2FSK","fec":"Conv_R12_K3","interleaver":"None","snr_db":10.0,"cfo_hz":0.0,"seed":7106061,"payload_bits":1024,"sample_rate_key":"fsk","samples_per_symbol":8,"tone_frequencies_hz":[-3000.0,3000.0]},
+    {"scenario_id":"T2-07","modulation":"QPSK","fec":"Concat_RS223_Conv7","interleaver":"Block_16x16","snr_db":12.0,"cfo_hz":250.0,"seed":7107067,"payload_bytes":14270,"sample_rate_key":"symbol_rate","concatenated_codewords":64},
+    {"scenario_id":"T2-08","modulation":"QPSK","fec":"Conv_R12_K7","interleaver":"Diag_16x16_S1","snr_db":15.0,"cfo_hz":300.0,"seed":7108071,"payload_bits":4074,"sample_rate_key":"symbol_rate"},
+    {"scenario_id":"T2-09","modulation":"Noise-only","fec":"None","interleaver":"None","snr_db":null,"cfo_hz":0.0,"seed":7109077,"sample_count":4096,"sample_rate_key":"symbol_rate","ood":true},
+    {"scenario_id":"T2-10","modulation":"OFDM","fec":"None","interleaver":"None","snr_db":20.0,"cfo_hz":0.0,"seed":7110083,"sample_rate_key":"ofdm","ood":true,"nfft":64,"cyclic_prefix":16,"active_subcarriers":52,"ofdm_symbols":20}
+  ]
+}

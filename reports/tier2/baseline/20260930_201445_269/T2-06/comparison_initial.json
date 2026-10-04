@@ -1,0 +1,39 @@
+{
+  "accepted_fec": null,
+  "accepted_interleaver": null,
+  "analysis_result_file": "analysis_result.json",
+  "analyzer_status": "partial",
+  "classifier_status": "success",
+  "crc": null,
+  "demodulated_bit_count": 0,
+  "elapsed_seconds": 0.0675127999857068,
+  "estimated_cfo_hz": null,
+  "failure_reason": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz.",
+  "fec_ground_truth": "Conv_R12_K3",
+  "fec_status": "unavailable",
+  "gates": {
+    "demodulation": false,
+    "fec_interleaver_crc": false,
+    "input": true,
+    "modulation": true,
+    "ood_rejection": null,
+    "payload": null
+  },
+  "ground_truth_modulation": "2FSK",
+  "injected_cfo_hz": 0.0,
+  "interleaver_ground_truth": "None",
+  "modulation_confidence": 0.999998780208137,
+  "ood_state": {
+    "accepted_candidate_count": 0,
+    "crc_valid_recovery": false,
+    "expected_ood": false,
+    "explicitly_rejected": false
+  },
+  "payload_match": null,
+  "payload_sha256_expected": "a050f3e6f6053060bee7a17e0857f3612f9ad1ebac8fce54ce71efbe452911fc",
+  "payload_sha256_recovered": null,
+  "predicted_modulation": "2fsk",
+  "scenario_id": "T2-06",
+  "scenario_type": "in_scope",
+  "status": "FAIL"
+}

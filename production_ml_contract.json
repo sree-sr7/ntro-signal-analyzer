@@ -1,0 +1,130 @@
+{
+  "artifact": {
+    "onnx_filename": "production_mlp_final.onnx",
+    "onnx_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677"
+  },
+  "input": {
+    "name": "features",
+    "shape": [
+      "batch",
+      17
+    ],
+    "dtype": "float32",
+    "feature_count": 17,
+    "expects_raw_feature_values": true
+  },
+  "features": [
+    "amplitude_coefficient_of_variation",
+    "amplitude_kurtosis",
+    "normalized_moment_2",
+    "normalized_moment_4",
+    "normalized_moment_8",
+    "psk2_residual",
+    "psk2_phase_entropy",
+    "psk4_residual",
+    "psk4_phase_entropy",
+    "psk8_residual",
+    "psk8_phase_entropy",
+    "qam16_residual",
+    "fsk_quality",
+    "fsk_tone_separation_norm",
+    "fsk_frequency_repeat_fraction",
+    "spectral_entropy",
+    "spectral_peak_fraction"
+  ],
+  "class_order": [
+    "bpsk",
+    "qpsk",
+    "8psk",
+    "16qam",
+    "2fsk"
+  ],
+  "model": {
+    "architecture": "Linear(17,64) -> ReLU -> BatchNorm1d(64) -> Linear(64,32) -> ReLU -> Dropout(0.15) -> Linear(32,5)",
+    "input_dim": 17,
+    "hidden_dim_1": 64,
+    "hidden_dim_2": 32,
+    "output_dim": 5
+  },
+  "preprocessing": {
+    "type": "StandardScaler",
+    "embedded_in_onnx": true,
+    "parameter_dtype_in_onnx": "float32",
+    "original_parameter_dtype": "float64",
+    "mean": [
+      0.21716524408951401,
+      2.8479950062298776,
+      0.21057068312972077,
+      0.3443073801217426,
+      0.27657779769404905,
+      0.7362881748700142,
+      0.9922677547419071,
+      0.39062289493098856,
+      0.8995631369835139,
+      0.2786910236094892,
+      0.8384656218981743,
+      0.26363687963306903,
+      0.016194655499085785,
+      0.32111877619981766,
+      0.02597575360700488,
+      0.8681308783185482,
+      0.03069094090441242
+    ],
+    "scale": [
+      0.11596646119664285,
+      0.2915193857330654,
+      0.35284895747911765,
+      0.3540775769319192,
+      0.3143056485447034,
+      0.2523116005659648,
+      0.030350045232342256,
+      0.14510853468798107,
+      0.18633946163953458,
+      0.1117777585636611,
+      0.2237580224425312,
+      0.055627841948434266,
+      0.03343350573065609,
+      0.642513365462711,
+      0.05292168025479191,
+      0.14474797741981382,
+      0.05282001325339269
+    ],
+    "apply_external_scaling": false
+  },
+  "output": {
+    "name": "logits",
+    "shape": [
+      "batch",
+      5
+    ],
+    "dtype": "float32",
+    "values": "logits"
+  },
+  "inference": {
+    "runtime": "onnxruntime",
+    "version": "1.30.0",
+    "execution_provider": "CPUExecutionProvider",
+    "opset": 17,
+    "wrapper_applies_temperature": false,
+    "wrapper_applies_external_scaler": false,
+    "network_required": false
+  },
+  "calibration": {
+    "temperature": 3.824104,
+    "used_in_current_inference": false,
+    "notes": "Recorded calibration metadata only. Current inference maps ONNX logits directly to class scores without temperature scaling."
+  },
+  "signal_support_gate": {
+    "threshold": 0.35,
+    "score_type": "bounded geometric signal-fit evidence",
+    "is_probability": false,
+    "is_universal_ood_guarantee": false
+  },
+  "pre_freeze_integrity": {
+    "model_hash_verified_unchanged": true,
+    "model_retrained_during_pass": false,
+    "scaler_refit_during_pass": false,
+    "class_order_changed": false,
+    "feature_order_changed": false
+  }
+}

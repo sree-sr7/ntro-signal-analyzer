@@ -1,0 +1,39 @@
+{
+  "scenario": "T2-03",
+  "capture": "reports/tier2/baseline/20260930_201445_269/T2-03/capture.iq",
+  "capture_sha256": "588a4a552d33841925c5750ebca445ee3e6e1dbf1788a05647c04ffa287e8283",
+  "analyzer_inputs": {
+    "expected_payload_length": null,
+    "crc_present": true,
+    "payload_contents_supplied": false,
+    "run_fec": true,
+    "raw_iq_sample_rate_hz": 1000000.0
+  },
+  "runtime_seconds": 1.0467699999862816,
+  "modulation": "8psk",
+  "expected_modulation": "8psk",
+  "modulation_correct": true,
+  "demodulated_bit_count": 4140,
+  "total_candidate_hypotheses": 89,
+  "trial_log_entries": 81,
+  "structurally_compatible_candidates": 25,
+  "accepted_fec": "Conv_R12_K7",
+  "expected_fec": "Conv_R12_K7",
+  "fec_correct": true,
+  "interleaver": "Convolutional_Depth_12",
+  "expected_interleaver": "Convolutional_Depth_12",
+  "interleaver_correct": true,
+  "crc_present": true,
+  "crc_pass": true,
+  "payload_bits_recovered": 2048,
+  "payload_bits_expected": 2048,
+  "exact_payload_match": true,
+  "phase_resolution_status": "crc_selected",
+  "phase_candidates_tested": 2,
+  "expected_length_was_none": true,
+  "outputs": {
+    "analysis_result": "T2-03/analysis_result.json",
+    "recovered_payload": "T2-03/recovered_payload_bits.bin"
+  },
+  "expected_interleaver_normalized": "Convolutional_Depth_12"
+}

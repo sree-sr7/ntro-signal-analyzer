@@ -1,0 +1,111 @@
+@misc{ieeeP80211nD1102009,
+  organization = {IEEE 802.11 Working Group},
+  title        = {IEEE P802.11n/D11.0: Draft Standard for Information Technology---Wireless LAN MAC and PHY Specifications, Amendment 5: Enhancements for Higher Throughput},
+  year         = {2009},
+  month        = jun,
+  howpublished = {Unapproved IEEE standards draft},
+  url          = {https://people.iith.ac.in/tbr/teaching/docs/802.11n-DraftStd_June2009.pdf},
+  note         = {Annex R Tables R.1--R.3 and Section 20.3.11.6.4. The document states that it is an unapproved draft subject to change and not for conformance/compliance purposes.}
+}
+
+@misc{tavildarLDPC,
+  title        = {LDPC codes: C and MATLAB implementations},
+  howpublished = {GitHub repository, tavildar/LDPC},
+  url          = {https://github.com/tavildar/LDPC},
+  note         = {LdpcM/LDPCCode.m contains Wi-Fi prototype tables. Repository author and publication date not verified. Reviewed 2026-09-30. The README disclaims full IEEE 802.11n specification compliance.}
+}
+
+@article{peyic2012lowpower,
+  author  = {Peyic, Merve and Baba, Hakan and Guleyuboglu, Erdem and Hamzaoglu, Ilker and Keskinöz, Mehmet},
+  title   = {A low power multi-rate decoder hardware for IEEE 802.11n LDPC codes},
+  journal = {Microprocessors and Microsystems},
+  volume  = {36},
+  number  = {3},
+  pages   = {159--166},
+  year    = {2012},
+  month   = may,
+  doi     = {10.1016/j.micpro.2011.12.006},
+  url     = {https://doi.org/10.1016/j.micpro.2011.12.006},
+  note    = {Author and venue metadata cross-checked against DBLP.}
+}
+
+@misc{mathworksMatrixHelicalScanInterleaver,
+  author       = {{The MathWorks, Inc.}},
+  title        = {Matrix Helical Scan Interleaver: Permute Input Symbols by Selecting Matrix Elements along Diagonals},
+  howpublished = {Simulink Communications Toolbox documentation},
+  url          = {https://www.mathworks.com/help/comm/ref/matrixhelicalscaninterleaver.html},
+  note         = {Documents row-wise filling, wrapped diagonal output, and Array Step Size as row-index advance per column. Reviewed 2026-09-30. Used as the construction basis for the project-scoped Diag_16x16_S1 definition; not an IEEE compliance claim.}
+}
+
+@article{li2022crsci,
+  author  = {Li, Ruijia and Tian, Jinfeng and Bian, Xin and Li, Mingqi},
+  title   = {{CRCSI}: A Generic Block Interleaver for the Next Generation Terrestrial Broadcast Systems},
+  journal = {Applied Sciences},
+  volume  = {12},
+  number  = {4},
+  pages   = {2025},
+  year    = {2022},
+  month   = feb,
+  doi     = {10.3390/app12042025},
+  url     = {https://doi.org/10.3390/app12042025},
+  note    = {Section 2 identifies TBI as a diagonal interleaver and gives a general block mapping with a cyclic-shift vector. Context only; not the exact source of the project's 16x16 helical-scan permutation.}
+}
+
+@article{durstenfeld1964randompermutation,
+  author  = {Durstenfeld, Richard},
+  title   = {Algorithm 235: Random permutation},
+  journal = {Communications of the ACM},
+  volume  = {7},
+  number  = {7},
+  pages   = {420},
+  year    = {1964},
+  month   = jul,
+  doi     = {10.1145/364520.364540},
+  url     = {https://doi.org/10.1145/364520.364540},
+  note    = {Published algorithm note; source for the descending random-swap permutation method, not an interleaver standard.}
+}
+
+@inproceedings{steele2014fastsplittable,
+  author    = {Steele, Guy L. and Lea, Doug and Flood, Christine H.},
+  title     = {Fast Splittable Pseudorandom Number Generators},
+  booktitle = {Proceedings of the 2014 ACM International Conference on Object Oriented Programming Systems Languages and Applications},
+  series    = {OOPSLA '14},
+  pages     = {453--472},
+  year      = {2014},
+  month     = oct,
+  doi       = {10.1145/2660193.2660195},
+  url       = {https://doi.org/10.1145/2660193.2660195},
+  note      = {Paper describes SplitMix. Used as the RNG recurrence source for a project-scoped permutation profile; no communications performance claim is derived from the paper.}
+}
+
+@misc{kommConvolutionalCodeReference,
+  author       = {{Komm Project}},
+  title        = {{ConvolutionalCode} API Reference},
+  howpublished = {Official software documentation},
+  url          = {https://komm.dev/ref/ConvolutionalCode/},
+  note         = {Publication date not stated; accessed 2026-09-30. Consulted for the independent convolutional encoder API and feedforward polynomial convention used by the Tier-2 signal generator.}
+}
+
+@misc{reedsolo170Source,
+  author       = {{tomerfiliba-org/reedsolomon contributors}},
+  title        = {reedsolo.py, Reed-Solomon codec implementation},
+  howpublished = {Project repository source file; the installed package tested was version 1.7.0},
+  url          = {https://github.com/tomerfiliba-org/reedsolomon/blob/master/src/reedsolo/reedsolo.py},
+  note         = {Source file publication date not stated; consulted 2026-09-30 for RS(255,223) parameter convention. Tier-2 generation uses a separately written encoder.}
+}
+
+@misc{revengCrc16Catalogue,
+  author       = {{RevEng CRC Catalogue}},
+  title        = {CRC-16 catalogue: CRC-16/IBM-3740 (CRC-16/CCITT-FALSE)},
+  howpublished = {Technical parameter catalogue},
+  url          = {https://reveng.sourceforge.io/crc-catalogue/16.htm},
+  note         = {Catalogue page last updated 2024-12-11; accessed 2026-09-30. Used for CRC width, polynomial, initialization, reflection, and xorout parameters in the independent Tier-2 generator.}
+}
+
+@misc{numpyIfft22,
+  author       = {{NumPy Developers}},
+  title        = {numpy.fft.ifft},
+  howpublished = {NumPy 2.2 official API documentation},
+  url          = {https://numpy.org/doc/2.2/reference/generated/numpy.fft.ifft.html},
+  note         = {Publication date not stated on consulted page; accessed 2026-09-30. Used for the inverse FFT operation in the independent OFDM waveform generator.}
+}

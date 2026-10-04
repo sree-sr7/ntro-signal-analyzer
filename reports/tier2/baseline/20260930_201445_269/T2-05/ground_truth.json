@@ -1,0 +1,72 @@
+{
+  "analyzer_configuration_allowed": {
+    "crc_present": false,
+    "raw_iq_sample_rate_hz": null,
+    "run_fec": false,
+    "samples_per_symbol": null,
+    "stereo_wav_as_iq": true,
+    "tone_frequencies_hz": null
+  },
+  "carrier_offset_hz": 0.0,
+  "crc": null,
+  "duration_seconds": 0.004096,
+  "encoded_modulation_input_bit_count": 8192,
+  "fec": "None",
+  "file_format": "stereo_wav_iq",
+  "file_path": "capture.wav",
+  "file_sha256": "3850ef0f1db809436ebbed569b64a4bb028856c81a5f2d04d9bd4b2c08d3f2ae",
+  "gain": 1.1618452540964292,
+  "generator": {
+    "channel_method": "NumPy complex baseband mapping, explicit CFO/phase/gain, and AWGN; OFDM constructed with NumPy IFFT",
+    "configuration": {
+      "cfo_hz": 0.0,
+      "fec": "None",
+      "file_format": "stereo_wav_iq",
+      "interleaver": "None",
+      "modulation": "QPSK",
+      "payload_bits": 8192,
+      "sample_rate_key": "symbol_rate",
+      "scenario_id": "T2-05",
+      "seed": 7105057,
+      "snr_db": 20.0
+    },
+    "fec_method": "Komm ConvolutionalCode for convolutional coding; local GF(256) RS encoder (alpha=2, primitive 0x11d, fcr=0); locally implemented CRC and interleaver mappings",
+    "file_conversion": "stereo WAV is signed PCM16 with channel 0=I, channel 1=Q; raw IQ is little-endian complex64",
+    "import_allowlist": [
+      "stdlib",
+      "numpy",
+      "scipy.io.wavfile",
+      "komm"
+    ],
+    "komm_version": "0.36.0",
+    "language": "Python",
+    "name": "tier2-independent-numpy-komm-1.0.0",
+    "numpy_version": "2.5.3",
+    "python_version": "3.12.10"
+  },
+  "initial_phase_rad": 2.5516129220225663,
+  "interleaver": "None",
+  "modulation": "QPSK",
+  "payload_bit_count": 8192,
+  "payload_bits_file": "payload_bits.bin",
+  "payload_packed_bitorder": "big",
+  "payload_sha256": "29bc83b65d0584f026647e5717cdd170843cc9b0a2592690b8e318a4ca8ae339",
+  "random_seed": 7105057,
+  "sample_count": 4096,
+  "sample_rate_hz": 1000000.0,
+  "samples_per_symbol": 1,
+  "scenario_id": "T2-05",
+  "snr_db": 20.0,
+  "timing_offset_samples": 0,
+  "unknown_to_analyzer": [
+    "payload bits",
+    "random seed",
+    "transmitted modulation",
+    "FEC identity",
+    "interleaver identity",
+    "gain",
+    "initial phase",
+    "injected SNR",
+    "carrier offset"
+  ]
+}

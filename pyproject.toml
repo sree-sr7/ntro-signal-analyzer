@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ntro-signal-analyzer"
+version = "0.1.0"
+description = "Automated model for analysis of .IQ and .wav files along with signal parameter extraction (SIH PS 26147)"
+requires-python = ">=3.12"
+readme = "README.md"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-v --tb=short"
+
+[tool.setuptools.packages.find]
+include = ["core*", "libs*", "generators*", "gui*"]

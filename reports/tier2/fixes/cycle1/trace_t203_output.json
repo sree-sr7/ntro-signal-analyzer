@@ -1,0 +1,64 @@
+{
+ "sizes": {
+  "payload": 2048,
+  "frame+crc": 2064,
+  "coded": 4140,
+  "encoded_modulation_input": 4140,
+  "gt_encoded_bits": 4140
+ },
+ "project_crc_accepts_independent_frame": true,
+ "project_deinterleaver_inverts_independent_interleaver": true,
+ "project_viterbi_on_true_coded_bits": {
+  "valid": true,
+  "decoded_equals_frame": true,
+  "path_metric": 0
+ },
+ "project_crc_on_decoded_frame": true,
+ "analyzer_demod": {
+  "bit_count": 4140,
+  "carrier_recovery": {
+   "confidence": 0.13421585517203416,
+   "frequency_offset": null,
+   "phase_offset": null,
+   "recovered_samples": {
+    "dtype": "complex64",
+    "shape": [
+     0
+    ]
+   },
+   "warnings": [
+    "PSK carrier phase is incoherent; recovery rejected"
+   ]
+  },
+  "direct_BER_vs_true_pre_mod_bits": 0.4543478260869565,
+  "BER_after_undoing_k_eighth_turns": {
+   "undo_0x45deg": 0.45435,
+   "undo_1x45deg": 0.12101,
+   "undo_2x45deg": 0.21232,
+   "undo_3x45deg": 0.54565,
+   "undo_4x45deg": 0.66401,
+   "undo_5x45deg": 0.65773,
+   "undo_6x45deg": 0.66932,
+   "undo_7x45deg": 0.6756
+  },
+  "best_rotation_k": 1
+ },
+ "chain_with_best_rotation": {
+  "deinterleaved_BER_vs_coded": 0.12101449275362319,
+  "viterbi_decoded_equals_frame": false,
+  "crc_pass": false,
+  "payload_equals_ground_truth": false
+ },
+ "baseline_trial_summary": {
+  "n_candidates": 81,
+  "accepted": 0,
+  "gt_candidate_entry": {
+   "fec_type": "Conv_R12_K7",
+   "interleaver_type": "Convolutional_Depth_12",
+   "valid": true,
+   "crc_pass": false,
+   "path_metric": 513,
+   "candidate_status": "evaluated"
+  }
+ }
+}

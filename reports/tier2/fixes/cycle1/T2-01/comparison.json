@@ -1,0 +1,50 @@
+{
+  "scenario": "T2-01",
+  "baseline": {
+    "status": "partial",
+    "reviewed_outcome": "FAIL",
+    "modulation": "8psk",
+    "confidence": 0.9990460375766295,
+    "demodulated_bit_count": 5856,
+    "fec_candidate_count": 81,
+    "crc_pass": false,
+    "runtime_seconds": 27.724225100129843
+  },
+  "after": {
+    "status": "complete",
+    "modulation": "qpsk",
+    "confidence": 0.9999997851739901,
+    "demodulated_bit_count": 3904,
+    "fec_status": "accepted",
+    "fec_type": "Conv_R12_K5",
+    "interleaver_type": "Block_8x8",
+    "candidate_count": 81,
+    "total_candidate_count": 89,
+    "candidate_count_after_structural_pruning": 6,
+    "crc_pass": true,
+    "ood_gate": {
+      "status": "passed",
+      "decision": "signal_candidate",
+      "reason": "At least one supported modulation has sufficient geometric signal fit.",
+      "stage": "signal_detection",
+      "strongest_supported_modulation": "8psk",
+      "geometric_fit_score": 0.5089805351246456,
+      "minimum_geometric_fit_score": 0.35,
+      "score_interpretation": "bounded geometric fit score; not a probability or OOD probability"
+    },
+    "phase_ambiguity_resolution": {
+      "status": "crc_selected",
+      "method": "CRC-validated FEC candidate across PSK rotations",
+      "candidate_count": 4,
+      "candidates_tested": 4,
+      "selected_candidate_index": 3,
+      "selected_phase_reference_rad": 4.4560343885941105,
+      "reason": "A CRC-accepted candidate selected the phase rotation."
+    },
+    "ground_truth_payload_exact_match": true,
+    "runtime_seconds": 1.4839382999925874
+  },
+  "change": "The feature extractor saw uncompensated CFO, producing a confident 8PSK label for a QPSK signal.",
+  "root_cause": "The feature extractor saw uncompensated CFO, producing a confident 8PSK label for a QPSK signal.",
+  "remaining_limitation": "Phase ambiguity is selected only if the supplied frame length and CRC validate a candidate; otherwise the phase remains unresolved."
+}

@@ -1,0 +1,42 @@
+{
+  "accepted_fec": null,
+  "accepted_interleaver": null,
+  "analysis_result_file": "analysis_result.json",
+  "analyzer_status": "rejected",
+  "classifier_status": "success",
+  "crc": null,
+  "demodulated_bit_count": 0,
+  "elapsed_seconds": 0.6317388000898063,
+  "estimated_cfo_hz": null,
+  "failure_reason": "failed gates: modulation, demodulation, fec_interleaver_crc",
+  "fec_ground_truth": "RS_255_223",
+  "fec_status": "unavailable",
+  "gates": {
+    "demodulation": false,
+    "fec_interleaver_crc": false,
+    "input": true,
+    "modulation": false,
+    "ood_rejection": null,
+    "payload": null
+  },
+  "ground_truth_file": "ground_truth_reviewed.json",
+  "ground_truth_modulation": "16QAM",
+  "injected_cfo_hz": 100.0,
+  "interleaver_ground_truth": "Block_32x32",
+  "modulation_confidence": 0.05423551766129037,
+  "ood_state": {
+    "accepted_candidate_count": 0,
+    "best_candidate_accepted": null,
+    "crc_valid_recovery": false,
+    "expected_ood": false,
+    "explicitly_rejected": false,
+    "fec_search_status": "unavailable"
+  },
+  "payload_match": null,
+  "payload_sha256_expected": "aa98ec1794ec4bd4e4531677464ea336857bab0bb382a7ff6c0a99a35b69184b",
+  "payload_sha256_recovered": null,
+  "predicted_modulation": "unknown",
+  "scenario_id": "T2-04",
+  "scenario_type": "in_scope",
+  "status": "REJECTED"
+}

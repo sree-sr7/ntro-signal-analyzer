@@ -1,0 +1,53 @@
+{
+  "cases": [
+    {
+      "actual_analyzer_status": "complete",
+      "actual_modulation": "2fsk",
+      "capture_path": "reports\\tier2\\baseline\\20260930_201445_269\\T2-06\\corrected_configuration_run\\capture.iq",
+      "classification_status": "success",
+      "demodulation_status": "complete",
+      "fec_detail_rows": 81,
+      "fec_status": "accepted",
+      "native_widget_render": "reports\\tier2\\baseline\\20260930_201445_269\\gui\\T2-06_complete_native.png",
+      "overview_rendered": true,
+      "scenario_id": "T2-06",
+      "spectrum_plot_items": 1,
+      "status_label": "Status: COMPLETE",
+      "tabs_opened": [
+        "Analysis",
+        "Waveform",
+        "Spectrum",
+        "Waterfall",
+        "Constellation",
+        "FEC / Frame Details"
+      ],
+      "waveform_plot_items": 2
+    },
+    {
+      "actual_analyzer_status": "rejected",
+      "actual_modulation": "unknown",
+      "capture_path": "reports\\tier2\\baseline\\20260930_201445_269\\T2-04\\capture.iq",
+      "classification_status": "success",
+      "demodulation_status": "unavailable",
+      "fec_detail_rows": 1,
+      "fec_status": "unavailable",
+      "native_widget_render": "reports\\tier2\\baseline\\20260930_201445_269\\gui\\T2-04_rejected_native.png",
+      "overview_rendered": true,
+      "scenario_id": "T2-04",
+      "spectrum_plot_items": 1,
+      "status_label": "Status: REJECTED",
+      "tabs_opened": [
+        "Analysis",
+        "Waveform",
+        "Spectrum",
+        "Waterfall",
+        "Constellation",
+        "FEC / Frame Details"
+      ],
+      "waveform_plot_items": 2
+    }
+  ],
+  "desktop_surface_available": false,
+  "desktop_surface_note": "Computer-use inventory returned apps=[]; native Qt widgets were rendered and saved, but desktop computer-use click-through was unavailable.",
+  "method": "Actual gui.main_window.MainWindow on the native Windows Qt platform, actual select_file/start_analysis handlers, AnalysisWorker, and AnalysisResult population."
+}

@@ -1,0 +1,87 @@
+{
+  "after": {
+    "automatic_phase_candidate_selected": false,
+    "candidate_count": 0,
+    "candidate_count_after_structural_pruning": null,
+    "confidence": 0.9979265862527592,
+    "crc_pass": null,
+    "demodulated_bit_count": 8192,
+    "diagnostic_rotation_checks": [
+      {
+        "ber": 1.0,
+        "bit_count": 8192,
+        "bit_errors": 8192,
+        "quarter_turns": 0
+      },
+      {
+        "ber": 0.5,
+        "bit_count": 8192,
+        "bit_errors": 4096,
+        "quarter_turns": 1
+      },
+      {
+        "ber": 0.0,
+        "bit_count": 8192,
+        "bit_errors": 0,
+        "quarter_turns": 2
+      },
+      {
+        "ber": 0.5,
+        "bit_count": 8192,
+        "bit_errors": 4096,
+        "quarter_turns": 3
+      }
+    ],
+    "fec_status": "not_requested",
+    "fec_type": null,
+    "ground_truth_payload_exact_match": false,
+    "harness_status": "PARTIAL",
+    "interleaver_type": null,
+    "matching_phase_candidates": [
+      {
+        "ber": 0.0,
+        "bit_count": 8192,
+        "bit_errors": 0,
+        "quarter_turns": 2
+      }
+    ],
+    "modulation": "qpsk",
+    "ood_gate": {
+      "decision": "signal_candidate",
+      "geometric_fit_score": 0.9450929330234619,
+      "minimum_geometric_fit_score": 0.35,
+      "reason": "At least one supported modulation has sufficient geometric signal fit.",
+      "score_interpretation": "bounded geometric fit score; not a probability or OOD probability",
+      "stage": "signal_detection",
+      "status": "passed",
+      "strongest_supported_modulation": "qpsk"
+    },
+    "payload_sha256_expected": "29bc83b65d0584f026647e5717cdd170843cc9b0a2592690b8e318a4ca8ae339",
+    "payload_sha256_recovered": "36ee3029c4eaf8d51e525c2c28a0d1273e28026de1f0b79978d877ad0df06aa2",
+    "phase_ambiguity_resolution": {
+      "candidate_count": 4,
+      "method": "rotational alternatives require sync or CRC evidence",
+      "reason": "No phase candidate has been selected yet; CRC search can resolve it when CRC and expected payload length are supplied.",
+      "status": "unresolved"
+    },
+    "runtime_seconds": 0.0,
+    "status": "complete",
+    "total_candidate_count": null
+  },
+  "baseline": {
+    "confidence": 0.9979265862527592,
+    "crc_pass": null,
+    "demodulated_bit_count": 8192,
+    "fec_candidate_count": 0,
+    "modulation": "qpsk",
+    "payload_match": false,
+    "payload_sha256_expected": "29bc83b65d0584f026647e5717cdd170843cc9b0a2592690b8e318a4ca8ae339",
+    "payload_sha256_recovered": "36ee3029c4eaf8d51e525c2c28a0d1273e28026de1f0b79978d877ad0df06aa2",
+    "runtime_seconds": 0.09668580000288785,
+    "status": "PARTIAL"
+  },
+  "change": "The QPSK carrier phase estimate now accounts for the repository constellation\u2019s 45\u00b0 anchor. I/Q channel order, PCM scaling, and 1 MHz sample rate were already correct. The analyzer reports four phase rotations unresolved; an offline diagnostic using the saved reference found one exact rotation, but no ground-truth rotation was used to select the analyzer output.",
+  "remaining_limitation": "The analyzer returns a complete 8,192-bit QPSK demodulation but cannot select the payload rotation without frame evidence; harness payload match remains false. The saved-reference rotation diagnostic found an exact candidate at quarter_turns=2 and did not apply it.",
+  "root_cause": "Carrier phase recovery omitted the QPSK constellation phase anchor, biasing its phase estimate. After correcting that estimate, QPSK still has an inherent fourfold rotational ambiguity that cannot be selected without CRC or a sync word. The previous cycle output also omitted stereo-IQ WAV handling because the ground-truth format string is stereo_wav_iq; the final same-capture run uses treat_stereo_as_iq=True.",
+  "scenario": "T2-05"
+}

@@ -1,0 +1,27 @@
+# NTRO Signal Analyzer — Default Configuration
+# Phase 1: File I/O and data model defaults
+
+io:
+  # Maximum file size to load fully into memory (bytes)
+  max_file_size_bytes: 2_147_483_648  # 2 GB
+  # Default chunk size for streaming large files
+  chunk_size_samples: 1_048_576  # 1M samples
+
+iq_defaults:
+  # These defaults are used ONLY when the user does not provide explicit config.
+  # They are recorded as assumptions/warnings in metadata.
+  dtype: complex64
+  endianness: little
+  iq_layout: complex_native
+
+analysis:
+  # Placeholder for future DSP analysis configuration
+  # Not used in Phase 1
+  fft_size: 4096
+  overlap_ratio: 0.5
+
+runtime:
+  # Number of worker threads for GUI processing
+  num_workers: 1
+  # Enable verbose logging
+  verbose: false

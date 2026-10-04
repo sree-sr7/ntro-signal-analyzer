@@ -1,0 +1,674 @@
+{
+  "baseline_preservation": {
+    "baseline_run_id": "20260930_201445_269",
+    "changed_recorded_files": [],
+    "checksum_manifest": "reports/tier2/fixes/cycle1/baseline_sha256_before.txt",
+    "manifest_entries": 117,
+    "missing_recorded_files": [],
+    "preserved": true,
+    "recorded_files_unchanged": 117
+  },
+  "baseline_run_id": "20260930_201445_269",
+  "created_utc": "2026-10-04T07:27:29.354508+00:00",
+  "cycle": "cycle1",
+  "cycle_stopped": true,
+  "diagnostic_findings": [
+    {
+      "finding": "No OOD rejection gate was wired into the analyzer. Saved noise and OFDM captures received near-certain 16QAM softmax scores; entropy was low and the existing adaptive energy detector rejected all saved capture types, so it was not suitable as a signal-presence gate. Old Mahalanobis thresholds were not reproducible.",
+      "priority": 1
+    },
+    {
+      "finding": "T2-01, T2-02, T2-07, and T2-08 labels changed to their correct PSK classes when applying measured CFO to classifier input. Raw capture, features, feature order, normalization, and ONNX model remained unchanged. This is a classifier/DSP compatibility issue, not evidence of model domain shift.",
+      "priority": 2
+    },
+    {
+      "finding": "T2-03 independent interleaver, K7 Viterbi, and CRC paths agreed on the true encoded bits. First divergence was demodulation after carrier recovery rejected a phase estimate; CRC and supplied expected payload length then selected the valid phase.",
+      "priority": 3
+    },
+    {
+      "finding": "T2-05 trace verified stereo channel order (I=channel 0,Q=channel 1), PCM scaling, and 1 MHz rate. A QPSK 45-degree phase anchor was omitted in carrier recovery. The corrected path reports four unresolved rotations; an offline reference comparison found an exact rotation but the analyzer did not select it. WAV loader was not changed.",
+      "priority": 4
+    },
+    {
+      "finding": "T2-07 baseline took 2618.441 seconds with a CFO-driven 8PSK label and many structurally impossible trials. Structural length/divisibility preflight preserved compatible candidates and the ground-truth candidate.",
+      "priority": 5
+    }
+  ],
+  "fec_crc_behavior": {
+    "T2-01": "Conv_R12_K5 / Block_8x8 CRC pass; exact 1,932-bit payload.",
+    "T2-02": "Conv_R12_K7 with no interleaver CRC pass; exact payload.",
+    "T2-03": "Conv_R12_K7 / Convolutional_Depth_12 CRC pass; exact 2,048-bit payload; phase candidate selected from CRC evidence.",
+    "T2-05": "No CRC configured. Demodulation returns 8,192 bits; harness payload match remains false on the unresolved primary phase. Offline four-rotation diagnostic identifies one exact reference match without applying it.",
+    "T2-07": "Concat_RS223_Conv7 / Block_16x16 accepted; CRC pass and exact 114,160-bit payload.",
+    "T2-08": "Conv_R12_K7 / Diag_16x16_S1 CRC pass; exact payload.",
+    "T2-09_T2-10": "FEC not entered after OOD rejection."
+  },
+  "full_pytest_suite_run": false,
+  "model": {
+    "path": "models/production_mlp_final.onnx",
+    "sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+    "unchanged_from_recorded_sha256": true
+  },
+  "modulation_behavior": {
+    "T2-03": "remains correctly classified 8psk",
+    "T2-05": "qpsk classification retained when stereo WAV is correctly interpreted as IQ",
+    "labels_corrected": {
+      "T2-01": {
+        "from": "8psk",
+        "to": "qpsk"
+      },
+      "T2-02": {
+        "from": "8psk",
+        "to": "bpsk"
+      },
+      "T2-07": {
+        "from": "8psk",
+        "to": "qpsk"
+      },
+      "T2-08": {
+        "from": "8psk",
+        "to": "qpsk"
+      }
+    },
+    "model_domain_shift_confirmed": false,
+    "reason": "Same frozen ONNX correctly labels the saved signal after classifier-side CFO compatibility correction."
+  },
+  "ood_behavior": {
+    "after": "Both are rejected as unknown/OOD at signal_detection before demodulation or FEC. Confidence is null, probabilities are empty, and the original model prediction is retained in model_prediction_before_signal_gate.",
+    "baseline": "T2-09 and T2-10 were classified as 16QAM at near 1.0 confidence and entered 86 trial hypotheses; their reviewed baseline outputs recorded 50 and 45 accepted candidates respectively.",
+    "interpretation": "Bounded geometric fit evidence, not a calibrated class probability or OOD probability.",
+    "minimum_geometric_fit_score": 0.35,
+    "t209_geometric_fit_score": 0.1852922100726438,
+    "t210_geometric_fit_score": 0.19241989405902382
+  },
+  "production_code_files_changed": [
+    "core/ml/classifier.py",
+    "core/pipeline/analyzer.py",
+    "core/sync/carrier_recovery.py",
+    "core/fec/trial_engine.py"
+  ],
+  "related_scenarios": {
+    "T2-04": {
+      "baseline_status": "REJECTED",
+      "finding": "The gate passes the saved feature vector; the unchanged classifier ambiguity remains. See scenario_results.",
+      "gate_projection": {
+        "decision": "would pass signal-support gate",
+        "geometric_fit_score": 0.5780948681531969,
+        "minimum_geometric_fit_score": 0.35,
+        "strongest_supported_modulation": "16qam"
+      },
+      "status": "reviewed_no_rerun"
+    },
+    "T2-06": {
+      "baseline_status": "PASS",
+      "crc_pass": true,
+      "fec": "Conv_R12_K3",
+      "modulation": "2fsk",
+      "payload_match": true,
+      "rerun": false,
+      "status": "preserved_supplemental_success"
+    }
+  },
+  "research_reference_updates": {
+    "docs/references.bib": "not updated",
+    "docs/research_references.md": "not updated",
+    "reason": "No external research was needed for these code changes."
+  },
+  "scenario_results": [
+    {
+      "after": {
+        "candidate_count": 81,
+        "candidate_count_after_structural_pruning": 6,
+        "confidence": 0.9999997851739901,
+        "crc_pass": true,
+        "demodulated_bit_count": 3904,
+        "fec_status": "accepted",
+        "fec_type": "Conv_R12_K5",
+        "ground_truth_payload_exact_match": true,
+        "interleaver_type": "Block_8x8",
+        "modulation": "qpsk",
+        "ood_gate": {
+          "decision": "signal_candidate",
+          "geometric_fit_score": 0.5089805351246456,
+          "minimum_geometric_fit_score": 0.35,
+          "reason": "At least one supported modulation has sufficient geometric signal fit.",
+          "score_interpretation": "bounded geometric fit score; not a probability or OOD probability",
+          "stage": "signal_detection",
+          "status": "passed",
+          "strongest_supported_modulation": "8psk"
+        },
+        "phase_ambiguity_resolution": {
+          "candidate_count": 4,
+          "candidates_tested": 4,
+          "method": "CRC-validated FEC candidate across PSK rotations",
+          "reason": "A CRC-accepted candidate selected the phase rotation.",
+          "selected_candidate_index": 3,
+          "selected_phase_reference_rad": 4.4560343885941105,
+          "status": "crc_selected"
+        },
+        "runtime_seconds": 1.4839382999925874,
+        "status": "complete",
+        "total_candidate_count": 89
+      },
+      "artifacts": "reports/tier2/fixes/cycle1/T2-01/",
+      "baseline": {
+        "confidence": 0.9990460375766295,
+        "crc_pass": false,
+        "demodulated_bit_count": 5856,
+        "fec_candidate_count": 81,
+        "modulation": "8psk",
+        "reviewed_outcome": "FAIL",
+        "runtime_seconds": 27.724225100129843,
+        "status": "partial"
+      },
+      "change": "The feature extractor saw uncompensated CFO, producing a confident 8PSK label for a QPSK signal.",
+      "remaining_limitation": "Phase ambiguity is selected only if the supplied frame length and CRC validate a candidate; otherwise the phase remains unresolved.",
+      "root_cause": "The feature extractor saw uncompensated CFO, producing a confident 8PSK label for a QPSK signal.",
+      "scenario": "T2-01"
+    },
+    {
+      "after": {
+        "candidate_count": 81,
+        "candidate_count_after_structural_pruning": 5,
+        "confidence": 0.9999991400326638,
+        "crc_pass": true,
+        "demodulated_bit_count": 4140,
+        "fec_status": "accepted",
+        "fec_type": "Conv_R12_K7",
+        "ground_truth_payload_exact_match": true,
+        "interleaver_type": null,
+        "modulation": "bpsk",
+        "ood_gate": {
+          "decision": "signal_candidate",
+          "geometric_fit_score": 0.48385988140517094,
+          "minimum_geometric_fit_score": 0.35,
+          "reason": "At least one supported modulation has sufficient geometric signal fit.",
+          "score_interpretation": "bounded geometric fit score; not a probability or OOD probability",
+          "stage": "signal_detection",
+          "status": "passed",
+          "strongest_supported_modulation": "16qam"
+        },
+        "phase_ambiguity_resolution": {
+          "candidate_count": 2,
+          "candidates_tested": 2,
+          "method": "CRC-validated FEC candidate across PSK rotations",
+          "reason": "A CRC-accepted candidate selected the phase rotation.",
+          "selected_candidate_index": 1,
+          "selected_phase_reference_rad": 3.8647385257329945,
+          "status": "crc_selected"
+        },
+        "runtime_seconds": 3.7565967999980785,
+        "status": "complete",
+        "total_candidate_count": 89
+      },
+      "artifacts": "reports/tier2/fixes/cycle1/T2-02/",
+      "baseline": {
+        "confidence": 0.9999977528614875,
+        "crc_pass": false,
+        "demodulated_bit_count": 12420,
+        "fec_candidate_count": 81,
+        "modulation": "8psk",
+        "reviewed_outcome": "FAIL",
+        "runtime_seconds": 62.35769019997679,
+        "status": "partial"
+      },
+      "change": "The feature extractor saw uncompensated CFO, producing a confident 8PSK label for a BPSK signal.",
+      "remaining_limitation": "Phase ambiguity is selected only if the supplied frame length and CRC validate a candidate; otherwise the phase remains unresolved.",
+      "root_cause": "The feature extractor saw uncompensated CFO, producing a confident 8PSK label for a BPSK signal.",
+      "scenario": "T2-02"
+    },
+    {
+      "after": {
+        "candidate_count": 81,
+        "candidate_count_after_structural_pruning": 5,
+        "confidence": 0.9999999485259768,
+        "crc_pass": true,
+        "demodulated_bit_count": 4140,
+        "fec_status": "accepted",
+        "fec_type": "Conv_R12_K7",
+        "ground_truth_payload_exact_match": true,
+        "interleaver_type": "Convolutional_Depth_12",
+        "modulation": "8psk",
+        "ood_gate": {
+          "decision": "signal_candidate",
+          "geometric_fit_score": 0.5754217321820402,
+          "minimum_geometric_fit_score": 0.35,
+          "reason": "At least one supported modulation has sufficient geometric signal fit.",
+          "score_interpretation": "bounded geometric fit score; not a probability or OOD probability",
+          "stage": "signal_detection",
+          "status": "passed",
+          "strongest_supported_modulation": "8psk"
+        },
+        "phase_ambiguity_resolution": {
+          "candidate_count": 8,
+          "candidates_tested": 2,
+          "method": "CRC-validated FEC candidate across PSK rotations",
+          "reason": "A CRC-accepted candidate selected the phase rotation.",
+          "selected_candidate_index": 1,
+          "selected_phase_reference_rad": 1.1311655810025008,
+          "status": "crc_selected"
+        },
+        "runtime_seconds": 3.880432000005385,
+        "status": "complete",
+        "total_candidate_count": 89
+      },
+      "artifacts": "reports/tier2/fixes/cycle1/T2-03/",
+      "baseline": {
+        "confidence": 0.9999980433091609,
+        "crc_pass": false,
+        "demodulated_bit_count": 4140,
+        "fec_candidate_count": 81,
+        "modulation": "8psk",
+        "reviewed_outcome": "PARTIAL",
+        "runtime_seconds": 20.65391659992747,
+        "status": "partial"
+      },
+      "change": "Carrier phase fitting was rejected; a CRC-selected PSK phase rotation resolves the ambiguity.",
+      "remaining_limitation": "CRC phase search requires caller-supplied expected payload length and CRC presence.",
+      "root_cause": "Carrier phase fitting was rejected; a CRC-selected PSK phase rotation resolves the ambiguity.",
+      "scenario": "T2-03"
+    },
+    {
+      "after": {
+        "confidence": 0.05423551766129037,
+        "demodulated_bit_count": 0,
+        "fec_status": "unavailable",
+        "modulation": "unknown (baseline classifier outcome)",
+        "runtime_seconds": null,
+        "signal_gate_review": {
+          "decision": "would pass signal-support gate",
+          "geometric_fit_score": 0.5780948681531969,
+          "minimum_geometric_fit_score": 0.35,
+          "strongest_supported_modulation": "16qam"
+        },
+        "status": "not_rerun_gate_review_only"
+      },
+      "artifacts": "reports/tier2/baseline/20260930_201445_269/T2-04/ (baseline only; gate score computed from saved features)",
+      "baseline": {
+        "confidence": 0.05423551766129037,
+        "demodulated_bit_count": 0,
+        "fec_status": "unavailable",
+        "modulation": "unknown",
+        "runtime_seconds": 0.6317388000898063,
+        "status": "REJECTED"
+      },
+      "change": "No end-to-end rerun. The frozen feature vector projects to a passing signal-support score, so the new gate would allow classifier evaluation; the existing classifier still returns unknown as in baseline.",
+      "remaining_limitation": "T2-04 remains an in-scope 16QAM classification failure. The OOD gate does not worsen its path, but this cycle did not change the model or classifier acceptance margin.",
+      "root_cause": "The frozen classifier had near-tied 16QAM and 8PSK scores and rejected the class as ambiguous; the new signal-support gate does not resolve class ambiguity.",
+      "scenario": "T2-04"
+    },
+    {
+      "after": {
+        "automatic_phase_candidate_selected": false,
+        "candidate_count": 0,
+        "candidate_count_after_structural_pruning": null,
+        "confidence": 0.9979265862527592,
+        "crc_pass": null,
+        "demodulated_bit_count": 8192,
+        "diagnostic_rotation_checks": [
+          {
+            "ber": 1.0,
+            "bit_count": 8192,
+            "bit_errors": 8192,
+            "quarter_turns": 0
+          },
+          {
+            "ber": 0.5,
+            "bit_count": 8192,
+            "bit_errors": 4096,
+            "quarter_turns": 1
+          },
+          {
+            "ber": 0.0,
+            "bit_count": 8192,
+            "bit_errors": 0,
+            "quarter_turns": 2
+          },
+          {
+            "ber": 0.5,
+            "bit_count": 8192,
+            "bit_errors": 4096,
+            "quarter_turns": 3
+          }
+        ],
+        "fec_status": "not_requested",
+        "fec_type": null,
+        "ground_truth_payload_exact_match": false,
+        "harness_status": "PARTIAL",
+        "interleaver_type": null,
+        "matching_phase_candidates": [
+          {
+            "ber": 0.0,
+            "bit_count": 8192,
+            "bit_errors": 0,
+            "quarter_turns": 2
+          }
+        ],
+        "modulation": "qpsk",
+        "ood_gate": {
+          "decision": "signal_candidate",
+          "geometric_fit_score": 0.9450929330234619,
+          "minimum_geometric_fit_score": 0.35,
+          "reason": "At least one supported modulation has sufficient geometric signal fit.",
+          "score_interpretation": "bounded geometric fit score; not a probability or OOD probability",
+          "stage": "signal_detection",
+          "status": "passed",
+          "strongest_supported_modulation": "qpsk"
+        },
+        "payload_sha256_expected": "29bc83b65d0584f026647e5717cdd170843cc9b0a2592690b8e318a4ca8ae339",
+        "payload_sha256_recovered": "36ee3029c4eaf8d51e525c2c28a0d1273e28026de1f0b79978d877ad0df06aa2",
+        "phase_ambiguity_resolution": {
+          "candidate_count": 4,
+          "method": "rotational alternatives require sync or CRC evidence",
+          "reason": "No phase candidate has been selected yet; CRC search can resolve it when CRC and expected payload length are supplied.",
+          "status": "unresolved"
+        },
+        "runtime_seconds": 0.0,
+        "status": "complete",
+        "total_candidate_count": null
+      },
+      "artifacts": "reports/tier2/fixes/cycle1/T2-05/",
+      "baseline": {
+        "confidence": 0.9979265862527592,
+        "crc_pass": null,
+        "demodulated_bit_count": 8192,
+        "fec_candidate_count": 0,
+        "modulation": "qpsk",
+        "payload_match": false,
+        "payload_sha256_expected": "29bc83b65d0584f026647e5717cdd170843cc9b0a2592690b8e318a4ca8ae339",
+        "payload_sha256_recovered": "36ee3029c4eaf8d51e525c2c28a0d1273e28026de1f0b79978d877ad0df06aa2",
+        "runtime_seconds": 0.09668580000288785,
+        "status": "PARTIAL"
+      },
+      "change": "The QPSK carrier phase estimate now accounts for the repository constellation\u2019s 45\u00b0 anchor. I/Q channel order, PCM scaling, and 1 MHz sample rate were already correct. The analyzer reports four phase rotations unresolved; an offline diagnostic using the saved reference found one exact rotation, but no ground-truth rotation was used to select the analyzer output.",
+      "remaining_limitation": "The analyzer returns a complete 8,192-bit QPSK demodulation but cannot select the payload rotation without frame evidence; harness payload match remains false. The saved-reference rotation diagnostic found an exact candidate at quarter_turns=2 and did not apply it.",
+      "root_cause": "Carrier phase recovery omitted the QPSK constellation phase anchor, biasing its phase estimate. After correcting that estimate, QPSK still has an inherent fourfold rotational ambiguity that cannot be selected without CRC or a sync word. The previous cycle output also omitted stereo-IQ WAV handling because the ground-truth format string is stereo_wav_iq; the final same-capture run uses treat_stereo_as_iq=True.",
+      "scenario": "T2-05"
+    },
+    {
+      "after": {
+        "candidate_count": 82,
+        "candidate_count_after_structural_pruning": 9,
+        "demodulated_bit_count": 261888,
+        "ground_truth_candidate": {
+          "accepted": true,
+          "candidate_status": "evaluated",
+          "codeword_count": 64,
+          "codeword_length_bits": 4092,
+          "compatible": true,
+          "crc_pass": true,
+          "crc_status": true,
+          "downstream_fec": null,
+          "downstream_fec_result": null,
+          "downstream_fec_valid": null,
+          "failed_fec_decodes": 0,
+          "fec_type": "Concat_RS223_Conv7",
+          "frame_length_compatible": true,
+          "interleaver": "Block_16x16",
+          "interleaver_block_remainder": null,
+          "interleaver_branches": null,
+          "interleaver_columns": null,
+          "interleaver_complete_blocks": null,
+          "interleaver_configuration": null,
+          "interleaver_depth": null,
+          "interleaver_frame_length": null,
+          "interleaver_frame_size": null,
+          "interleaver_processed_frames": null,
+          "interleaver_rows": null,
+          "interleaver_seed": null,
+          "interleaver_step": null,
+          "interleaver_type": "Block_16x16",
+          "llr_source": null,
+          "path_metric": 15,
+          "structure_match": true,
+          "successful_fec_decodes": 64,
+          "total_frame_length": 261888,
+          "valid": true,
+          "warnings": []
+        },
+        "ground_truth_payload_exact": true,
+        "modulation": "qpsk",
+        "phase_ambiguity_resolution": {
+          "candidate_count": 4,
+          "candidates_tested": 2,
+          "method": "CRC-validated FEC candidate across PSK rotations",
+          "reason": "A CRC-accepted candidate selected the phase rotation.",
+          "selected_candidate_index": 1,
+          "selected_phase_reference_rad": 0.5741484769193697,
+          "status": "crc_selected"
+        },
+        "runtime_seconds": 427.6461784999992,
+        "status": "complete",
+        "structurally_pruned_candidate_count": 80,
+        "total_candidate_count": 89
+      },
+      "artifacts": "reports/tier2/fixes/cycle1/T2-07/",
+      "baseline": {
+        "candidate_count": 81,
+        "candidate_count_after_structural_pruning": 36,
+        "demodulated_bit_count": 392832,
+        "ground_truth_candidate": {
+          "accepted": false,
+          "candidate_status": "incompatible",
+          "codeword_count": null,
+          "codeword_length_bits": null,
+          "compatible": false,
+          "crc_pass": false,
+          "crc_status": false,
+          "downstream_fec": null,
+          "downstream_fec_result": null,
+          "downstream_fec_valid": null,
+          "failed_fec_decodes": null,
+          "fec_type": "Concat_RS223_Conv7",
+          "frame_length_compatible": false,
+          "interleaver": "Block_16x16",
+          "interleaver_block_remainder": null,
+          "interleaver_branches": null,
+          "interleaver_columns": null,
+          "interleaver_complete_blocks": null,
+          "interleaver_configuration": null,
+          "interleaver_depth": null,
+          "interleaver_frame_length": null,
+          "interleaver_frame_size": null,
+          "interleaver_processed_frames": null,
+          "interleaver_rows": null,
+          "interleaver_seed": null,
+          "interleaver_step": null,
+          "interleaver_type": "Block_16x16",
+          "llr_source": null,
+          "path_metric": null,
+          "structure_match": false,
+          "successful_fec_decodes": null,
+          "total_frame_length": 392832,
+          "valid": false,
+          "warnings": [
+            "bit count must be a positive multiple of matrix size 256"
+          ]
+        },
+        "modulation": "8psk",
+        "runtime_seconds": 2618.440727500012,
+        "status": "partial"
+      },
+      "change": "CFO-corrected classifier selected QPSK; expected payload length enabled exact structural preflight and PSK phase candidates were CRC-checked.",
+      "remaining_limitation": "Expected payload length must be supplied by the caller for these exact length prunes; no payload contents were passed into analysis.",
+      "root_cause": "Raw CFO phase drift caused the frozen classifier to label QPSK as 8PSK, inflating the bit stream and making the FEC search explore structurally implausible hypotheses.",
+      "scenario": "T2-07"
+    },
+    {
+      "after": {
+        "candidate_count": 82,
+        "candidate_count_after_structural_pruning": 10,
+        "confidence": 0.9999997704345865,
+        "crc_pass": true,
+        "demodulated_bit_count": 8192,
+        "fec_status": "accepted",
+        "fec_type": "Conv_R12_K7",
+        "ground_truth_payload_exact_match": true,
+        "interleaver_type": "Diag_16x16_S1",
+        "modulation": "qpsk",
+        "ood_gate": {
+          "decision": "signal_candidate",
+          "geometric_fit_score": 0.5668297645266104,
+          "minimum_geometric_fit_score": 0.35,
+          "reason": "At least one supported modulation has sufficient geometric signal fit.",
+          "score_interpretation": "bounded geometric fit score; not a probability or OOD probability",
+          "stage": "signal_detection",
+          "status": "passed",
+          "strongest_supported_modulation": "8psk"
+        },
+        "phase_ambiguity_resolution": {
+          "candidate_count": 4,
+          "candidates_tested": 2,
+          "method": "CRC-validated FEC candidate across PSK rotations",
+          "reason": "A CRC-accepted candidate selected the phase rotation.",
+          "selected_candidate_index": 1,
+          "selected_phase_reference_rad": 1.5707963267948966,
+          "status": "crc_selected"
+        },
+        "runtime_seconds": 16.47624590000487,
+        "status": "complete",
+        "total_candidate_count": 89
+      },
+      "artifacts": "reports/tier2/fixes/cycle1/T2-08/",
+      "baseline": {
+        "confidence": 0.9999991017281685,
+        "crc_pass": false,
+        "demodulated_bit_count": 12288,
+        "fec_candidate_count": 86,
+        "modulation": "8psk",
+        "reviewed_outcome": "FAIL",
+        "runtime_seconds": 105.1327665001154,
+        "status": "partial"
+      },
+      "change": "The feature extractor saw uncompensated CFO, producing a confident 8PSK label for a QPSK signal.",
+      "remaining_limitation": "Phase ambiguity is selected only if the supplied frame length and CRC validate a candidate; otherwise the phase remains unresolved.",
+      "root_cause": "The feature extractor saw uncompensated CFO, producing a confident 8PSK label for a QPSK signal.",
+      "scenario": "T2-08"
+    },
+    {
+      "after": {
+        "candidate_count": null,
+        "candidate_count_after_structural_pruning": null,
+        "confidence": null,
+        "crc_pass": null,
+        "demodulated_bit_count": 0,
+        "fec_status": "unavailable",
+        "fec_type": null,
+        "ground_truth_payload_exact_match": null,
+        "interleaver_type": null,
+        "modulation": "unknown",
+        "ood_gate": {
+          "decision": "unknown_ood",
+          "geometric_fit_score": 0.1852922100726438,
+          "minimum_geometric_fit_score": 0.35,
+          "reason": "No supported modulation has a sufficient geometric signal fit; the classifier label is treated as unknown/OOD.",
+          "score_interpretation": "bounded geometric fit score; not a probability or OOD probability",
+          "stage": "signal_detection",
+          "status": "rejected",
+          "strongest_supported_modulation": "16qam"
+        },
+        "phase_ambiguity_resolution": null,
+        "runtime_seconds": 0.021379799989517778,
+        "status": "rejected",
+        "total_candidate_count": null
+      },
+      "artifacts": "reports/tier2/fixes/cycle1/T2-09/",
+      "baseline": {
+        "confidence": 0.9999999999999998,
+        "crc_pass": null,
+        "demodulated_bit_count": 16384,
+        "fec_candidate_count": 86,
+        "modulation": "16qam",
+        "reviewed_outcome": "OOD_FAIL",
+        "runtime_seconds": 168.71341519989073,
+        "status": "partial"
+      },
+      "change": "The frozen classifier assigned near-certain 16QAM to noise-only input; the geometric signal-support gate rejects it.",
+      "remaining_limitation": "The structural fit gate is not a calibrated general OOD detector; unknown signals that fit a supported geometry may pass.",
+      "root_cause": "The frozen classifier assigned near-certain 16QAM to noise-only input; the geometric signal-support gate rejects it.",
+      "scenario": "T2-09"
+    },
+    {
+      "after": {
+        "candidate_count": null,
+        "candidate_count_after_structural_pruning": null,
+        "confidence": null,
+        "crc_pass": null,
+        "demodulated_bit_count": 0,
+        "fec_status": "unavailable",
+        "fec_type": null,
+        "ground_truth_payload_exact_match": null,
+        "interleaver_type": null,
+        "modulation": "unknown",
+        "ood_gate": {
+          "decision": "unknown_ood",
+          "geometric_fit_score": 0.19241989405902382,
+          "minimum_geometric_fit_score": 0.35,
+          "reason": "No supported modulation has a sufficient geometric signal fit; the classifier label is treated as unknown/OOD.",
+          "score_interpretation": "bounded geometric fit score; not a probability or OOD probability",
+          "stage": "signal_detection",
+          "status": "rejected",
+          "strongest_supported_modulation": "16qam"
+        },
+        "phase_ambiguity_resolution": null,
+        "runtime_seconds": 0.010772999987239018,
+        "status": "rejected",
+        "total_candidate_count": null
+      },
+      "artifacts": "reports/tier2/fixes/cycle1/T2-10/",
+      "baseline": {
+        "confidence": 0.9999999999198896,
+        "crc_pass": null,
+        "demodulated_bit_count": 6400,
+        "fec_candidate_count": 86,
+        "modulation": "16qam",
+        "reviewed_outcome": "OOD_FAIL",
+        "runtime_seconds": 42.60592670016922,
+        "status": "partial"
+      },
+      "change": "The frozen classifier assigned near-certain 16QAM to OFDM; the geometric signal-support gate rejects it.",
+      "remaining_limitation": "The structural fit gate is not a calibrated general OOD detector; unknown signals that fit a supported geometry may pass.",
+      "root_cause": "The frozen classifier assigned near-certain 16QAM to OFDM; the geometric signal-support gate rejects it.",
+      "scenario": "T2-10"
+    }
+  ],
+  "scope": "Targeted fixes using existing diagnostics and the same frozen Tier-2 captures. Cycle complete; no second fix cycle or presentation work started.",
+  "t207_runtime": {
+    "after_seconds": 427.6461784999992,
+    "after_structurally_compatible": 9,
+    "after_trial_entries": 82,
+    "baseline_seconds": 2618.440727500012,
+    "baseline_structurally_compatible": 36,
+    "expensive_full_reruns": 1,
+    "ground_truth_candidate_retained_and_accepted": true,
+    "reduction_percent": 83.6679068573647,
+    "speedup": 6.122913892705385,
+    "theoretical_candidates": 89
+  },
+  "targeted_tests": [
+    {
+      "command": "pytest tests/integration/test_ood_gate.py tests/integration/test_cfo_aware_classifier.py -q",
+      "result": "4 passed"
+    },
+    {
+      "command": "pytest tests/unit/test_carrier_recovery.py -q",
+      "result": "4 passed"
+    },
+    {
+      "command": "Focused structural tests in tests/integration/test_trial_pruning.py, tests/integration/test_fec_trial.py, and tests/integration/test_t203_phase_recovery.py",
+      "result": "11 passed in 6.45s"
+    },
+    {
+      "command": "pytest tests/integration/test_t203_phase_recovery.py -q",
+      "result": "1 passed (also exercised within the focused structural group)"
+    }
+  ],
+  "test_files_added_or_changed": [
+    "tests/integration/test_ood_gate.py",
+    "tests/integration/test_cfo_aware_classifier.py",
+    "tests/integration/test_t203_phase_recovery.py",
+    "tests/integration/test_trial_pruning.py",
+    "tests/unit/test_carrier_recovery.py"
+  ],
+  "title": "Tier-2 Fix Cycle 1 Summary"
+}

@@ -1,0 +1,72 @@
+{
+  "analyzer_configuration_allowed": {
+    "crc_present": false,
+    "raw_iq_sample_rate_hz": 1000000.0,
+    "run_fec": true,
+    "samples_per_symbol": null,
+    "stereo_wav_as_iq": false,
+    "tone_frequencies_hz": null
+  },
+  "carrier_offset_hz": 0.0,
+  "crc": null,
+  "duration_seconds": 0.004096,
+  "encoded_modulation_input_bit_count": 0,
+  "fec": "None",
+  "file_format": "complex64_le_iq",
+  "file_path": "capture.iq",
+  "file_sha256": "03904b3c1f48b358e3853d74ccd891e217c33444df565beafff7b929a4d7e038",
+  "gain": 1.425566956724051,
+  "generator": {
+    "channel_method": "NumPy complex baseband mapping, explicit CFO/phase/gain, and AWGN; OFDM constructed with NumPy IFFT",
+    "configuration": {
+      "cfo_hz": 0.0,
+      "fec": "None",
+      "interleaver": "None",
+      "modulation": "Noise-only",
+      "ood": true,
+      "sample_count": 4096,
+      "sample_rate_key": "symbol_rate",
+      "scenario_id": "T2-09",
+      "seed": 7109077,
+      "snr_db": null
+    },
+    "fec_method": "Komm ConvolutionalCode for convolutional coding; local GF(256) RS encoder (alpha=2, primitive 0x11d, fcr=0); locally implemented CRC and interleaver mappings",
+    "file_conversion": "stereo WAV is signed PCM16 with channel 0=I, channel 1=Q; raw IQ is little-endian complex64",
+    "import_allowlist": [
+      "stdlib",
+      "numpy",
+      "scipy.io.wavfile",
+      "komm"
+    ],
+    "komm_version": "0.36.0",
+    "language": "Python",
+    "name": "tier2-independent-numpy-komm-1.0.0",
+    "numpy_version": "2.5.3",
+    "python_version": "3.12.10"
+  },
+  "initial_phase_rad": 1.425732975484502,
+  "interleaver": "None",
+  "modulation": "Noise-only",
+  "payload_bit_count": 0,
+  "payload_bits_file": null,
+  "payload_packed_bitorder": "big",
+  "payload_sha256": null,
+  "random_seed": 7109077,
+  "sample_count": 4096,
+  "sample_rate_hz": 1000000.0,
+  "samples_per_symbol": null,
+  "scenario_id": "T2-09",
+  "snr_db": null,
+  "timing_offset_samples": 0,
+  "unknown_to_analyzer": [
+    "payload bits",
+    "random seed",
+    "transmitted modulation",
+    "FEC identity",
+    "interleaver identity",
+    "gain",
+    "initial phase",
+    "injected SNR",
+    "carrier offset"
+  ]
+}

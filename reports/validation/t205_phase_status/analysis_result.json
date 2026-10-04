@@ -1,0 +1,429 @@
+{
+  "status": "partial",
+  "filename": "capture.wav",
+  "input_path": "C:\\Users\\HP\\Documents\\NTRO-Signal-Analyzer\\reports\\tier2\\baseline\\20260930_201445_269\\T2-05\\capture.wav",
+  "file_format": "wav",
+  "validation_status": "valid",
+  "file_metadata": {
+    "filename": "capture.wav",
+    "format": "wav",
+    "sample_count": 4096,
+    "sample_rate_hz": 1000000.0,
+    "duration_seconds": 0.004096,
+    "center_frequency_hz": null,
+    "channel_count": 2,
+    "dtype": "int16",
+    "iq_layout": "iq_interleaved",
+    "endianness": "native",
+    "source_metadata": {
+      "wav_sample_rate": 1000000,
+      "wav_channels": 2,
+      "wav_dtype": "int16"
+    }
+  },
+  "signal_statistics": {
+    "sample_count": 4096,
+    "rms_amplitude": 1.0270153284072876,
+    "peak_amplitude": 1.1226710081100464,
+    "mean_i": 0.020570382475852966,
+    "mean_q": 0.006092198193073273,
+    "standard_deviation_i": 0.7237695455551147,
+    "standard_deviation_q": 0.7283253073692322
+  },
+  "synchronization": {
+    "preprocessing": {
+      "input_sample_count": 4096,
+      "cfo_correction_applied": false,
+      "matched_filter_applied": false,
+      "timing_recovery_requested": false,
+      "timing_recovery_applied": false,
+      "samples_per_symbol_supplied": null,
+      "output_sample_count": 4096,
+      "effective_samples_per_symbol": null,
+      "classifier_input": "waveform samples",
+      "classifier_feature_assumptions": "PSK/QAM features assume symbol-rate input; FSK features use waveform samples and samples_per_symbol.",
+      "classifier_timing_transient_discarded_samples": 0
+    },
+    "spectrum_measurements": {
+      "peak_frequency_hz": -137695.3125,
+      "occupied_bandwidth_hz": 987304.6875,
+      "noise_floor": 7.322204169213365e-07,
+      "warnings": []
+    },
+    "dominant_spectral_peaks": [
+      {
+        "frequency_hz": -137695.3125,
+        "power": 2.682593731151428e-06
+      },
+      {
+        "frequency_hz": 440429.6875,
+        "power": 2.6721766062109964e-06
+      },
+      {
+        "frequency_hz": 460937.5,
+        "power": 2.5266460852435557e-06
+      },
+      {
+        "frequency_hz": -336914.0625,
+        "power": 2.340142600587569e-06
+      },
+      {
+        "frequency_hz": 205078.125,
+        "power": 2.3043344299367163e-06
+      },
+      {
+        "frequency_hz": 265625.0,
+        "power": 2.265341890961281e-06
+      },
+      {
+        "frequency_hz": 174804.6875,
+        "power": 2.2256781448959373e-06
+      },
+      {
+        "frequency_hz": -314453.125,
+        "power": 2.2191745756572345e-06
+      },
+      {
+        "frequency_hz": 75195.3125,
+        "power": 2.2181700387591263e-06
+      },
+      {
+        "frequency_hz": -465820.3125,
+        "power": 2.1979151370032923e-06
+      }
+    ],
+    "classifier_cfo_correction": {
+      "status": "not_applied",
+      "reason": "The corrected classifier result was unknown, unavailable, or less confident.",
+      "modulation_before": "qpsk",
+      "confidence_before": 0.9979265862527592,
+      "estimate_hz": 0.03724615310063768,
+      "estimator_confidence": 0.951573496328748,
+      "modulation_order": 4,
+      "modulation_after": "qpsk",
+      "confidence_after": 0.9979252138844094
+    },
+    "coarse_cfo": {
+      "estimated_offset_hz": 0.03724615310063768,
+      "confidence": 0.951573496328748,
+      "method": "4th-power spectral peak",
+      "warnings": []
+    },
+    "carrier_recovery": {
+      "frequency_offset": -0.11095475940144571,
+      "phase_offset": -0.5637241336829294,
+      "confidence": 0.9523050472113944,
+      "recovered_samples": {
+        "shape": [
+          4096
+        ],
+        "dtype": "complex128"
+      },
+      "warnings": []
+    },
+    "phase_ambiguity": "not resolved by this pipeline",
+    "coarse_cfo_applied_hz": 0.03724615310063768,
+    "phase_ambiguity_resolution": {
+      "status": "unresolved",
+      "method": "rotational alternatives require sync or CRC evidence",
+      "candidate_count": 4,
+      "reason": "No phase candidate has been selected yet; a CRC-validated FEC search can resolve it when the CRC is declared present."
+    }
+  },
+  "features": {
+    "names": [
+      "amplitude_coefficient_of_variation",
+      "amplitude_kurtosis",
+      "normalized_moment_2",
+      "normalized_moment_4",
+      "normalized_moment_8",
+      "psk2_residual",
+      "psk2_phase_entropy",
+      "psk4_residual",
+      "psk4_phase_entropy",
+      "psk8_residual",
+      "psk8_phase_entropy",
+      "qam16_residual",
+      "fsk_quality",
+      "fsk_tone_separation_norm",
+      "fsk_frequency_repeat_fraction",
+      "spectral_entropy",
+      "spectral_peak_fraction"
+    ],
+    "values": [
+      0.019686861966250597,
+      5.74165624997137,
+      0.006371818470170367,
+      0.9523029830665907,
+      0.8219123976542454,
+      0.9658160516040396,
+      0.9999998280173424,
+      0.08065612845300524,
+      0.9996107074040537,
+      0.0806517292259112,
+      0.6664071382693691,
+      0.34293856359553815,
+      0.0,
+      0.0,
+      0.0,
+      0.950543230979141,
+      0.002003086011484735
+    ],
+    "by_name": {
+      "amplitude_coefficient_of_variation": 0.019686861966250597,
+      "amplitude_kurtosis": 5.74165624997137,
+      "normalized_moment_2": 0.006371818470170367,
+      "normalized_moment_4": 0.9523029830665907,
+      "normalized_moment_8": 0.8219123976542454,
+      "psk2_residual": 0.9658160516040396,
+      "psk2_phase_entropy": 0.9999998280173424,
+      "psk4_residual": 0.08065612845300524,
+      "psk4_phase_entropy": 0.9996107074040537,
+      "psk8_residual": 0.0806517292259112,
+      "psk8_phase_entropy": 0.6664071382693691,
+      "qam16_residual": 0.34293856359553815,
+      "fsk_quality": 0.0,
+      "fsk_tone_separation_norm": 0.0,
+      "fsk_frequency_repeat_fraction": 0.0,
+      "spectral_entropy": 0.950543230979141,
+      "spectral_peak_fraction": 0.002003086011484735
+    },
+    "sample_count": 4096,
+    "diagnostics": {
+      "rms_amplitude": 1.0270153271528526,
+      "mean_amplitude": 1.026816363519174,
+      "phase_reference_rad": 0.22083600776876236
+    },
+    "warnings": [],
+    "input_samples_per_symbol": 1.0
+  },
+  "classification": {
+    "modulation": "qpsk",
+    "confidence": 0.9979265862527592,
+    "method": "onnx",
+    "probabilities": {
+      "qpsk": 0.9989600214280637,
+      "16qam": 0.001033435175304505,
+      "8psk": 5.8274745117216e-06,
+      "2fsk": 5.316966431096985e-07,
+      "bpsk": 1.8422547691369164e-07
+    },
+    "top_candidates": [
+      [
+        "qpsk",
+        0.9989600214280637
+      ],
+      [
+        "16qam",
+        0.001033435175304505
+      ],
+      [
+        "8psk",
+        5.8274745117216e-06
+      ]
+    ],
+    "warnings": [],
+    "errors": [],
+    "status": "success",
+    "features": {
+      "amplitude_coefficient_of_variation": 0.019686861966250597,
+      "amplitude_kurtosis": 5.74165624997137,
+      "normalized_moment_2": 0.006371818470170367,
+      "normalized_moment_4": 0.9523029830665907,
+      "normalized_moment_8": 0.8219123976542454,
+      "psk2_residual": 0.9658160516040396,
+      "psk2_phase_entropy": 0.9999998280173424,
+      "psk4_residual": 0.08065612845300524,
+      "psk4_phase_entropy": 0.9996107074040537,
+      "psk8_residual": 0.0806517292259112,
+      "psk8_phase_entropy": 0.6664071382693691,
+      "qam16_residual": 0.34293856359553815,
+      "fsk_quality": 0.0,
+      "fsk_tone_separation_norm": 0.0,
+      "fsk_frequency_repeat_fraction": 0.0,
+      "spectral_entropy": 0.950543230979141,
+      "spectral_peak_fraction": 0.002003086011484735
+    },
+    "signal_detection_gate": {
+      "status": "passed",
+      "decision": "signal_candidate",
+      "reason": "At least one supported modulation has sufficient geometric signal fit.",
+      "stage": "signal_detection",
+      "strongest_supported_modulation": "qpsk",
+      "geometric_fit_score": 0.9450929330234619,
+      "minimum_geometric_fit_score": 0.35,
+      "score_interpretation": "bounded geometric fit score; not a probability or OOD probability"
+    }
+  },
+  "demodulation": {
+    "status": "complete",
+    "selected_modulation": "qpsk",
+    "demodulator": "coherent nearest-constellation",
+    "input_sample_count": 4096,
+    "samples_per_symbol": null,
+    "bit_count": 8192,
+    "llr_count": 8192,
+    "confidence": 0.8440739275072868,
+    "warnings": [],
+    "diagnostics": {
+      "symbol_count": 4096,
+      "mean_decision_distance": 0.06294198775270336,
+      "normalized_rms": 0.07806063907436923,
+      "input_rms_amplitude": 1.0270153271219302,
+      "soft_llr_sign": "positive favors bit 0",
+      "soft_llr_method": "max-log nearest-constellation distances",
+      "soft_noise_power_estimate": 0.0060934633726989415,
+      "soft_llr_clipping": [
+        -80.0,
+        80.0
+      ],
+      "invalid_symbol_count": 0,
+      "ambiguous_symbol_count": 0
+    },
+    "llr_source": "measured max-log constellation metrics",
+    "synchronization_assumptions": [
+      "Caller-provided sample rate and timing parameters are used.",
+      "Rotational phase ambiguity is not resolved without a known frame/sync reference."
+    ],
+    "phase_reference_rad": 0.0
+  },
+  "fec": {
+    "status": "not_requested",
+    "candidate_count": 0
+  },
+  "frames": {
+    "status": "unavailable",
+    "input_source": "demodulator hard decisions",
+    "sync_word_supplied": false,
+    "sync_index": null,
+    "sync_peak_score": null,
+    "frame_length_estimate_bits": 3698,
+    "header_bit_count": 0,
+    "payload_bit_count": 0,
+    "header_bits": {
+      "shape": [
+        0
+      ],
+      "dtype": "uint8"
+    },
+    "payload_bits": {
+      "shape": [
+        0
+      ],
+      "dtype": "uint8"
+    },
+    "warnings": [
+      "No sync word supplied; header/payload split is unavailable"
+    ]
+  },
+  "visualization": {
+    "spectrum_frequency_hz": {
+      "shape": [
+        1024
+      ],
+      "dtype": "float64"
+    },
+    "spectrum_power": {
+      "shape": [
+        1024
+      ],
+      "dtype": "float64"
+    },
+    "waveform_sample_index": {
+      "shape": [
+        4096
+      ],
+      "dtype": "int64"
+    },
+    "waveform_i": {
+      "shape": [
+        4096
+      ],
+      "dtype": "float32"
+    },
+    "waveform_q": {
+      "shape": [
+        4096
+      ],
+      "dtype": "float32"
+    },
+    "waterfall_frequency": {
+      "shape": [
+        256
+      ],
+      "dtype": "float64"
+    },
+    "waterfall_time_seconds": {
+      "shape": [
+        31
+      ],
+      "dtype": "float64"
+    },
+    "waterfall_magnitude_db": {
+      "shape": [
+        256,
+        31
+      ],
+      "dtype": "float64"
+    },
+    "waterfall_frequency_unit": "Hz",
+    "waterfall_time_unit": "seconds",
+    "constellation_i": {
+      "shape": [
+        4096
+      ],
+      "dtype": "float64"
+    },
+    "constellation_q": {
+      "shape": [
+        4096
+      ],
+      "dtype": "float64"
+    },
+    "recovered_bits": {
+      "shape": [
+        8192
+      ],
+      "dtype": "uint8"
+    }
+  },
+  "stages": [
+    {
+      "name": "file_load_and_validation",
+      "status": "complete"
+    },
+    {
+      "name": "preprocessing_and_spectrum",
+      "status": "complete"
+    },
+    {
+      "name": "classification",
+      "status": "complete",
+      "modulation": "qpsk",
+      "model_modulation_before_signal_gate": "qpsk",
+      "classifier_status": "success"
+    },
+    {
+      "name": "signal_detection_gate",
+      "status": "passed",
+      "decision": "signal_candidate",
+      "reason": "At least one supported modulation has sufficient geometric signal fit."
+    },
+    {
+      "name": "demodulation",
+      "status": "complete"
+    },
+    {
+      "name": "fec_interleaver_trials",
+      "status": "not_requested"
+    },
+    {
+      "name": "frame_and_payload_analysis",
+      "status": "unavailable"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "source": "FILE",
+  "demo": null
+}
