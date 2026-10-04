@@ -4,13 +4,16 @@ from __future__ import annotations
 
 import html
 import json
+import wave
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 import pyqtgraph as pg
-from PyQt6.QtCore import QRectF, QThread, Qt, pyqtSignal
+from PyQt6.QtCore import QEvent, QObject, QPointF, QRectF, QThread, QTimer, Qt, pyqtSignal
+from PyQt6.QtGui import QFont, QKeySequence, QShortcut, QWheelEvent
 from PyQt6.QtWidgets import (
+    QApplication,
     QCheckBox,
     QComboBox,
     QDoubleSpinBox,
@@ -23,7 +26,6 @@ from PyQt6.QtWidgets import (
     QLabel,
     QLineEdit,
     QMainWindow,
-    QMessageBox,
     QPlainTextEdit,
     QProgressBar,
     QPushButton,
@@ -47,140 +49,132 @@ from core.pipeline.demo import DEFAULT_DEMO_CONFIG
 from gui.worker import AnalysisWorker
 
 
-_DASHBOARD_STYLE = """
+_WORKSTATION_STYLE = """
 QMainWindow, QWidget {
-    background: #101820;
-    color: #dce5ec;
-    font-family: "Segoe UI";
-    font-size: 10pt;
+    background: #171b1f; color: #e1e6e9; font-family: "Segoe UI";
+    font-size: @BODY_FONT@;
 }
 QLabel { background: transparent; }
-QFrame#appHeader, QFrame#actionBar {
-    background: #17232d;
-    border: 1px solid #2c3d4b;
-    border-radius: 8px;
-}
-QLabel#appTitle { font-size: 21pt; font-weight: 700; color: #f1f5f8; }
-QLabel#appSubtitle, QLabel#tabCaption { color: #9badba; font-size: 9.5pt; }
+QFrame#appHeader { background: #1d2328; border-bottom: 1px solid #343c42; }
+QFrame#inputPanel { background: #20262b; border: 1px solid #343c42; }
+QLabel#appTitle { font-size: @TITLE_FONT@; font-weight: 600; color: #f1f4f5; }
+QLabel#appSubtitle, QLabel#tabCaption, QLabel#contextText { color: #aab5bb; }
+QLabel#sectionEyebrow, QLabel#metadataLabel { color: #8f9ba2; font-size: @SMALL_FONT@; letter-spacing: 1px; }
+QLabel#metadataLabel, QLabel#scoreLabel, QPlainTextEdit#diagnosticsText { font-family: "Consolas"; }
 QLabel#headerState {
-    color: #96d7b1;
-    background: #20352e;
-    border: 1px solid #35594a;
-    border-radius: 10px;
-    min-width: 88px;
-    padding: 6px 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    color: #d7e1e5; background: #272e33; border: 1px solid #424a50;
+    min-width: 88px; padding: 6px 10px; font-weight: 600; letter-spacing: 1px;
 }
+QLabel#headerState[tone="success"] { color: #a4d3b3; background: #26332c; border-color: #496455; }
+QLabel#headerState[tone="warning"] { color: #e0c37e; background: #352f22; border-color: #6a5d3b; }
+QLabel#headerState[tone="error"] { color: #e2a19a; background: #352625; border-color: #704441; }
 QGroupBox {
-    border: 1px solid #2b3c49;
-    border-radius: 7px;
-    margin-top: 12px;
-    padding: 10px 9px 9px 9px;
-    font-weight: 650;
-    color: #b9c9d4;
+    border: 1px solid #343c42; margin-top: 11px; padding: 10px 9px 8px 9px;
+    font-weight: 600; color: #c4cdd1;
 }
-QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 4px; }
-QLabel#fileInfo { color: #dce5ec; font-weight: 600; }
-QLabel#demoNote {
-    color: #bdc9d1;
-    background: #1b2932;
-    border-left: 3px solid #7092a8;
-    border-radius: 4px;
-    padding: 9px;
-    font-size: 9pt;
-}
-QLabel#tabHeading { color: #eef3f6; font-size: 15pt; font-weight: 650; }
-QLabel#emptyHeading { color: #eef3f6; font-size: 19pt; font-weight: 650; padding: 6px; }
-QLabel#emptyDescription { color: #a6b5c0; font-size: 11pt; padding: 4px 20px; }
-QLabel#emptyBadge {
-    color: #a9c6d9;
-    background: #1b2a35;
-    border: 1px solid #314653;
-    border-radius: 12px;
-    padding: 7px 13px;
-    margin-top: 14px;
-    font-size: 9pt;
-    font-weight: 650;
-}
+QGroupBox::title { subcontrol-origin: margin; left: 8px; padding: 0 4px; }
+QLabel#fileInfo { color: #e2e7e9; font-weight: 600; }
+QLabel#demoNote { color: #c0ccd1; border-left: 2px solid #6da8bd; padding: 5px 8px; }
+QLabel#tabHeading { color: #edf1f3; font-size: @HEADING_FONT@; font-weight: 600; }
+QLabel#emptyHeading { color: #edf1f3; font-size: @EMPTY_FONT@; font-weight: 600; padding: 6px; }
+QLabel#emptyDescription { color: #acb7bd; padding: 4px 20px; }
+QLabel#emptyBadge { color: #b6cbd3; border-top: 1px solid #374249; padding: 8px; margin-top: 10px; }
+QLabel#scoreLabel { color: #aeb9be; }
 QToolButton#sectionToggle {
-    border: 1px solid #2b3c49;
-    border-radius: 6px;
-    background: #17232d;
-    color: #c2d0d9;
-    text-align: left;
-    padding: 9px;
-    font-weight: 700;
+    border: 1px solid #343c42; background: #20262b; color: #d0d7da;
+    text-align: left; padding: 8px; font-weight: 600;
 }
-QToolButton#sectionToggle:hover { background: #20303c; }
+QToolButton#sectionToggle:hover { background: #272f34; }
 QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox {
-    background: #0d151c;
-    border: 1px solid #344755;
-    border-radius: 5px;
-    padding: 5px 7px;
-    min-height: 22px;
-    selection-background-color: #3c718d;
+    background: #14181b; color: #e0e6e8; border: 1px solid #3b444a;
+    padding: 4px 6px; min-height: 22px; selection-background-color: #35677a;
 }
-QCheckBox { spacing: 7px; color: #c8d3da; }
+QDoubleSpinBox[required="true"] { border-color: #6da8bd; }
+QLineEdit:focus, QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus,
+QPushButton:focus, QCheckBox:focus, QToolButton:focus, QTabBar::tab:focus {
+    border: 1px solid #78b4c8;
+}
+QCheckBox { spacing: 7px; color: #d0d7da; }
 QPushButton {
-    color: #e4ebf0;
-    background: #263744;
-    border: 1px solid #3b5262;
-    border-radius: 6px;
-    padding: 8px 13px;
-    font-weight: 600;
+    color: #dfe6e9; background: #2a3237; border: 1px solid #414a50;
+    padding: 7px 11px; font-weight: 500;
 }
-QPushButton:hover { background: #304553; }
-QPushButton:disabled { color: #778792; background: #202b33; border-color: #2c3840; }
-QPushButton#openButton { background: #315e78; border-color: #477b98; }
-QPushButton#openButton:hover { background: #3a6d89; }
-QPushButton#demoButton { background: #273c4a; border-color: #456273; }
-QPushButton#demoButton:hover { background: #304b5c; }
-QPushButton#analyzeButton { background: #277665; border-color: #378f7c; color: #f0f8f5; }
-QPushButton#analyzeButton:hover { background: #318a76; }
-QPushButton#resetButton { background: transparent; border-color: transparent; color: #9eafb9; }
-QPushButton#resetButton:hover { background: #202c35; border-color: #34434d; }
-QTabWidget::pane { border: 1px solid #2b3c49; border-radius: 7px; background: #111a23; }
+QPushButton:hover { background: #333d42; }
+QPushButton:disabled { color: #7f8b91; background: #22282c; border-color: #333b40; }
+QPushButton#openButton, QPushButton#analyzeButton { background: #315e70; border-color: #47798b; color: #f2f6f7; }
+QPushButton#openButton:hover, QPushButton#analyzeButton:hover { background: #3b6e80; }
+QPushButton#demoButton { background: #252d32; border-color: #414a50; }
+QPushButton#resetButton, QPushButton#copyButton { background: transparent; border-color: transparent; color: #aebbc1; }
+QPushButton#resetButton:hover, QPushButton#copyButton:hover { background: #293136; border-color: #424c52; }
+QTabWidget::pane { border: 1px solid #343c42; background: #191e22; }
 QTabBar::tab {
-    background: #17232d;
-    color: #9fb0bc;
-    border: 1px solid #293a47;
-    padding: 9px 13px;
-    margin-right: 3px;
+    background: #20262b; color: #aeb9be; border: none;
+    border-bottom: 2px solid transparent; padding: 9px 12px; margin-right: 2px;
 }
-QTabBar::tab:selected { background: #263947; color: #f0f4f6; border-bottom-color: #6d9ab1; }
+QTabBar::tab:selected { color: #edf2f4; border-bottom-color: #6da8bd; background: #252d32; }
 QTextBrowser#analysisBrowser, QPlainTextEdit {
-    background: #111a23;
-    color: #dce5ec;
-    border: 1px solid #2b3c49;
-    border-radius: 7px;
-    padding: 6px;
-    selection-background-color: #3c718d;
+    background: #191e22; color: #dfe5e8; border: none; padding: 5px;
+    selection-background-color: #35677a;
 }
-QTableWidget {
-    background: #111a23;
-    alternate-background-color: #16232d;
-    color: #dce5ec;
-    gridline-color: #2b3c49;
-    border: 1px solid #2b3c49;
-    border-radius: 6px;
-}
-QHeaderView::section {
-    background: #1c2a34;
-    color: #b9c9d4;
-    border: none;
-    border-bottom: 1px solid #344755;
-    padding: 7px;
-    font-weight: 650;
-}
-QStatusBar { background: #0d151c; color: #acbac4; border-top: 1px solid #283943; }
-QProgressBar { color: #e4ebf0; background: #18252e; border: 1px solid #30434f; border-radius: 4px; min-height: 16px; text-align: center; }
-QProgressBar::chunk { background: #5c9a83; border-radius: 3px; }
+QTableWidget { background: #191e22; alternate-background-color: #20262b; color: #dfe5e8; gridline-color: #333b40; border: 1px solid #343c42; }
+QHeaderView::section { background: #252c31; color: #bdc7cb; border: none; border-bottom: 1px solid #3a4348; padding: 7px; font-weight: 600; }
+QStatusBar { background: #14181b; color: #b7c1c5; border-top: 1px solid #343c42; }
+QProgressBar { color: #e2e8ea; background: #20262b; border: 1px solid #3b444a; min-height: 14px; text-align: center; }
+QProgressBar::chunk { background: #5c8797; }
 QScrollArea { border: none; background: transparent; }
-QScrollBar:vertical { background: #111a23; width: 10px; margin: 0; }
-QScrollBar::handle:vertical { background: #3a4d5a; min-height: 24px; border-radius: 4px; }
+QScrollBar:vertical { background: #191e22; width: 10px; margin: 0; }
+QScrollBar::handle:vertical { background: #465158; min-height: 24px; }
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
 """
+
+
+class _PassiveWheelFilter(QObject):
+    """Keep unfocused numeric selectors from consuming scroll-container input."""
+
+    def eventFilter(self, watched: QObject, event: QEvent) -> bool:
+        if event.type() != QEvent.Type.Wheel or not isinstance(watched, QWidget):
+            return False
+        if self._belongs_to_plot(watched) or watched.hasFocus():
+            return False
+
+        scroll_area = self._ancestor_scroll_area(watched)
+        if scroll_area is not None and isinstance(event, QWheelEvent):
+            viewport = scroll_area.viewport()
+            position = viewport.mapFromGlobal(event.globalPosition().toPoint())
+            source = (
+                event.source()
+                if hasattr(event, "source")
+                else Qt.MouseEventSource.MouseEventNotSynthesized
+            )
+            forwarded = QWheelEvent(
+                QPointF(position), event.globalPosition(), event.pixelDelta(),
+                event.angleDelta(), event.buttons(), event.modifiers(),
+                event.phase(), event.inverted(), source,
+            )
+            QApplication.sendEvent(viewport, forwarded)
+        event.accept()
+        return True
+
+    @staticmethod
+    def _ancestor_scroll_area(widget: QWidget) -> QScrollArea | None:
+        parent = widget.parentWidget()
+        while parent is not None:
+            if isinstance(parent, QScrollArea):
+                return parent
+            parent = parent.parentWidget()
+        return None
+
+    @staticmethod
+    def _belongs_to_plot(widget: QWidget) -> bool:
+        parent: QWidget | None = widget
+        plot_widget_types = (pg.PlotWidget, pg.GraphicsView)
+        while parent is not None:
+            if isinstance(parent, plot_widget_types) or type(parent).__name__ in {
+                "ViewBox", "PlotItem", "GraphicsView", "GraphicsLayoutWidget",
+            }:
+                return True
+            parent = parent.parentWidget()
+        return False
 
 
 class MainWindow(QMainWindow):
@@ -199,26 +193,33 @@ class MainWindow(QMainWindow):
         self._demo_running = False
         self._demo_mode = False
         self._normal_demo_control_values: tuple[float, int] | None = None
+        self._ui_scale = 1.0
+        self._summary_text = ""
+        self._wav_channel_count: int | None = None
         self.setWindowTitle("NTRO Signal Analyzer")
-        self.setMinimumSize(1080, 680)
+        self.setMinimumSize(960, 640)
         self.resize(1440, 900)
         self._build_ui()
+        self._install_wheel_filters()
+        self._setup_shortcuts()
+        self._apply_ui_scale()
 
     def _build_ui(self) -> None:
-        self.setStyleSheet(_DASHBOARD_STYLE)
+        self.setStyleSheet(_WORKSTATION_STYLE)
         root = QWidget(self)
         root_layout = QVBoxLayout(root)
-        root_layout.setContentsMargins(16, 14, 16, 8)
-        root_layout.setSpacing(12)
+        root_layout.setContentsMargins(12, 10, 12, 6)
+        root_layout.setSpacing(8)
 
         header = QFrame(root)
         header.setObjectName("appHeader")
         header_layout = QHBoxLayout(header)
-        header_layout.setContentsMargins(18, 12, 18, 12)
+        header_layout.setContentsMargins(12, 8, 12, 9)
         title_stack = QVBoxLayout()
+        title_stack.setSpacing(1)
         title = QLabel("NTRO Signal Analyzer")
         title.setObjectName("appTitle")
-        subtitle = QLabel("Automated IQ/WAV Signal Analysis")
+        subtitle = QLabel("OFFLINE SIGNAL ANALYSIS")
         subtitle.setObjectName("appSubtitle")
         title_stack.addWidget(title)
         title_stack.addWidget(subtitle)
@@ -227,17 +228,65 @@ class MainWindow(QMainWindow):
         self.header_state_label = QLabel("READY")
         self.header_state_label.setObjectName("headerState")
         self.header_state_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.header_state_label.setProperty("tone", "neutral")
         header_layout.addWidget(self.header_state_label, 0, Qt.AlignmentFlag.AlignVCenter)
         root_layout.addWidget(header)
 
-        action_bar = QFrame(root)
-        action_bar.setObjectName("actionBar")
-        action_layout = QHBoxLayout(action_bar)
-        action_layout.setContentsMargins(12, 8, 12, 8)
-        action_layout.setSpacing(9)
-        self.open_button = QPushButton("Open IQ/WAV")
+        input_panel = QFrame(root)
+        input_panel.setObjectName("inputPanel")
+        input_layout = QVBoxLayout(input_panel)
+        input_layout.setContentsMargins(12, 9, 12, 8)
+        input_layout.setSpacing(6)
+
+        input_row = QHBoxLayout()
+        input_row.setSpacing(10)
+        input_heading = QLabel("INPUT")
+        input_heading.setObjectName("sectionEyebrow")
+        input_row.addWidget(input_heading)
+        self.open_button = QPushButton("Open Signal")
         self.open_button.setObjectName("openButton")
+        self.open_button.setDefault(True)
         self.open_button.clicked.connect(self.open_file_dialog)
+        input_row.addWidget(self.open_button)
+        self.file_label = QLabel("No file selected")
+        self.file_label.setObjectName("fileInfo")
+        self.file_label.setWordWrap(True)
+        self.file_label.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
+        input_row.addWidget(self.file_label, 1)
+        self.source_label = QLabel("NOT SELECTED")
+        self.source_label.setObjectName("metadataLabel")
+        input_row.addWidget(self.source_label)
+        input_layout.addLayout(input_row)
+
+        context_row = QHBoxLayout()
+        context_row.setSpacing(12)
+        self.input_metadata_label = QLabel("Supported inputs: raw .IQ and .WAV")
+        self.input_metadata_label.setObjectName("metadataLabel")
+        self.input_metadata_label.setWordWrap(True)
+        context_row.addWidget(self.input_metadata_label, 1)
+        self.input_guidance_label = QLabel("Open a signal to review its input assumptions.")
+        self.input_guidance_label.setObjectName("contextText")
+        self.input_guidance_label.setWordWrap(True)
+        context_row.addWidget(self.input_guidance_label, 2)
+        self.stereo_iq = QCheckBox("Interpret channels as I/Q")
+        self.stereo_iq.setVisible(False)
+        self.stereo_iq.setToolTip(
+            "For a two-channel WAV, use channel 1 as I and channel 2 as Q. "
+            "Enable this only when the stereo channels contain quadrature components."
+        )
+        self.stereo_iq.toggled.connect(self._update_stereo_guidance)
+        context_row.addWidget(self.stereo_iq)
+        self.demo_note_label = QLabel(
+            "DEMO / SYNTHETIC · deterministic local signal; not an independent validation dataset."
+        )
+        self.demo_note_label.setObjectName("demoNote")
+        self.demo_note_label.setWordWrap(True)
+        self.demo_note_label.setVisible(False)
+        context_row.addWidget(self.demo_note_label, 1)
+        input_layout.addLayout(context_row)
+
+        action_row = QHBoxLayout()
+        action_row.setSpacing(7)
         self.run_demo_button = QPushButton("Run Demo")
         self.run_demo_button.setObjectName("demoButton")
         self.run_demo_button.clicked.connect(self.start_demo)
@@ -247,54 +296,72 @@ class MainWindow(QMainWindow):
         self.reset_button = QPushButton("Reset")
         self.reset_button.setObjectName("resetButton")
         self.reset_button.clicked.connect(self.reset)
-        action_layout.addWidget(self.open_button)
-        action_layout.addWidget(self.run_demo_button)
-        action_layout.addWidget(self.analyze_button)
-        action_layout.addStretch(1)
-        action_layout.addWidget(self.reset_button)
-        root_layout.addWidget(action_bar)
+        action_row.addStretch(1)
+        action_row.addWidget(self.run_demo_button)
+        action_row.addWidget(self.analyze_button)
+        action_row.addWidget(self.reset_button)
+        input_layout.addLayout(action_row)
+        root_layout.addWidget(input_panel)
 
         content_splitter = QSplitter(Qt.Orientation.Horizontal, root)
         content_splitter.setChildrenCollapsible(False)
-        controls_scroll = QScrollArea(content_splitter)
-        controls_scroll.setWidgetResizable(True)
-        controls_scroll.setMinimumWidth(340)
-        controls_scroll.setMaximumWidth(460)
+        self.controls_scroll = QScrollArea(content_splitter)
+        self.controls_scroll.setWidgetResizable(True)
+        self.controls_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.controls_scroll.setMinimumWidth(250)
+        self.controls_scroll.setMaximumWidth(390)
         controls = QWidget()
         controls_layout = QVBoxLayout(controls)
-        controls_layout.setContentsMargins(4, 4, 8, 4)
-        controls_layout.setSpacing(10)
-
-        input_group = QGroupBox("INPUT")
-        input_form = QFormLayout(input_group)
-        self.source_label = QLabel("NOT SELECTED")
-        self.source_label.setObjectName("fileInfo")
-        self.file_label = QLabel("No file selected")
-        self.file_label.setWordWrap(True)
-        self.file_label.setObjectName("fileInfo")
-        input_form.addRow("Source", self.source_label)
-        input_form.addRow("File", self.file_label)
+        controls_layout.setContentsMargins(3, 2, 8, 4)
+        controls_layout.setSpacing(8)
 
         basic_group = QGroupBox("BASIC SETTINGS")
         basic_form = QFormLayout(basic_group)
+        basic_form.setContentsMargins(9, 15, 9, 8)
+        basic_form.setHorizontalSpacing(9)
+        basic_form.setVerticalSpacing(8)
+        basic_form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapLongRows)
         self.sample_rate = QDoubleSpinBox()
         self.sample_rate.setRange(0.0, 1.0e12)
         self.sample_rate.setDecimals(3)
         self.sample_rate.setValue(0.0)
         self.sample_rate.setSuffix(" Hz")
-        self.sample_rate.setSpecialValueText("Required for raw IQ")
+        self.sample_rate.setSpecialValueText("Enter rate")
+        self.sample_rate.setMinimumWidth(110)
+        self.sample_rate.valueChanged.connect(self._on_sample_rate_changed)
+        self.sample_rate.setToolTip(
+            "Raw .IQ files contain no sample-rate metadata. Enter the known rate for "
+            "frequency-axis analysis and rate-dependent stages; do not estimate it from samples."
+        )
         self.samples_per_symbol = QSpinBox()
         self.samples_per_symbol.setRange(1, 65536)
         self.samples_per_symbol.setValue(1)
+        self.samples_per_symbol.setToolTip(
+            "This is the input samples-per-symbol value used by the modulation-specific "
+            "pipeline. Change it for an oversampled capture when the actual value is known."
+        )
+        self.run_fec = QCheckBox("Search FEC / interleaver")
+        self.run_fec.setChecked(True)
+        self.run_fec.setToolTip(
+            "Run the FEC and interleaver candidate search after demodulation. Disable it "
+            "to skip recovery trials when only signal classification is needed."
+        )
+        self.sample_rate_note = QLabel("Raw IQ needs a rate; WAV uses its header rate.")
+        self.sample_rate_note.setObjectName("contextText")
+        self.sample_rate_note.setWordWrap(True)
         basic_form.addRow("Sample rate", self.sample_rate)
         basic_form.addRow("Samples per symbol", self.samples_per_symbol)
+        basic_form.addRow(self.run_fec)
+        basic_form.addRow(self.sample_rate_note)
 
         advanced_body = QWidget()
         advanced_layout = QVBoxLayout(advanced_body)
         advanced_layout.setContentsMargins(0, 0, 0, 0)
-        advanced_layout.setSpacing(8)
-        raw_group = QGroupBox("Raw IQ / WAV options")
+        advanced_layout.setSpacing(7)
+
+        raw_group = QGroupBox("Raw IQ format assumptions")
         raw_form = QFormLayout(raw_group)
+        raw_form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapLongRows)
         self.dtype = QComboBox()
         for value in SampleDtype:
             self.dtype.addItem(value.value, value)
@@ -307,15 +374,26 @@ class MainWindow(QMainWindow):
         self.endianness = QComboBox()
         for value in Endianness:
             self.endianness.addItem(value.value, value)
-        self.stereo_iq = QCheckBox("Interpret stereo WAV as I/Q")
+        self.dtype.setToolTip(
+            "Select the numeric sample encoding used by this raw IQ file. Raw files carry "
+            "no dtype metadata, so change this only when the capture format is known."
+        )
+        self.iq_layout.setToolTip(
+            "Choose how I and Q are stored in the raw samples. Match the documented capture "
+            "layout; it is not inferred from the file."
+        )
+        self.endianness.setToolTip(
+            "Choose the byte order of multi-byte raw samples. Change it only when the capture "
+            "format specifies a different byte order."
+        )
         raw_form.addRow("Sample dtype", self.dtype)
         raw_form.addRow("IQ layout", self.iq_layout)
         raw_form.addRow("Byte order", self.endianness)
-        raw_form.addRow(self.stereo_iq)
         advanced_layout.addWidget(raw_group)
 
-        sync_group = QGroupBox("Synchronization and demodulation")
+        sync_group = QGroupBox("Timing, synchronization and frame")
         sync_form = QFormLayout(sync_group)
+        sync_form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapLongRows)
         self.timing_recovery = QCheckBox("Run Gardner timing recovery")
         self.rrc_enabled = QCheckBox("Apply RRC matched filter")
         self.rrc_rolloff = QDoubleSpinBox()
@@ -333,6 +411,38 @@ class MainWindow(QMainWindow):
         self.payload_length = QSpinBox()
         self.payload_length.setRange(0, 10_000_000)
         self.payload_length.setSpecialValueText("Unspecified")
+        self.timing_recovery.setToolTip(
+            "Estimate and recover symbol timing for oversampled captures. Enable when the "
+            "capture contains multiple samples per symbol and timing recovery is intended."
+        )
+        self.rrc_enabled.setToolTip(
+            "Apply a root-raised-cosine matched filter before demodulation. Use it when the "
+            "transmit pulse shaping is known to be root-raised-cosine."
+        )
+        self.rrc_rolloff.setToolTip(
+            "Set the matched-filter roll-off factor. Change it to the known pulse-shaping "
+            "value; it is used only while the filter is enabled."
+        )
+        self.tone0.setToolTip(
+            "Known 2FSK frequency for bit 0, in hertz. Supply both tones when the input is "
+            "2FSK and the tone pair is known; otherwise leave both empty."
+        )
+        self.tone1.setToolTip(
+            "Known 2FSK frequency for bit 1, in hertz. Supply both tones when the input is "
+            "2FSK and the tone pair is known; otherwise leave both empty."
+        )
+        self.sync_word.setToolTip(
+            "Optional frame synchronization word as hexadecimal bytes, most-significant bit first. "
+            "Enter it only when the expected sync word is known."
+        )
+        self.header_length.setToolTip(
+            "Number of header bits after a detected sync word. Set this only when the frame "
+            "format specifies a header length."
+        )
+        self.payload_length.setToolTip(
+            "Optional number of payload bits to recover after the header. Leave at zero to "
+            "use all remaining bits."
+        )
         sync_form.addRow(self.timing_recovery)
         sync_form.addRow(self.rrc_enabled)
         sync_form.addRow("RRC rolloff", self.rrc_rolloff)
@@ -342,70 +452,97 @@ class MainWindow(QMainWindow):
         sync_form.addRow("Header bits after sync", self.header_length)
         sync_form.addRow("Payload bits (0 = all)", self.payload_length)
         advanced_layout.addWidget(sync_group)
-        self.advanced_section = self._collapsible_section(
-            "ADVANCED SETTINGS", advanced_body, expanded=False
-        )
 
-        fec_group = QGroupBox("FEC / FRAME SETTINGS")
-        fec_form = QFormLayout(fec_group)
-        self.run_fec = QCheckBox("Run FEC / interleaver search")
-        self.run_fec.setChecked(True)
+        recovery_group = QGroupBox("Recovery overrides")
+        fec_form = QFormLayout(recovery_group)
+        fec_form.setRowWrapPolicy(QFormLayout.RowWrapPolicy.WrapLongRows)
         self.crc_present = QCheckBox("Input includes appended CRC-16")
         self.expected_payload = QSpinBox()
         self.expected_payload.setRange(0, 10_000_000)
         self.expected_payload.setSpecialValueText("Unspecified")
-        fec_form.addRow(self.run_fec)
+        self.crc_present.setToolTip(
+            "Tell the candidate search that the input includes an appended CRC-16. "
+            "An unconfigured CRC is not treated as a pass."
+        )
+        self.expected_payload.setToolTip(
+            "Optional expected payload length in bits. Set it only when the frame length "
+            "is known so recovery can apply that explicit constraint."
+        )
         fec_form.addRow(self.crc_present)
         fec_form.addRow("Expected payload (bits)", self.expected_payload)
-        self.demo_note_label = QLabel(
-            "Demo: deterministic local signal.\nNot an independent validation dataset."
+        advanced_layout.addWidget(recovery_group)
+        self.advanced_section = self._collapsible_section(
+            "ADVANCED SETTINGS", advanced_body, expanded=False
         )
-        self.demo_note_label.setObjectName("demoNote")
-        self.demo_note_label.setWordWrap(True)
-        controls_layout.addWidget(input_group)
         controls_layout.addWidget(basic_group)
         controls_layout.addWidget(self.advanced_section)
-        controls_layout.addWidget(fec_group)
-        controls_layout.addWidget(self.demo_note_label)
         controls_layout.addStretch(1)
-        controls_scroll.setWidget(controls)
+        self.controls_scroll.setWidget(controls)
 
         self.tabs = QTabWidget()
         self.tabs.setDocumentMode(True)
-        self.tabs.setMinimumWidth(600)
+        self.tabs.setMinimumWidth(500)
         self.analysis_stack = QStackedWidget()
         self.analysis_empty_state = self._empty_state_widget(
             "No signal loaded",
-            "Open an IQ/WAV file or run the built-in demo to begin analysis.",
-            "SUPPORTED  .IQ     .WAV",
+            "Open a raw IQ or WAV capture. The input strip shows known metadata and assumptions.",
+            "SUPPORTED INPUTS  .IQ  ·  .WAV",
         )
         self.overview = QTextBrowser()
         self.overview.setReadOnly(True)
         self.overview.setOpenLinks(False)
         self.overview.setOpenExternalLinks(False)
         self.overview.setObjectName("analysisBrowser")
+        self.overview.setToolTip(
+            "Classifier model scores are uncalibrated ranking scores, not probabilities of correctness."
+        )
+        result_page = QWidget()
+        result_layout = QVBoxLayout(result_page)
+        result_layout.setContentsMargins(10, 8, 10, 8)
+        result_layout.setSpacing(5)
+        result_toolbar = QHBoxLayout()
+        result_title = QLabel("RESULT SUMMARY")
+        result_title.setObjectName("sectionEyebrow")
+        result_toolbar.addWidget(result_title)
+        result_toolbar.addStretch(1)
+        self.model_score_label = QLabel("Model score: unavailable")
+        self.model_score_label.setObjectName("scoreLabel")
+        self.model_score_label.setToolTip(
+            "Model score is uncalibrated and is not a probability of correctness. "
+            "Fit evidence, when available, is a geometric support score and is also not probabilistic."
+        )
+        result_toolbar.addWidget(self.model_score_label)
+        self.copy_summary_button = QPushButton("Copy summary")
+        self.copy_summary_button.setObjectName("copyButton")
+        self.copy_summary_button.setEnabled(False)
+        self.copy_summary_button.clicked.connect(self.copy_summary)
+        result_toolbar.addWidget(self.copy_summary_button)
+        result_layout.addLayout(result_toolbar)
+        result_layout.addWidget(self.overview, 1)
         self.analysis_stack.addWidget(self.analysis_empty_state)
-        self.analysis_stack.addWidget(self.overview)
+        self.analysis_stack.addWidget(result_page)
         self.analysis_stack.setCurrentWidget(self.analysis_empty_state)
         self.tabs.addTab(self.analysis_stack, "Analysis")
 
         self.waveform_plot = self._new_plot()
         self.waveform_plot.setLabel("bottom", "Sample index")
         self.waveform_plot.setLabel("left", "Amplitude")
-        self.waveform_plot.showGrid(x=True, y=True, alpha=0.22)
+        self.waveform_plot.showGrid(x=True, y=True, alpha=0.18)
         waveform_tab, self.waveform_empty_state, self.waveform_stack = self._plot_tab(
-            "Time-domain waveform", "Analyzer output · in-phase and quadrature amplitude", self.waveform_plot,
-            "No waveform data yet", "Open a signal or run Demo to view the time-domain samples.",
+            "Time-domain waveform", "Analyzer output · I and Q amplitude by sample index",
+            self.waveform_plot, "Waveform unavailable",
+            "The analyzer returned no waveform samples for this result.",
         )
         self.tabs.addTab(waveform_tab, "Waveform")
 
         self.spectrum_plot = self._new_plot()
         self.spectrum_plot.setLabel("bottom", "Frequency", units="Hz")
         self.spectrum_plot.setLabel("left", "Power", units="dB")
-        self.spectrum_plot.showGrid(x=True, y=True, alpha=0.22)
+        self.spectrum_plot.showGrid(x=True, y=True, alpha=0.18)
         spectrum_tab, self.spectrum_empty_state, self.spectrum_stack = self._plot_tab(
-            "Signal spectrum", "Analyzer-computed power spectrum · frequency in hertz", self.spectrum_plot,
-            "No spectrum data yet", "A sample rate is required to display the computed frequency axis.",
+            "Signal spectrum", "Analyzer-computed power spectrum · frequency in hertz",
+            self.spectrum_plot, "Spectrum unavailable",
+            "No frequency-domain series is available for this result.",
         )
         self.tabs.addTab(spectrum_tab, "Spectrum")
 
@@ -415,32 +552,56 @@ class MainWindow(QMainWindow):
         self.waterfall_image = pg.ImageItem()
         self.waterfall_plot.addItem(self.waterfall_image)
         waterfall_tab, self.waterfall_empty_state, self.waterfall_stack = self._plot_tab(
-            "Spectrum over time", "STFT magnitude from the analyzer · brighter regions indicate stronger energy", self.waterfall_plot,
-            "No waterfall data yet", "The analyzer needs at least eight samples to form a waterfall view.",
+            "Spectrum over time", "Analyzer time-frequency magnitude · brighter regions show stronger energy",
+            self.waterfall_plot, "Waterfall unavailable",
+            "The analyzer returned no time-frequency matrix for this result.",
         )
         self.tabs.addTab(waterfall_tab, "Waterfall")
 
         self.constellation_plot = self._new_plot()
         self.constellation_plot.setLabel("bottom", "In-phase")
         self.constellation_plot.setLabel("left", "Quadrature")
-        self.constellation_plot.showGrid(x=True, y=True, alpha=0.22)
+        self.constellation_plot.showGrid(x=True, y=True, alpha=0.18)
         self.constellation_plot.setAspectLocked(True, ratio=1.0)
         constellation_tab, self.constellation_empty_state, self.constellation_stack = self._plot_tab(
-            "Demodulated constellation", "Synchronized symbol points returned by the analyzer", self.constellation_plot,
-            "No constellation available", "Constellation points appear after an accepted modulation result.",
+            "Demodulated constellation", "Synchronized symbol points returned by the analyzer",
+            self.constellation_plot, "Constellation unavailable",
+            "No synchronized constellation points are available in this result.",
         )
         self.tabs.addTab(constellation_tab, "Constellation")
 
         fec_tab = QWidget()
         fec_layout = QVBoxLayout(fec_tab)
-        fec_layout.setContentsMargins(14, 14, 14, 14)
-        fec_layout.setSpacing(8)
-        fec_heading = QLabel("FEC and frame recovery")
-        fec_heading.setObjectName("tabHeading")
-        fec_caption = QLabel("Candidate trial results and CRC validation from the analyzer.")
+        fec_layout.setContentsMargins(8, 8, 8, 8)
+        self.recovery_tabs = QTabWidget()
+        self.recovery_tabs.setDocumentMode(True)
+
+        recovery_page = QWidget()
+        recovery_layout = QVBoxLayout(recovery_page)
+        recovery_layout.setContentsMargins(8, 7, 8, 7)
+        recovery_heading = QLabel("FEC and frame recovery")
+        recovery_heading.setObjectName("tabHeading")
+        fec_caption = QLabel(
+            "Candidate trials, interleaver selection and CRC state returned by the analyzer."
+        )
         fec_caption.setObjectName("tabCaption")
+        fec_actions = QHBoxLayout()
+        fec_actions.addStretch(1)
+        self.copy_bits_button = QPushButton("Copy recovered bits")
+        self.copy_bits_button.setObjectName("copyButton")
+        self.copy_bits_button.setEnabled(False)
+        self.copy_bits_button.clicked.connect(lambda: self.copy_recovered("binary"))
+        self.copy_hex_button = QPushButton("Copy recovered HEX")
+        self.copy_hex_button.setObjectName("copyButton")
+        self.copy_hex_button.setEnabled(False)
+        self.copy_hex_button.clicked.connect(lambda: self.copy_recovered("hex"))
+        fec_actions.addWidget(self.copy_bits_button)
+        fec_actions.addWidget(self.copy_hex_button)
+
         self.fec_table = QTableWidget(0, 5)
-        self.fec_table.setHorizontalHeaderLabels(["FEC", "Interleaver", "Status", "CRC", "Details"])
+        self.fec_table.setHorizontalHeaderLabels(
+            ["FEC", "Interleaver", "Status", "CRC", "Details"]
+        )
         self.fec_table.setAlternatingRowColors(True)
         self.fec_table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.fec_table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
@@ -452,23 +613,44 @@ class MainWindow(QMainWindow):
         fec_header.setSectionResizeMode(2, QHeaderView.ResizeMode.ResizeToContents)
         fec_header.setSectionResizeMode(3, QHeaderView.ResizeMode.ResizeToContents)
         fec_header.setSectionResizeMode(4, QHeaderView.ResizeMode.Stretch)
+        recovery_layout.addWidget(recovery_heading)
+        recovery_layout.addWidget(fec_caption)
+        recovery_layout.addLayout(fec_actions)
+        recovery_layout.addWidget(self.fec_table, 1)
+        self.recovery_tabs.addTab(recovery_page, "Recovery")
+
+        diagnostics_page = QWidget()
+        diagnostics_layout = QVBoxLayout(diagnostics_page)
+        diagnostics_layout.setContentsMargins(8, 7, 8, 7)
+        diagnostics_header = QHBoxLayout()
+        diagnostics_title = QLabel("AnalysisResult diagnostics")
+        diagnostics_title.setObjectName("tabHeading")
+        diagnostics_header.addWidget(diagnostics_title)
+        diagnostics_header.addStretch(1)
+        self.copy_diagnostics_button = QPushButton("Copy diagnostics")
+        self.copy_diagnostics_button.setObjectName("copyButton")
+        self.copy_diagnostics_button.setEnabled(False)
+        self.copy_diagnostics_button.clicked.connect(self.copy_diagnostics)
+        diagnostics_header.addWidget(self.copy_diagnostics_button)
         self.details = QPlainTextEdit()
         self.details.setReadOnly(True)
-        self.details.setPlaceholderText("Detailed analyzer diagnostics will appear here.")
-        technical_group = QGroupBox("Technical diagnostics")
-        technical_layout = QVBoxLayout(technical_group)
-        technical_layout.addWidget(self.details)
-        fec_layout.addWidget(fec_heading)
-        fec_layout.addWidget(fec_caption)
-        fec_layout.addWidget(self.fec_table, 1)
-        fec_layout.addWidget(technical_group, 1)
+        self.details.setObjectName("diagnosticsText")
+        self.details.setFont(QFont("Consolas", 9))
+        self.details.setPlaceholderText(
+            "Technical diagnostics are unavailable until an analysis result is returned."
+        )
+        self.details.setLineWrapMode(QPlainTextEdit.LineWrapMode.NoWrap)
+        diagnostics_layout.addLayout(diagnostics_header)
+        diagnostics_layout.addWidget(self.details, 1)
+        self.recovery_tabs.addTab(diagnostics_page, "Diagnostics")
+        fec_layout.addWidget(self.recovery_tabs)
         self.tabs.addTab(fec_tab, "FEC / Frame Details")
 
-        content_splitter.addWidget(controls_scroll)
+        content_splitter.addWidget(self.controls_scroll)
         content_splitter.addWidget(self.tabs)
         content_splitter.setStretchFactor(0, 0)
         content_splitter.setStretchFactor(1, 1)
-        content_splitter.setSizes([390, 990])
+        content_splitter.setSizes([320, 1060])
         root_layout.addWidget(content_splitter, 1)
         self.setCentralWidget(root)
 
@@ -477,10 +659,315 @@ class MainWindow(QMainWindow):
         self.progress.setRange(0, 100)
         self.progress.setTextVisible(True)
         self.progress.setFormat("%p%")
-        self.progress.setFixedWidth(128)
+        self.progress.setMinimumWidth(90)
+        self.progress.setMaximumWidth(180)
         self.statusBar().addWidget(self.status_label, 1)
         self.statusBar().addPermanentWidget(self.progress)
+        self._update_input_context()
 
+    def _install_wheel_filters(self) -> None:
+        self._wheel_filter = _PassiveWheelFilter(self)
+        for control in (
+            *self.findChildren(QComboBox),
+            *self.findChildren(QSpinBox),
+            *self.findChildren(QDoubleSpinBox),
+        ):
+            control.installEventFilter(self._wheel_filter)
+
+    def _setup_shortcuts(self) -> None:
+        self._shortcuts: list[QShortcut] = []
+        bindings = (
+            ("Ctrl++", 0.1),
+            ("Ctrl+=", 0.1),
+            ("Ctrl+Shift+=", 0.1),
+            ("Ctrl+-", -0.1),
+        )
+        for sequence, delta in bindings:
+            shortcut = QShortcut(QKeySequence(sequence), self)
+            shortcut.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
+            shortcut.activated.connect(lambda delta=delta: self._change_ui_scale(delta))
+            self._shortcuts.append(shortcut)
+        reset_shortcut = QShortcut(QKeySequence("Ctrl+0"), self)
+        reset_shortcut.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
+        reset_shortcut.activated.connect(lambda: self._change_ui_scale(reset=True))
+        self._shortcuts.append(reset_shortcut)
+
+    def _change_ui_scale(self, delta: float = 0.0, *, reset: bool = False) -> None:
+        next_scale = 1.0 if reset else min(1.4, max(0.85, self._ui_scale + delta))
+        if abs(next_scale - self._ui_scale) < 0.001:
+            return
+        self._ui_scale = next_scale
+        self._apply_ui_scale()
+
+    def _apply_ui_scale(self) -> None:
+        scale = self._ui_scale
+        stylesheet = (
+            _WORKSTATION_STYLE
+            .replace("@BODY_FONT@", f"{10 * scale:.1f}pt")
+            .replace("@SMALL_FONT@", f"{8.5 * scale:.1f}pt")
+            .replace("@HEADING_FONT@", f"{14 * scale:.1f}pt")
+            .replace("@TITLE_FONT@", f"{18 * scale:.1f}pt")
+            .replace("@EMPTY_FONT@", f"{19 * scale:.1f}pt")
+        )
+        self.setStyleSheet(stylesheet)
+
+    def _set_header_state(self, text: str, tone: str = "neutral") -> None:
+        self.header_state_label.setText(text)
+        self.header_state_label.setProperty("tone", tone)
+        self.header_state_label.style().unpolish(self.header_state_label)
+        self.header_state_label.style().polish(self.header_state_label)
+
+    def _on_sample_rate_changed(self, _value: float) -> None:
+        self._update_input_context()
+        if (
+            self._demo_mode
+            or self._thread is not None
+            or self._last_result is not None
+            or self.selected_path is None
+            or Path(self.selected_path).suffix.lower() != ".iq"
+        ):
+            return
+        if self.sample_rate.value() > 0:
+            self._set_header_state("FILE READY", "neutral")
+            self.status_label.setText(
+                f"Raw IQ sample rate {self._format_hz(self.sample_rate.value())} is user supplied; review format assumptions."
+            )
+        else:
+            self._set_header_state("NEEDS INPUT", "warning")
+            self.status_label.setText(
+                "Raw IQ has no embedded sample rate or dtype; review the explicit settings."
+            )
+
+    def _clear_result_presentation(self) -> None:
+        self._last_result = None
+        self._summary_text = ""
+        self.overview.clear()
+        self.details.clear()
+        self.fec_table.setRowCount(0)
+        self.model_score_label.setText("Model score: unavailable")
+        self._update_copy_controls()
+        self._populate_plots({})
+        self.analysis_stack.setCurrentWidget(self.analysis_empty_state)
+        self.tabs.setCurrentIndex(0)
+
+    def _set_copy_acknowledgement(self, button: QPushButton) -> None:
+        original = button.property("copy-label")
+        if not original:
+            original = button.text()
+            button.setProperty("copy-label", original)
+        button.setText("Copied")
+
+        def restore_label() -> None:
+            if button is not None:
+                button.setText(str(original))
+
+        QTimer.singleShot(1300, restore_label)
+
+    def _copy_text(self, text: str, button: QPushButton) -> None:
+        if not text:
+            return
+        QApplication.clipboard().setText(text)
+        self._set_copy_acknowledgement(button)
+
+    def copy_summary(self) -> None:
+        self._copy_text(self._summary_text, self.copy_summary_button)
+
+    def copy_diagnostics(self) -> None:
+        self._copy_text(self.details.toPlainText(), self.copy_diagnostics_button)
+
+    def _recovered_bits(self) -> np.ndarray | None:
+        if self._last_result is None:
+            return None
+        arrays = self._last_result.visualization
+        for key in (
+            "fec_recovered_bits", "crc_verified_bits", "frame_payload_bits", "recovered_bits",
+        ):
+            values = arrays.get(key)
+            if values is not None and np.size(values):
+                return np.asarray(values, dtype=np.uint8).reshape(-1)
+        return None
+
+    def copy_recovered(self, representation: str) -> None:
+        bits = self._recovered_bits()
+        if bits is None:
+            return
+        if representation == "binary":
+            self._copy_text("".join(str(int(bit)) for bit in bits), self.copy_bits_button)
+        else:
+            packed = np.packbits(bits, bitorder="big").tobytes().hex().upper()
+            self._copy_text(packed, self.copy_hex_button)
+
+    def _update_copy_controls(self) -> None:
+        has_result = self._last_result is not None
+        has_bits = self._recovered_bits() is not None
+        self.copy_summary_button.setEnabled(has_result)
+        self.copy_diagnostics_button.setEnabled(has_result)
+        self.copy_bits_button.setEnabled(has_bits)
+        self.copy_hex_button.setEnabled(has_bits)
+        if has_bits:
+            bit_count = int(self._recovered_bits().size)
+            self.copy_hex_button.setToolTip(
+                "Copies recovered bits packed MSB-first into hexadecimal. "
+                + ("The final byte is zero-padded." if bit_count % 8 else "")
+            )
+
+    @staticmethod
+    def _inspect_wav_header(path: Path) -> dict[str, Any]:
+        """Read only RIFF metadata through Python's wave header reader."""
+        with wave.open(str(path), "rb") as wav_file:
+            channels = int(wav_file.getnchannels())
+            sample_rate = int(wav_file.getframerate())
+            frame_count = int(wav_file.getnframes())
+            sample_width = int(wav_file.getsampwidth())
+            compression = str(wav_file.getcomptype())
+        return {
+            "channels": channels,
+            "sample_rate_hz": sample_rate,
+            "frame_count": frame_count,
+            "sample_width_bits": sample_width * 8,
+            "compression": compression,
+            "duration_seconds": frame_count / sample_rate if sample_rate > 0 else None,
+        }
+
+    def _update_input_context(self) -> None:
+        self.stereo_iq.setVisible(False)
+        self._wav_channel_count = None
+        self.sample_rate.setProperty("required", False)
+        self.sample_rate.style().unpolish(self.sample_rate)
+        self.sample_rate.style().polish(self.sample_rate)
+
+        if self._demo_mode:
+            self.source_label.setText("DEMO / SYNTHETIC")
+            self.file_label.setText("deterministic_demo.iq")
+            self.input_metadata_label.setText(
+                f"{self._format_hz(DEFAULT_DEMO_CONFIG.sample_rate_hz)} · demo configuration"
+            )
+            self.input_guidance_label.setText(
+                "Generated locally for workflow demonstration; this is not an independent validation dataset."
+            )
+            self.sample_rate_note.setText("Demo sample rate is fixed for this generated signal.")
+            self.sample_rate.setEnabled(False)
+            self.demo_note_label.setVisible(True)
+            return
+
+        self.demo_note_label.setVisible(False)
+        if self.selected_path is None:
+            self.source_label.setText("NOT SELECTED")
+            self.file_label.setText("No file selected")
+            self.input_metadata_label.setText("Supported inputs: raw .IQ and .WAV")
+            self.input_guidance_label.setText(
+                "Raw IQ needs known format assumptions. WAV sample rate and channels come from its header."
+            )
+            self.sample_rate_note.setText("Raw IQ needs a rate; WAV uses its header rate.")
+            self.sample_rate.setEnabled(True)
+            self.sample_rate.setProperty("required", False)
+            return
+
+        selected = Path(self.selected_path)
+        if not selected.is_file():
+            self.source_label.setText("FILE PATH")
+            self.file_label.setText(str(selected))
+            self.input_metadata_label.setText("File unavailable")
+            self.input_guidance_label.setText("The selected path does not exist or is not a file.")
+            self.sample_rate.setEnabled(selected.suffix.lower() == ".iq")
+            self.sample_rate_note.setText("No file metadata available.")
+            return
+
+        suffix = selected.suffix.lower()
+        try:
+            size_text = f"{selected.stat().st_size:,} bytes"
+        except OSError:
+            size_text = "size unavailable"
+        if suffix == ".iq":
+            self.source_label.setText("RAW IQ FILE")
+            self.file_label.setText(f"{selected.name} · {size_text}")
+            rate = float(self.sample_rate.value())
+            if rate > 0:
+                self.input_metadata_label.setText(
+                    f"RAW IQ · {self._format_hz(rate)} · user supplied"
+                )
+                self.input_guidance_label.setText(
+                    "Sample rate is user supplied. Confirm dtype, I/Q layout and byte order under Advanced Settings."
+                )
+            else:
+                self.input_metadata_label.setText("RAW IQ · sample rate unknown")
+                self.input_guidance_label.setText(
+                    "Enter the known sample rate. Confirm dtype, I/Q layout and byte order under Advanced Settings."
+                )
+                self.sample_rate_note.setText(
+                    "Sample rate is unknown; add the known value for frequency-axis analysis."
+                )
+            if rate > 0:
+                self.sample_rate_note.setText(
+                    "Sample rate is user supplied; format fields are explicit assumptions."
+                )
+            self.sample_rate.setEnabled(True)
+            self.sample_rate.setProperty("required", True)
+            self.sample_rate.style().unpolish(self.sample_rate)
+            self.sample_rate.style().polish(self.sample_rate)
+        elif suffix == ".wav":
+            self.source_label.setText("WAV FILE")
+            self.file_label.setText(f"{selected.name} · {size_text}")
+            self.sample_rate.setEnabled(False)
+            self.sample_rate.setProperty("required", False)
+            try:
+                header = self._inspect_wav_header(selected)
+            except Exception as exc:
+                self.input_metadata_label.setText("WAV · header inspection unavailable")
+                self.input_guidance_label.setText(
+                    f"Read-only WAV header inspection failed ({exc}); analysis will report its own file status."
+                )
+                self.sample_rate_note.setText("WAV sample-rate metadata could not be read.")
+                self.status_label.setText("WAV metadata header inspection failed.")
+                self._set_header_state("HEADER ERROR", "error")
+                return
+
+            rate_text = self._format_hz(header["sample_rate_hz"])
+            channels = header["channels"]
+            self._wav_channel_count = int(channels)
+            channel_text = f"{channels} channel" if channels == 1 else f"{channels} channels"
+            duration = header["duration_seconds"]
+            duration_text = f" · {duration:.3f} s" if duration is not None else ""
+            self.input_metadata_label.setText(
+                f"{rate_text} · WAV header · {channel_text} · {header['sample_width_bits']}-bit{duration_text}"
+            )
+            self.sample_rate.setValue(float(header["sample_rate_hz"]))
+            self.sample_rate_note.setText("Sample rate is read from the WAV header.")
+            if channels == 2:
+                self.stereo_iq.setVisible(True)
+                self.stereo_iq.setChecked(False)
+                self.input_guidance_label.setText(
+                    "Stereo WAV detected. By default the analyzer uses channel 1 only; enable I/Q interpretation when appropriate."
+                )
+            elif channels > 2:
+                self.input_guidance_label.setText(
+                    "This WAV has more than two channels; the analyzer reports multichannel input as unsupported."
+                )
+            else:
+                self.input_guidance_label.setText(
+                    "Mono WAV detected. The analyzer uses its single channel."
+                )
+        else:
+            self.source_label.setText("UNSUPPORTED FILE")
+            self.file_label.setText(f"{selected.name} · {size_text}")
+            self.input_metadata_label.setText("Format not accepted by this analyzer")
+            self.input_guidance_label.setText(
+                "This frozen analyzer accepts raw .IQ and .WAV only; SigMF metadata is not consumed."
+                if suffix in {".sigmf-meta", ".sigmf-data"}
+                else "This frozen analyzer accepts raw .IQ and .WAV only."
+            )
+            self.sample_rate_note.setText("No supported input metadata available.")
+            self.sample_rate.setEnabled(False)
+
+    def _update_stereo_guidance(self, enabled: bool) -> None:
+        if enabled:
+            self.input_guidance_label.setText(
+                "Stereo WAV I/Q interpretation enabled · channel 1 is I and channel 2 is Q."
+            )
+        else:
+            self.input_guidance_label.setText(
+                "Stereo WAV detected. By default the analyzer uses channel 1 only; enable I/Q interpretation when appropriate."
+            )
     @staticmethod
     def _empty_state_widget(title: str, description: str, badge: str) -> QWidget:
         panel = QWidget()
@@ -507,12 +994,12 @@ class MainWindow(QMainWindow):
     @staticmethod
     def _new_plot() -> pg.PlotWidget:
         plot = pg.PlotWidget()
-        plot.setBackground("#111a23")
-        plot.getPlotItem().layout.setContentsMargins(12, 10, 18, 12)
+        plot.setBackground("#191e22")
+        plot.getPlotItem().layout.setContentsMargins(10, 8, 14, 10)
         for axis_name in ("left", "bottom"):
             axis = plot.getAxis(axis_name)
-            axis.setPen("#607486")
-            axis.setTextPen("#b8c7d4")
+            axis.setPen("#59656c")
+            axis.setTextPen("#b2bdc2")
         return plot
 
     @classmethod
@@ -526,8 +1013,8 @@ class MainWindow(QMainWindow):
     ) -> tuple[QWidget, QWidget, QStackedWidget]:
         tab = QWidget()
         layout = QVBoxLayout(tab)
-        layout.setContentsMargins(16, 14, 16, 14)
-        layout.setSpacing(8)
+        layout.setContentsMargins(10, 8, 10, 8)
+        layout.setSpacing(6)
         heading = QLabel(title)
         heading.setObjectName("tabHeading")
         caption = QLabel(description)
@@ -570,29 +1057,52 @@ class MainWindow(QMainWindow):
             self,
             "Open signal file",
             "",
-            "Signal files (*.iq *.IQ *.wav);;All files (*)",
+            "Supported signals (*.iq *.IQ *.wav *.WAV);;All files (*)",
         )
         if path:
             self.select_file(path)
 
     def select_file(self, path: str | Path) -> None:
-        """Select a local file and show its basic filesystem metadata."""
+        """Select a file and inspect only its path and supported header metadata."""
         self._set_demo_mode(False)
         selected = Path(path).expanduser()
         self.selected_path = str(selected)
+        self._clear_result_presentation()
+        self.progress.setValue(0)
+        self.sample_rate.setValue(0.0)
+        self.stereo_iq.setChecked(False)
+        self._update_input_context()
         if selected.is_file():
-            self.source_label.setText("IQ/WAV FILE")
-            self.file_label.setText(
-                f"{selected.name}\n{selected.stat().st_size:,} bytes"
-            )
-            self.status_label.setText(
-                "Raw IQ has no embedded sample rate or dtype; review the explicit settings."
-                if selected.suffix.lower() == ".iq"
-                else "WAV metadata will be read from its RIFF header."
-            )
+            suffix = selected.suffix.lower()
+            if suffix == ".iq":
+                if self.sample_rate.value() > 0:
+                    self._set_header_state("FILE READY", "neutral")
+                    self.status_label.setText(
+                        f"Raw IQ sample rate {self._format_hz(self.sample_rate.value())} is user supplied; review format assumptions."
+                    )
+                else:
+                    self._set_header_state("NEEDS INPUT", "warning")
+                    self.status_label.setText(
+                        "Raw IQ has no embedded sample rate or dtype; review the explicit settings."
+                    )
+            elif suffix == ".wav":
+                if "inspection unavailable" in self.input_metadata_label.text():
+                    self._set_header_state("HEADER ERROR", "error")
+                elif self._wav_channel_count is not None and self._wav_channel_count > 2:
+                    self._set_header_state("UNSUPPORTED", "warning")
+                    self.status_label.setText(
+                        "WAV input with more than two channels is not supported by this analyzer."
+                    )
+                else:
+                    self._set_header_state("FILE SELECTED", "neutral")
+                    self.status_label.setText("WAV metadata read from its RIFF header.")
+            else:
+                self._set_header_state("UNSUPPORTED", "warning")
+                self.status_label.setText(
+                    "Unsupported format. The analyzer accepts raw .IQ and .WAV files."
+                )
         else:
-            self.source_label.setText("FILE PATH")
-            self.file_label.setText(str(selected))
+            self._set_header_state("FILE MISSING", "error")
             self.status_label.setText("Selected path does not exist or is not a file.")
 
     def _set_demo_mode(self, enabled: bool) -> None:
@@ -607,13 +1117,11 @@ class MainWindow(QMainWindow):
             )
             self.sample_rate.setDecimals(1)
             self.sample_rate.setValue(DEFAULT_DEMO_CONFIG.sample_rate_hz / 1000.0)
-            self.sample_rate.setSuffix(" kHz · Demo")
+            self.sample_rate.setSuffix(" kHz · DEMO")
             self.samples_per_symbol.setValue(DEFAULT_DEMO_CONFIG.samples_per_symbol)
-            self.samples_per_symbol.setSuffix(" · Demo")
+            self.samples_per_symbol.setSuffix(" · DEMO")
             self.sample_rate.setEnabled(False)
             self.samples_per_symbol.setEnabled(False)
-            self.source_label.setText("DEMO / SYNTHETIC")
-            self.file_label.setText("deterministic_demo.iq")
         else:
             if self._normal_demo_control_values is not None:
                 sample_rate, samples_per_symbol = self._normal_demo_control_values
@@ -625,11 +1133,9 @@ class MainWindow(QMainWindow):
                 self.sample_rate.setEnabled(True)
                 self.samples_per_symbol.setEnabled(True)
                 self._normal_demo_control_values = None
-            self.source_label.setText("IQ/WAV FILE" if self.selected_path else "NOT SELECTED")
-            if self.selected_path is None:
-                self.file_label.setText("No file selected")
 
         self._demo_mode = enabled
+        self._update_input_context()
 
     @staticmethod
     def _parse_sync_word(value: str) -> np.ndarray | None:
@@ -683,17 +1189,27 @@ class MainWindow(QMainWindow):
         if self._thread is not None:
             return
         self._set_demo_mode(False)
+        self._clear_result_presentation()
         if self.selected_path is None:
             self.status_label.setText("Choose an .IQ or .wav file before analysis.")
+            self._set_header_state("NEEDS INPUT", "warning")
             return
         path = Path(self.selected_path)
         if not path.is_file():
             self.status_label.setText("Selected path does not exist or is not a file.")
+            self._set_header_state("FILE MISSING", "error")
+            return
+        if path.suffix.lower() not in {".iq", ".wav"}:
+            self.status_label.setText(
+                "Unsupported format. The analyzer accepts raw .IQ and .WAV files."
+            )
+            self._set_header_state("UNSUPPORTED", "warning")
             return
         try:
             configuration = self._analysis_configuration()
         except ValueError as exc:
             self.status_label.setText(str(exc))
+            self._set_header_state("NEEDS INPUT", "warning")
             return
         self._demo_running = False
         self._start_worker(
@@ -717,14 +1233,24 @@ class MainWindow(QMainWindow):
         )
 
     def _start_worker(self, worker: AnalysisWorker, *, initial_status: str) -> None:
+        self._clear_result_presentation()
+        self.overview.setHtml(
+            "<html><body style='color:#dfe5e8;font-family:Segoe UI;'>"
+            "<div style='color:#8f9ba2;letter-spacing:1px;'>ANALYSIS IN PROGRESS</div>"
+            "<div style='font-size:19pt;font-weight:600;margin-top:8px;'>ANALYZING</div>"
+            "<p style='color:#aeb9be;'>The analyzer is running in the background. Progress appears below.</p>"
+            "</body></html>"
+        )
+        self.analysis_stack.setCurrentIndex(1)
         self.open_button.setEnabled(False)
         self.analyze_button.setEnabled(False)
         self.run_demo_button.setEnabled(False)
         self.reset_button.setEnabled(False)
+        self.controls_scroll.setEnabled(False)
+        self.stereo_iq.setEnabled(False)
         self.progress.setValue(0)
         self.status_label.setText(initial_status)
-        self.header_state_label.setText("ANALYZING")
-        self.header_state_label.setStyleSheet("color: #e2c17b; background: #382f20; border-color: #665634;")
+        self._set_header_state("ANALYZING", "neutral")
         thread = QThread(self)
         worker.moveToThread(thread)
         worker.progress.connect(self._on_progress)
@@ -762,10 +1288,10 @@ class MainWindow(QMainWindow):
                 display = "ANALYZING..."
                 state = "ANALYZING"
             self.status_label.setText(display)
-            self.header_state_label.setText(state)
+            self._set_header_state(state, "neutral")
         else:
             self.status_label.setText(message)
-            self.header_state_label.setText("ANALYZING")
+            self._set_header_state("ANALYZING", "neutral")
         self.progress.setValue(max(0, min(100, int(percent))))
 
     def _on_result(self, result: AnalysisResult) -> None:
@@ -773,16 +1299,18 @@ class MainWindow(QMainWindow):
         self.analysis_completed.emit(result)
 
     def _on_worker_error(self, message: str) -> None:
-        self.header_state_label.setText("ERROR")
-        self.header_state_label.setStyleSheet("color: #e6a09a; background: #382322; border-color: #71413e;")
+        self._set_header_state("ERROR", "error")
         self.status_label.setText(f"Analysis error: {message}")
-        self.status_label.setStyleSheet("color: #b00020; font-weight: bold;")
-        self.overview.setPlainText(
-            "ANALYSIS ERROR\n\n"
-            + message
-            + "\n\nThe analyzer did not return a result object."
+        self.status_label.setStyleSheet("")
+        self.overview.setHtml(
+            "<html><body style='color:#dfe5e8;font-family:Segoe UI;'>"
+            "<div style='color:#e2a19a;font-size:18pt;font-weight:600;'>ERROR</div>"
+            "<p>Worker stopped before returning an AnalysisResult.</p>"
+            f"<p style='color:#aeb9be;'>{html.escape(message)}</p>"
+            "</body></html>"
         )
-        self.analysis_stack.setCurrentWidget(self.overview)
+        self._summary_text = f"NTRO Signal Analyzer\nERROR\n{message}"
+        self.analysis_stack.setCurrentIndex(1)
         self.progress.setValue(100)
         self.analysis_failed.emit(message)
 
@@ -794,6 +1322,8 @@ class MainWindow(QMainWindow):
         self.analyze_button.setEnabled(True)
         self.run_demo_button.setEnabled(True)
         self.reset_button.setEnabled(True)
+        self.controls_scroll.setEnabled(True)
+        self.stereo_iq.setEnabled(self.stereo_iq.isVisible())
 
     @staticmethod
     def _bits_preview(value: Any, limit: int = 256) -> str:
@@ -805,171 +1335,328 @@ class MainWindow(QMainWindow):
         return f"{prefix}{suffix} ({bits.size} bits)"
 
     def populate_result(self, result: AnalysisResult) -> None:
-        """Render the public AnalysisResult; no internal DSP/FEC APIs are used."""
+        """Render the public AnalysisResult without changing backend semantics."""
         self._last_result = result
         phase_resolution = result.synchronization.get("phase_ambiguity_resolution", {})
         phase_unresolved = (
             isinstance(phase_resolution, dict)
             and phase_resolution.get("status") == "unresolved"
         )
-        display_status = "partial" if phase_unresolved else result.status
-        status_color = {
-            "complete": ("#96d7b1", "#20352e", "#35594a"),
-            "partial": ("#e2c17b", "#382f20", "#665634"),
-            "rejected": ("#e6a09a", "#382322", "#71413e"),
-            "error": ("#e6a09a", "#382322", "#71413e"),
-        }.get(display_status, ("#b8c8d2", "#202b33", "#34434d"))
-        status_label = display_status.upper()
-        if result.classification.get("status") == "model_unavailable":
-            status_label = "MODEL_UNAVAILABLE"
-        self.header_state_label.setText(status_label)
-        self.header_state_label.setStyleSheet(
-            "color: %s; background: %s; border-color: %s;"
-            % status_color
-        )
-        self.status_label.setStyleSheet(
-            f"color: {status_color[0]}; font-weight: 600;"
-        )
+        raw_status = str(result.status or "unknown").lower()
+        display_status = "partial" if phase_unresolved else raw_status
+        tone = {
+            "complete": "success",
+            "partial": "warning",
+            "rejected": "error",
+            "error": "error",
+        }.get(display_status, "neutral")
+        self._set_header_state(display_status.upper(), tone)
+        self.status_label.setStyleSheet("")
         self.status_label.setText(
             "Status: PARTIAL / phase orientation unresolved"
             if phase_unresolved
             else f"Status: {display_status.upper()}"
         )
         self.progress.setValue(100)
-        self.analysis_stack.setCurrentWidget(self.overview)
+        self.tabs.setCurrentIndex(0)
+        self.analysis_stack.setCurrentIndex(1)
 
         file_info = result.file_metadata
         classification = result.classification
         demodulation = result.demodulation
         synchronization = result.synchronization
         fec = result.fec
-        rate = self._format_hz(file_info.get("sample_rate_hz"))
-        duration = file_info.get("duration_seconds")
-        duration_text = f"{float(duration) * 1000.0:.2f} ms" if duration is not None else "Unavailable"
-        sample_count = file_info.get("sample_count", "Unavailable")
-        modulation = str(classification.get("modulation", "unavailable"))
-        confidence = classification.get("confidence")
-        confidence_text = f"{float(confidence) * 100.0:.1f}% confidence" if confidence is not None else "Confidence unavailable"
+        modulation = str(classification.get("modulation", "unknown")).lower()
+        if modulation in {"", "none", "unavailable"}:
+            modulation = "unknown"
+        score = classification.get("confidence")
+        score_text = f"{float(score):.3f}" if score is not None else "unavailable"
         classifier_status = str(classification.get("status", "unavailable")).upper()
-        cfo_result = synchronization.get("coarse_cfo")
-        cfo_value = cfo_result.get("estimated_offset_hz") if isinstance(cfo_result, dict) else None
-        cfo_text = "Not estimated" if cfo_value is None else f"{float(cfo_value):+.2f} Hz"
-        preprocessing = synchronization.get("preprocessing", {})
-        timing_text = (
-            "Timing recovery applied"
-            if preprocessing.get("timing_recovery_applied")
-            else f"{preprocessing.get('effective_samples_per_symbol', 'Unknown')} sample/symbol input"
+        method = str(classification.get("method", "unknown"))
+        self.model_score_label.setText(
+            f"Model score: {score_text}"
+            + (f" · {classifier_status}" if score is None else "")
         )
-        phase_text = "<br>Phase orientation unresolved" if phase_unresolved else ""
+
+        sample_rate = file_info.get("sample_rate_hz")
+        sample_rate_text = self._format_hz(sample_rate)
+        if result.demo is not None:
+            sample_rate_origin = "demo configuration"
+        elif sample_rate is None:
+            sample_rate_origin = "unknown"
+        elif str(result.file_format).lower() == "wav":
+            sample_rate_origin = "metadata"
+        else:
+            sample_rate_origin = "user supplied"
+        if sample_rate is not None:
+            sample_rate_text = f"{sample_rate_text} · {sample_rate_origin}"
+        elif str(result.file_format).lower() == "iq":
+            sample_rate_text = "Unknown · required for frequency-axis analysis"
+        duration = file_info.get("duration_seconds")
+        duration_text = (
+            f"{float(duration):.3f} s" if duration is not None else "Unavailable"
+        )
+        sample_count = file_info.get("sample_count", "Unavailable")
+
+        cfo_result = synchronization.get("coarse_cfo")
+        cfo_value = (
+            cfo_result.get("estimated_offset_hz")
+            if isinstance(cfo_result, dict)
+            else None
+        )
+        cfo_text = "Unavailable" if cfo_value is None else f"{float(cfo_value):+.2f} Hz"
+        preprocessing = synchronization.get("preprocessing", {})
+        if preprocessing.get("timing_recovery_applied"):
+            timing_text = "Applied"
+        else:
+            effective_sps = preprocessing.get("effective_samples_per_symbol")
+            timing_text = (
+                f"Not applied · {effective_sps} samples/symbol"
+                if effective_sps is not None
+                else "Not applied · input setting unavailable"
+            )
+
         fec_status = str(fec.get("status", "unavailable"))
         if fec_status == "accepted":
-            recovery_text, recovery_tone = "SUCCESS", "success"
+            recovery_text = "Accepted"
         elif fec_status == "crc_accepted_no_fec":
-            recovery_text, recovery_tone = "CRC ACCEPTED · NO FEC", "warning"
-        elif fec_status in {"no_accepted_candidate", "failed"}:
-            recovery_text, recovery_tone = "NOT ACCEPTED", "error"
+            recovery_text = "CRC accepted · no FEC"
+        elif fec_status in {"no_accepted_candidate", "no_fec_candidate"}:
+            recovery_text = "No accepted FEC candidate"
+        elif fec_status == "failed":
+            recovery_text = "Failed"
         elif fec_status == "not_requested":
-            recovery_text, recovery_tone = "NOT REQUESTED", "neutral"
+            recovery_text = "Not requested"
         else:
-            recovery_text, recovery_tone = "UNAVAILABLE", "neutral"
+            recovery_text = "Unavailable"
         crc_value = fec.get("crc_pass")
-        crc_text = "PASS" if crc_value is True else "FAIL" if crc_value is False else "NOT CONFIGURED"
-        crc_tone = "success" if crc_value is True else "error" if crc_value is False else "neutral"
+        if crc_value is True:
+            crc_text = "PASS"
+        elif crc_value is False:
+            crc_text = "FAIL"
+        elif fec.get("crc_present") is False:
+            crc_text = "NOT CONFIGURED"
+        elif fec_status == "not_requested":
+            crc_text = "NOT CHECKED"
+        else:
+            crc_text = "UNAVAILABLE"
+
         if result.demo is not None:
             frame_text = "Not configured for demo profile"
             payload_length = result.demo.get("configuration", {}).get("payload_length_bits")
-            payload_verification = str(result.demo.get("payload_recovery", "not_available")).replace("_", " ").upper()
-            payload_tone = "success" if payload_verification == "MATCHED" else "error" if payload_verification == "MISMATCH" else "neutral"
-            frame_value = f"{payload_length} bits recovered" if payload_length is not None else "Payload unavailable"
+            payload_verification = str(
+                result.demo.get("payload_recovery", "not_available")
+            ).replace("_", " ").upper()
+            frame_value = (
+                f"{payload_length} bits recovered"
+                if payload_length is not None
+                else "Payload unavailable"
+            )
         else:
-            frame_text = str(result.frames.get("status", "unavailable")).replace("_", " ").title()
+            frame_text = str(result.frames.get("status", "unavailable")).replace(
+                "_", " "
+            ).title()
             payload_length = result.frames.get("payload_bit_count")
             payload_verification = "Not available"
-            payload_tone = "neutral"
             frame_value = frame_text
-        payload_text = f"{payload_length} bits" if payload_length is not None else "Length unavailable"
-        fec_name = fec.get("fec_type") or "No accepted FEC"
+        payload_text = (
+            f"{payload_length} bits" if payload_length is not None else "Unavailable"
+        )
+        fec_name = fec.get("fec_type") or "None accepted"
         interleaver_name = fec.get("interleaver_type") or "None"
+        fec_detail = recovery_text
+        if fec.get("fec_type"):
+            fec_detail += f" · {fec_name}"
+        if fec.get("interleaver_type"):
+            fec_detail += f" · {interleaver_name}"
         demod_status = str(demodulation.get("status", "unavailable")).upper()
         bit_count = demodulation.get("bit_count", 0)
         llr_count = demodulation.get("llr_count", 0)
-        demod_tone = "success" if demod_status == "COMPLETE" else "error" if demod_status == "FAILED" else "neutral"
+        llr_text = f"Available ({llr_count})" if llr_count else "Unavailable"
 
-        cards = [
-            ("SIGNAL", rate, f"Duration: {duration_text} · Samples: {sample_count}<br>Validation: {result.validation_status.replace('_', ' ').upper()}", "neutral"),
-            ("MODULATION", modulation.upper(), f"Prediction: {html.escape(modulation)} · {confidence_text}<br>Classifier state: {classifier_status} · {html.escape(str(classification.get('method', 'unknown')).upper())}", "success" if classifier_status == "SUCCESS" else "error" if classifier_status in {"ERROR", "MODEL_UNAVAILABLE"} else "warning"),
-            ("SYNCHRONIZATION", cfo_text, f"Timing: {timing_text}<br>Sample rate: {rate}{phase_text}", "neutral"),
-            ("DEMODULATION", demod_status, f"Recovered bits: {bit_count}<br>LLR availability: {'Available (' + str(llr_count) + ')' if llr_count else 'Unavailable'}", demod_tone),
-            ("FEC RECOVERY", recovery_text, f"{html.escape(str(fec_name))} · {html.escape(str(interleaver_name))}<br>CRC: {crc_text}", recovery_tone),
-            ("FRAME / PAYLOAD", frame_value, f"Frame / header: {frame_text}<br>Payload: {payload_text} · Payload verification: {payload_verification}", payload_tone),
-        ]
-        rows = []
-        for offset in range(0, len(cards), 2):
-            pair = cards[offset:offset + 2]
-            row_cells = "".join(self._dashboard_card(*card) for card in pair)
-            if len(pair) == 1:
-                row_cells += "<td width='50%'></td>"
-            rows.append(f"<tr>{row_cells}</tr>")
-        status_text = "COMPLETE" if display_status == "complete" else display_status.upper()
-        source = html.escape(result.source)
+        def escaped(value: Any) -> str:
+            return html.escape(str(value))
+
+        def detail_row(label: str, value: str, *, value_tone: str = "normal") -> str:
+            value_color = {
+                "success": "#a4d3b3",
+                "warning": "#e0c37e",
+                "error": "#e2a19a",
+                "normal": "#dfe5e8",
+            }.get(value_tone, "#dfe5e8")
+            return (
+                "<tr style='border-bottom:1px solid #30383d;'>"
+                f"<td width='27%' valign='top' style='color:#9eaaaf;padding:7px 8px 7px 2px;'>{escaped(label)}</td>"
+                f"<td valign='top' style='color:{value_color};padding:7px 2px;'>{value}</td></tr>"
+            )
+
+        source = str(result.source or "UNKNOWN")
+        filename = result.filename or Path(result.input_path).name or "Unknown file"
+        status_color = {
+            "complete": "#a4d3b3",
+            "partial": "#e0c37e",
+            "rejected": "#e2a19a",
+            "error": "#e2a19a",
+        }.get(display_status, "#bdc7cb")
+        status_description = {
+            "complete": "Analyzer completed the reported stages.",
+            "partial": "The result remains partial; review the listed limitations and recovery state.",
+            "rejected": "The analyzer did not accept this signal as a supported result.",
+            "error": "Analysis stopped with an error reported by the analyzer.",
+        }.get(display_status, "The analyzer status is unknown.")
+        error_detail = None
+        error_stage = None
+        if result.errors:
+            error_detail = str(
+                result.errors[0].get("message", "Analyzer reported an error.")
+            )
+            error_stage = str(result.errors[0].get("stage", "unknown stage"))
+            stage_descriptions = {
+                "file": "Input could not be loaded or interpreted.",
+                "validation": "Input validation stopped the analysis.",
+                "configuration": "An analysis setting could not be applied.",
+                "synchronization": "Synchronization stopped with an error.",
+                "demodulation": "Demodulation stopped with an error.",
+                "fec": "Recovery processing stopped with an error.",
+                "frame": "Frame analysis stopped with an error.",
+            }
+            status_description = stage_descriptions.get(
+                error_stage.lower(), "The analyzer reported an error."
+            )
+        elif phase_unresolved:
+            status_description = (
+                "Phase orientation could not be resolved. The result remains PARTIAL; "
+                "recovery values below are shown exactly as reported."
+            )
+
+        score_explanation = (
+            f"Model score: {escaped(score_text)}"
+            + (" (uncalibrated score)" if score is not None else "")
+        )
+        fit_score = classification.get("geometric_fit_score")
+        fit_text = (
+            f"Fit evidence: {float(fit_score):.3f}"
+            if fit_score is not None
+            else "Fit evidence: unavailable"
+        )
+        classification_line = (
+            f"Prediction: {escaped(modulation)}"
+            f" · Classifier state: {escaped(classifier_status)}"
+            f" · {escaped(method)}"
+        )
+        modulation_heading = escaped(modulation.upper())
+        if phase_unresolved:
+            status_description = (
+                "Phase orientation unresolved. The analyzer result remains PARTIAL; "
+                "inspect demodulation, frame and recovery rows before interpreting payload data."
+            )
+
         alert_html = ""
         if result.errors:
-            message = html.escape(str(result.errors[0].get("message", "Analysis reported an error")))
-            alert_html = f"<p style='color:#e6a09a; background:#382322; padding:9px;'><b>Attention</b> · {message}</p>"
+            alert_html = (
+                "<p style='margin:10px 0 4px;color:#e2a19a;'>"
+                f"Analyzer detail · {escaped(error_detail)}</p>"
+            )
         elif result.warnings:
-            message = html.escape(str(result.warnings[0]))
-            alert_html = f"<p style='color:#e2c17b; background:#382f20; padding:9px;'><b>Note</b> · {message}</p>"
+            warning_text = escaped(result.warnings[0])
+            alert_html = (
+                "<p style='margin:10px 0 4px;color:#e0c37e;'>"
+                f"Analyzer note · {warning_text}</p>"
+            )
+        elif display_status == "rejected":
+            alert_html = (
+                "<p style='margin:10px 0 4px;color:#e2a19a;'>"
+                f"{escaped(status_description)}</p>"
+            )
+        elif display_status == "error":
+            alert_html = (
+                "<p style='margin:10px 0 4px;color:#e2a19a;'>"
+                f"{escaped(status_description)}</p>"
+            )
+        elif phase_unresolved:
+            alert_html = (
+                "<p style='margin:10px 0 4px;color:#e0c37e;'>"
+                f"{escaped(status_description)}</p>"
+            )
+
         demo_html = ""
         if result.demo is not None:
-            note = html.escape(str(result.demo.get("note", "")))
+            note = result.demo.get("note")
             demo_html = (
-                "<p style='color:#aebdc6; background:#1a2730; border-left:3px solid #668397; padding:9px;'>"
-                f"DEMO / SYNTHETIC · {note}</p>"
+                "<p style='margin:6px 0;color:#b8c5ca;border-left:2px solid #6da8bd;padding:4px 8px;'>"
+                "DEMO / SYNTHETIC"
+                + (f" · {escaped(note)}" if note else "")
+                + "</p>"
             )
-        dashboard_html = f"""
-        <html><body style="background-color:#111a23; color:#dce5ec; font-family:'Segoe UI';">
-        <table width="100%" cellspacing="0" cellpadding="4"><tr>
-          <td><span style="font-size:20pt; font-weight:bold; color:#f1f5f8;">Analysis result</span><br>
-          <span style="color:#9badba;">{html.escape(result.filename)} · {html.escape(result.file_format.upper())}</span></td>
-          <td align="right"><span style="font-weight:bold; color:{status_color[0]};">{status_text}</span><br>
-          <span style="color:#aebdc6;">Source: {source}</span></td>
-        </tr></table>
-        {demo_html}
-        <table width="100%" cellspacing="8" cellpadding="0">{''.join(rows)}</table>
-        {alert_html}
+
+        font_size = 10 * self._ui_scale
+        primary_size = 21 * self._ui_scale
+        html_result = f"""
+        <html><body style="background-color:#191e22;color:#dfe5e8;font-family:'Segoe UI';font-size:{font_size:.1f}pt;">
+          <div style="color:#8f9ba2;font-size:{8.5 * self._ui_scale:.1f}pt;letter-spacing:1px;">{escaped(display_status.upper())}</div>
+          <div style="color:{status_color};font-size:{primary_size:.1f}pt;font-weight:600;margin:2px 0 0;">{modulation_heading}</div>
+          <div style="color:#aeb9be;margin:3px 0 7px;">{escaped(filename)} · {escaped(result.file_format.upper())} · Source: {escaped(source)}</div>
+          <div style="color:#aeb9be;margin:0 0 4px;">{classification_line}</div>
+          <div style="color:#aeb9be;margin:0 0 9px;">{score_explanation} · {escaped(fit_text)}</div>
+          {demo_html}
+          <div style="color:{status_color};border-top:1px solid #394248;padding-top:8px;font-weight:600;">{escaped(status_description)}</div>
+          <table width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;margin-top:6px;">
+            {detail_row("Signal", f"{escaped(sample_rate_text)} · {escaped(duration_text)} · {escaped(sample_count)} samples")}
+            {detail_row("Validation", escaped(str(result.validation_status).replace("_", " ").upper()))}
+            {detail_row("Synchronization", f"CFO: {escaped(cfo_text)} · Timing recovery: {escaped(timing_text)}", value_tone="warning" if phase_unresolved else "normal")}
+            {detail_row("Demodulation", f"{escaped(demod_status)} · Recovered bits: {escaped(bit_count)} · LLR: {escaped(llr_text)}", value_tone="success" if demod_status == "COMPLETE" else "error" if demod_status == "FAILED" else "normal")}
+            {detail_row("FEC / interleaver", escaped(fec_detail), value_tone="success" if fec_status == "accepted" else "warning" if fec_status == "crc_accepted_no_fec" else "error" if fec_status in {"failed", "no_accepted_candidate", "no_fec_candidate"} else "normal")}
+            {detail_row("CRC", escaped(crc_text), value_tone="success" if crc_text == "PASS" else "error" if crc_text == "FAIL" else "normal")}
+            {detail_row("Frame / payload", f"{escaped(frame_value)} · {escaped(payload_text)} · Payload verification: {escaped(payload_verification)}")}
+          </table>
+          {alert_html}
         </body></html>
         """
-        self.overview.setHtml(dashboard_html)
+        self.overview.setHtml(html_result)
+
+        summary_parts = [
+            "NTRO Signal Analyzer",
+            display_status.upper(),
+            f"Prediction: {modulation}",
+            f"Model score: {score_text}"
+            + (" (uncalibrated score)" if score is not None else ""),
+            f"Classifier state: {classifier_status}",
+            f"Source: {source}",
+            f"File: {filename}",
+            f"Sample rate: {sample_rate_text}",
+            f"Validation: {result.validation_status}",
+            f"Synchronization: CFO {cfo_text}; timing recovery {timing_text}",
+            f"Demodulation: {demod_status}; recovered bits {bit_count}; LLR {llr_text}",
+            f"FEC={fec.get('fec_type')}; Interleaver={fec.get('interleaver_type')}; "
+            f"Status={fec.get('status')}; CRC={crc_value}",
+            f"CRC state: {crc_text}",
+            f"Frame / payload: {frame_value}; {payload_text}; verification {payload_verification}",
+        ]
+        if phase_unresolved:
+            summary_parts.append(status_description)
+        if result.errors:
+            summary_parts.append(
+                f"Analyzer error at {error_stage}: {error_detail}"
+            )
+        elif result.warnings:
+            summary_parts.append(f"Analyzer note: {result.warnings[0]}")
+        if result.demo is not None and result.demo.get("note"):
+            summary_parts.append(f"DEMO / SYNTHETIC: {result.demo['note']}")
+        self._summary_text = "\n".join(str(part) for part in summary_parts)
         self._populate_plots(
             result.visualization,
-            duration_seconds=(float(duration) if duration is not None else None),
+            duration_seconds=float(duration) if duration is not None else None,
         )
         self._populate_fec_table(fec)
-        summary = (
-            f"FEC={fec.get('fec_type')}; Interleaver={fec.get('interleaver_type')}; "
-            f"Status={fec.get('status')}; CRC={fec.get('crc_pass')}"
+        diagnostic_json = json.dumps(
+            result.to_dict(include_arrays=False), indent=2, ensure_ascii=False
         )
-        diagnostic_json = json.dumps(result.to_dict(include_arrays=False), indent=2, ensure_ascii=False)
         self.details.setPlainText(
-            f"{summary}\n\nComplete AnalysisResult diagnostics:\n{diagnostic_json}"
+            f"FEC={fec.get('fec_type')}; Interleaver={fec.get('interleaver_type')}; "
+            f"Status={fec.get('status')}; CRC={crc_value}\n\n"
+            f"Complete AnalysisResult diagnostics:\n{diagnostic_json}"
         )
-
-    @staticmethod
-    def _dashboard_card(title: str, value: str, detail: str, tone: str) -> str:
-        accents = {
-            "success": "#76b894",
-            "warning": "#c7a45d",
-            "error": "#c77e78",
-            "neutral": "#7194a9",
-        }
-        accent = accents.get(tone, accents["neutral"])
-        return (
-            "<td width='50%' valign='top' style='background-color:#17242e; border:1px solid #2d404e; padding:12px;'>"
-            f"<span style='color:#9badba; font-size:9pt; font-weight:bold;'>{html.escape(title)}</span><br>"
-            f"<span style='color:{accent}; font-size:17pt; font-weight:bold;'>{html.escape(str(value))}</span><br>"
-            f"<span style='color:#bdc9d1; font-size:9.5pt;'>{detail}</span></td>"
-        )
-
+        self._update_copy_controls()
     @staticmethod
     def _format_hz(value: Any) -> str:
         if value is None:
@@ -996,9 +1683,22 @@ class MainWindow(QMainWindow):
             }]
         self.fec_table.setRowCount(len(candidates))
         for row, candidate in enumerate(candidates):
-            status = "ACCEPTED" if candidate.get("accepted") else str(candidate.get("candidate_status", "evaluated")).replace("_", " ").upper()
+            status = (
+                "ACCEPTED"
+                if candidate.get("accepted") is True
+                else str(candidate.get("candidate_status", "evaluated")).replace("_", " ").upper()
+            )
             crc = candidate.get("crc_pass")
-            crc_label = "PASS" if crc is True else "FAIL" if crc is False else "—"
+            if crc is True:
+                crc_label = "PASS"
+            elif crc is False:
+                crc_label = "FAIL"
+            elif candidate.get("crc_present", fec.get("crc_present")) is False:
+                crc_label = "NOT CONFIGURED"
+            elif fec.get("status") == "not_requested":
+                crc_label = "NOT CHECKED"
+            else:
+                crc_label = "UNAVAILABLE"
             details = f"Valid: {candidate.get('valid', '—')} · Codewords: {candidate.get('codeword_count', '—')}"
             values = (
                 candidate.get("fec_type") or "None",
@@ -1019,6 +1719,16 @@ class MainWindow(QMainWindow):
         *,
         duration_seconds: float | None = None,
     ) -> None:
+        has_result = self._last_result is not None
+
+        def set_empty_text(state_widget: QWidget, title: str, description: str) -> None:
+            heading = state_widget.findChild(QLabel, "emptyHeading")
+            explanation = state_widget.findChild(QLabel, "emptyDescription")
+            if heading is not None:
+                heading.setText(title)
+            if explanation is not None:
+                explanation.setText(description)
+
         self.waveform_plot.clear()
         self.spectrum_plot.clear()
         self.constellation_plot.clear()
@@ -1029,10 +1739,17 @@ class MainWindow(QMainWindow):
         self.waveform_stack.setCurrentWidget(
             self.waveform_plot if waveform_ready else self.waveform_empty_state
         )
+        if not waveform_ready:
+            set_empty_text(
+                self.waveform_empty_state,
+                "No waveform data" if has_result else "No waveform yet",
+                "The analyzer returned no waveform samples for this result."
+                if has_result else "Run an analysis to view the time-domain samples.",
+            )
         if waveform_ready:
-            self.waveform_plot.plot(x, i_values, pen=pg.mkPen("#70b9e7", width=1.4), name="I")
+            self.waveform_plot.plot(x, i_values, pen=pg.mkPen("#78b4c8", width=1.4), name="I")
             if q_values is not None and np.any(np.asarray(q_values) != 0):
-                self.waveform_plot.plot(x, q_values, pen=pg.mkPen("#e3a16c", width=1.2), name="Q")
+                self.waveform_plot.plot(x, q_values, pen=pg.mkPen("#c0c9cd", width=1.1), name="Q")
         spectrum_x = arrays.get("spectrum_frequency_hz")
         spectrum_y = arrays.get("spectrum_power")
         spectrum_ready = (
@@ -1044,6 +1761,16 @@ class MainWindow(QMainWindow):
         self.spectrum_stack.setCurrentWidget(
             self.spectrum_plot if spectrum_ready else self.spectrum_empty_state
         )
+        if not spectrum_ready:
+            if has_result and self._last_result and self._last_result.file_format == "iq" and self._last_result.file_metadata.get("sample_rate_hz") is None:
+                spectrum_reason = "No sample rate is available for this raw IQ capture; the frequency axis is unavailable."
+            else:
+                spectrum_reason = "The analyzer returned no frequency-domain series for this result."
+            set_empty_text(
+                self.spectrum_empty_state,
+                "No spectrum data" if has_result else "No spectrum yet",
+                spectrum_reason if has_result else "Run an analysis to view the computed spectrum.",
+            )
         if spectrum_ready:
             self.spectrum_plot.plot(
                 spectrum_x,
@@ -1056,17 +1783,24 @@ class MainWindow(QMainWindow):
         self.waterfall_stack.setCurrentWidget(
             self.waterfall_plot if waterfall_ready else self.waterfall_empty_state
         )
+        if not waterfall_ready:
+            set_empty_text(
+                self.waterfall_empty_state,
+                "No waterfall data" if has_result else "No waterfall yet",
+                "The analyzer returned no time-frequency matrix for this result."
+                if has_result else "Run an analysis to view signal energy over time.",
+            )
         if waterfall_ready:
             self.waterfall_image.setImage(np.asarray(waterfall).T, autoLevels=True)
             waterfall_colormap = pg.ColorMap(
                 pos=np.array([0.0, 0.25, 0.5, 0.75, 1.0]),
                 color=np.array(
                     [
-                        [31, 25, 66],
-                        [55, 85, 141],
-                        [31, 145, 155],
-                        [89, 190, 128],
-                        [249, 221, 111],
+                        [24, 30, 34],
+                        [40, 62, 70],
+                        [58, 94, 107],
+                        [111, 159, 173],
+                        [213, 232, 236],
                     ],
                     dtype=np.ubyte,
                 ),
@@ -1116,6 +1850,13 @@ class MainWindow(QMainWindow):
         self.constellation_stack.setCurrentWidget(
             self.constellation_plot if constellation_ready else self.constellation_empty_state
         )
+        if not constellation_ready:
+            set_empty_text(
+                self.constellation_empty_state,
+                "No constellation data" if has_result else "No constellation yet",
+                "No synchronized constellation points are available in this result."
+                if has_result else "Run an analysis to view synchronized symbol points when available.",
+            )
         if constellation_ready:
             self.constellation_plot.plot(
                 constellation_i,
@@ -1123,8 +1864,8 @@ class MainWindow(QMainWindow):
                 pen=None,
                 symbol="o",
                 symbolSize=7,
-                symbolPen=pg.mkPen("#d9edf7", width=0.8),
-                symbolBrush=pg.mkBrush("#70b9e7"),
+                symbolPen=pg.mkPen("#d9e3e6", width=0.8),
+                symbolBrush=pg.mkBrush("#78b4c8"),
             )
             combined = np.concatenate((
                 np.asarray(constellation_i, dtype=np.float64).reshape(-1),
@@ -1141,16 +1882,11 @@ class MainWindow(QMainWindow):
             return
         self._set_demo_mode(False)
         self.selected_path = None
-        self._last_result = None
-        self.source_label.setText("NOT SELECTED")
-        self.file_label.setText("No file selected")
-        self.overview.clear()
-        self.analysis_stack.setCurrentWidget(self.analysis_empty_state)
-        self.details.clear()
-        self.fec_table.setRowCount(0)
-        self._populate_plots({})
+        self.sample_rate.setValue(0.0)
+        self.stereo_iq.setChecked(False)
+        self._clear_result_presentation()
         self.progress.setValue(0)
         self.status_label.setStyleSheet("")
         self.status_label.setText("Status: READY")
-        self.header_state_label.setText("READY")
-        self.header_state_label.setStyleSheet("")
+        self._set_header_state("READY", "neutral")
+        self._update_input_context()
