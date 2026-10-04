@@ -315,3 +315,16 @@ DQPSK/64-QAM/4FSK.
 automated tests, Viterbi equivalence, and Cycle 2 capture checks are recorded.
 The explicitly required manual native-window demo check was not completed in
 this session. No freeze commit or `v1.0.0-sih26147-freeze` tag is claimed.
+
+## Follow-up — native GUI gate closed on 2026-10-05
+
+The verdict above records the state of this report on 2026-10-04. The project
+developer subsequently completed native Windows manual validation and
+reported PASS for GUI launch, deterministic demo, T2-01 manual analysis,
+T2-02 manual IQ analysis, T2-09 rejection, T2-05 stereo-WAV/I-Q partial
+behavior, and T2-07 responsiveness during long-running analysis. This
+developer-reported follow-up closes the previously open GUI gate; the
+historical measurements in this report were reused without rerunning tests or
+Tier-2 campaigns. The CRC-16 false-accept observation remains a documented
+limitation. The release state and intended core-freeze tag are recorded in
+`docs/release/v1.0.0-sih26147-core-freeze.md`.

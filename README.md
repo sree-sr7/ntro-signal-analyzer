@@ -7,15 +7,24 @@ contains a PyQt desktop application, DSP and demodulation code, a production
 ONNX modulation classifier, FEC/interleaver trial code, and preserved Tier-2
 evidence.
 
-## Pre-freeze status
+## Core freeze status
 
-The final controlled engineering pass completed on Windows. The current source
-passes **632 tests**; the production model digest and all 117 Cycle 1 checksums
-remain unchanged. This is a pre-freeze candidate, not a release freeze: the
-manual native-window demo check could not be completed in the available desktop
-automation session. One of 28,480 randomized CRC-phase hypotheses also
-produced an accepted CRC-16 candidate; see the [final pre-freeze report](reports/pre_freeze/final_pre_freeze_report.md).
-No freeze tag has been created.
+The SIH 26147 core freeze release is recorded as
+`v1.0.0-sih26147-core-freeze`. The previously recorded Windows suite passed
+**632/632 tests**; the production model digest, 117 Cycle 1 checksums, and 169
+protected files remain unchanged. The developer completed native Windows
+manual checks for application launch, deterministic demo, T2-01 and T2-02
+analysis, T2-09 rejection, T2-05 stereo-WAV partial status, and T2-07
+responsiveness during long-running analysis.
+
+One of 28,480 randomized CRC-phase hypotheses produced an accepted CRC-16
+candidate. This is a known limitation, not a zero-false-accept claim. See the
+[release note](docs/release/v1.0.0-sih26147-core-freeze.md),
+[final pre-freeze report](reports/pre_freeze/final_pre_freeze_report.md), and
+[presentation claim sheet](docs/presentation_claims.md).
+
+The core freeze preserves the current GUI. UX redesign is separate post-freeze
+work on the `gui-redesign` branch.
 
 ## Implemented scope
 

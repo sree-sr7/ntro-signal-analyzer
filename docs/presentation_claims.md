@@ -27,8 +27,10 @@ general accuracy or real-radio performance.
 3. **“The current Windows test suite passed 632 of 632 tests, including
    headless GUI tests.”**
 
-   Scope: `QT_QPA_PLATFORM=offscreen`; this statement does not substitute for
-   the still-unverified manual native-window demo check.
+   Scope: `QT_QPA_PLATFORM=offscreen`. The developer separately completed
+   native Windows manual checks for launch, deterministic demo, T2-01/T2-02,
+   T2-09 rejection, T2-05 partial status, and T2-07 responsiveness; these
+   checks are recorded in the release note.
 
 4. **“The checked-in ONNX classifier uses 17 ordered input features and five
    output classes, with its StandardScaler embedded in the ONNX graph.”**

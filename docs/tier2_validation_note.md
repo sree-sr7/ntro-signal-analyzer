@@ -260,3 +260,13 @@ windows and saved native renderings rather than a desktop click-through.
 
 The focused Tier-2 harness checks passed: 5 passed. No project-wide test suite
 was run. No production/core code or model artifact was changed.
+
+## Native GUI follow-up — 2026-10-05
+
+After the 2026-10-04 validation report, the project developer completed native
+Windows manual checks and reported PASS for application launch, deterministic
+demo, T2-01 manual analysis, T2-02 manual IQ analysis, T2-09 rejection, T2-05
+stereo-WAV/I-Q partial behavior, and T2-07 responsiveness during long-running
+analysis. This follow-up supersedes the earlier statement that the manual GUI
+demo gate was unverified. The 632-test result and other measurements above
+were reused; no tests or Tier-2 analyses were rerun for this release task.
