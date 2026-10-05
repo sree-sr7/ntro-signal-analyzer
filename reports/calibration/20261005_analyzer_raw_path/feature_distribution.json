@@ -1,0 +1,3396 @@
+{
+  "initial_classifier_input_before_any_CFO_retry": {
+    "scaler_statistics_source": "aggregate StandardScaler mean/scale in frozen production_ml_contract.json; raw training rows and class-conditional training feature distributions were unavailable",
+    "overall": {
+      "amplitude_coefficient_of_variation": {
+        "production_path_mean": 0.19218936817323173,
+        "production_path_std": 0.09958814778236182,
+        "production_path_min": 0.06836732820470083,
+        "production_path_p05": 0.07689367757780477,
+        "production_path_p95": 0.3740074792194399,
+        "production_path_max": 0.41381791730491463,
+        "training_scaler_aggregate_mean": 0.21716524408951401,
+        "training_scaler_aggregate_scale": 0.11596646119664285,
+        "mean_shift_in_training_scales": -0.2153715450015415,
+        "observed_std_over_training_scale": 0.8587668085645165
+      },
+      "amplitude_kurtosis": {
+        "production_path_mean": 2.8591531001433195,
+        "production_path_std": 0.2885479775824622,
+        "production_path_min": 1.9874341755928822,
+        "production_path_p05": 2.2113880518938887,
+        "production_path_p95": 3.142338133027233,
+        "production_path_max": 3.4368999504947997,
+        "training_scaler_aggregate_mean": 2.8479950062298776,
+        "training_scaler_aggregate_scale": 0.2915193857330654,
+        "mean_shift_in_training_scales": 0.03827564978357566,
+        "observed_std_over_training_scale": 0.9898071679070976
+      },
+      "normalized_moment_2": {
+        "production_path_mean": 0.08844853107824571,
+        "production_path_std": 0.20158962819158857,
+        "production_path_min": 4.3338327120601336e-05,
+        "production_path_p05": 0.0009703340553131969,
+        "production_path_p95": 0.6944493517272075,
+        "production_path_max": 0.9897039882071921,
+        "training_scaler_aggregate_mean": 0.21057068312972077,
+        "training_scaler_aggregate_scale": 0.35284895747911765,
+        "mean_shift_in_training_scales": -0.3461031964610594,
+        "observed_std_over_training_scale": 0.5713198917514701
+      },
+      "normalized_moment_4": {
+        "production_path_mean": 0.09773856082823582,
+        "production_path_std": 0.17629326193020298,
+        "production_path_min": 5.3889527438792205e-05,
+        "production_path_p05": 0.001947055265852345,
+        "production_path_p95": 0.5646969475450162,
+        "production_path_max": 0.9594530325615703,
+        "training_scaler_aggregate_mean": 0.3443073801217426,
+        "training_scaler_aggregate_scale": 0.3540775769319192,
+        "mean_shift_in_training_scales": -0.6963694832924034,
+        "observed_std_over_training_scale": 0.4978944542543004
+      },
+      "normalized_moment_8": {
+        "production_path_mean": 0.05044231826264583,
+        "production_path_std": 0.10296548458615166,
+        "production_path_min": 0.00015061215682208914,
+        "production_path_p05": 0.0028631404580832646,
+        "production_path_p95": 0.18293537009041938,
+        "production_path_max": 0.8474934649058101,
+        "training_scaler_aggregate_mean": 0.27657779769404905,
+        "training_scaler_aggregate_scale": 0.3143056485447034,
+        "mean_shift_in_training_scales": -0.7194763456477945,
+        "observed_std_over_training_scale": 0.32759667242030804
+      },
+      "psk2_residual": {
+        "production_path_mean": 0.8174827285020292,
+        "production_path_std": 0.1348600291235046,
+        "production_path_min": 0.10089610624320948,
+        "production_path_p05": 0.4516015010892149,
+        "production_path_p95": 0.8959490322175373,
+        "production_path_max": 0.9577538611878592,
+        "training_scaler_aggregate_mean": 0.7362881748700142,
+        "training_scaler_aggregate_scale": 0.2523116005659648,
+        "mean_shift_in_training_scales": 0.32180269733886985,
+        "observed_std_over_training_scale": 0.534497933590836
+      },
+      "psk2_phase_entropy": {
+        "production_path_mean": 0.999688530660622,
+        "production_path_std": 0.0004645754203228432,
+        "production_path_min": 0.9952556431226899,
+        "production_path_p05": 0.9987276422262039,
+        "production_path_p95": 0.9999993120692872,
+        "production_path_max": 1.0,
+        "training_scaler_aggregate_mean": 0.9922677547419071,
+        "training_scaler_aggregate_scale": 0.030350045232342256,
+        "mean_shift_in_training_scales": 0.24450625565483652,
+        "observed_std_over_training_scale": 0.01530723980034707
+      },
+      "psk4_residual": {
+        "production_path_mean": 0.45934774885924384,
+        "production_path_std": 0.07165885193722804,
+        "production_path_min": 0.1008960290581548,
+        "production_path_p05": 0.3013104804499703,
+        "production_path_p95": 0.5515183336189049,
+        "production_path_max": 0.5777423671969377,
+        "training_scaler_aggregate_mean": 0.39062289493098856,
+        "training_scaler_aggregate_scale": 0.14510853468798107,
+        "mean_shift_in_training_scales": 0.4736100056142843,
+        "observed_std_over_training_scale": 0.4938293401646715
+      },
+      "psk4_phase_entropy": {
+        "production_path_mean": 0.9724088560399808,
+        "production_path_std": 0.10720039445168864,
+        "production_path_min": 0.49806346160492243,
+        "production_path_p05": 0.628847865377691,
+        "production_path_p95": 0.9999823337561236,
+        "production_path_max": 0.9999999247654578,
+        "training_scaler_aggregate_mean": 0.8995631369835139,
+        "training_scaler_aggregate_scale": 0.18633946163953458,
+        "mean_shift_in_training_scales": 0.3909301788012235,
+        "observed_std_over_training_scale": 0.5752962550630475
+      },
+      "psk8_residual": {
+        "production_path_mean": 0.2934760292561469,
+        "production_path_std": 0.06687704245337744,
+        "production_path_min": 0.10089637999748526,
+        "production_path_p05": 0.2230234357073649,
+        "production_path_p95": 0.41640746654289257,
+        "production_path_max": 0.44393972416528993,
+        "training_scaler_aggregate_mean": 0.2786910236094892,
+        "training_scaler_aggregate_scale": 0.1117777585636611,
+        "mean_shift_in_training_scales": 0.13227144502309146,
+        "observed_std_over_training_scale": 0.5983036635619131
+      },
+      "psk8_phase_entropy": {
+        "production_path_mean": 0.9638043416337344,
+        "production_path_std": 0.1085572171518011,
+        "production_path_min": 0.33292871664741047,
+        "production_path_p05": 0.6926623924327279,
+        "production_path_p95": 0.9999670704216318,
+        "production_path_max": 0.9999989393552354,
+        "training_scaler_aggregate_mean": 0.8384656218981743,
+        "training_scaler_aggregate_scale": 0.2237580224425312,
+        "mean_shift_in_training_scales": 0.5601529650976041,
+        "observed_std_over_training_scale": 0.4851545252625851
+      },
+      "qam16_residual": {
+        "production_path_mean": 0.2536215552600698,
+        "production_path_std": 0.020555061850331707,
+        "production_path_min": 0.10043613912879601,
+        "production_path_p05": 0.2292066256976295,
+        "production_path_p95": 0.28579956856932975,
+        "production_path_max": 0.3391899097711243,
+        "training_scaler_aggregate_mean": 0.26363687963306903,
+        "training_scaler_aggregate_scale": 0.055627841948434266,
+        "mean_shift_in_training_scales": -0.1800415767033208,
+        "observed_std_over_training_scale": 0.369510323075013
+      },
+      "fsk_quality": {
+        "production_path_mean": 0.04566879352129331,
+        "production_path_std": 0.10184008730853368,
+        "production_path_min": 0.0,
+        "production_path_p05": 0.0,
+        "production_path_p95": 0.3128641328776403,
+        "production_path_max": 0.44599525359298187,
+        "training_scaler_aggregate_mean": 0.016194655499085785,
+        "training_scaler_aggregate_scale": 0.03343350573065609,
+        "mean_shift_in_training_scales": 0.8815748566618872,
+        "observed_std_over_training_scale": 3.0460487191791477
+      },
+      "fsk_tone_separation_norm": {
+        "production_path_mean": 0.35939060702652764,
+        "production_path_std": 0.7201357807643094,
+        "production_path_min": 0.0,
+        "production_path_p05": 0.0,
+        "production_path_p95": 1.8896921982132227,
+        "production_path_max": 1.9385838952139602,
+        "training_scaler_aggregate_mean": 0.32111877619981766,
+        "training_scaler_aggregate_scale": 0.642513365462711,
+        "mean_shift_in_training_scales": 0.05956581276585309,
+        "observed_std_over_training_scale": 1.120810584610482
+      },
+      "fsk_frequency_repeat_fraction": {
+        "production_path_mean": 0.05537561551296138,
+        "production_path_std": 0.11868794579060557,
+        "production_path_min": 0.0,
+        "production_path_p05": 0.0,
+        "production_path_p95": 0.35759980466365526,
+        "production_path_max": 0.47790257599804664,
+        "training_scaler_aggregate_mean": 0.02597575360700488,
+        "training_scaler_aggregate_scale": 0.05292168025479191,
+        "mean_shift_in_training_scales": 0.5555353073524989,
+        "observed_std_over_training_scale": 2.2427093247829886
+      },
+      "spectral_entropy": {
+        "production_path_mean": 0.8653805102714255,
+        "production_path_std": 0.15880266584078226,
+        "production_path_min": 0.5209194108103559,
+        "production_path_p05": 0.528141987280361,
+        "production_path_p95": 0.9471133041399055,
+        "production_path_max": 0.9510192572155022,
+        "training_scaler_aggregate_mean": 0.8681308783185482,
+        "training_scaler_aggregate_scale": 0.14474797741981382,
+        "mean_shift_in_training_scales": -0.01900108102475091,
+        "observed_std_over_training_scale": 1.097097649801389
+      },
+      "spectral_peak_fraction": {
+        "production_path_mean": 0.052375728032821825,
+        "production_path_std": 0.09689438975416224,
+        "production_path_min": 0.002484888592516929,
+        "production_path_p05": 0.003219539870579985,
+        "production_path_p95": 0.2532237200462048,
+        "production_path_max": 0.28557612891638745,
+        "training_scaler_aggregate_mean": 0.03069094090441242,
+        "training_scaler_aggregate_scale": 0.05282001325339269,
+        "mean_shift_in_training_scales": 0.41054111486836037,
+        "observed_std_over_training_scale": 1.8344256993903463
+      }
+    },
+    "by_class": {
+      "bpsk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1200,
+          "mean": 0.1521730132329596,
+          "std": 0.058613388224554,
+          "min": 0.06972194866875381,
+          "p05": 0.07537485056278415,
+          "p95": 0.2521326017650143,
+          "max": 0.27226755107962053,
+          "mean_shift_in_aggregate_training_scales": -0.5604398908607544
+        },
+        "amplitude_kurtosis": {
+          "count": 1200,
+          "mean": 2.9920832555047316,
+          "std": 0.10457853646136105,
+          "min": 2.676683294054084,
+          "p05": 2.823915455880517,
+          "p95": 3.172223539082876,
+          "max": 3.3642303325717515,
+          "mean_shift_in_aggregate_training_scales": 0.4942664410208071
+        },
+        "normalized_moment_2": {
+          "count": 1200,
+          "mean": 0.3813009134403695,
+          "std": 0.3090061020771858,
+          "min": 0.003012997997473008,
+          "p05": 0.04059072767918618,
+          "p95": 0.9292473553919011,
+          "max": 0.9897039882071921,
+          "mean_shift_in_aggregate_training_scales": 0.48386207948695126
+        },
+        "normalized_moment_4": {
+          "count": 1200,
+          "mean": 0.19486776899684746,
+          "std": 0.23086396743325574,
+          "min": 0.0015919882412713429,
+          "p05": 0.014085777866090237,
+          "p95": 0.7434101829642253,
+          "max": 0.9594530325615703,
+          "mean_shift_in_aggregate_training_scales": -0.4220533037414817
+        },
+        "normalized_moment_8": {
+          "count": 1200,
+          "mean": 0.07229473632807415,
+          "std": 0.12139947004303285,
+          "min": 0.0007239721203679637,
+          "p05": 0.00818505360521715,
+          "p95": 0.2952104192020503,
+          "max": 0.8474934649058101,
+          "mean_shift_in_aggregate_training_scales": -0.6499503343698894
+        },
+        "psk2_residual": {
+          "count": 1200,
+          "mean": 0.628652578944035,
+          "std": 0.21172741519832272,
+          "min": 0.10089610624320948,
+          "p05": 0.22254553638442856,
+          "p95": 0.8424164799655921,
+          "max": 0.8736946439832367,
+          "mean_shift_in_aggregate_training_scales": -0.42659788802631254
+        },
+        "psk2_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9996311167206237,
+          "std": 0.0005205105010621646,
+          "min": 0.9960228568316535,
+          "p05": 0.9985438488662162,
+          "p95": 0.9999972482758367,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.2426145306323914
+        },
+        "psk4_residual": {
+          "count": 1200,
+          "mean": 0.41359952855300386,
+          "std": 0.07999058710627416,
+          "min": 0.1008960290581548,
+          "p05": 0.222545080638562,
+          "p95": 0.49036406276202704,
+          "max": 0.5057714189593041,
+          "mean_shift_in_aggregate_training_scales": 0.15834102157685412
+        },
+        "psk4_phase_entropy": {
+          "count": 1200,
+          "mean": 0.8637591583197619,
+          "std": 0.20670999195992898,
+          "min": 0.49806346160492243,
+          "p05": 0.4998758214002104,
+          "p95": 0.9998861634227278,
+          "max": 0.999991064890124,
+          "mean_shift_in_aggregate_training_scales": -0.19214383442307656
+        },
+        "psk8_residual": {
+          "count": 1200,
+          "mean": 0.2648295812548299,
+          "std": 0.040082243700322887,
+          "min": 0.10089637999748526,
+          "p05": 0.21325407114858438,
+          "p95": 0.32931137425965573,
+          "max": 0.34353886255258553,
+          "mean_shift_in_aggregate_training_scales": -0.1240089489427788
+        },
+        "psk8_phase_entropy": {
+          "count": 1200,
+          "mean": 0.8611673612022301,
+          "std": 0.19158522366922026,
+          "min": 0.33292871664741047,
+          "p05": 0.40355125781552037,
+          "p95": 0.9987339751963521,
+          "max": 0.9998978360709125,
+          "mean_shift_in_aggregate_training_scales": 0.10145664971581712
+        },
+        "qam16_residual": {
+          "count": 1200,
+          "mean": 0.2560766553848234,
+          "std": 0.018772967891698272,
+          "min": 0.22521464698163088,
+          "p05": 0.23245560636054935,
+          "p95": 0.29184397450700506,
+          "max": 0.3391899097711243,
+          "mean_shift_in_aggregate_training_scales": -0.13590720012568175
+        },
+        "fsk_quality": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1200,
+          "mean": 0.9446429744960987,
+          "std": 0.001907791467091019,
+          "min": 0.9353073338756345,
+          "p05": 0.941550062269094,
+          "p95": 0.9476046133268332,
+          "max": 0.9510192572155022,
+          "mean_shift_in_aggregate_training_scales": 0.528588361242809
+        },
+        "spectral_peak_fraction": {
+          "count": 1200,
+          "mean": 0.003945395052767146,
+          "std": 0.000634609103229331,
+          "min": 0.002484888592516929,
+          "p05": 0.0031104211010785023,
+          "p95": 0.005145025677300849,
+          "max": 0.007079704241001297,
+          "mean_shift_in_aggregate_training_scales": -0.5063525017182267
+        }
+      },
+      "qpsk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1200,
+          "mean": 0.1476700258549295,
+          "std": 0.05544778551609178,
+          "min": 0.06945042551280653,
+          "p05": 0.07549390415639436,
+          "p95": 0.2494147863735225,
+          "max": 0.2683317541327692,
+          "mean_shift_in_aggregate_training_scales": -0.5992699744173651
+        },
+        "amplitude_kurtosis": {
+          "count": 1200,
+          "mean": 2.992980652514119,
+          "std": 0.10357593431743507,
+          "min": 2.6980659646214105,
+          "p05": 2.831073588975029,
+          "p95": 3.1671767977831435,
+          "max": 3.4368999504947997,
+          "mean_shift_in_aggregate_training_scales": 0.49734478521781705
+        },
+        "normalized_moment_2": {
+          "count": 1200,
+          "mean": 0.019531289188518545,
+          "std": 0.010710090512584898,
+          "min": 0.00021456044763821968,
+          "p05": 0.004755088046145687,
+          "p95": 0.039536384031322605,
+          "max": 0.05968914062950227,
+          "mean_shift_in_aggregate_training_scales": -0.541419748852477
+        },
+        "normalized_moment_4": {
+          "count": 1200,
+          "mean": 0.20839872039354712,
+          "std": 0.24451114711943672,
+          "min": 0.00177559000547831,
+          "p05": 0.013492018999080356,
+          "p95": 0.7866688762185381,
+          "max": 0.950128222274847,
+          "mean_shift_in_aggregate_training_scales": -0.3838386517040799
+        },
+        "normalized_moment_8": {
+          "count": 1200,
+          "mean": 0.07810023796302733,
+          "std": 0.13014863093547116,
+          "min": 0.00020065424579521633,
+          "p05": 0.00810105055442815,
+          "p95": 0.3730484945048964,
+          "max": 0.8148437872225266,
+          "mean_shift_in_aggregate_training_scales": -0.6314794552691357
+        },
+        "psk2_residual": {
+          "count": 1200,
+          "mean": 0.8583359226839875,
+          "std": 0.025065077622051485,
+          "min": 0.7721791446692576,
+          "p05": 0.829207826645184,
+          "p95": 0.9162440257848434,
+          "max": 0.9577538611878592,
+          "mean_shift_in_aggregate_training_scales": 0.48371833693023136
+        },
+        "psk2_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9996521753996134,
+          "std": 0.0004888451741947362,
+          "min": 0.9965293578656633,
+          "p05": 0.9985438488662162,
+          "p95": 0.9999973514655092,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.24330839052052347
+        },
+        "psk4_residual": {
+          "count": 1200,
+          "mean": 0.4078263917015251,
+          "std": 0.08343196747942791,
+          "min": 0.11245441170951775,
+          "p05": 0.20655029058700414,
+          "p95": 0.48747117482961505,
+          "max": 0.5072140541889386,
+          "mean_shift_in_aggregate_training_scales": 0.11855606431095386
+        },
+        "psk4_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9994734224862382,
+          "std": 0.0004162385499865039,
+          "min": 0.9964003567436026,
+          "p05": 0.9986724101650123,
+          "p95": 0.9999441544297109,
+          "max": 0.9999951884952415,
+          "mean_shift_in_aggregate_training_scales": 0.5361735223642339
+        },
+        "psk8_residual": {
+          "count": 1200,
+          "mean": 0.26141749972456624,
+          "std": 0.03864918036836894,
+          "min": 0.11245496447501552,
+          "p05": 0.20412941868231158,
+          "p95": 0.32749884564555626,
+          "max": 0.34050075549992853,
+          "mean_shift_in_aggregate_training_scales": -0.15453453448062426
+        },
+        "psk8_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9607517744092362,
+          "std": 0.08925412725145399,
+          "min": 0.6658093800963789,
+          "p05": 0.7069663755487476,
+          "p95": 0.9996479631765787,
+          "max": 0.9999338785953962,
+          "mean_shift_in_aggregate_training_scales": 0.5465106956889968
+        },
+        "qam16_residual": {
+          "count": 1200,
+          "mean": 0.2563385711672638,
+          "std": 0.019447149977529995,
+          "min": 0.22307458412921458,
+          "p05": 0.23146180387727316,
+          "p95": 0.2964410505433173,
+          "max": 0.3355990448027194,
+          "mean_shift_in_aggregate_training_scales": -0.1311988423453605
+        },
+        "fsk_quality": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1200,
+          "mean": 0.9445350814519441,
+          "std": 0.0015642230284903895,
+          "min": 0.9386677812636198,
+          "p05": 0.941859489355947,
+          "p95": 0.9470837716611797,
+          "max": 0.9490206962068097,
+          "mean_shift_in_aggregate_training_scales": 0.527842975738446
+        },
+        "spectral_peak_fraction": {
+          "count": 1200,
+          "mean": 0.00403122729465659,
+          "std": 0.0006327102251053562,
+          "min": 0.0027865742210207677,
+          "p05": 0.0032040899091880667,
+          "p95": 0.005282494595714668,
+          "max": 0.006820863080426513,
+          "mean_shift_in_aggregate_training_scales": -0.5047275070125706
+        }
+      },
+      "8psk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1200,
+          "mean": 0.1507053101465582,
+          "std": 0.056062824206557824,
+          "min": 0.06836732820470083,
+          "p05": 0.07599088545487243,
+          "p95": 0.24956372647886627,
+          "max": 0.271689116521297,
+          "mean_shift_in_aggregate_training_scales": -0.573096162952326
+        },
+        "amplitude_kurtosis": {
+          "count": 1200,
+          "mean": 2.994505368923345,
+          "std": 0.10995333651648526,
+          "min": 2.6969588973551826,
+          "p05": 2.8185856573574157,
+          "p95": 3.190145285505155,
+          "max": 3.3999526757809737,
+          "mean_shift_in_aggregate_training_scales": 0.5025750254139945
+        },
+        "normalized_moment_2": {
+          "count": 1200,
+          "mean": 0.019838548038643964,
+          "std": 0.010280939340939184,
+          "min": 0.000162616556621412,
+          "p05": 0.005059116804471658,
+          "p95": 0.03901052948563779,
+          "max": 0.06489607603565821,
+          "mean_shift_in_aggregate_training_scales": -0.5405489545831087
+        },
+        "normalized_moment_4": {
+          "count": 1200,
+          "mean": 0.019402330444919267,
+          "std": 0.010114043394576664,
+          "min": 0.000790787452093097,
+          "p05": 0.005030174099774597,
+          "p95": 0.03803071892064637,
+          "max": 0.05655286114144249,
+          "mean_shift_in_aggregate_training_scales": -0.9176097862285556
+        },
+        "normalized_moment_8": {
+          "count": 1200,
+          "mean": 0.07573609647372302,
+          "std": 0.12822448495105593,
+          "min": 0.0012119820108087212,
+          "p05": 0.008449418977385232,
+          "p95": 0.3422934048977493,
+          "max": 0.812141057867487,
+          "mean_shift_in_aggregate_training_scales": -0.639001246558127
+        },
+        "psk2_residual": {
+          "count": 1200,
+          "mean": 0.8522742150328604,
+          "std": 0.008619950305077635,
+          "min": 0.8214880996086998,
+          "p05": 0.8386880923164113,
+          "p95": 0.8675645761439426,
+          "max": 0.8759766447376558,
+          "mean_shift_in_aggregate_training_scales": 0.4596936482614187
+        },
+        "psk2_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9996375467614514,
+          "std": 0.000492517650297284,
+          "min": 0.9952556431226899,
+          "p05": 0.9986677562183462,
+          "p95": 0.9999972482758367,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.2428263932763698
+        },
+        "psk4_residual": {
+          "count": 1200,
+          "mean": 0.4664431247739215,
+          "std": 0.017790542518030552,
+          "min": 0.4069360668205909,
+          "p05": 0.4439389571787754,
+          "p95": 0.4994135627737287,
+          "max": 0.5119750333678916,
+          "mean_shift_in_aggregate_training_scales": 0.5225070324496423
+        },
+        "psk4_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9994722926889323,
+          "std": 0.0004283357672730463,
+          "min": 0.9974523531081844,
+          "p05": 0.9986074289662706,
+          "p95": 0.999946896008993,
+          "max": 0.9999951884952416,
+          "mean_shift_in_aggregate_training_scales": 0.5361674592507318
+        },
+        "psk8_residual": {
+          "count": 1200,
+          "mean": 0.2633406806487762,
+          "std": 0.03922660581023219,
+          "min": 0.11112437898197772,
+          "p05": 0.20142370671677157,
+          "p95": 0.3271040864517926,
+          "max": 0.34143683569868744,
+          "mean_shift_in_aggregate_training_scales": -0.1373291355808544
+        },
+        "psk8_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9991718266960572,
+          "std": 0.0004297237903664131,
+          "min": 0.9967342405890588,
+          "p05": 0.9983445821782336,
+          "p95": 0.9997291047598447,
+          "max": 0.9999044759612387,
+          "mean_shift_in_aggregate_training_scales": 0.7182142702354183
+        },
+        "qam16_residual": {
+          "count": 1200,
+          "mean": 0.24880410875574915,
+          "std": 0.015367646005087589,
+          "min": 0.15425190989540244,
+          "p05": 0.22906998471652612,
+          "p95": 0.2715227258354552,
+          "max": 0.3047235867964024,
+          "mean_shift_in_aggregate_training_scales": -0.26664293198843697
+        },
+        "fsk_quality": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1200,
+          "mean": 0.9446075901160532,
+          "std": 0.0015847297135566968,
+          "min": 0.9398661398014161,
+          "p05": 0.941963486936387,
+          "p95": 0.9471906771197856,
+          "max": 0.9496780108158496,
+          "mean_shift_in_aggregate_training_scales": 0.5283439061514411
+        },
+        "spectral_peak_fraction": {
+          "count": 1200,
+          "mean": 0.0040217420987152,
+          "std": 0.0006213392373677282,
+          "min": 0.002674639065748267,
+          "p05": 0.003208786506907992,
+          "p95": 0.00516525276401821,
+          "max": 0.007479740671008223,
+          "mean_shift_in_aggregate_training_scales": -0.5049070828088864
+        }
+      },
+      "16qam": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1200,
+          "mean": 0.36267166727906114,
+          "std": 0.016637933727878088,
+          "min": 0.33116001262561967,
+          "p05": 0.3407328331410997,
+          "p95": 0.39470057617630744,
+          "max": 0.41381791730491463,
+          "mean_shift_in_aggregate_training_scales": 1.2547284938083412
+        },
+        "amplitude_kurtosis": {
+          "count": 1200,
+          "mean": 2.3201605404636343,
+          "std": 0.13333192823698617,
+          "min": 1.9874341755928822,
+          "p05": 2.111002883401547,
+          "p95": 2.5315582269773174,
+          "max": 2.678625653372661,
+          "mean_shift_in_aggregate_training_scales": -1.8106324711097042
+        },
+        "normalized_moment_2": {
+          "count": 1200,
+          "mean": 0.019498659040313702,
+          "std": 0.009808606178271081,
+          "min": 0.0006366069905923992,
+          "p05": 0.005547908824553472,
+          "p95": 0.037164854667944405,
+          "max": 0.05318001537025696,
+          "mean_shift_in_aggregate_training_scales": -0.5415122251019124
+        },
+        "normalized_moment_4": {
+          "count": 1200,
+          "mean": 0.06219111195297956,
+          "std": 0.0661684210599254,
+          "min": 0.0011305215529842955,
+          "p05": 0.008660187139954484,
+          "p95": 0.22139368723319985,
+          "max": 0.32098056583419365,
+          "mean_shift_in_aggregate_training_scales": -0.7967640046943932
+        },
+        "normalized_moment_8": {
+          "count": 1200,
+          "mean": 0.020570005215986644,
+          "std": 0.010936325768134029,
+          "min": 0.0013240550769300316,
+          "p05": 0.0053933588667202945,
+          "p95": 0.04032264333441968,
+          "max": 0.0653494689773179,
+          "mean_shift_in_aggregate_training_scales": -0.8145185861705909
+        },
+        "psk2_residual": {
+          "count": 1200,
+          "mean": 0.8875922291098052,
+          "std": 0.009017866553224292,
+          "min": 0.8500858966985678,
+          "p05": 0.8727935899337752,
+          "p95": 0.9021014499343871,
+          "max": 0.9182736907595767,
+          "mean_shift_in_aggregate_training_scales": 0.599671413840656
+        },
+        "psk2_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9996518275274316,
+          "std": 0.0004726242627676678,
+          "min": 0.9964308234404787,
+          "p05": 0.9986646929976335,
+          "p95": 0.9999993120692872,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.24329692852173354
+        },
+        "psk4_residual": {
+          "count": 1200,
+          "mean": 0.5397521631696636,
+          "std": 0.019082407737549916,
+          "min": 0.46570562920447417,
+          "p05": 0.49676269178410687,
+          "p95": 0.5635689656977088,
+          "max": 0.5777423671969377,
+          "mean_shift_in_aggregate_training_scales": 1.0277084567033876
+        },
+        "psk4_phase_entropy": {
+          "count": 1200,
+          "mean": 0.999465992714189,
+          "std": 0.000426493873009991,
+          "min": 0.9966111152240477,
+          "p05": 0.9986618450001533,
+          "p95": 0.9999348733018347,
+          "max": 0.9999979375478752,
+          "mean_shift_in_aggregate_training_scales": 0.5361336501225531
+        },
+        "psk8_residual": {
+          "count": 1200,
+          "mean": 0.4082908933155383,
+          "std": 0.011862907812567772,
+          "min": 0.3857653417913151,
+          "p05": 0.39235059525553073,
+          "p95": 0.43105994325540226,
+          "max": 0.44393972416528993,
+          "mean_shift_in_aggregate_training_scales": 1.159442373611721
+        },
+        "psk8_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9980496297060525,
+          "std": 0.0032499307235161934,
+          "min": 0.9608592449243358,
+          "p05": 0.9925847782565823,
+          "p95": 0.9996821364678484,
+          "max": 0.9999190179557126,
+          "mean_shift_in_aggregate_training_scales": 0.7131990445118671
+        },
+        "qam16_residual": {
+          "count": 1200,
+          "mean": 0.25998109894863397,
+          "std": 0.028981349728029283,
+          "min": 0.10043613912879601,
+          "p05": 0.20066443479500068,
+          "p95": 0.290932148863685,
+          "max": 0.30157818637493916,
+          "mean_shift_in_aggregate_training_scales": -0.06571854230519829
+        },
+        "fsk_quality": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1200,
+          "mean": 0.9446340919043205,
+          "std": 0.0015555787000342608,
+          "min": 0.9395710347953867,
+          "p05": 0.9420969789936132,
+          "p95": 0.9471404283232059,
+          "max": 0.9499852061951963,
+          "mean_shift_in_aggregate_training_scales": 0.5285269953298852
+        },
+        "spectral_peak_fraction": {
+          "count": 1200,
+          "mean": 0.004007036947127334,
+          "std": 0.0006116544595642652,
+          "min": 0.0027689819898427705,
+          "p05": 0.003211601598189649,
+          "p95": 0.005102186252535362,
+          "max": 0.0072423206513186865,
+          "mean_shift_in_aggregate_training_scales": -0.5051854839428908
+        }
+      },
+      "2fsk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1200,
+          "mean": 0.14772682435265036,
+          "std": 0.05758978011075725,
+          "min": 0.07084888916259845,
+          "p05": 0.07560611433475922,
+          "p95": 0.24913473870704111,
+          "max": 0.2656281784710039,
+          "mean_shift_in_aggregate_training_scales": -0.5987801905856023
+        },
+        "amplitude_kurtosis": {
+          "count": 1200,
+          "mean": 2.9960356833107675,
+          "std": 0.03990591953371124,
+          "min": 2.8704663441026512,
+          "p05": 2.933310194583141,
+          "p95": 3.0631687205006832,
+          "max": 3.1201641976161136,
+          "mean_shift_in_aggregate_training_scales": 0.5078244683749639
+        },
+        "normalized_moment_2": {
+          "count": 1200,
+          "mean": 0.0020732456833828738,
+          "std": 0.0015065747647934637,
+          "min": 4.3338327120601336e-05,
+          "p05": 0.00040169771352098574,
+          "p95": 0.005089336350917722,
+          "max": 0.011322623916006445,
+          "mean_shift_in_aggregate_training_scales": -0.5908971332547502
+        },
+        "normalized_moment_4": {
+          "count": 1200,
+          "mean": 0.003832872352885626,
+          "std": 0.0024499305674445847,
+          "min": 5.3889527438792205e-05,
+          "p05": 0.000798544018982388,
+          "p95": 0.008634459403456477,
+          "max": 0.014160166770512551,
+          "mean_shift_in_aggregate_training_scales": -0.9615816700935066
+        },
+        "normalized_moment_8": {
+          "count": 1200,
+          "mean": 0.005510515332418023,
+          "std": 0.0031178758405518417,
+          "min": 0.00015061215682208914,
+          "p05": 0.0012892029165438325,
+          "p95": 0.011233898020509284,
+          "max": 0.018304843856920876,
+          "mean_shift_in_aggregate_training_scales": -0.8624321058712293
+        },
+        "psk2_residual": {
+          "count": 1200,
+          "mean": 0.8605586967394585,
+          "std": 0.006285305242336937,
+          "min": 0.8503025152053729,
+          "p05": 0.8528045421072427,
+          "p95": 0.8727592252883171,
+          "max": 0.8759871717197993,
+          "mean_shift_in_aggregate_training_scales": 0.49252797568835843
+        },
+        "psk2_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9998699868939899,
+          "std": 0.00024999602381062155,
+          "min": 0.9978799630920188,
+          "p05": 0.9994063096897192,
+          "p95": 0.9999997312770915,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.2504850353231608
+        },
+        "psk4_residual": {
+          "count": 1200,
+          "mean": 0.4691175360981051,
+          "std": 0.016869248773311828,
+          "min": 0.44240484579827705,
+          "p05": 0.44774962515043887,
+          "p95": 0.5016786302600157,
+          "max": 0.508889107798374,
+          "mean_shift_in_aggregate_training_scales": 0.5409374530305833
+        },
+        "psk4_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9998734139907818,
+          "std": 0.0001645461643252575,
+          "min": 0.9989798907468829,
+          "p05": 0.9995309776384229,
+          "p95": 0.9999964440457131,
+          "max": 0.9999999247654578,
+          "mean_shift_in_aggregate_training_scales": 0.5383200966916696
+        },
+        "psk8_residual": {
+          "count": 1200,
+          "mean": 0.2695014913370238,
+          "std": 0.032715476558224314,
+          "min": 0.2188881007575652,
+          "p05": 0.22543952632988495,
+          "p95": 0.3294393040061139,
+          "max": 0.340943434130971,
+          "mean_shift_in_aggregate_training_scales": -0.08221252949200712
+        },
+        "psk8_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9998811161550957,
+          "std": 0.00013108384003357232,
+          "min": 0.9991601573792057,
+          "p05": 0.9996055931657997,
+          "p95": 0.9999907591629782,
+          "max": 0.9999989393552354,
+          "mean_shift_in_aggregate_training_scales": 0.7213841653359198
+        },
+        "qam16_residual": {
+          "count": 1200,
+          "mean": 0.24690734204387876,
+          "std": 0.01360218483414289,
+          "min": 0.22337070413630053,
+          "p05": 0.2279797308840484,
+          "p95": 0.2702328068033003,
+          "max": 0.2746942484415038,
+          "mean_shift_in_aggregate_training_scales": -0.3007403667519255
+        },
+        "fsk_quality": {
+          "count": 1200,
+          "mean": 0.22834396760646655,
+          "std": 0.10071769170775478,
+          "min": 0.09822168697050389,
+          "p05": 0.10735251852956793,
+          "p95": 0.4017293093930525,
+          "max": 0.44599525359298187,
+          "mean_shift_in_aggregate_training_scales": 6.345410314325945
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1200,
+          "mean": 1.796953035132638,
+          "std": 0.09654610287261377,
+          "min": 1.6375399275197229,
+          "p05": 1.649670594618346,
+          "p95": 1.9299781646039462,
+          "max": 1.9385838952139602,
+          "mean_shift_in_aggregate_training_scales": 2.2969705196248906
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1200,
+          "mean": 0.2768780775648069,
+          "std": 0.09539817344704733,
+          "min": 0.1467464290074472,
+          "p05": 0.1591930167256745,
+          "p95": 0.4434898058845073,
+          "max": 0.47790257599804664,
+          "mean_shift_in_aggregate_training_scales": 4.741012053091106
+        },
+        "spectral_entropy": {
+          "count": 1200,
+          "mean": 0.5484828133887106,
+          "std": 0.023014256716386048,
+          "min": 0.5209194108103559,
+          "p05": 0.5234468829323277,
+          "p95": 0.5931608503971724,
+          "max": 0.6033695832195097,
+          "mean_shift_in_aggregate_training_scales": -2.208307643586338
+        },
+        "spectral_peak_fraction": {
+          "count": 1200,
+          "mean": 0.24587323877084283,
+          "std": 0.011477155578735644,
+          "min": 0.21606816584144498,
+          "p05": 0.2252430249191228,
+          "p95": 0.26327977932996177,
+          "max": 0.28557612891638745,
+          "mean_shift_in_aggregate_training_scales": 4.073878149824376
+        }
+      }
+    },
+    "class_pair_standardized_mean_separation": {
+      "bpsk_vs_qpsk": {
+        "amplitude_coefficient_of_variation": 0.07892701779050214,
+        "amplitude_kurtosis": -0.0086223139618998,
+        "normalized_moment_2": 1.6547002712337577,
+        "normalized_moment_4": -0.05690402620752183,
+        "normalized_moment_8": -0.04613028865755755,
+        "psk2_residual": -1.5235098905881204,
+        "psk2_phase_entropy": -0.0417064554462925,
+        "psk4_residual": 0.0706372171530022,
+        "psk4_phase_entropy": -0.9284919517597068,
+        "psk8_residual": 0.08666212970616481,
+        "psk8_phase_entropy": -0.6663349157651038,
+        "qam16_residual": -0.013703518405769171,
+        "fsk_quality": 0.0,
+        "fsk_tone_separation_norm": 0.0,
+        "fsk_frequency_repeat_fraction": 0.0,
+        "spectral_entropy": 0.06184804672097,
+        "spectral_peak_fraction": -0.13545464607477145
+      },
+      "bpsk_vs_8psk": {
+        "amplitude_coefficient_of_variation": 0.02559101259192548,
+        "amplitude_kurtosis": -0.02257336946620309,
+        "normalized_moment_2": 1.6533727984981226,
+        "normalized_moment_4": 1.0738263663595553,
+        "normalized_moment_8": -0.02756205499996348,
+        "psk2_residual": -1.492423564659489,
+        "psk2_phase_entropy": -0.012689849371007473,
+        "psk4_residual": -0.9119781598610107,
+        "psk4_phase_entropy": -0.9284841112228861,
+        "psk8_residual": 0.03754471214839595,
+        "psk8_phase_entropy": -1.0186970168594567,
+        "qam16_residual": 0.4239313075166748,
+        "fsk_quality": 0.0,
+        "fsk_tone_separation_norm": 0.0,
+        "fsk_frequency_repeat_fraction": 0.0,
+        "spectral_entropy": 0.020176806778670207,
+        "spectral_peak_fraction": -0.1215699443081897
+      },
+      "qpsk_vs_8psk": {
+        "amplitude_coefficient_of_variation": -0.05443855310530973,
+        "amplitude_kurtosis": -0.014274734531333284,
+        "normalized_moment_2": -0.029269136266118687,
+        "normalized_moment_4": 1.0921910667125228,
+        "normalized_moment_8": 0.018299705261870036,
+        "psk2_residual": 0.3234206622668737,
+        "psk2_phase_entropy": 0.02981269591397896,
+        "psk4_residual": -0.9717366569452013,
+        "psk4_phase_entropy": 0.0026751498438794996,
+        "psk8_residual": -0.04938962814195363,
+        "psk8_phase_entropy": -0.6087508886103614,
+        "qam16_residual": 0.4298898097989347,
+        "fsk_quality": 0.0,
+        "fsk_tone_separation_norm": 0.0,
+        "fsk_frequency_repeat_fraction": 0.0,
+        "spectral_entropy": -0.046051581326053054,
+        "spectral_peak_fraction": 0.015126685704523581
+      }
+    },
+    "features_over_two_training_scales_from_aggregate_mean": []
+  },
+  "CFO_retry_classifier_input_when_second_call_occurs": {
+    "scaler_statistics_source": "aggregate StandardScaler mean/scale in frozen production_ml_contract.json; raw training rows and class-conditional training feature distributions were unavailable",
+    "overall": {
+      "amplitude_coefficient_of_variation": {
+        "production_path_mean": 0.16215130054188728,
+        "production_path_std": 0.07455165650908485,
+        "production_path_min": 0.06836732784832528,
+        "production_path_p05": 0.07611377061251262,
+        "production_path_p95": 0.3496333742209565,
+        "production_path_max": 0.4014773905218711,
+        "training_scaler_aggregate_mean": 0.21716524408951401,
+        "training_scaler_aggregate_scale": 0.11596646119664285,
+        "mean_shift_in_training_scales": -0.4743952948114911,
+        "observed_std_over_training_scale": 0.6428725662557604
+      },
+      "amplitude_kurtosis": {
+        "production_path_mean": 2.9639722752286133,
+        "production_path_std": 0.16110025881764145,
+        "production_path_min": 2.267095340789695,
+        "production_path_p05": 2.562697904105553,
+        "production_path_p95": 3.172173552798926,
+        "production_path_max": 3.43689993100867,
+        "training_scaler_aggregate_mean": 2.8479950062298776,
+        "training_scaler_aggregate_scale": 0.2915193857330654,
+        "mean_shift_in_training_scales": 0.3978372440209937,
+        "observed_std_over_training_scale": 0.5526227986949575
+      },
+      "normalized_moment_2": {
+        "production_path_mean": 0.2954232541838709,
+        "production_path_std": 0.42436890965720875,
+        "production_path_min": 0.0002256544337899277,
+        "production_path_p05": 0.005124500910496609,
+        "production_path_p95": 0.9842036468687657,
+        "production_path_max": 0.9904819239557741,
+        "training_scaler_aggregate_mean": 0.21057068312972077,
+        "training_scaler_aggregate_scale": 0.35284895747911765,
+        "mean_shift_in_training_scales": 0.24047845191429218,
+        "observed_std_over_training_scale": 1.2026928255337803
+      },
+      "normalized_moment_4": {
+        "production_path_mean": 0.5123811498439607,
+        "production_path_std": 0.3917948973120789,
+        "production_path_min": 0.0008049420990450679,
+        "production_path_p05": 0.007559566867711511,
+        "production_path_p95": 0.9510764923500912,
+        "production_path_max": 0.9624858053690022,
+        "training_scaler_aggregate_mean": 0.3443073801217426,
+        "training_scaler_aggregate_scale": 0.3540775769319192,
+        "mean_shift_in_training_scales": 0.4746806368778746,
+        "observed_std_over_training_scale": 1.1065227589585878
+      },
+      "normalized_moment_8": {
+        "production_path_mean": 0.4666382348202342,
+        "production_path_std": 0.26249131716792634,
+        "production_path_min": 0.001673654906135762,
+        "production_path_p05": 0.032004609976372826,
+        "production_path_p95": 0.8278797639779618,
+        "production_path_max": 0.8584477129812568,
+        "training_scaler_aggregate_mean": 0.27657779769404905,
+        "training_scaler_aggregate_scale": 0.3143056485447034,
+        "mean_shift_in_training_scales": 0.6046994001100588,
+        "observed_std_over_training_scale": 0.8351466745294348
+      },
+      "psk2_residual": {
+        "production_path_mean": 0.6792317942725824,
+        "production_path_std": 0.3090868627055953,
+        "production_path_min": 0.09893833897550697,
+        "production_path_p05": 0.1244860171384096,
+        "production_path_p95": 0.946242111349834,
+        "production_path_max": 0.9695312218942029,
+        "training_scaler_aggregate_mean": 0.7362881748700142,
+        "training_scaler_aggregate_scale": 0.2523116005659648,
+        "mean_shift_in_training_scales": -0.22613459099560848,
+        "observed_std_over_training_scale": 1.2250204192446041
+      },
+      "psk2_phase_entropy": {
+        "production_path_mean": 0.9996334136652012,
+        "production_path_std": 0.0005306857855972748,
+        "production_path_min": 0.9950239777948092,
+        "production_path_p05": 0.9986064918040909,
+        "production_path_p95": 0.9999993120692872,
+        "production_path_max": 1.0,
+        "training_scaler_aggregate_mean": 0.9922677547419071,
+        "training_scaler_aggregate_scale": 0.030350045232342256,
+        "mean_shift_in_training_scales": 0.24269021238376792,
+        "observed_std_over_training_scale": 0.017485502296113686
+      },
+      "psk4_residual": {
+        "production_path_mean": 0.31544919578898056,
+        "production_path_std": 0.14758739107928787,
+        "production_path_min": 0.09893835706779877,
+        "production_path_p05": 0.1114410527704898,
+        "production_path_p95": 0.5049106113994597,
+        "production_path_max": 0.5731304280434755,
+        "training_scaler_aggregate_mean": 0.39062289493098856,
+        "training_scaler_aggregate_scale": 0.14510853468798107,
+        "mean_shift_in_training_scales": -0.5180515350365151,
+        "observed_std_over_training_scale": 1.0170827746047946
+      },
+      "psk4_phase_entropy": {
+        "production_path_mean": 0.8515181978445847,
+        "production_path_std": 0.22666073778743573,
+        "production_path_min": 0.49801142841582674,
+        "production_path_p05": 0.49971068650050393,
+        "production_path_p95": 0.9999236892503772,
+        "production_path_max": 0.9999993120689591,
+        "training_scaler_aggregate_mean": 0.8995631369835139,
+        "training_scaler_aggregate_scale": 0.18633946163953458,
+        "mean_shift_in_training_scales": -0.25783555837394206,
+        "observed_std_over_training_scale": 1.216386136318784
+      },
+      "psk8_residual": {
+        "production_path_mean": 0.21615010264228407,
+        "production_path_std": 0.08318139823711035,
+        "production_path_min": 0.09893844307118012,
+        "production_path_p05": 0.1075998410316824,
+        "production_path_p95": 0.40341480756290826,
+        "production_path_max": 0.434620710937224,
+        "training_scaler_aggregate_mean": 0.2786910236094892,
+        "training_scaler_aggregate_scale": 0.1117777585636611,
+        "mean_shift_in_training_scales": -0.5595113175541631,
+        "observed_std_over_training_scale": 0.7441677065812321
+      },
+      "psk8_phase_entropy": {
+        "production_path_mean": 0.7334555178545518,
+        "production_path_std": 0.25108058903683705,
+        "production_path_min": 0.3321436078134929,
+        "production_path_p05": 0.3332945788682841,
+        "production_path_p95": 0.9996224741033398,
+        "production_path_max": 0.999962384633167,
+        "training_scaler_aggregate_mean": 0.8384656218981743,
+        "training_scaler_aggregate_scale": 0.2237580224425312,
+        "mean_shift_in_training_scales": -0.46930207416626935,
+        "observed_std_over_training_scale": 1.1221076513639783
+      },
+      "qam16_residual": {
+        "production_path_mean": 0.2856658803458631,
+        "production_path_std": 0.03636984748218872,
+        "production_path_min": 0.12375287831867028,
+        "production_path_p05": 0.21823566340813516,
+        "production_path_p95": 0.3362533906553654,
+        "production_path_max": 0.34058841829051245,
+        "training_scaler_aggregate_mean": 0.26363687963306903,
+        "training_scaler_aggregate_scale": 0.055627841948434266,
+        "mean_shift_in_training_scales": 0.39600674664342445,
+        "observed_std_over_training_scale": 0.6538065509696158
+      },
+      "fsk_quality": {
+        "production_path_mean": 0.0,
+        "production_path_std": 0.0,
+        "production_path_min": 0.0,
+        "production_path_p05": 0.0,
+        "production_path_p95": 0.0,
+        "production_path_max": 0.0,
+        "training_scaler_aggregate_mean": 0.016194655499085785,
+        "training_scaler_aggregate_scale": 0.03343350573065609,
+        "mean_shift_in_training_scales": -0.48438400775412743,
+        "observed_std_over_training_scale": 0.0
+      },
+      "fsk_tone_separation_norm": {
+        "production_path_mean": 0.0,
+        "production_path_std": 0.0,
+        "production_path_min": 0.0,
+        "production_path_p05": 0.0,
+        "production_path_p95": 0.0,
+        "production_path_max": 0.0,
+        "training_scaler_aggregate_mean": 0.32111877619981766,
+        "training_scaler_aggregate_scale": 0.642513365462711,
+        "mean_shift_in_training_scales": -0.4997853639489063,
+        "observed_std_over_training_scale": 0.0
+      },
+      "fsk_frequency_repeat_fraction": {
+        "production_path_mean": 0.0,
+        "production_path_std": 0.0,
+        "production_path_min": 0.0,
+        "production_path_p05": 0.0,
+        "production_path_p95": 0.0,
+        "production_path_max": 0.0,
+        "training_scaler_aggregate_mean": 0.02597575360700488,
+        "training_scaler_aggregate_scale": 0.05292168025479191,
+        "mean_shift_in_training_scales": -0.4908338790821527,
+        "observed_std_over_training_scale": 0.0
+      },
+      "spectral_entropy": {
+        "production_path_mean": 0.9445685103131348,
+        "production_path_std": 0.0017832850605877797,
+        "production_path_min": 0.9380027611004845,
+        "production_path_p05": 0.9416147676070048,
+        "production_path_p95": 0.9474971252832214,
+        "production_path_max": 0.9526008127383793,
+        "training_scaler_aggregate_mean": 0.8681308783185482,
+        "training_scaler_aggregate_scale": 0.14474797741981382,
+        "mean_shift_in_training_scales": 0.5280739210116485,
+        "observed_std_over_training_scale": 0.012319930767776481
+      },
+      "spectral_peak_fraction": {
+        "production_path_mean": 0.003972177930991655,
+        "production_path_std": 0.000649201813363937,
+        "production_path_min": 0.0024839644907640305,
+        "production_path_p05": 0.0031315195968855234,
+        "production_path_p95": 0.005187241270817313,
+        "production_path_max": 0.00860995760466038,
+        "training_scaler_aggregate_mean": 0.03069094090441242,
+        "training_scaler_aggregate_scale": 0.05282001325339269,
+        "mean_shift_in_training_scales": -0.5058454424318909,
+        "observed_std_over_training_scale": 0.012290830186837147
+      }
+    },
+    "by_class": {
+      "bpsk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1136,
+          "mean": 0.15325858996810396,
+          "std": 0.058802143159615024,
+          "min": 0.06987021389841165,
+          "p05": 0.07553527280899405,
+          "p95": 0.25191237702383096,
+          "max": 0.2722675496348873,
+          "mean_shift_in_aggregate_training_scales": -0.5510787641699643
+        },
+        "amplitude_kurtosis": {
+          "count": 1136,
+          "mean": 2.99200106240944,
+          "std": 0.10435884375730117,
+          "min": 2.6766833389434628,
+          "p05": 2.8261417892761753,
+          "p95": 3.1722200005872847,
+          "max": 3.36423035741291,
+          "mean_shift_in_aggregate_training_scales": 0.4939844937496677
+        },
+        "normalized_moment_2": {
+          "count": 1136,
+          "mean": 0.9235215939306198,
+          "std": 0.1430336470548022,
+          "min": 0.0035632695276884858,
+          "p05": 0.8536073906355648,
+          "p95": 0.9884956496553198,
+          "max": 0.9904819239557741,
+          "mean_shift_in_aggregate_training_scales": 2.0205555257821417
+        },
+        "normalized_moment_4": {
+          "count": 1136,
+          "mean": 0.7880185215933978,
+          "std": 0.17407794566186194,
+          "min": 0.0014190803779055175,
+          "p05": 0.5439556701893069,
+          "p95": 0.9547647532959695,
+          "max": 0.9624858053690022,
+          "mean_shift_in_aggregate_training_scales": 1.2531466841713346
+        },
+        "normalized_moment_8": {
+          "count": 1136,
+          "mean": 0.48028264629298545,
+          "std": 0.2542397030790864,
+          "min": 0.002160595348473968,
+          "p05": 0.10409150212255622,
+          "p95": 0.8308818241263507,
+          "max": 0.8584477129812568,
+          "mean_shift_in_aggregate_training_scales": 0.6481106831586695
+        },
+        "psk2_residual": {
+          "count": 1136,
+          "mean": 0.22852512752183238,
+          "std": 0.12569936097642834,
+          "min": 0.09893833897550697,
+          "p05": 0.10701692707542429,
+          "p95": 0.3613270921170255,
+          "max": 0.8800235976647711,
+          "mean_shift_in_aggregate_training_scales": -2.0124443196793536
+        },
+        "psk2_phase_entropy": {
+          "count": 1136,
+          "mean": 0.9996074833322528,
+          "std": 0.0005598462418303865,
+          "min": 0.9954817686061117,
+          "p05": 0.9984798272848455,
+          "p95": 0.9999972482758367,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.24183583695368566
+        },
+        "psk4_residual": {
+          "count": 1136,
+          "mean": 0.22009695814889574,
+          "std": 0.0908013266060629,
+          "min": 0.09893835706779877,
+          "p05": 0.10701692789267359,
+          "p95": 0.35925353265355214,
+          "max": 0.5087901639673016,
+          "mean_shift_in_aggregate_training_scales": -1.1751613173461188
+        },
+        "psk4_phase_entropy": {
+          "count": 1136,
+          "mean": 0.5154891738685443,
+          "std": 0.07334967690017458,
+          "min": 0.49801142841582674,
+          "p05": 0.4993930749711157,
+          "p95": 0.5346292061881566,
+          "max": 0.999977316678036,
+          "mean_shift_in_aggregate_training_scales": -2.061152048716034
+        },
+        "psk8_residual": {
+          "count": 1136,
+          "mean": 0.20821767701278673,
+          "std": 0.07248990380170171,
+          "min": 0.09893844307118012,
+          "p05": 0.1070169561523887,
+          "p95": 0.32126922802583757,
+          "max": 0.34050795278093604,
+          "mean_shift_in_aggregate_training_scales": -0.6304773642116432
+        },
+        "psk8_phase_entropy": {
+          "count": 1136,
+          "mean": 0.4191808011598727,
+          "std": 0.12305797712664218,
+          "min": 0.3321436078134929,
+          "p05": 0.33311293255730423,
+          "p95": 0.594628192802122,
+          "max": 0.9998895735767345,
+          "mean_shift_in_aggregate_training_scales": -1.8738314548967219
+        },
+        "qam16_residual": {
+          "count": 1136,
+          "mean": 0.3017863025112879,
+          "std": 0.024925624304005075,
+          "min": 0.2618015982861154,
+          "p05": 0.26776791315067205,
+          "p95": 0.3377378218336441,
+          "max": 0.34058841829051245,
+          "mean_shift_in_aggregate_training_scales": 0.6857972831946728
+        },
+        "fsk_quality": {
+          "count": 1136,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1136,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1136,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1136,
+          "mean": 0.9445214843858334,
+          "std": 0.0021697849569997196,
+          "min": 0.9380027611004845,
+          "p05": 0.9407340201731865,
+          "p95": 0.9479576811906999,
+          "max": 0.9526008127383793,
+          "mean_shift_in_aggregate_training_scales": 0.5277490395995577
+        },
+        "spectral_peak_fraction": {
+          "count": 1136,
+          "mean": 0.0038809486986196603,
+          "std": 0.000652315480305001,
+          "min": 0.0024839644907640305,
+          "p05": 0.0030212123392044828,
+          "p95": 0.005087226893137143,
+          "max": 0.006870573216468594,
+          "mean_shift_in_aggregate_training_scales": -0.5075726141373265
+        }
+      },
+      "qpsk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1187,
+          "mean": 0.14719570043953167,
+          "std": 0.055098809596250395,
+          "min": 0.06945042510241933,
+          "p05": 0.07545603051991244,
+          "p95": 0.24909841105666955,
+          "max": 0.26833175441457097,
+          "mean_shift_in_aggregate_training_scales": -0.6033601692073356
+        },
+        "amplitude_kurtosis": {
+          "count": 1187,
+          "mean": 2.9933748431557774,
+          "std": 0.10374555848290122,
+          "min": 2.6980659446192274,
+          "p05": 2.831325007429679,
+          "p95": 3.1681412590056293,
+          "max": 3.43689993100867,
+          "mean_shift_in_aggregate_training_scales": 0.49869697879721564
+        },
+        "normalized_moment_2": {
+          "count": 1187,
+          "mean": 0.018441085829296367,
+          "std": 0.011985927626543448,
+          "min": 0.00065824689221791,
+          "p05": 0.00395764728919147,
+          "p95": 0.04207724283607179,
+          "max": 0.07155634055172819,
+          "mean_shift_in_aggregate_training_scales": -0.5445094656735525
+        },
+        "normalized_moment_4": {
+          "count": 1187,
+          "mean": 0.8039706031381214,
+          "std": 0.16561292139290523,
+          "min": 0.004991270524025885,
+          "p05": 0.5544529412775313,
+          "p95": 0.9544335437444744,
+          "max": 0.9605292465929599,
+          "mean_shift_in_aggregate_training_scales": 1.298199188435932
+        },
+        "normalized_moment_8": {
+          "count": 1187,
+          "mean": 0.5041237614075053,
+          "std": 0.2420916932836905,
+          "min": 0.0022424392490326345,
+          "p05": 0.11566598366309522,
+          "p95": 0.8299547096288166,
+          "max": 0.8512370746015524,
+          "mean_shift_in_aggregate_training_scales": 0.7239639655444899
+        },
+        "psk2_residual": {
+          "count": 1187,
+          "mean": 0.900584886983462,
+          "std": 0.050088589121557704,
+          "min": 0.7687399144973306,
+          "p05": 0.7974006439575158,
+          "p95": 0.9577169426937537,
+          "max": 0.9695312218942029,
+          "mean_shift_in_aggregate_training_scales": 0.6511659065413987
+        },
+        "psk2_phase_entropy": {
+          "count": 1187,
+          "mean": 0.9996534027199001,
+          "std": 0.000521821176325033,
+          "min": 0.9950239777948092,
+          "p05": 0.9986677562183462,
+          "p95": 0.9999993120692872,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.24334882934943916
+        },
+        "psk4_residual": {
+          "count": 1187,
+          "mean": 0.21139052879331985,
+          "std": 0.0859737285690337,
+          "min": 0.09945957588430991,
+          "p05": 0.10661004892554228,
+          "p95": 0.35432205287867763,
+          "max": 0.5077209174751932,
+          "mean_shift_in_aggregate_training_scales": -1.2351607472507544
+        },
+        "psk4_phase_entropy": {
+          "count": 1187,
+          "mean": 0.9994705928496487,
+          "std": 0.00043920171883261974,
+          "min": 0.996910437572817,
+          "p05": 0.9985882183155869,
+          "p95": 0.9999372858409808,
+          "max": 0.9999993120689591,
+          "mean_shift_in_aggregate_training_scales": 0.5361583369785695
+        },
+        "psk8_residual": {
+          "count": 1187,
+          "mean": 0.20127077947024222,
+          "std": 0.06855071147559735,
+          "min": 0.09945958065303132,
+          "p05": 0.10661019599214276,
+          "p95": 0.3181394299027737,
+          "max": 0.338814831978745,
+          "mean_shift_in_aggregate_training_scales": -0.6926265576810045
+        },
+        "psk8_phase_entropy": {
+          "count": 1187,
+          "mean": 0.7232092460023618,
+          "std": 0.07593022267560677,
+          "min": 0.664606958381878,
+          "p05": 0.6660924706245399,
+          "p95": 0.8695495471912706,
+          "max": 0.9997209285426957,
+          "mean_shift_in_aggregate_training_scales": -0.515093826079082
+        },
+        "qam16_residual": {
+          "count": 1187,
+          "mean": 0.30398348850223283,
+          "std": 0.023796774822309148,
+          "min": 0.26254355572784976,
+          "p05": 0.26846834855992935,
+          "p95": 0.3377767607596642,
+          "max": 0.3404193262799762,
+          "mean_shift_in_aggregate_training_scales": 0.7252952380673725
+        },
+        "fsk_quality": {
+          "count": 1187,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1187,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1187,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1187,
+          "mean": 0.9445686096026595,
+          "std": 0.0015762421558735754,
+          "min": 0.9385303206397971,
+          "p05": 0.9419790397893517,
+          "p95": 0.9471607539491969,
+          "max": 0.9499310794287013,
+          "mean_shift_in_aggregate_training_scales": 0.5280746069592277
+        },
+        "spectral_peak_fraction": {
+          "count": 1187,
+          "mean": 0.004021445568243328,
+          "std": 0.0006579469181793402,
+          "min": 0.002754806978312758,
+          "p05": 0.0032038954942786614,
+          "p95": 0.005304769667880968,
+          "max": 0.00860995760466038,
+          "mean_shift_in_aggregate_training_scales": -0.5049126967883917
+        }
+      },
+      "8psk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1189,
+          "mean": 0.1497575221683244,
+          "std": 0.055440516782313584,
+          "min": 0.06836732784832528,
+          "p05": 0.07598636743452648,
+          "p95": 0.24732347278595798,
+          "max": 0.2716891154191228,
+          "mean_shift_in_aggregate_training_scales": -0.5812691119968489
+        },
+        "amplitude_kurtosis": {
+          "count": 1189,
+          "mean": 2.994929783654666,
+          "std": 0.11006697901620933,
+          "min": 2.696958838158516,
+          "p05": 2.8188755506595125,
+          "p95": 3.1905418073108303,
+          "max": 3.3999526289755777,
+          "mean_shift_in_aggregate_training_scales": 0.5040308967971404
+        },
+        "normalized_moment_2": {
+          "count": 1189,
+          "mean": 0.019097468599143293,
+          "std": 0.010284219263710067,
+          "min": 0.00044411455944584806,
+          "p05": 0.00478985090072368,
+          "p95": 0.0376398607088556,
+          "max": 0.0672250707001072,
+          "mean_shift_in_aggregate_training_scales": -0.5426492284362474
+        },
+        "normalized_moment_4": {
+          "count": 1189,
+          "mean": 0.018995497401322364,
+          "std": 0.011490757653002311,
+          "min": 0.0008049420990450679,
+          "p05": 0.004166834155382824,
+          "p95": 0.04148796108310168,
+          "max": 0.06588028706120379,
+          "mean_shift_in_aggregate_training_scales": -0.9187587803194045
+        },
+        "normalized_moment_8": {
+          "count": 1189,
+          "mean": 0.4914537762902836,
+          "std": 0.2447694511980311,
+          "min": 0.0034190265720060414,
+          "p05": 0.11226750630707975,
+          "p95": 0.8277995971938492,
+          "max": 0.8556053306910042,
+          "mean_shift_in_aggregate_training_scales": 0.6836529333505533
+        },
+        "psk2_residual": {
+          "count": 1189,
+          "mean": 0.8526622653038098,
+          "std": 0.01250092795635613,
+          "min": 0.8152018832272249,
+          "p05": 0.830327514617126,
+          "p95": 0.87044981215016,
+          "max": 0.8780510402616615,
+          "mean_shift_in_aggregate_training_scales": 0.46123162856069555
+        },
+        "psk2_phase_entropy": {
+          "count": 1189,
+          "mean": 0.9996410918766793,
+          "std": 0.0005087888491040113,
+          "min": 0.9959174069712251,
+          "p05": 0.9986677562183462,
+          "p95": 0.9999993120692872,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.2429432008527896
+        },
+        "psk4_residual": {
+          "count": 1189,
+          "mean": 0.4761360801857966,
+          "std": 0.02374816898212006,
+          "min": 0.39936336782694143,
+          "p05": 0.4237890857609822,
+          "p95": 0.5024637005195186,
+          "max": 0.5146213312184029,
+          "mean_shift_in_aggregate_training_scales": 0.5893050015196031
+        },
+        "psk4_phase_entropy": {
+          "count": 1189,
+          "mean": 0.9994871936345234,
+          "std": 0.00042269252075865534,
+          "min": 0.9965376207765128,
+          "p05": 0.9986521661932602,
+          "p95": 0.9999430944173955,
+          "max": 0.9999951884952415,
+          "mean_shift_in_aggregate_training_scales": 0.536247425917266
+        },
+        "psk8_residual": {
+          "count": 1189,
+          "mean": 0.2046114669310029,
+          "std": 0.06903106170347417,
+          "min": 0.09958589969371781,
+          "p05": 0.10743795325054509,
+          "p95": 0.31756839157844663,
+          "max": 0.34115792822567886,
+          "mean_shift_in_aggregate_training_scales": -0.6627396865924412
+        },
+        "psk8_phase_entropy": {
+          "count": 1189,
+          "mean": 0.999186160669742,
+          "std": 0.00043504923720501134,
+          "min": 0.9964855870539052,
+          "p05": 0.9984106512983014,
+          "p95": 0.9997523840517036,
+          "max": 0.999962384633167,
+          "mean_shift_in_aggregate_training_scales": 0.7182783303907964
+        },
+        "qam16_residual": {
+          "count": 1189,
+          "mean": 0.2608110901372589,
+          "std": 0.033431122310900285,
+          "min": 0.12409792143663334,
+          "p05": 0.18654896559363818,
+          "p95": 0.3024170200491139,
+          "max": 0.3106441215924994,
+          "mean_shift_in_aggregate_training_scales": -0.05079811470000185
+        },
+        "fsk_quality": {
+          "count": 1189,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1189,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1189,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1189,
+          "mean": 0.9446034223803651,
+          "std": 0.001583859236865049,
+          "min": 0.9400772008576044,
+          "p05": 0.942037186486129,
+          "p95": 0.9473673674532354,
+          "max": 0.949557995833174,
+          "mean_shift_in_aggregate_training_scales": 0.5283151131018773
+        },
+        "spectral_peak_fraction": {
+          "count": 1189,
+          "mean": 0.004007285900333299,
+          "std": 0.0006341311456473091,
+          "min": 0.002817734538438022,
+          "p05": 0.0031911653380138887,
+          "p95": 0.0052162733095614325,
+          "max": 0.007044820683914408,
+          "mean_shift_in_aggregate_training_scales": -0.5051807707065503
+        }
+      },
+      "16qam": {
+        "amplitude_coefficient_of_variation": {
+          "count": 204,
+          "mean": 0.3709288447550259,
+          "std": 0.01426677190539475,
+          "min": 0.33116001269279105,
+          "p05": 0.34562937060235704,
+          "p95": 0.39260449379481827,
+          "max": 0.4014773905218711,
+          "mean_shift_in_aggregate_training_scales": 1.3259316450536238
+        },
+        "amplitude_kurtosis": {
+          "count": 204,
+          "mean": 2.4563740993191145,
+          "std": 0.07934870459830833,
+          "min": 2.267095340789695,
+          "p05": 2.326901931355742,
+          "p95": 2.580751860053514,
+          "max": 2.678625647698963,
+          "mean_shift_in_aggregate_training_scales": -1.3433786090279336
+        },
+        "normalized_moment_2": {
+          "count": 204,
+          "mean": 0.019979523521195,
+          "std": 0.010707424064357976,
+          "min": 0.0002256544337899277,
+          "p05": 0.004634039027489595,
+          "p95": 0.03831356539312159,
+          "max": 0.052884462256048786,
+          "mean_shift_in_aggregate_training_scales": -0.5401494196558746
+        },
+        "normalized_moment_4": {
+          "count": 204,
+          "mean": 0.15647333311242992,
+          "std": 0.05759835233269473,
+          "min": 0.0032658778017262053,
+          "p05": 0.018817950205455427,
+          "p95": 0.24460686870650722,
+          "max": 0.29812715702470344,
+          "mean_shift_in_aggregate_training_scales": -0.5304883992849645
+        },
+        "normalized_moment_8": {
+          "count": 204,
+          "mean": 0.027907596094622063,
+          "std": 0.014430895032895522,
+          "min": 0.001673654906135762,
+          "p05": 0.007011785115814828,
+          "p95": 0.05342420945030693,
+          "max": 0.079343058497358,
+          "mean_shift_in_aggregate_training_scales": -0.7911731868352307
+        },
+        "psk2_residual": {
+          "count": 204,
+          "mean": 0.890250531159388,
+          "std": 0.015265252065141415,
+          "min": 0.8476166955669905,
+          "p05": 0.8666146678843905,
+          "p95": 0.9145390163897764,
+          "max": 0.9223893628618618,
+          "mean_shift_in_aggregate_training_scales": 0.6102072038860601
+        },
+        "psk2_phase_entropy": {
+          "count": 204,
+          "mean": 0.9996167492380168,
+          "std": 0.0005375680211714956,
+          "min": 0.9969096723426846,
+          "p05": 0.9984242369895564,
+          "p95": 0.999993808615712,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.2421411381712972
+        },
+        "psk4_residual": {
+          "count": 204,
+          "mean": 0.5153564219417801,
+          "std": 0.021247306498822553,
+          "min": 0.4620868576214708,
+          "p05": 0.48268746089065184,
+          "p95": 0.5638157018887182,
+          "max": 0.5731304280434755,
+          "mean_shift_in_aggregate_training_scales": 0.8595878063202775
+        },
+        "psk4_phase_entropy": {
+          "count": 204,
+          "mean": 0.9994316408423,
+          "std": 0.00047239247804154534,
+          "min": 0.9976830280216623,
+          "p05": 0.998332249769552,
+          "p95": 0.9999251047368439,
+          "max": 0.9999965603395474,
+          "mean_shift_in_aggregate_training_scales": 0.5359492990914468
+        },
+        "psk8_residual": {
+          "count": 204,
+          "mean": 0.4141522103924605,
+          "std": 0.00878390020068803,
+          "min": 0.3893252600644527,
+          "p05": 0.39869476101996754,
+          "p95": 0.42986437789811927,
+          "max": 0.434620710937224,
+          "mean_shift_in_aggregate_training_scales": 1.2118796129358926
+        },
+        "psk8_phase_entropy": {
+          "count": 204,
+          "mean": 0.9943607558273161,
+          "std": 0.0035153905066646132,
+          "min": 0.9813063440037624,
+          "p05": 0.9882055490525039,
+          "p95": 0.9994791276830061,
+          "max": 0.9998601441916203,
+          "mean_shift_in_aggregate_training_scales": 0.6967130484413404
+        },
+        "qam16_residual": {
+          "count": 204,
+          "mean": 0.23417835630908426,
+          "std": 0.03443695015002091,
+          "min": 0.12375287831867028,
+          "p05": 0.1732144098004387,
+          "p95": 0.29311429111361514,
+          "max": 0.2981753137219608,
+          "mean_shift_in_aggregate_training_scales": -0.5295643744600437
+        },
+        "fsk_quality": {
+          "count": 204,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 204,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 204,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 204,
+          "mean": 0.9446263198661367,
+          "std": 0.0016294918274371798,
+          "min": 0.9410424899916221,
+          "p05": 0.9421849870530142,
+          "p95": 0.9474343255486997,
+          "max": 0.9494314417948925,
+          "mean_shift_in_aggregate_training_scales": 0.5284733017424352
+        },
+        "spectral_peak_fraction": {
+          "count": 204,
+          "mean": 0.003988905122215345,
+          "std": 0.0006190040710769236,
+          "min": 0.002973228799818592,
+          "p05": 0.0031907595574840043,
+          "p95": 0.00507931051125606,
+          "max": 0.006367676820624125,
+          "mean_shift_in_aggregate_training_scales": -0.5055287596029139
+        }
+      },
+      "2fsk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "amplitude_kurtosis": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "normalized_moment_2": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "normalized_moment_4": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "normalized_moment_8": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "psk2_residual": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "psk2_phase_entropy": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "psk4_residual": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "psk4_phase_entropy": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "psk8_residual": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "psk8_phase_entropy": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "qam16_residual": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "fsk_quality": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "fsk_tone_separation_norm": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "spectral_entropy": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        },
+        "spectral_peak_fraction": {
+          "count": 0,
+          "mean": null,
+          "std": null,
+          "min": null,
+          "p05": null,
+          "p95": null,
+          "max": null,
+          "mean_shift_in_aggregate_training_scales": null
+        }
+      }
+    },
+    "class_pair_standardized_mean_separation": {
+      "bpsk_vs_qpsk": {
+        "amplitude_coefficient_of_variation": 0.10640275204915983,
+        "amplitude_kurtosis": -0.013202745987585772,
+        "normalized_moment_2": 8.91752831718306,
+        "normalized_moment_4": -0.09389201953374647,
+        "normalized_moment_8": -0.09604057863430854,
+        "psk2_residual": -7.024060632443686,
+        "psk2_phase_entropy": -0.08485240339390303,
+        "psk4_residual": 0.09846620667476103,
+        "psk4_phase_entropy": -9.331204251915759,
+        "psk8_residual": 0.09847077917544668,
+        "psk8_phase_entropy": -2.9734871729103522,
+        "qam16_residual": -0.09016782998761023,
+        "fsk_quality": 0.0,
+        "fsk_tone_separation_norm": 0.0,
+        "fsk_frequency_repeat_fraction": 0.0,
+        "spectral_entropy": -0.024850105680305067,
+        "spectral_peak_fraction": -0.2144541004165541
+      },
+      "bpsk_vs_8psk": {
+        "amplitude_coefficient_of_variation": 0.06126525917203865,
+        "amplitude_kurtosis": -0.02730719680434648,
+        "normalized_moment_2": 8.919268285163174,
+        "normalized_moment_4": 6.233995491950456,
+        "normalized_moment_8": -0.04476518596436811,
+        "psk2_residual": -6.987548076619082,
+        "psk2_phase_entropy": -0.06282827562725939,
+        "psk4_residual": -3.857994116008312,
+        "psk4_phase_entropy": -9.33153665583156,
+        "psk8_residual": 0.05094840172452168,
+        "psk8_phase_entropy": -6.665527411707431,
+        "qam16_residual": 1.3896184604239543,
+        "fsk_quality": 0.0,
+        "fsk_tone_separation_norm": 0.0,
+        "fsk_frequency_repeat_fraction": 0.0,
+        "spectral_entropy": -0.04313548722509537,
+        "spectral_peak_fraction": -0.19639304034946162
+      },
+      "qpsk_vs_8psk": {
+        "amplitude_coefficient_of_variation": -0.04635109643723206,
+        "amplitude_kurtosis": -0.014538542711662841,
+        "normalized_moment_2": -0.05877598183895367,
+        "normalized_moment_4": 6.687038417199996,
+        "normalized_moment_8": 0.05204684591717267,
+        "psk2_residual": 1.3127908954892644,
+        "psk2_phase_entropy": 0.023888490832730494,
+        "psk4_residual": -4.197697011770827,
+        "psk4_phase_entropy": -0.0385145637646193,
+        "psk8_residual": -0.04856264056946229,
+        "psk8_phase_entropy": -5.140033517084354,
+        "qam16_residual": 1.487851601440358,
+        "fsk_quality": 0.0,
+        "fsk_tone_separation_norm": 0.0,
+        "fsk_frequency_repeat_fraction": 0.0,
+        "spectral_entropy": -0.022032632658561754,
+        "spectral_peak_fraction": 0.02191394403750557
+      }
+    },
+    "features_over_two_training_scales_from_aggregate_mean": []
+  },
+  "selected_classifier_input_for_final_Analyzer_classification": {
+    "scaler_statistics_source": "aggregate StandardScaler mean/scale in frozen production_ml_contract.json; raw training rows and class-conditional training feature distributions were unavailable",
+    "overall": {
+      "amplitude_coefficient_of_variation": {
+        "production_path_mean": 0.19218936817430363,
+        "production_path_std": 0.09958814778018192,
+        "production_path_min": 0.06836732784832528,
+        "production_path_p05": 0.07689367762330959,
+        "production_path_p95": 0.3740074792757299,
+        "production_path_max": 0.41381791730491463,
+        "training_scaler_aggregate_mean": 0.21716524408951401,
+        "training_scaler_aggregate_scale": 0.11596646119664285,
+        "mean_shift_in_training_scales": -0.21537154499229838,
+        "observed_std_over_training_scale": 0.8587668085457189
+      },
+      "amplitude_kurtosis": {
+        "production_path_mean": 2.859153100392916,
+        "production_path_std": 0.28854797789713293,
+        "production_path_min": 1.9874341755928822,
+        "production_path_p05": 2.2113880518938887,
+        "production_path_p95": 3.142338133027233,
+        "production_path_max": 3.43689993100867,
+        "training_scaler_aggregate_mean": 2.8479950062298776,
+        "training_scaler_aggregate_scale": 0.2915193857330654,
+        "mean_shift_in_training_scales": 0.038275650639766894,
+        "observed_std_over_training_scale": 0.9898071689865137
+      },
+      "normalized_moment_2": {
+        "production_path_mean": 0.16531025059402102,
+        "production_path_std": 0.3349283729914235,
+        "production_path_min": 4.3338327120601336e-05,
+        "production_path_p05": 0.0009715559097941078,
+        "production_path_p95": 0.971134972798498,
+        "production_path_max": 0.9904819239557741,
+        "training_scaler_aggregate_mean": 0.21057068312972077,
+        "training_scaler_aggregate_scale": 0.35284895747911765,
+        "mean_shift_in_training_scales": -0.1282714078541053,
+        "observed_std_over_training_scale": 0.94921174029895
+      },
+      "normalized_moment_4": {
+        "production_path_mean": 0.29725078670868543,
+        "production_path_std": 0.3706687028693598,
+        "production_path_min": 5.3889527438792205e-05,
+        "production_path_p05": 0.0019242171370951273,
+        "production_path_p95": 0.9375502144682073,
+        "production_path_max": 0.9624858053690022,
+        "training_scaler_aggregate_mean": 0.3443073801217426,
+        "training_scaler_aggregate_scale": 0.3540775769319192,
+        "mean_shift_in_training_scales": -0.13289910595526092,
+        "observed_std_over_training_scale": 1.046857318899442
+      },
+      "normalized_moment_8": {
+        "production_path_mean": 0.2414193785801449,
+        "production_path_std": 0.28938961176334205,
+        "production_path_min": 0.00015061215682208914,
+        "production_path_p05": 0.0029459835002479027,
+        "production_path_p95": 0.8037303513822476,
+        "production_path_max": 0.8584477129812568,
+        "training_scaler_aggregate_mean": 0.27657779769404905,
+        "training_scaler_aggregate_scale": 0.3143056485447034,
+        "mean_shift_in_training_scales": -0.11186060217719444,
+        "observed_std_over_training_scale": 0.920726729230838
+      },
+      "psk2_residual": {
+        "production_path_mean": 0.768527376453696,
+        "production_path_std": 0.23899648657866407,
+        "production_path_min": 0.09924983010149457,
+        "production_path_p05": 0.16844657978953953,
+        "production_path_p95": 0.9353376674130595,
+        "production_path_max": 0.9695312218942029,
+        "training_scaler_aggregate_mean": 0.7362881748700142,
+        "training_scaler_aggregate_scale": 0.2523116005659648,
+        "mean_shift_in_training_scales": 0.12777534410374083,
+        "observed_std_over_training_scale": 0.9472274998159682
+      },
+      "psk2_phase_entropy": {
+        "production_path_mean": 0.9996845776771416,
+        "production_path_std": 0.00048657366352669433,
+        "production_path_min": 0.9950239777948092,
+        "production_path_p05": 0.9987276422262039,
+        "production_path_p95": 0.9999993120692872,
+        "production_path_max": 1.0,
+        "training_scaler_aggregate_mean": 0.9922677547419071,
+        "training_scaler_aggregate_scale": 0.030350045232342256,
+        "mean_shift_in_training_scales": 0.24437600927628336,
+        "observed_std_over_training_scale": 0.016032057277073887
+      },
+      "psk4_residual": {
+        "production_path_mean": 0.39697946992868416,
+        "production_path_std": 0.14056181688814604,
+        "production_path_min": 0.09924994283957207,
+        "production_path_p05": 0.12566685216545187,
+        "production_path_p95": 0.5465663441928956,
+        "production_path_max": 0.5777423671969377,
+        "training_scaler_aggregate_mean": 0.39062289493098856,
+        "training_scaler_aggregate_scale": 0.14510853468798107,
+        "mean_shift_in_training_scales": 0.04380565906315429,
+        "observed_std_over_training_scale": 0.9686667789071705
+      },
+      "psk4_phase_entropy": {
+        "production_path_mean": 0.9208071494933813,
+        "production_path_std": 0.18020299522043393,
+        "production_path_min": 0.49801142841582674,
+        "production_path_p05": 0.49991194129943645,
+        "production_path_p95": 0.9999821167043949,
+        "production_path_max": 0.9999999247654578,
+        "training_scaler_aggregate_mean": 0.8995631369835139,
+        "training_scaler_aggregate_scale": 0.18633946163953458,
+        "mean_shift_in_training_scales": 0.11400705101833451,
+        "observed_std_over_training_scale": 0.9670683473854219
+      },
+      "psk8_residual": {
+        "production_path_mean": 0.2666987279688702,
+        "production_path_std": 0.09221296052311752,
+        "production_path_min": 0.0992512666609267,
+        "production_path_p05": 0.1162485158454517,
+        "production_path_p95": 0.4159657942104716,
+        "production_path_max": 0.44393972416528993,
+        "training_scaler_aggregate_mean": 0.2786910236094892,
+        "training_scaler_aggregate_scale": 0.1117777585636611,
+        "mean_shift_in_training_scales": -0.10728695757295079,
+        "observed_std_over_training_scale": 0.8249669854544383
+      },
+      "psk8_phase_entropy": {
+        "production_path_mean": 0.8562231699804006,
+        "production_path_std": 0.21928801064565154,
+        "production_path_min": 0.3321436078134929,
+        "production_path_p05": 0.33864587774445726,
+        "production_path_p95": 0.9999670704216318,
+        "production_path_max": 0.9999989393552354,
+        "training_scaler_aggregate_mean": 0.8384656218981743,
+        "training_scaler_aggregate_scale": 0.2237580224425312,
+        "mean_shift_in_training_scales": 0.07936049795393166,
+        "observed_std_over_training_scale": 0.9800230099100571
+      },
+      "qam16_residual": {
+        "production_path_mean": 0.27016020583172673,
+        "production_path_std": 0.032925236673692404,
+        "production_path_min": 0.10043613912879601,
+        "production_path_p05": 0.2278024067783246,
+        "production_path_p95": 0.3316805025402382,
+        "production_path_max": 0.3404193262799762,
+        "training_scaler_aggregate_mean": 0.26363687963306903,
+        "training_scaler_aggregate_scale": 0.055627841948434266,
+        "mean_shift_in_training_scales": 0.11726728864845541,
+        "observed_std_over_training_scale": 0.5918841270925689
+      },
+      "fsk_quality": {
+        "production_path_mean": 0.04566879352129331,
+        "production_path_std": 0.10184008730853368,
+        "production_path_min": 0.0,
+        "production_path_p05": 0.0,
+        "production_path_p95": 0.3128641328776403,
+        "production_path_max": 0.44599525359298187,
+        "training_scaler_aggregate_mean": 0.016194655499085785,
+        "training_scaler_aggregate_scale": 0.03343350573065609,
+        "mean_shift_in_training_scales": 0.8815748566618872,
+        "observed_std_over_training_scale": 3.0460487191791477
+      },
+      "fsk_tone_separation_norm": {
+        "production_path_mean": 0.35939060702652764,
+        "production_path_std": 0.7201357807643094,
+        "production_path_min": 0.0,
+        "production_path_p05": 0.0,
+        "production_path_p95": 1.8896921982132227,
+        "production_path_max": 1.9385838952139602,
+        "training_scaler_aggregate_mean": 0.32111877619981766,
+        "training_scaler_aggregate_scale": 0.642513365462711,
+        "mean_shift_in_training_scales": 0.05956581276585309,
+        "observed_std_over_training_scale": 1.120810584610482
+      },
+      "fsk_frequency_repeat_fraction": {
+        "production_path_mean": 0.05537561551296138,
+        "production_path_std": 0.11868794579060557,
+        "production_path_min": 0.0,
+        "production_path_p05": 0.0,
+        "production_path_p95": 0.35759980466365526,
+        "production_path_max": 0.47790257599804664,
+        "training_scaler_aggregate_mean": 0.02597575360700488,
+        "training_scaler_aggregate_scale": 0.05292168025479191,
+        "mean_shift_in_training_scales": 0.5555353073524989,
+        "observed_std_over_training_scale": 2.2427093247829886
+      },
+      "spectral_entropy": {
+        "production_path_mean": 0.8653747920270672,
+        "production_path_std": 0.1588002694549456,
+        "production_path_min": 0.5209194108103559,
+        "production_path_p05": 0.528141987280361,
+        "production_path_p95": 0.9471956043845432,
+        "production_path_max": 0.9526008127383793,
+        "training_scaler_aggregate_mean": 0.8681308783185482,
+        "training_scaler_aggregate_scale": 0.14474797741981382,
+        "mean_shift_in_training_scales": -0.019040585855562182,
+        "observed_std_over_training_scale": 1.0970810942274916
+      },
+      "spectral_peak_fraction": {
+        "production_path_mean": 0.05235920089238887,
+        "production_path_std": 0.09690269495201706,
+        "production_path_min": 0.0024839644907640305,
+        "production_path_p05": 0.0031915563809130705,
+        "production_path_p95": 0.2532237200462048,
+        "production_path_max": 0.28557612891638745,
+        "training_scaler_aggregate_mean": 0.03069094090441242,
+        "training_scaler_aggregate_scale": 0.05282001325339269,
+        "mean_shift_in_training_scales": 0.41022821944454313,
+        "observed_std_over_training_scale": 1.8345829352057743
+      }
+    },
+    "by_class": {
+      "bpsk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1200,
+          "mean": 0.15217301322066082,
+          "std": 0.05861338825627745,
+          "min": 0.06972194866875381,
+          "p05": 0.07537485056822257,
+          "p95": 0.25213260207744903,
+          "max": 0.2722675496348873,
+          "mean_shift_in_aggregate_training_scales": -0.5604398909668089
+        },
+        "amplitude_kurtosis": {
+          "count": 1200,
+          "mean": 2.992083252585971,
+          "std": 0.10457853623852159,
+          "min": 2.6766833389434628,
+          "p05": 2.8239153953110936,
+          "p95": 3.172223539082876,
+          "max": 3.3642303325717515,
+          "mean_shift_in_aggregate_training_scales": 0.4942664310085714
+        },
+        "normalized_moment_2": {
+          "count": 1200,
+          "mean": 0.7671088318796327,
+          "std": 0.32804753631035766,
+          "min": 0.003012997997473008,
+          "p05": 0.032456383096849686,
+          "p95": 0.9876827656129243,
+          "max": 0.9904819239557741,
+          "mean_shift_in_aggregate_training_scales": 1.577270208550493
+        },
+        "normalized_moment_4": {
+          "count": 1200,
+          "mean": 0.611082805429188,
+          "std": 0.3388022172067358,
+          "min": 0.0014190803779055175,
+          "p05": 0.013918371536835334,
+          "p95": 0.951622683301706,
+          "max": 0.9624858053690022,
+          "mean_shift_in_aggregate_training_scales": 0.7534377850725635
+        },
+        "normalized_moment_8": {
+          "count": 1200,
+          "mean": 0.3604596473230313,
+          "std": 0.2832119338385293,
+          "min": 0.0015521591048617276,
+          "p05": 0.015416745122612685,
+          "p95": 0.820800660659771,
+          "max": 0.8584477129812568,
+          "mean_shift_in_aggregate_training_scales": 0.2668798668346294
+        },
+        "psk2_residual": {
+          "count": 1200,
+          "mean": 0.34545855851015245,
+          "std": 0.24036715288015822,
+          "min": 0.09924983010149457,
+          "p05": 0.1106723492198759,
+          "p95": 0.8427687711706752,
+          "max": 0.8800235976647711,
+          "mean_shift_in_aggregate_training_scales": -1.5489958269187174
+        },
+        "psk2_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9996109166986112,
+          "std": 0.0005595328898922733,
+          "min": 0.9954817686061117,
+          "p05": 0.9984798272848455,
+          "p95": 0.9999972482758367,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.24194896253001205
+        },
+        "psk4_residual": {
+          "count": 1200,
+          "mean": 0.27829343939612156,
+          "std": 0.12250478793505223,
+          "min": 0.09924994283957207,
+          "p05": 0.11067233474859746,
+          "p95": 0.4786922019158981,
+          "max": 0.5087901639673016,
+          "mean_shift_in_aggregate_training_scales": -0.7741064698668682
+        },
+        "psk4_phase_entropy": {
+          "count": 1200,
+          "mean": 0.6057425460284414,
+          "std": 0.19567220604009006,
+          "min": 0.49801142841582674,
+          "p05": 0.4994767022226204,
+          "p95": 0.9996846425980588,
+          "max": 0.9999828015875154,
+          "mean_shift_in_aggregate_training_scales": -1.5768028326895964
+        },
+        "psk8_residual": {
+          "count": 1200,
+          "mean": 0.22486142492422165,
+          "std": 0.06730163254693619,
+          "min": 0.0992512666609267,
+          "p05": 0.1106723171863042,
+          "p95": 0.3224263377244683,
+          "max": 0.34050795278093604,
+          "mean_shift_in_aggregate_training_scales": -0.4815770093887672
+        },
+        "psk8_phase_entropy": {
+          "count": 1200,
+          "mean": 0.543329287109644,
+          "std": 0.24477841217319765,
+          "min": 0.3321436078134929,
+          "p05": 0.3331535317260237,
+          "p95": 0.99895802687993,
+          "max": 0.9998978360709125,
+          "mean_shift_in_aggregate_training_scales": -1.3189977796855596
+        },
+        "qam16_residual": {
+          "count": 1200,
+          "mean": 0.2864567179185928,
+          "std": 0.03251999136993651,
+          "min": 0.22521464698163088,
+          "p05": 0.23412843263778532,
+          "p95": 0.33667661236894736,
+          "max": 0.3402698120051134,
+          "mean_shift_in_aggregate_training_scales": 0.41022332497955283
+        },
+        "fsk_quality": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1200,
+          "mean": 0.9445699073801228,
+          "std": 0.0020796213633328684,
+          "min": 0.9381076085263692,
+          "p05": 0.9409433299658592,
+          "p95": 0.9478494444205253,
+          "max": 0.9526008127383793,
+          "mean_shift_in_aggregate_training_scales": 0.5280835727319204
+        },
+        "spectral_peak_fraction": {
+          "count": 1200,
+          "mean": 0.0038942949872719113,
+          "std": 0.0006518020737821735,
+          "min": 0.0024839644907640305,
+          "p05": 0.0030374710518931637,
+          "p95": 0.005139222652761071,
+          "max": 0.006870573216468594,
+          "mean_shift_in_aggregate_training_scales": -0.5073199392925054
+        }
+      },
+      "qpsk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1200,
+          "mean": 0.14767002590852915,
+          "std": 0.05544778550384232,
+          "min": 0.06945042510241933,
+          "p05": 0.0754939040550621,
+          "p95": 0.249414786822139,
+          "max": 0.26833175441457097,
+          "mean_shift_in_aggregate_training_scales": -0.5992699739551655
+        },
+        "amplitude_kurtosis": {
+          "count": 1200,
+          "mean": 2.992980656160628,
+          "std": 0.10357593634492941,
+          "min": 2.6980659446192274,
+          "p05": 2.8310736095276545,
+          "p95": 3.1671768698728098,
+          "max": 3.43689993100867,
+          "mean_shift_in_aggregate_training_scales": 0.4973447977264496
+        },
+        "normalized_moment_2": {
+          "count": 1200,
+          "mean": 0.018387167242492543,
+          "std": 0.01178142154292928,
+          "min": 0.00034964781895014974,
+          "p05": 0.003935274254221514,
+          "p95": 0.04185973937297645,
+          "max": 0.07155634055172819,
+          "mean_shift_in_aggregate_training_scales": -0.544662274929924
+        },
+        "normalized_moment_4": {
+          "count": 1200,
+          "mean": 0.767701701615928,
+          "std": 0.19455531344149415,
+          "min": 0.00177559000547831,
+          "p05": 0.5021842232829498,
+          "p95": 0.9532274954365944,
+          "max": 0.9605292465929599,
+          "mean_shift_in_aggregate_training_scales": 1.1957671117242032
+        },
+        "normalized_moment_8": {
+          "count": 1200,
+          "mean": 0.44933282572813465,
+          "std": 0.2614293111877896,
+          "min": 0.0007723382340582078,
+          "p05": 0.03271610861669618,
+          "p95": 0.8254999444241237,
+          "max": 0.8512370746015524,
+          "mean_shift_in_aggregate_training_scales": 0.5496402270655177
+        },
+        "psk2_residual": {
+          "count": 1200,
+          "mean": 0.8962614399879071,
+          "std": 0.04967171123663464,
+          "min": 0.7687399144973306,
+          "p05": 0.7993536682745435,
+          "p95": 0.9561605811560604,
+          "max": 0.9695312218942029,
+          "mean_shift_in_aggregate_training_scales": 0.6340305588766189
+        },
+        "psk2_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9996482416023218,
+          "std": 0.0005322502101483384,
+          "min": 0.9950239777948092,
+          "p05": 0.9985438488662162,
+          "p95": 0.9999993120692872,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.24317877630540574
+        },
+        "psk4_residual": {
+          "count": 1200,
+          "mean": 0.224363346410724,
+          "std": 0.09052614259932881,
+          "min": 0.09945957588430991,
+          "p05": 0.1085207614755924,
+          "p95": 0.3670153766445075,
+          "max": 0.5072140541889386,
+          "mean_shift_in_aggregate_training_scales": -1.145759957384749
+        },
+        "psk4_phase_entropy": {
+          "count": 1200,
+          "mean": 0.999473902433989,
+          "std": 0.00043815805165030655,
+          "min": 0.996910437572817,
+          "p05": 0.9986001138060238,
+          "p95": 0.9999389076646605,
+          "max": 0.9999993120689591,
+          "mean_shift_in_aggregate_training_scales": 0.5361760980277388
+        },
+        "psk8_residual": {
+          "count": 1200,
+          "mean": 0.20934051641749762,
+          "std": 0.06771049273614378,
+          "min": 0.09945958065303132,
+          "p05": 0.10852073608867906,
+          "p95": 0.31956868506261943,
+          "max": 0.3391712862890836,
+          "mean_shift_in_aggregate_training_scales": -0.6204320795401727
+        },
+        "psk8_phase_entropy": {
+          "count": 1200,
+          "mean": 0.7414881139801812,
+          "std": 0.09217583839004032,
+          "min": 0.664606958381878,
+          "p05": 0.6661547512852758,
+          "p95": 0.9874256043126215,
+          "max": 0.9997209285426957,
+          "mean_shift_in_aggregate_training_scales": -0.4334034903392135
+        },
+        "qam16_residual": {
+          "count": 1200,
+          "mean": 0.2995022416466941,
+          "std": 0.025171257133454243,
+          "min": 0.23026547905803033,
+          "p05": 0.26640463495726413,
+          "p95": 0.3373906794885119,
+          "max": 0.3404193262799762,
+          "mean_shift_in_aggregate_training_scales": 0.6447376126305857
+        },
+        "fsk_quality": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1200,
+          "mean": 0.9445657379883967,
+          "std": 0.001556090767290143,
+          "min": 0.9386677812636198,
+          "p05": 0.941982140554957,
+          "p95": 0.9470634384330235,
+          "max": 0.9499310794287013,
+          "mean_shift_in_aggregate_training_scales": 0.5280547682415199
+        },
+        "spectral_peak_fraction": {
+          "count": 1200,
+          "mean": 0.004026852878913894,
+          "std": 0.0006556800403631112,
+          "min": 0.0027914082261418704,
+          "p05": 0.0032040445094309498,
+          "p95": 0.005296834074563183,
+          "max": 0.00860995760466038,
+          "mean_shift_in_aggregate_training_scales": -0.5048103244045639
+        }
+      },
+      "8psk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1200,
+          "mean": 0.15070531011882513,
+          "std": 0.05606282420179315,
+          "min": 0.06836732784832528,
+          "p05": 0.07599088595106793,
+          "p95": 0.24956372647886627,
+          "max": 0.2716891154191228,
+          "mean_shift_in_aggregate_training_scales": -0.5730961631914734
+        },
+        "amplitude_kurtosis": {
+          "count": 1200,
+          "mean": 2.9945053694093464,
+          "std": 0.10995333764318932,
+          "min": 2.696958838158516,
+          "p05": 2.8185856183215874,
+          "p95": 3.190145284020986,
+          "max": 3.3999526289755777,
+          "mean_shift_in_aggregate_training_scales": 0.502575027081127
+        },
+        "normalized_moment_2": {
+          "count": 1200,
+          "mean": 0.01948923078543223,
+          "std": 0.010247826494225955,
+          "min": 0.000162616556621412,
+          "p05": 0.004953017946547766,
+          "p95": 0.03866715496974016,
+          "max": 0.05572483494562096,
+          "mean_shift_in_aggregate_training_scales": -0.5415389454724324
+        },
+        "normalized_moment_4": {
+          "count": 1200,
+          "mean": 0.018036843683133564,
+          "std": 0.010799618271564056,
+          "min": 0.000790787452093097,
+          "p05": 0.004162289839411159,
+          "p95": 0.039229449129931065,
+          "max": 0.06588028706120379,
+          "mean_shift_in_aggregate_training_scales": -0.9214662483451845
+        },
+        "normalized_moment_8": {
+          "count": 1200,
+          "mean": 0.36966779891199053,
+          "std": 0.30424678363787316,
+          "min": 0.0012119820108087212,
+          "p05": 0.01407126068084866,
+          "p95": 0.8215253279845361,
+          "max": 0.8556053306910042,
+          "mean_shift_in_aggregate_training_scales": 0.2961766727673091
+        },
+        "psk2_residual": {
+          "count": 1200,
+          "mean": 0.8525336382129607,
+          "std": 0.0117953254876376,
+          "min": 0.8187680164161654,
+          "p05": 0.830575013706904,
+          "p95": 0.8697712984013267,
+          "max": 0.8759766447376558,
+          "mean_shift_in_aggregate_training_scales": 0.46072183396321914
+        },
+        "psk2_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9996473380301186,
+          "std": 0.0004982921450549872,
+          "min": 0.9959174069712251,
+          "p05": 0.9987246479258111,
+          "p95": 0.9999993120692872,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.24314900461326316
+        },
+        "psk4_residual": {
+          "count": 1200,
+          "mean": 0.4799996881493458,
+          "std": 0.01841975024036028,
+          "min": 0.40490313347199963,
+          "p05": 0.446502051930506,
+          "p95": 0.5027790945277463,
+          "max": 0.5146213312184029,
+          "mean_shift_in_aggregate_training_scales": 0.6159306439868562
+        },
+        "psk4_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9994788337778382,
+          "std": 0.00042304914002955305,
+          "min": 0.9969758323388463,
+          "p05": 0.998656987147904,
+          "p95": 0.9999436963595377,
+          "max": 0.9999910568597294,
+          "mean_shift_in_aggregate_training_scales": 0.5362025623300706
+        },
+        "psk8_residual": {
+          "count": 1200,
+          "mean": 0.2214960573252146,
+          "std": 0.07113528505516396,
+          "min": 0.09958589969371781,
+          "p05": 0.1101305772707343,
+          "p95": 0.32614579353375517,
+          "max": 0.3412727924318639,
+          "mean_shift_in_aggregate_training_scales": -0.5116846769807091
+        },
+        "psk8_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9991848265281692,
+          "std": 0.0004356102371664251,
+          "min": 0.9964855870539052,
+          "p05": 0.9983445821782336,
+          "p95": 0.9997445971926003,
+          "max": 0.999962384633167,
+          "mean_shift_in_aggregate_training_scales": 0.7182723679606756
+        },
+        "qam16_residual": {
+          "count": 1200,
+          "mean": 0.26583204729016346,
+          "std": 0.022959789866293677,
+          "min": 0.15425190989540244,
+          "p05": 0.2293068603167891,
+          "p95": 0.3023115413822983,
+          "max": 0.3106441215924994,
+          "mean_shift_in_aggregate_training_scales": 0.039461672072939706
+        },
+        "fsk_quality": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1200,
+          "mean": 0.9446273320915625,
+          "std": 0.001599893963583538,
+          "min": 0.9399010500685688,
+          "p05": 0.9420338501084158,
+          "p95": 0.9473480834403157,
+          "max": 0.9496195998176978,
+          "mean_shift_in_aggregate_training_scales": 0.5284802947619154
+        },
+        "spectral_peak_fraction": {
+          "count": 1200,
+          "mean": 0.003999296369587288,
+          "std": 0.0006141331381027762,
+          "min": 0.0028464583684119967,
+          "p05": 0.003177447560305768,
+          "p95": 0.005124623143067009,
+          "max": 0.0070241801759156315,
+          "mean_shift_in_aggregate_training_scales": -0.5053320302434929
+        }
+      },
+      "16qam": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1200,
+          "mean": 0.36267166727085265,
+          "std": 0.0166379337366229,
+          "min": 0.33116001269279105,
+          "p05": 0.3407328331410997,
+          "p95": 0.39470057617630744,
+          "max": 0.41381791730491463,
+          "mean_shift_in_aggregate_training_scales": 1.2547284937375578
+        },
+        "amplitude_kurtosis": {
+          "count": 1200,
+          "mean": 2.3201605404978642,
+          "std": 0.13333192820881581,
+          "min": 1.9874341755928822,
+          "p05": 2.111002883401547,
+          "p95": 2.5315582269773174,
+          "max": 2.678625647698963,
+          "mean_shift_in_aggregate_training_scales": -1.810632470992285
+        },
+        "normalized_moment_2": {
+          "count": 1200,
+          "mean": 0.019492777379164793,
+          "std": 0.009976774956640498,
+          "min": 0.0002256544337899277,
+          "p05": 0.005216936632070752,
+          "p95": 0.037476222064198476,
+          "max": 0.05318001537025696,
+          "mean_shift_in_aggregate_training_scales": -0.5415288941639125
+        },
+        "normalized_moment_4": {
+          "count": 1200,
+          "mean": 0.08559971046229199,
+          "std": 0.07461406533838988,
+          "min": 0.002023763168940314,
+          "p05": 0.01115549493278111,
+          "p95": 0.23303594789169604,
+          "max": 0.32098056583419365,
+          "mean_shift_in_aggregate_training_scales": -0.7306525081343799
+        },
+        "normalized_moment_8": {
+          "count": 1200,
+          "mean": 0.02212610560514998,
+          "std": 0.012005155793584169,
+          "min": 0.0013240550769300316,
+          "p05": 0.005645839123331985,
+          "p95": 0.04490807410201852,
+          "max": 0.079343058497358,
+          "mean_shift_in_aggregate_training_scales": -0.809567671682199
+        },
+        "psk2_residual": {
+          "count": 1200,
+          "mean": 0.8878245488180011,
+          "std": 0.010738842719264917,
+          "min": 0.8476166955669905,
+          "p05": 0.8708217858360658,
+          "p95": 0.9067171365999439,
+          "max": 0.9223893628618618,
+          "mean_shift_in_aggregate_training_scales": 0.6005921789092252
+        },
+        "psk2_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9996464051606665,
+          "std": 0.00048311038459396955,
+          "min": 0.9964308234404787,
+          "p05": 0.9986064918040909,
+          "p95": 0.9999973514655092,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.2431182676095787
+        },
+        "psk4_residual": {
+          "count": 1200,
+          "mean": 0.5331233395891241,
+          "std": 0.021248856515270358,
+          "min": 0.4620868576214708,
+          "p05": 0.49181559395071955,
+          "p95": 0.5620303720972402,
+          "max": 0.5777423671969377,
+          "mean_shift_in_aggregate_training_scales": 0.982026625549947
+        },
+        "psk4_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9994670512358556,
+          "std": 0.00042717063431174857,
+          "min": 0.9966111152240477,
+          "p05": 0.9986684041879696,
+          "p95": 0.999932225017889,
+          "max": 0.9999979375478752,
+          "mean_shift_in_aggregate_training_scales": 0.5361393307317877
+        },
+        "psk8_residual": {
+          "count": 1200,
+          "mean": 0.40829414984039303,
+          "std": 0.011679277486383402,
+          "min": 0.3858530702317802,
+          "p05": 0.39266556749624937,
+          "p95": 0.4308726169289274,
+          "max": 0.44393972416528993,
+          "mean_shift_in_aggregate_training_scales": 1.1594715075369004
+        },
+        "psk8_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9972325061289128,
+          "std": 0.0037491527724377144,
+          "min": 0.9608592449243358,
+          "p05": 0.9902742445832886,
+          "p95": 0.9996297389319854,
+          "max": 0.9999190179557126,
+          "mean_shift_in_aggregate_training_scales": 0.7095472264978356
+        },
+        "qam16_residual": {
+          "count": 1200,
+          "mean": 0.25210268025930455,
+          "std": 0.03173242665165988,
+          "min": 0.10043613912879601,
+          "p05": 0.1859453155288984,
+          "p95": 0.2891897345345191,
+          "max": 0.30157818637493916,
+          "mean_shift_in_aggregate_training_scales": -0.20734579968887568
+        },
+        "fsk_quality": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.48438400775412743
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4997853639489063
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1200,
+          "mean": 0.0,
+          "std": 0.0,
+          "min": 0.0,
+          "p05": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "mean_shift_in_aggregate_training_scales": -0.4908338790821527
+        },
+        "spectral_entropy": {
+          "count": 1200,
+          "mean": 0.9446281692865439,
+          "std": 0.0015624615309198973,
+          "min": 0.9395710347953867,
+          "p05": 0.9421022754163106,
+          "p95": 0.9472026106760845,
+          "max": 0.9494314417948925,
+          "mean_shift_in_aggregate_training_scales": 0.528486078573174
+        },
+        "spectral_peak_fraction": {
+          "count": 1200,
+          "mean": 0.004002321455328444,
+          "std": 0.0006135508088536788,
+          "min": 0.0027689819898427705,
+          "p05": 0.003203933537889341,
+          "p95": 0.0050984294740164275,
+          "max": 0.0072423206513186865,
+          "mean_shift_in_aggregate_training_scales": -0.5052747586610977
+        }
+      },
+      "2fsk": {
+        "amplitude_coefficient_of_variation": {
+          "count": 1200,
+          "mean": 0.14772682435265036,
+          "std": 0.05758978011075725,
+          "min": 0.07084888916259845,
+          "p05": 0.07560611433475922,
+          "p95": 0.24913473870704111,
+          "max": 0.2656281784710039,
+          "mean_shift_in_aggregate_training_scales": -0.5987801905856023
+        },
+        "amplitude_kurtosis": {
+          "count": 1200,
+          "mean": 2.9960356833107675,
+          "std": 0.03990591953371124,
+          "min": 2.8704663441026512,
+          "p05": 2.933310194583141,
+          "p95": 3.0631687205006832,
+          "max": 3.1201641976161136,
+          "mean_shift_in_aggregate_training_scales": 0.5078244683749639
+        },
+        "normalized_moment_2": {
+          "count": 1200,
+          "mean": 0.0020732456833828738,
+          "std": 0.0015065747647934637,
+          "min": 4.3338327120601336e-05,
+          "p05": 0.00040169771352098574,
+          "p95": 0.005089336350917722,
+          "max": 0.011322623916006445,
+          "mean_shift_in_aggregate_training_scales": -0.5908971332547502
+        },
+        "normalized_moment_4": {
+          "count": 1200,
+          "mean": 0.003832872352885626,
+          "std": 0.0024499305674445847,
+          "min": 5.3889527438792205e-05,
+          "p05": 0.000798544018982388,
+          "p95": 0.008634459403456477,
+          "max": 0.014160166770512551,
+          "mean_shift_in_aggregate_training_scales": -0.9615816700935066
+        },
+        "normalized_moment_8": {
+          "count": 1200,
+          "mean": 0.005510515332418023,
+          "std": 0.0031178758405518417,
+          "min": 0.00015061215682208914,
+          "p05": 0.0012892029165438325,
+          "p95": 0.011233898020509284,
+          "max": 0.018304843856920876,
+          "mean_shift_in_aggregate_training_scales": -0.8624321058712293
+        },
+        "psk2_residual": {
+          "count": 1200,
+          "mean": 0.8605586967394585,
+          "std": 0.006285305242336937,
+          "min": 0.8503025152053729,
+          "p05": 0.8528045421072427,
+          "p95": 0.8727592252883171,
+          "max": 0.8759871717197993,
+          "mean_shift_in_aggregate_training_scales": 0.49252797568835843
+        },
+        "psk2_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9998699868939899,
+          "std": 0.00024999602381062155,
+          "min": 0.9978799630920188,
+          "p05": 0.9994063096897192,
+          "p95": 0.9999997312770915,
+          "max": 1.0,
+          "mean_shift_in_aggregate_training_scales": 0.2504850353231608
+        },
+        "psk4_residual": {
+          "count": 1200,
+          "mean": 0.4691175360981051,
+          "std": 0.016869248773311828,
+          "min": 0.44240484579827705,
+          "p05": 0.44774962515043887,
+          "p95": 0.5016786302600157,
+          "max": 0.508889107798374,
+          "mean_shift_in_aggregate_training_scales": 0.5409374530305833
+        },
+        "psk4_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9998734139907818,
+          "std": 0.0001645461643252575,
+          "min": 0.9989798907468829,
+          "p05": 0.9995309776384229,
+          "p95": 0.9999964440457131,
+          "max": 0.9999999247654578,
+          "mean_shift_in_aggregate_training_scales": 0.5383200966916696
+        },
+        "psk8_residual": {
+          "count": 1200,
+          "mean": 0.2695014913370238,
+          "std": 0.032715476558224314,
+          "min": 0.2188881007575652,
+          "p05": 0.22543952632988495,
+          "p95": 0.3294393040061139,
+          "max": 0.340943434130971,
+          "mean_shift_in_aggregate_training_scales": -0.08221252949200712
+        },
+        "psk8_phase_entropy": {
+          "count": 1200,
+          "mean": 0.9998811161550957,
+          "std": 0.00013108384003357232,
+          "min": 0.9991601573792057,
+          "p05": 0.9996055931657997,
+          "p95": 0.9999907591629782,
+          "max": 0.9999989393552354,
+          "mean_shift_in_aggregate_training_scales": 0.7213841653359198
+        },
+        "qam16_residual": {
+          "count": 1200,
+          "mean": 0.24690734204387876,
+          "std": 0.01360218483414289,
+          "min": 0.22337070413630053,
+          "p05": 0.2279797308840484,
+          "p95": 0.2702328068033003,
+          "max": 0.2746942484415038,
+          "mean_shift_in_aggregate_training_scales": -0.3007403667519255
+        },
+        "fsk_quality": {
+          "count": 1200,
+          "mean": 0.22834396760646655,
+          "std": 0.10071769170775478,
+          "min": 0.09822168697050389,
+          "p05": 0.10735251852956793,
+          "p95": 0.4017293093930525,
+          "max": 0.44599525359298187,
+          "mean_shift_in_aggregate_training_scales": 6.345410314325945
+        },
+        "fsk_tone_separation_norm": {
+          "count": 1200,
+          "mean": 1.796953035132638,
+          "std": 0.09654610287261377,
+          "min": 1.6375399275197229,
+          "p05": 1.649670594618346,
+          "p95": 1.9299781646039462,
+          "max": 1.9385838952139602,
+          "mean_shift_in_aggregate_training_scales": 2.2969705196248906
+        },
+        "fsk_frequency_repeat_fraction": {
+          "count": 1200,
+          "mean": 0.2768780775648069,
+          "std": 0.09539817344704733,
+          "min": 0.1467464290074472,
+          "p05": 0.1591930167256745,
+          "p95": 0.4434898058845073,
+          "max": 0.47790257599804664,
+          "mean_shift_in_aggregate_training_scales": 4.741012053091106
+        },
+        "spectral_entropy": {
+          "count": 1200,
+          "mean": 0.5484828133887106,
+          "std": 0.023014256716386048,
+          "min": 0.5209194108103559,
+          "p05": 0.5234468829323277,
+          "p95": 0.5931608503971724,
+          "max": 0.6033695832195097,
+          "mean_shift_in_aggregate_training_scales": -2.208307643586338
+        },
+        "spectral_peak_fraction": {
+          "count": 1200,
+          "mean": 0.24587323877084283,
+          "std": 0.011477155578735644,
+          "min": 0.21606816584144498,
+          "p05": 0.2252430249191228,
+          "p95": 0.26327977932996177,
+          "max": 0.28557612891638745,
+          "mean_shift_in_aggregate_training_scales": 4.073878149824376
+        }
+      }
+    },
+    "class_pair_standardized_mean_separation": {
+      "bpsk_vs_qpsk": {
+        "amplitude_coefficient_of_variation": 0.0789270166211429,
+        "amplitude_kurtosis": -0.00862237696767473,
+        "normalized_moment_2": 3.2256609859221603,
+        "normalized_moment_4": -0.5669265678513414,
+        "normalized_moment_8": -0.3260942339119389,
+        "psk2_residual": -3.1736247439181304,
+        "psk2_phase_entropy": -0.06835287210129494,
+        "psk4_residual": 0.5007023850078434,
+        "psk4_phase_entropy": -2.845671541323206,
+        "psk8_residual": 0.22991768043956354,
+        "psk8_phase_entropy": -1.0714195312258352,
+        "qam16_residual": -0.4486281038212793,
+        "fsk_quality": 0.0,
+        "fsk_tone_separation_norm": 0.0,
+        "fsk_frequency_repeat_fraction": 0.0,
+        "spectral_entropy": 0.0022701611764440553,
+        "spectral_peak_fraction": -0.2027672993047177
+      },
+      "bpsk_vs_8psk": {
+        "amplitude_coefficient_of_variation": 0.02559101285484663,
+        "amplitude_kurtosis": -0.022573401099053633,
+        "normalized_moment_2": 3.2214180915879904,
+        "normalized_moment_4": 2.4742101369466734,
+        "normalized_moment_8": -0.03132902472787648,
+        "psk2_residual": -2.9798188855587617,
+        "psk2_phase_entropy": -0.06874567775081838,
+        "psk4_residual": -2.3026434927796875,
+        "psk4_phase_entropy": -2.8457076658866107,
+        "psk8_residual": 0.04860087900761042,
+        "psk8_phase_entropy": -2.6337129151091276,
+        "qam16_residual": 0.7327034650173645,
+        "fsk_quality": 0.0,
+        "fsk_tone_separation_norm": 0.0,
+        "fsk_frequency_repeat_fraction": 0.0,
+        "spectral_entropy": -0.03095124107691195,
+        "spectral_peak_fraction": -0.1658140600116554
+      },
+      "qpsk_vs_8psk": {
+        "amplitude_coefficient_of_variation": -0.05443855165486966,
+        "amplitude_kurtosis": -0.014274704733110911,
+        "normalized_moment_2": -0.09981300055487108,
+        "normalized_moment_4": 5.440903115631918,
+        "normalized_moment_8": 0.2808596246774751,
+        "psk2_residual": 1.2112990969373865,
+        "psk2_phase_entropy": 0.0017526345152779745,
+        "psk4_residual": -3.9134015289124013,
+        "psk4_phase_entropy": -0.011450403968089162,
+        "psk8_residual": -0.17504089722381852,
+        "psk8_phase_entropy": -3.9536837707058434,
+        "qam16_residual": 1.3976305076179185,
+        "fsk_quality": 0.0,
+        "fsk_tone_separation_norm": 0.0,
+        "fsk_frequency_repeat_fraction": 0.0,
+        "spectral_entropy": -0.039029448235373305,
+        "spectral_peak_fraction": 0.043379249218385
+      }
+    },
+    "features_over_two_training_scales_from_aggregate_mean": []
+  },
+  "scope_note": "Training class-conditional feature rows are unavailable. Frozen scaler mean/scale are aggregate training statistics only."
+}

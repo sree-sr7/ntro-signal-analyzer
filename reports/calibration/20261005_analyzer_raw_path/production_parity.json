@@ -1,0 +1,12 @@
+{
+  "model_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+  "execution_provider": "CPUExecutionProvider",
+  "compared_production_classifier_calls": 9716,
+  "exact_float32_logit_match_count": 9716,
+  "mismatch_count": 0,
+  "max_absolute_logit_difference": 0.0,
+  "max_relative_logit_difference": 0.0,
+  "all_calls_match_bitwise": true,
+  "feature_values_cast_to_float32_as_in_production_wrapper": true,
+  "external_scaling_or_temperature_applied": false
+}

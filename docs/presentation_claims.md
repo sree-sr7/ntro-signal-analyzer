@@ -24,7 +24,7 @@ general accuracy or real-radio performance.
    recovery claim. The T2-07 run took 136.618 seconds, 4.24× its Cycle 2 run
    with the declared length.
 
-3. **“The current Windows test suite passed 632 of 632 tests, including
+3. **“The current Windows test suite passed 639 of 639 tests, including
    headless GUI tests.”**
 
    Scope: `QT_QPA_PLATFORM=offscreen`. The developer separately completed
@@ -36,12 +36,12 @@ general accuracy or real-radio performance.
    output classes, with its StandardScaler embedded in the ONNX graph.”**
 
    Scope: ONNX Runtime CPU provider. The model digest was
-   `0e0ea216116f8859775b1e55167520db63a25a77243bff803ed7fb677` during
-   this pass. A new synthetic evaluation fitted `T=6.027927`, improving
-   aggregate NLL/ECE on independent assessment and final sets, but class-wise
-   calibration was inconsistent and the candidate was not deployed. Current
-   inference does not apply a temperature; do not describe outputs as
-   temperature-calibrated probabilities.
+   `0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677` during
+   this pass. The historical feature-level candidate `T=6.027927` was not
+   validated for the full Analyzer path and remains unapplied. The fresh raw
+   Analyzer-path assessment did not fit a temperature because BPSK accuracy
+   failed the predeclared per-class gate. Current inference does not apply a
+   temperature; do not describe scores as temperature-calibrated probabilities.
 
 5. **“The signal-support gate uses a 0.35 bounded geometric fit-evidence
    threshold; the recorded noise and OFDM examples scored 0.1853 and 0.1924
@@ -55,6 +55,18 @@ general accuracy or real-radio performance.
 
    This wording is accurate. Do not shorten it to imply a successful
    oversampled end-to-end decode.
+
+7. **“On a new synthetic final holdout of 2,000 raw IQ signals (400 per
+   supported class), the full Analyzer path reached 92.75% end-to-end accuracy;
+   BPSK recall was 74.0%.”**
+
+   Scope: model SHA-256
+   `0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677`;
+   independent random symbols/states, 8–20 dB SNR, PSK/QAM CFO in ±400 Hz,
+   and 2FSK at 8 samples/symbol. BPSK errors were mainly labeled 8PSK or
+   UNKNOWN/rejected, with a strong dependence on CFO magnitude. This is a
+   deterministic synthetic evaluation, not real-radio accuracy or universal
+   classifier performance.
 
 ## Claims to avoid
 
@@ -71,6 +83,8 @@ general accuracy or real-radio performance.
   random candidate before structural and FEC validation.
 - “Universal OOD detection,” “OOD probability,” or a confidence guarantee.
 - “Temperature-calibrated confidence” or “calibration temperature is applied.”
+- “The 92.75% synthetic holdout result is the model's general accuracy,” or
+  quoting it without the BPSK result and signal conditions.
 - “CFO is always corrected before classification.” Classification can examine
   bounded CFO hypotheses; there is no universal pre-classification correction
   guarantee.
@@ -96,3 +110,5 @@ general accuracy or real-radio performance.
   `reports/validation/`
 - Full freeze-gate assessment:
   `reports/pre_freeze/final_pre_freeze_report.md`
+- Production-path raw-signal classifier and calibration diagnosis:
+  `reports/calibration/20261005_analyzer_raw_path/`

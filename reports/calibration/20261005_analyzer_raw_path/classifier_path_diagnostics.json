@@ -1,0 +1,133 @@
+{
+  "per_class": {
+    "bpsk": {
+      "sample_count": 1200,
+      "first_pass_raw_argmax_accuracy": 0.265,
+      "first_pass_classifier_accepted_recall": 0.26416666666666666,
+      "second_classifier_call_count": 1136,
+      "cfo_retry_applied_count": 921,
+      "retry_not_selected_count": 215,
+      "retry_not_selected_but_second_pass_label_correct": 214,
+      "selected_model_raw_argmax_accuracy": 0.7891666666666667,
+      "analyzer_end_to_end_recall": 0.75,
+      "analyzer_output_counts": {
+        "unknown/rejected": 57,
+        "bpsk": 900,
+        "8psk": 243
+      },
+      "first_raw_argmax_counts": {
+        "bpsk": 318,
+        "8psk": 882
+      }
+    },
+    "qpsk": {
+      "sample_count": 1200,
+      "first_pass_raw_argmax_accuracy": 0.24666666666666667,
+      "first_pass_classifier_accepted_recall": 0.24333333333333335,
+      "second_classifier_call_count": 1187,
+      "cfo_retry_applied_count": 994,
+      "retry_not_selected_count": 193,
+      "retry_not_selected_but_second_pass_label_correct": 191,
+      "selected_model_raw_argmax_accuracy": 0.9658333333333333,
+      "analyzer_end_to_end_recall": 0.9625,
+      "analyzer_output_counts": {
+        "unknown/rejected": 6,
+        "qpsk": 1155,
+        "8psk": 39
+      },
+      "first_raw_argmax_counts": {
+        "qpsk": 296,
+        "8psk": 904
+      }
+    },
+    "8psk": {
+      "sample_count": 1200,
+      "first_pass_raw_argmax_accuracy": 1.0,
+      "first_pass_classifier_accepted_recall": 1.0,
+      "second_classifier_call_count": 1189,
+      "cfo_retry_applied_count": 767,
+      "retry_not_selected_count": 422,
+      "retry_not_selected_but_second_pass_label_correct": 422,
+      "selected_model_raw_argmax_accuracy": 1.0,
+      "analyzer_end_to_end_recall": 1.0,
+      "analyzer_output_counts": {
+        "8psk": 1200
+      },
+      "first_raw_argmax_counts": {
+        "8psk": 1200
+      }
+    },
+    "16qam": {
+      "sample_count": 1200,
+      "first_pass_raw_argmax_accuracy": 0.8083333333333333,
+      "first_pass_classifier_accepted_recall": 0.7791666666666667,
+      "second_classifier_call_count": 204,
+      "cfo_retry_applied_count": 195,
+      "retry_not_selected_count": 9,
+      "retry_not_selected_but_second_pass_label_correct": 2,
+      "selected_model_raw_argmax_accuracy": 0.9641666666666666,
+      "analyzer_end_to_end_recall": 0.935,
+      "analyzer_output_counts": {
+        "unknown/rejected": 60,
+        "8psk": 18,
+        "16qam": 1122
+      },
+      "first_raw_argmax_counts": {
+        "8psk": 230,
+        "16qam": 970
+      }
+    },
+    "2fsk": {
+      "sample_count": 1200,
+      "first_pass_raw_argmax_accuracy": 1.0,
+      "first_pass_classifier_accepted_recall": 1.0,
+      "second_classifier_call_count": 0,
+      "cfo_retry_applied_count": 0,
+      "retry_not_selected_count": 0,
+      "retry_not_selected_but_second_pass_label_correct": 0,
+      "selected_model_raw_argmax_accuracy": 1.0,
+      "analyzer_end_to_end_recall": 1.0,
+      "analyzer_output_counts": {
+        "2fsk": 1200
+      },
+      "first_raw_argmax_counts": {
+        "2fsk": 1200
+      }
+    }
+  },
+  "bpsk_abs_cfo_bands": {
+    "0-100 Hz": {
+      "sample_count": 299,
+      "selected_model_raw_argmax_accuracy": 1.0,
+      "analyzer_end_to_end_accuracy": 0.8762541806020067,
+      "cfo_retry_applied_fraction": 0.8662207357859532
+    },
+    "100-200 Hz": {
+      "sample_count": 240,
+      "selected_model_raw_argmax_accuracy": 0.9083333333333333,
+      "analyzer_end_to_end_accuracy": 0.8666666666666667,
+      "cfo_retry_applied_fraction": 0.9
+    },
+    "200-300 Hz": {
+      "sample_count": 324,
+      "selected_model_raw_argmax_accuracy": 0.7253086419753086,
+      "analyzer_end_to_end_accuracy": 0.7253086419753086,
+      "cfo_retry_applied_fraction": 0.7561728395061729
+    },
+    "300-400 Hz": {
+      "sample_count": 337,
+      "selected_model_raw_argmax_accuracy": 0.5786350148367952,
+      "analyzer_end_to_end_accuracy": 0.5786350148367952,
+      "cfo_retry_applied_fraction": 0.5964391691394659
+    }
+  },
+  "interpretation": "First-pass predictions use the first ONNX invocation. Retry outputs include every second production classifier call. Analyzer outcomes include the existing confidence selection and signal-support gate.",
+  "bpsk_rejected_retry_detail": {
+    "retry_count": 215,
+    "second_pass_returned_bpsk": 214,
+    "mean_first_confidence": 0.9999990622464147,
+    "mean_second_confidence": 0.9999976014237915,
+    "mean_first_minus_second_confidence": 1.4608226232293815e-06,
+    "note": "Analyzer retains the first result unless corrected confidence is at least the initial confidence; no threshold was changed."
+  }
+}

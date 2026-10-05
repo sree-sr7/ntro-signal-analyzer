@@ -114,12 +114,15 @@
     "used_in_current_inference": false,
     "temperature_status": "historical_unapplied_metadata_only",
     "latest_evaluation": {
-      "candidate_temperature": 6.027927188557306,
-      "status": "evaluated_but_not_sufficiently_validated_for_deployment",
-      "report": "reports/calibration/20261005_temperature_scaling/calibration_report.md",
-      "candidate_used_in_current_inference": false
+      "candidate_temperature": null,
+      "status": "not_fitted_accuracy_gate_failed_on_raw_analyzer_path",
+      "report": "reports/calibration/20261005_analyzer_raw_path/analyzer_path_calibration_report.md",
+      "candidate_used_in_current_inference": false,
+      "final_holdout_samples": 2000,
+      "final_holdout_analyzer_accuracy": 0.9275,
+      "final_holdout_bpsk_recall": 0.74
     },
-    "notes": "The historical 3.824104 value is not applied. A fresh independent synthetic evaluation fitted 6.027927188557306, but class-wise calibration was inconsistent and the candidate was not deployed. Current inference maps ONNX logits directly to class scores without temperature scaling."
+    "notes": "The historical 3.824104 value and the earlier feature-level 6.027927188557306 candidate are not applied. The latest raw Analyzer-path evaluation did not fit a temperature because BPSK end-to-end recall failed the predeclared eligibility gate. Current inference maps ONNX logits directly to class scores without temperature scaling."
   },
   "signal_support_gate": {
     "threshold": 0.35,
