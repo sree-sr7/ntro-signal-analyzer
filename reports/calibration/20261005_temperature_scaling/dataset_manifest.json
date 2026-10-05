@@ -1,0 +1,287 @@
+{
+  "evaluation": "post-hoc temperature scaling; frozen production ONNX and scaler",
+  "created_utc": "2026-10-05T13:51:11Z",
+  "repository_revision": "c9fdb7a3df3754bad59bc4641d351a6c7f31828b",
+  "python": "3.12.10",
+  "numpy": "2.5.3",
+  "onnxruntime": "1.30.0",
+  "model_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+  "feature_schema_version": "phase3-modulation-features-v1",
+  "class_order": [
+    "bpsk",
+    "qpsk",
+    "8psk",
+    "16qam",
+    "2fsk"
+  ],
+  "contract_model_architecture": "Linear(17,64) -> ReLU -> BatchNorm1d(64) -> Linear(64,32) -> ReLU -> Dropout(0.15) -> Linear(32,5)",
+  "scaler_embedded_in_onnx": true,
+  "external_scaler_applied": false,
+  "previously_recorded_temperature": 3.824104,
+  "previous_temperature_used": false,
+  "splits": {
+    "calibration_fit": {
+      "split": "calibration_fit",
+      "seed": 2026100501,
+      "samples_per_class": 400,
+      "sample_count": 2000,
+      "class_counts": {
+        "bpsk": 400,
+        "qpsk": 400,
+        "8psk": 400,
+        "16qam": 400,
+        "2fsk": 400
+      },
+      "snr_range_db_configured": [
+        8.0,
+        20.0
+      ],
+      "snr_range_db_observed": [
+        8.008720947589993,
+        19.998903883787982
+      ],
+      "snr_distribution": "continuous uniform per independent example",
+      "cfo_range_hz_configured": {
+        "BPSK/QPSK/8PSK/16QAM": [
+          -400.0,
+          400.0
+        ],
+        "2FSK": [
+          0.0,
+          0.0
+        ]
+      },
+      "cfo_range_hz_observed": [
+        -399.00119152994273,
+        399.55848268431146
+      ],
+      "signal_generation": {
+        "symbols_or_fsk_states_per_example": 2048,
+        "psk_qam_sample_rate_hz": 1000000.0,
+        "fsk_sample_rate_hz": 48000.0,
+        "fsk_samples_per_symbol": 8,
+        "fsk_tones_hz": [
+          -3000.0,
+          3000.0
+        ],
+        "random_phase_rad": "uniform[-pi, pi]",
+        "amplitude_gain": "uniform[0.65, 1.45]",
+        "channel": "independent Tier-2 NumPy channel helper; AWGN at configured SNR",
+        "payload": "none; independent equiprobable symbols/states only",
+        "rng": "NumPy PCG64 SeedSequence([split_seed, class_index, sample_index])"
+      },
+      "feature_schema_version": "phase3-modulation-features-v1",
+      "feature_order": [
+        "amplitude_coefficient_of_variation",
+        "amplitude_kurtosis",
+        "normalized_moment_2",
+        "normalized_moment_4",
+        "normalized_moment_8",
+        "psk2_residual",
+        "psk2_phase_entropy",
+        "psk4_residual",
+        "psk4_phase_entropy",
+        "psk8_residual",
+        "psk8_phase_entropy",
+        "qam16_residual",
+        "fsk_quality",
+        "fsk_tone_separation_norm",
+        "fsk_frequency_repeat_fraction",
+        "spectral_entropy",
+        "spectral_peak_fraction"
+      ],
+      "class_order": [
+        "bpsk",
+        "qpsk",
+        "8psk",
+        "16qam",
+        "2fsk"
+      ],
+      "model_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+      "elapsed_seconds_generation_and_inference": 15.083856399985962,
+      "artifact": "calibration_fit.npz",
+      "artifact_sha256": "1c92b1acffc11ee6e6d387e5ab9b1cced163d9f802a887c760409c2591138105",
+      "unique_feature_rows": 2000
+    },
+    "calibration_assessment": {
+      "split": "calibration_assessment",
+      "seed": 2026100502,
+      "samples_per_class": 400,
+      "sample_count": 2000,
+      "class_counts": {
+        "bpsk": 400,
+        "qpsk": 400,
+        "8psk": 400,
+        "16qam": 400,
+        "2fsk": 400
+      },
+      "snr_range_db_configured": [
+        8.0,
+        20.0
+      ],
+      "snr_range_db_observed": [
+        8.005290785413058,
+        19.98830334540404
+      ],
+      "snr_distribution": "continuous uniform per independent example",
+      "cfo_range_hz_configured": {
+        "BPSK/QPSK/8PSK/16QAM": [
+          -400.0,
+          400.0
+        ],
+        "2FSK": [
+          0.0,
+          0.0
+        ]
+      },
+      "cfo_range_hz_observed": [
+        -399.98752225579415,
+        398.94840869893983
+      ],
+      "signal_generation": {
+        "symbols_or_fsk_states_per_example": 2048,
+        "psk_qam_sample_rate_hz": 1000000.0,
+        "fsk_sample_rate_hz": 48000.0,
+        "fsk_samples_per_symbol": 8,
+        "fsk_tones_hz": [
+          -3000.0,
+          3000.0
+        ],
+        "random_phase_rad": "uniform[-pi, pi]",
+        "amplitude_gain": "uniform[0.65, 1.45]",
+        "channel": "independent Tier-2 NumPy channel helper; AWGN at configured SNR",
+        "payload": "none; independent equiprobable symbols/states only",
+        "rng": "NumPy PCG64 SeedSequence([split_seed, class_index, sample_index])"
+      },
+      "feature_schema_version": "phase3-modulation-features-v1",
+      "feature_order": [
+        "amplitude_coefficient_of_variation",
+        "amplitude_kurtosis",
+        "normalized_moment_2",
+        "normalized_moment_4",
+        "normalized_moment_8",
+        "psk2_residual",
+        "psk2_phase_entropy",
+        "psk4_residual",
+        "psk4_phase_entropy",
+        "psk8_residual",
+        "psk8_phase_entropy",
+        "qam16_residual",
+        "fsk_quality",
+        "fsk_tone_separation_norm",
+        "fsk_frequency_repeat_fraction",
+        "spectral_entropy",
+        "spectral_peak_fraction"
+      ],
+      "class_order": [
+        "bpsk",
+        "qpsk",
+        "8psk",
+        "16qam",
+        "2fsk"
+      ],
+      "model_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+      "elapsed_seconds_generation_and_inference": 17.196311100007733,
+      "artifact": "calibration_assessment.npz",
+      "artifact_sha256": "2f905136fbe0a6b91853eb3e867d2abdefe14fc15598a3d208c6c1377c83a95b",
+      "unique_feature_rows": 2000
+    },
+    "final_test": {
+      "split": "final_test",
+      "seed": 2026100503,
+      "samples_per_class": 400,
+      "sample_count": 2000,
+      "class_counts": {
+        "bpsk": 400,
+        "qpsk": 400,
+        "8psk": 400,
+        "16qam": 400,
+        "2fsk": 400
+      },
+      "snr_range_db_configured": [
+        8.0,
+        20.0
+      ],
+      "snr_range_db_observed": [
+        8.004256962747311,
+        19.998642749567086
+      ],
+      "snr_distribution": "continuous uniform per independent example",
+      "cfo_range_hz_configured": {
+        "BPSK/QPSK/8PSK/16QAM": [
+          -400.0,
+          400.0
+        ],
+        "2FSK": [
+          0.0,
+          0.0
+        ]
+      },
+      "cfo_range_hz_observed": [
+        -399.37105713537244,
+        399.6772619546897
+      ],
+      "signal_generation": {
+        "symbols_or_fsk_states_per_example": 2048,
+        "psk_qam_sample_rate_hz": 1000000.0,
+        "fsk_sample_rate_hz": 48000.0,
+        "fsk_samples_per_symbol": 8,
+        "fsk_tones_hz": [
+          -3000.0,
+          3000.0
+        ],
+        "random_phase_rad": "uniform[-pi, pi]",
+        "amplitude_gain": "uniform[0.65, 1.45]",
+        "channel": "independent Tier-2 NumPy channel helper; AWGN at configured SNR",
+        "payload": "none; independent equiprobable symbols/states only",
+        "rng": "NumPy PCG64 SeedSequence([split_seed, class_index, sample_index])"
+      },
+      "feature_schema_version": "phase3-modulation-features-v1",
+      "feature_order": [
+        "amplitude_coefficient_of_variation",
+        "amplitude_kurtosis",
+        "normalized_moment_2",
+        "normalized_moment_4",
+        "normalized_moment_8",
+        "psk2_residual",
+        "psk2_phase_entropy",
+        "psk4_residual",
+        "psk4_phase_entropy",
+        "psk8_residual",
+        "psk8_phase_entropy",
+        "qam16_residual",
+        "fsk_quality",
+        "fsk_tone_separation_norm",
+        "fsk_frequency_repeat_fraction",
+        "spectral_entropy",
+        "spectral_peak_fraction"
+      ],
+      "class_order": [
+        "bpsk",
+        "qpsk",
+        "8psk",
+        "16qam",
+        "2fsk"
+      ],
+      "model_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+      "elapsed_seconds_generation_and_inference": 17.388974599991343,
+      "artifact": "final_test.npz",
+      "artifact_sha256": "a9e536e38fc794afbd5a4de814e841cfca8f3f0a974c55cb5c0e3f7687d133e6",
+      "unique_feature_rows": 2000
+    }
+  },
+  "leakage_controls": {
+    "split_seeds_distinct": true,
+    "no_train_samples_used": true,
+    "no_final_test_values_used_to_fit_temperature": true,
+    "fit_command_reads_only": [
+      "calibration_fit.npz",
+      "calibration_assessment.npz"
+    ],
+    "final_test_command_requires_frozen_temperature": true
+  },
+  "cross_split_duplicate_feature_rows": 0,
+  "no_duplicate_feature_rows_verified": true,
+  "historical_calibration_workflow_found": false,
+  "feature_pipeline_scope": "raw ONNX classifier feature inputs; does not model the analyzer's optional second PSK/CFO classification pass"
+}

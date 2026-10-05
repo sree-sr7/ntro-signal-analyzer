@@ -1,0 +1,21 @@
+{
+  "temperature": 6.027927188557306,
+  "method": "temperature scaling: stable softmax(logits / T)",
+  "fitted_on": "calibration_fit only",
+  "assessment_used_for_fit_or_selection": false,
+  "final_test_used_for_fit_or_selection": false,
+  "model_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+  "calibration_fit_artifact_sha256": "1c92b1acffc11ee6e6d387e5ab9b1cced163d9f802a887c760409c2591138105",
+  "calibration_assessment_artifact_sha256": "2f905136fbe0a6b91853eb3e867d2abdefe14fc15598a3d208c6c1377c83a95b",
+  "optimizer": {
+    "method": "bounded_scalar_minimization_of_calibration_fit_NLL_over_log_temperature",
+    "success": true,
+    "iterations": 15,
+    "fit_nll": 0.9790425875809673,
+    "log_temperature_bounds": [
+      -8.0,
+      8.0
+    ]
+  },
+  "frozen_before_final_test_evaluation": "2026-10-05T13:51:45Z"
+}

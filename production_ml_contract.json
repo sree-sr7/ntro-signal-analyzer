@@ -112,7 +112,14 @@
   "calibration": {
     "temperature": 3.824104,
     "used_in_current_inference": false,
-    "notes": "Recorded calibration metadata only. Current inference maps ONNX logits directly to class scores without temperature scaling."
+    "temperature_status": "historical_unapplied_metadata_only",
+    "latest_evaluation": {
+      "candidate_temperature": 6.027927188557306,
+      "status": "evaluated_but_not_sufficiently_validated_for_deployment",
+      "report": "reports/calibration/20261005_temperature_scaling/calibration_report.md",
+      "candidate_used_in_current_inference": false
+    },
+    "notes": "The historical 3.824104 value is not applied. A fresh independent synthetic evaluation fitted 6.027927188557306, but class-wise calibration was inconsistent and the candidate was not deployed. Current inference maps ONNX logits directly to class scores without temperature scaling."
   },
   "signal_support_gate": {
     "threshold": 0.35,

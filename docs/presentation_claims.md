@@ -36,9 +36,12 @@ general accuracy or real-radio performance.
    output classes, with its StandardScaler embedded in the ONNX graph.”**
 
    Scope: ONNX Runtime CPU provider. The model digest was
-   `0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677` during
-   this pass. Current inference does not apply the recorded temperature
-   `3.824104`; do not describe outputs as temperature-calibrated probabilities.
+   `0e0ea216116f8859775b1e55167520db63a25a77243bff803ed7fb677` during
+   this pass. A new synthetic evaluation fitted `T=6.027927`, improving
+   aggregate NLL/ECE on independent assessment and final sets, but class-wise
+   calibration was inconsistent and the candidate was not deployed. Current
+   inference does not apply a temperature; do not describe outputs as
+   temperature-calibrated probabilities.
 
 5. **“The signal-support gate uses a 0.35 bounded geometric fit-evidence
    threshold; the recorded noise and OFDM examples scored 0.1853 and 0.1924

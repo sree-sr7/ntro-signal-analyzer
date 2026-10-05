@@ -35,9 +35,10 @@ work on the `gui-redesign` branch.
   [`production_mlp_final.onnx`](models/production_mlp_final.onnx).
 - An ONNX interface that runs with ONNX Runtime's CPU provider. The model
   accepts 17 ordered raw features and includes its StandardScaler graph. Do
-  not scale features externally. The recorded calibration temperature
-  `3.824104` is metadata only; current inference does not apply it, so output
-  scores are not temperature-calibrated probabilities.
+  not scale features externally. The historical temperature `3.824104` is not
+  applied. A new leakage-separated synthetic evaluation fitted `6.027927`,
+  but its class-wise results were inconsistent and it was not deployed; model
+  scores remain uncalibrated.
 - Bounded spectral, CFO, timing, carrier-phase, and symbol-rate analysis.
   CFO hypotheses can be considered during classification; the system does not
   universally correct CFO before classification. Timing recovery targets
@@ -122,8 +123,10 @@ The checked-in [`production_ml_contract.json`](production_ml_contract.json)
 records the ONNX digest, tensor shapes, feature order, class order, embedded
 scaler, architecture, runtime provider, and calibration metadata. Current
 inference expects raw feature values and does not apply external scaling or
-temperature calibration. The model was not retrained or modified during this
-pass.
+temperature calibration. The fresh, leakage-separated calibration evaluation
+and its limitations are documented in
+[`calibration_report.md`](reports/calibration/20261005_temperature_scaling/calibration_report.md).
+The model was not retrained or modified during this pass.
 
 ## Evidence and claim guidance
 
@@ -131,6 +134,7 @@ pass.
 - [Presentation claim sheet](docs/presentation_claims.md)
 - [Cycle 2 runtime-only report](reports/tier2/fixes/cycle2_runtime_only/README.md)
 - [Cycle 2 CRC phase-search report](reports/tier2/fixes/cycle2_crc_phase_search/README.md)
+- [Fresh GUI-branch Tier-2 report](reports/tier2/baseline_summaries/20261005_post_gui_validation/tier2_report.md)
 - [Controlled synthetic oversampled report](reports/validation/controlled_oversampled/README.md)
 
 Do not present the measured T2-07 speedup as a general performance guarantee,
