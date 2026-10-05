@@ -165,7 +165,7 @@ def test_run_demo_uses_result_views_for_generated_pipeline_data(qapp):
     assert result.source == "DEMO / SYNTHETIC"
     assert result.demo["payload_match"] is True
     assert "Source: DEMO / SYNTHETIC" in window.overview.toPlainText()
-    assert "Payload verification: MATCHED" in window.overview.toPlainText()
+    assert "Verification: MATCHED" in window.overview.toPlainText()
     assert window.waveform_plot.listDataItems()
     assert window.spectrum_plot.listDataItems()
     assert window.waterfall_image.image is not None

@@ -270,3 +270,39 @@ stereo-WAV/I-Q partial behavior, and T2-07 responsiveness during long-running
 analysis. This follow-up supersedes the earlier statement that the manual GUI
 demo gate was unverified. The 632-test result and other measurements above
 were reused; no tests or Tier-2 analyses were rerun for this release task.
+
+## Fresh GUI-branch validation — 2026-10-05
+
+Run `20261005_post_gui_validation` was generated with the current Tier-2 runner
+and analyzer code at revision `c9fdb7a3df3754bad59bc4641d351a6c7f31828b` on
+`gui-redesign`. The NumPy/Komm independent-generator import audit passed. The
+per-case captures, full analysis results, comparisons, and logs are in
+`reports/tier2/baseline/20261005_post_gui_validation/`; aggregate reports are
+in `reports/tier2/baseline_summaries/20261005_post_gui_validation/`.
+
+| Case | Result | Runtime | Key evidence |
+|---|---|---:|---|
+| T2-01 QPSK | PASS | 0.914 s | `Conv_R12_K5`, `Block_8x8`, CRC pass, exact payload match |
+| T2-02 BPSK | PASS | 0.383 s | `Conv_R12_K7`, CRC pass, exact payload match |
+| T2-03 8PSK | PASS | 0.366 s | `Conv_R12_K7`, convolutional depth-12 interleaver, CRC pass, exact payload match |
+| T2-04 16-QAM | REJECTED | 0.241 s | Classifier returned unknown; no demodulation/FEC/payload evidence |
+| T2-05 QPSK stereo WAV | PARTIAL | 0.035 s | QPSK classified/demodulated; payload did not match |
+| T2-06 2FSK | PASS | 0.191 s | `Conv_R12_K3`, CRC pass, exact payload match |
+| T2-07 QPSK | PASS | 90.122 s | `Concat_RS223_Conv7`, `Block_16x16`, CRC pass, exact payload match |
+| T2-08 QPSK | PASS | 2.847 s | `Conv_R12_K7`, `Diag_16x16_S1`, CRC pass, exact payload match |
+| T2-09 noise | OOD_PASS | 0.016 s | Explicitly rejected; no accepted recovery |
+| T2-10 OFDM | OOD_PASS | 0.011 s | Explicitly rejected; no accepted recovery |
+
+Aggregate counts: 6 PASS, 1 PARTIAL, 1 REJECTED, 2 OOD_PASS, and zero FAIL or
+ERROR. This is one fixed, controlled synthetic capture set; it does not imply
+an overall accuracy rate. T2-04 remains unresolved, T2-05 remains partial,
+and the two observed OOD rejections do not establish universal OOD rejection.
+GNU Radio was unavailable, so this is not GNU Radio evidence. It is not OTA or
+real-world evidence. The prior oversampled-QPSK failure and observed CRC false
+accept remain limitations.
+
+The existing runner had a hard-coded note that Git metadata was unavailable,
+even though this checkout had `.git`. The run manifest was corrected using the
+recorded Git revision. The runner now records revision and working-tree status
+on future runs; that source change affects provenance metadata only, not signal
+generation or analyzer behavior.

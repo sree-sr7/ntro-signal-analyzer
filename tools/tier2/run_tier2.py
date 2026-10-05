@@ -8,6 +8,7 @@ import hashlib
 import json
 import os
 import platform
+import subprocess
 import sys
 import time
 import traceback
@@ -97,10 +98,23 @@ def _environment() -> dict[str, Any]:
         komm_version = getattr(komm, "__version__", "unknown")
     except ImportError:
         komm_version = None
+    try:
+        revision = subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, check=True, capture_output=True, text=True
+        ).stdout.strip()
+        status_result = subprocess.run(
+            ["git", "status", "--short"], cwd=ROOT, check=True, capture_output=True, text=True
+        )
+        worktree_status = status_result.stdout.splitlines()
+    except (OSError, subprocess.CalledProcessError):
+        revision = None
+        worktree_status = None
     return {
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-        "repository_revision": None,
-        "repository_revision_note": "No .git metadata is present in the supplied repository checkout.",
+        "repository_revision": revision,
+        "repository_revision_note": None if revision else "Git metadata could not be read from this checkout.",
+        "repository_worktree_status": worktree_status,
+        "repository_worktree_dirty": bool(worktree_status) if worktree_status is not None else None,
         "python": sys.version,
         "platform": platform.platform(),
         "numpy": np.__version__,

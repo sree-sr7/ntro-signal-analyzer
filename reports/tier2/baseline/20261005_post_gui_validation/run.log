@@ -1,0 +1,33 @@
+2026-10-05T13:42:05.454585+00:00 Tier-2 run 20261005_post_gui_validation started; scenario_count=10
+2026-10-05T13:42:05.454585+00:00 generator_import_audit={"audit_pass": true, "direct_imports": ["__future__", "argparse", "hashlib", "json", "komm", "math", "numpy", "pathlib", "platform", "scipy.io", "typing"], "forbidden_imports": [], "generator_file": "tools\\tier2\\generate_signals.py", "scope": "static AST audit of independent generator only; analyzer imports are expected in runner"}
+2026-10-05T13:42:05.464597+00:00 T2-01 generation started
+2026-10-05T13:42:05.482116+00:00 T2-01 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-10-05T13:42:06.413237+00:00 T2-01 complete status=PASS analyzer_status=complete elapsed_seconds=0.914
+2026-10-05T13:42:06.413237+00:00 T2-02 generation started
+2026-10-05T13:42:06.440679+00:00 T2-02 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-10-05T13:42:06.843076+00:00 T2-02 complete status=PASS analyzer_status=complete elapsed_seconds=0.383
+2026-10-05T13:42:06.843076+00:00 T2-03 generation started
+2026-10-05T13:42:06.869161+00:00 T2-03 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-10-05T13:42:07.250186+00:00 T2-03 complete status=PASS analyzer_status=complete elapsed_seconds=0.366
+2026-10-05T13:42:07.250186+00:00 T2-04 generation started
+2026-10-05T13:42:08.692790+00:00 T2-04 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-10-05T13:42:09.119214+00:00 T2-04 complete status=REJECTED analyzer_status=rejected elapsed_seconds=0.241
+2026-10-05T13:42:09.119214+00:00 T2-05 generation started
+2026-10-05T13:42:09.136176+00:00 T2-05 Analyzer.analyze_file started with keys=['crc_present', 'run_fec', 'samples_per_symbol', 'treat_stereo_as_iq']
+2026-10-05T13:42:09.197973+00:00 T2-05 complete status=PARTIAL analyzer_status=partial elapsed_seconds=0.035
+2026-10-05T13:42:09.198980+00:00 T2-06 generation started
+2026-10-05T13:42:09.234306+00:00 T2-06 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol', 'tone_frequencies_hz']
+2026-10-05T13:42:09.469313+00:00 T2-06 complete status=PASS analyzer_status=complete elapsed_seconds=0.191
+2026-10-05T13:42:09.469313+00:00 T2-07 generation started
+2026-10-05T13:42:10.528310+00:00 T2-07 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-10-05T13:43:41.289491+00:00 T2-07 complete status=PASS analyzer_status=complete elapsed_seconds=90.122
+2026-10-05T13:43:41.290482+00:00 T2-08 generation started
+2026-10-05T13:43:41.341514+00:00 T2-08 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec', 'samples_per_symbol']
+2026-10-05T13:43:44.233384+00:00 T2-08 complete status=PASS analyzer_status=complete elapsed_seconds=2.847
+2026-10-05T13:43:44.233384+00:00 T2-09 generation started
+2026-10-05T13:43:44.254085+00:00 T2-09 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec']
+2026-10-05T13:43:44.295007+00:00 T2-09 complete status=OOD_PASS analyzer_status=rejected elapsed_seconds=0.016
+2026-10-05T13:43:44.295523+00:00 T2-10 generation started
+2026-10-05T13:43:44.318217+00:00 T2-10 Analyzer.analyze_file started with keys=['crc_present', 'iq_config', 'run_fec']
+2026-10-05T13:43:44.343143+00:00 T2-10 complete status=OOD_PASS analyzer_status=rejected elapsed_seconds=0.011
+2026-10-05T13:43:44.346715+00:00 Tier-2 run finished scenarios=10

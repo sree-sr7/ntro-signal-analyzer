@@ -1,0 +1,41 @@
+{
+  "accepted_fec": "Conv_R12_K5",
+  "accepted_interleaver": "Block_8x8",
+  "analysis_result_file": "analysis_result.json",
+  "analyzer_status": "complete",
+  "classifier_status": "success",
+  "crc": true,
+  "demodulated_bit_count": 3904,
+  "elapsed_seconds": 0.9137396000005538,
+  "estimated_cfo_hz": 149.02104605428218,
+  "failure_reason": "",
+  "fec_ground_truth": "Conv_R12_K5",
+  "fec_status": "accepted",
+  "gates": {
+    "demodulation": true,
+    "fec_interleaver_crc": true,
+    "input": true,
+    "modulation": true,
+    "ood_rejection": null,
+    "payload": true
+  },
+  "ground_truth_modulation": "QPSK",
+  "injected_cfo_hz": 150.0,
+  "interleaver_ground_truth": "Block_8x8",
+  "modulation_confidence": 0.9999997851739901,
+  "ood_state": {
+    "accepted_candidate_count": 1,
+    "best_candidate_accepted": true,
+    "crc_valid_recovery": true,
+    "expected_ood": false,
+    "explicitly_rejected": false,
+    "fec_search_status": "accepted"
+  },
+  "payload_match": true,
+  "payload_sha256_expected": "2229e82b1c002b9d2118bf4ef4006865cf2169f4705c004468bccd1392ee4fe7",
+  "payload_sha256_recovered": "2229e82b1c002b9d2118bf4ef4006865cf2169f4705c004468bccd1392ee4fe7",
+  "predicted_modulation": "qpsk",
+  "scenario_id": "T2-01",
+  "scenario_type": "in_scope",
+  "status": "PASS"
+}

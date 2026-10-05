@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ast
+import subprocess
 from pathlib import Path
 
 import numpy as np
@@ -13,7 +14,7 @@ from tools.tier2.generate_signals import (
     generate_scenario,
     load_config,
 )
-from tools.tier2.run_tier2 import _expected_interleaver
+from tools.tier2.run_tier2 import _environment, _expected_interleaver
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -76,3 +77,16 @@ def test_none_interleaver_matches_public_api_representation() -> None:
     assert _expected_interleaver("None") is None
     assert _expected_interleaver(None) is None
     assert _expected_interleaver("Block_8x8") == "Block_8x8"
+
+
+def test_tier2_environment_records_git_revision_when_available() -> None:
+    expected = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False
+    )
+    environment = _environment()
+    if expected.returncode == 0:
+        assert environment["repository_revision"] == expected.stdout.strip()
+        assert "repository_revision_note" in environment
+    else:
+        assert environment["repository_revision"] is None
+        assert environment["repository_revision_note"]

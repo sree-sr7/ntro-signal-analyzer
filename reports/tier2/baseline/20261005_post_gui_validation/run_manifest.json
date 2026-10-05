@@ -1,0 +1,66 @@
+{
+  "environment": {
+    "generator_version": "tier2-independent-numpy-komm-1.0.0",
+    "gnuradio": null,
+    "harness_version": "1.0.0",
+    "komm": "0.36.0",
+    "model_continuity": "Unavailable: no prior validated model hash was found in the repository or supplied records.",
+    "model_path": "models\\production_mlp_final.onnx",
+    "model_previous_validated_sha256": null,
+    "model_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+    "numpy": "2.5.3",
+    "onnxruntime": "1.30.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pyqt6": "installed; version recorded by baseline manifest",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+    "repository_revision": "c9fdb7a3df3754bad59bc4641d351a6c7f31828b",
+    "repository_revision_note": "Correction after the run: the runner version used hard-coded Git metadata as unavailable. The exact revision was read from this checkout; at invocation, the only source edit was the GUI test expectation update, and the listed report directories were created by this run.",
+    "scipy": "1.18.1",
+    "timestamp_utc": "2026-10-05T13:42:05.425702+00:00",
+    "repository_worktree_status": [
+      " M tests/gui/test_main_window.py",
+      "?? reports/tier2/baseline/20261005_post_gui_validation/",
+      "?? reports/tier2/baseline_summaries/20261005_post_gui_validation/"
+    ],
+    "repository_worktree_dirty": true
+  },
+  "finished_utc": "2026-10-05T13:43:44.346715+00:00",
+  "generator_import_list": [
+    "__future__",
+    "argparse",
+    "hashlib",
+    "json",
+    "komm",
+    "math",
+    "numpy",
+    "pathlib",
+    "platform",
+    "scipy.io",
+    "typing"
+  ],
+  "gnu_radio_available": false,
+  "independence_audit": {
+    "audit_pass": true,
+    "direct_imports": [
+      "__future__",
+      "argparse",
+      "hashlib",
+      "json",
+      "komm",
+      "math",
+      "numpy",
+      "pathlib",
+      "platform",
+      "scipy.io",
+      "typing"
+    ],
+    "forbidden_imports": [],
+    "generator_file": "tools\\tier2\\generate_signals.py",
+    "scope": "static AST audit of independent generator only; analyzer imports are expected in runner"
+  },
+  "invocation": "Analyzer.analyze_file(...) for each capture; sequential execution",
+  "pre_harness_snapshot": null,
+  "run_id": "20261005_post_gui_validation",
+  "scenario_config": "C:\\Users\\HP\\Documents\\NTRO-Signal-Analyzer\\tools\\tier2\\config\\baseline_scenarios.json",
+  "scenario_results": 10
+}
