@@ -4,14 +4,15 @@ from __future__ import annotations
 
 import html
 import json
+import os
 import wave
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 import pyqtgraph as pg
-from PyQt6.QtCore import QEvent, QObject, QRectF, QThread, QTimer, Qt, pyqtSignal
-from PyQt6.QtGui import QFocusEvent, QFont, QKeySequence, QShortcut, QWheelEvent
+from PyQt6.QtCore import QEvent, QObject, QRectF, QSettings, QThread, QTimer, Qt, pyqtSignal
+from PyQt6.QtGui import QFocusEvent, QFont, QFontDatabase, QKeySequence, QShortcut, QWheelEvent
 from PyQt6.QtWidgets import (
     QApplication,
     QButtonGroup,
@@ -50,91 +51,179 @@ from core.pipeline.demo import DEFAULT_DEMO_CONFIG
 from gui.worker import AnalysisWorker
 
 
+_THEME_PALETTES = {
+    "dark": {
+        "BACKGROUND": "#24231f",
+        "SURFACE": "#2c2b26",
+        "RAISED": "#36352f",
+        "INPUT": "#211f1b",
+        "BORDER": "#48463f",
+        "BORDER_STRONG": "#5a574f",
+        "TEXT": "#e9e6de",
+        "SECONDARY": "#b5b1a8",
+        "MUTED": "#918d84",
+        "ACCENT": "#82a99c",
+        "ACCENT_HOVER": "#91b5a9",
+        "ACCENT_SURFACE": "#34423c",
+        "ACCENT_TEXT": "#19221e",
+        "SELECTION": "#536e63",
+        "DISABLED_TEXT": "#77756d",
+        "DISABLED_SURFACE": "#2a2924",
+        "SUCCESS": "#a9c9ae",
+        "SUCCESS_SURFACE": "#2b352d",
+        "SUCCESS_BORDER": "#475848",
+        "WARNING": "#d4bd83",
+        "WARNING_SURFACE": "#393326",
+        "WARNING_BORDER": "#66583c",
+        "ERROR": "#d1a09a",
+        "ERROR_SURFACE": "#382a29",
+        "ERROR_BORDER": "#684643",
+        "PLOT_LOW": "#262520",
+        "PLOT_SOFT": "#3c4841",
+        "PLOT_MID": "#627c70",
+        "PLOT_BRIGHT": "#98b2a5",
+        "PLOT_HIGH": "#e9e6de",
+        "PROGRESS_FILL": "#526e62",
+        "PROGRESS_TEXT": "#f0eee8",
+    },
+    "light": {
+        "BACKGROUND": "#f0eee8",
+        "SURFACE": "#f8f7f3",
+        "RAISED": "#eeece6",
+        "INPUT": "#fcfbf8",
+        "BORDER": "#d7d3ca",
+        "BORDER_STRONG": "#c3beb3",
+        "TEXT": "#282c29",
+        "SECONDARY": "#5e645f",
+        "MUTED": "#747a74",
+        "ACCENT": "#496f64",
+        "ACCENT_HOVER": "#3c6258",
+        "ACCENT_SURFACE": "#e1ebe6",
+        "ACCENT_TEXT": "#f7faf8",
+        "SELECTION": "#a8c2b7",
+        "DISABLED_TEXT": "#92958f",
+        "DISABLED_SURFACE": "#eeece6",
+        "SUCCESS": "#426d4a",
+        "SUCCESS_SURFACE": "#e6efe5",
+        "SUCCESS_BORDER": "#bfd0bd",
+        "WARNING": "#80612a",
+        "WARNING_SURFACE": "#f3ecdc",
+        "WARNING_BORDER": "#d9c99f",
+        "ERROR": "#914d47",
+        "ERROR_SURFACE": "#f4e8e5",
+        "ERROR_BORDER": "#dfc1bc",
+        "PLOT_LOW": "#424844",
+        "PLOT_SOFT": "#5f796e",
+        "PLOT_MID": "#8ca99a",
+        "PLOT_BRIGHT": "#cadbd2",
+        "PLOT_HIGH": "#f8f7f3",
+        "PROGRESS_FILL": "#d3e2db",
+        "PROGRESS_TEXT": "#3f574c",
+    },
+}
+
+
 _WORKSTATION_STYLE = """
 QMainWindow, QWidget {
-    background: #17191c; color: #eceff1; font-family: "Segoe UI";
+    background: @BACKGROUND@; color: @TEXT@; font-family: "@UI_FONT@";
     font-size: @BODY_FONT@;
 }
 QLabel { background: transparent; }
-QFrame#appHeader { background: #17191c; border-bottom: 1px solid #363b41; }
-QFrame#inputPanel { background: #202328; border: 1px solid #363b41; border-radius: 5px; }
-QLabel#appTitle { font-size: @TITLE_FONT@; font-weight: 600; color: #eceff1; }
-QLabel#appSubtitle, QLabel#tabCaption, QLabel#contextText { color: #a7afb7; }
-QLabel#sectionEyebrow { color: #a7afb7; font-size: @SMALL_FONT@; font-weight: 600; }
-QLabel#metadataLabel { color: #a7afb7; font-size: @SMALL_FONT@; }
-QLabel#scoreLabel { color: #a7afb7; }
-QPlainTextEdit#diagnosticsText { font-family: "Consolas"; }
+QFrame#appHeader { background: @BACKGROUND@; border-bottom: 1px solid @BORDER@; }
+QFrame#inputPanel { background: @SURFACE@; border: 1px solid @BORDER@; border-radius: 5px; }
+QLabel#appTitle { font-size: @TITLE_FONT@; font-weight: 600; color: @TEXT@; }
+QLabel#appSubtitle, QLabel#tabCaption, QLabel#contextText { color: @SECONDARY@; }
+QLabel#sectionEyebrow { color: @SECONDARY@; font-size: @SMALL_FONT@; font-weight: 600; }
+QLabel#metadataLabel { color: @SECONDARY@; font-size: @SMALL_FONT@; }
+QLabel#scoreLabel { color: @MUTED@; }
+QPlainTextEdit#diagnosticsText { font-family: "@MONO_FONT@"; }
 QLabel#headerState {
-    color: #eceff1; background: #202328; border: 1px solid #363b41;
+    color: @TEXT@; background: @SURFACE@; border: 1px solid @BORDER@;
     border-radius: 5px; min-width: 76px; padding: 5px 9px; font-weight: 600;
 }
-QLabel#headerState[tone="success"] { color: #a8c9b2; background: #202824; border-color: #43564a; }
-QLabel#headerState[tone="warning"] { color: #d6bf8a; background: #28251f; border-color: #5a503a; }
-QLabel#headerState[tone="error"] { color: #d2a19d; background: #2b2222; border-color: #60403e; }
+QLabel#headerState[tone="success"] { color: @SUCCESS@; background: @SUCCESS_SURFACE@; border-color: @SUCCESS_BORDER@; }
+QLabel#headerState[tone="warning"] { color: @WARNING@; background: @WARNING_SURFACE@; border-color: @WARNING_BORDER@; }
+QLabel#headerState[tone="error"] { color: @ERROR@; background: @ERROR_SURFACE@; border-color: @ERROR_BORDER@; }
 QGroupBox {
-    border: none; border-top: 1px solid #363b41; margin-top: 15px;
-    padding: 13px 0 4px; font-weight: 600; color: #eceff1;
+    border: none; border-top: 1px solid @BORDER@; margin-top: 15px;
+    padding: 13px 0 4px; font-weight: 600; color: @TEXT@;
 }
 QGroupBox::title { subcontrol-origin: margin; left: 0; padding: 0 8px 0 0; }
-QLabel#fileInfo { color: #eceff1; font-weight: 600; }
-QLabel#demoNote { color: #c1c8ce; border-left: 2px solid #5b87a8; padding: 4px 8px; }
-QLabel#tabHeading { color: #eceff1; font-size: @HEADING_FONT@; font-weight: 600; }
-QLabel#emptyHeading { color: #eceff1; font-size: @EMPTY_FONT@; font-weight: 600; padding: 4px; }
-QLabel#emptyDescription { color: #a7afb7; padding: 4px 20px; }
-QLabel#emptyBadge { color: #b5c0c8; border-top: 1px solid #363b41; padding: 8px; margin-top: 10px; }
+QLabel#fileInfo { color: @TEXT@; font-weight: 600; }
+QLabel#demoNote { color: @SECONDARY@; border-left: 2px solid @ACCENT@; padding: 4px 8px; }
+QLabel#tabHeading { color: @TEXT@; font-size: @HEADING_FONT@; font-weight: 600; }
+QLabel#emptyHeading { color: @TEXT@; font-size: @EMPTY_FONT@; font-weight: 600; padding: 4px; }
+QLabel#emptyDescription { color: @SECONDARY@; padding: 4px 20px; }
+QLabel#emptyBadge { color: @SECONDARY@; border-top: 1px solid @BORDER@; padding: 8px; margin-top: 10px; }
+QLabel#sectionDescription { color: @MUTED@; font-size: @SMALL_FONT@; padding: 0 3px 5px; }
+QFrame#sectionDivider { background: @BORDER@; max-height: 1px; }
 QToolButton#sectionToggle {
-    border: none; border-top: 1px solid #363b41; border-radius: 4px;
-    background: transparent; color: #eceff1; text-align: left;
-    padding: 9px 4px; font-weight: 600;
+    border: none; border-radius: 3px;
+    background: transparent; color: @TEXT@; text-align: left;
+    padding: 7px 3px; font-weight: 600;
 }
-QToolButton#sectionToggle:hover { background: #282c31; }
+QToolButton#sectionToggle:hover { color: @ACCENT@; background: transparent; }
+QToolButton#sectionToggle:focus { border-bottom: 1px solid @ACCENT@; }
+QToolButton#themeToggle {
+    color: @SECONDARY@; background: @SURFACE@; border: 1px solid @BORDER@;
+    border-radius: 4px; padding: 5px 9px; font-weight: 500;
+}
+QToolButton#themeToggle:hover { color: @TEXT@; background: @RAISED@; }
+QToolButton#themeToggle:checked { color: @ACCENT@; background: @ACCENT_SURFACE@; border-color: @BORDER_STRONG@; }
+QToolButton#themeToggle:focus { border-color: @ACCENT@; }
 QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox {
-    background: #17191c; color: #eceff1; border: 1px solid #363b41;
+    background: @INPUT@; color: @TEXT@; border: 1px solid @BORDER@;
     border-radius: 4px; padding: 5px 7px; min-height: 23px;
-    selection-background-color: #476d89;
+    selection-background-color: @SELECTION@;
 }
-QDoubleSpinBox[required="true"] { border-color: #5b87a8; }
+QLineEdit:hover, QComboBox:hover, QSpinBox:hover, QDoubleSpinBox:hover { border-color: @BORDER_STRONG@; }
+QDoubleSpinBox[required="true"] { border-color: @ACCENT@; }
 QLineEdit:focus, QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus,
 QPushButton:focus, QCheckBox:focus, QToolButton:focus, QTabBar::tab:focus {
-    border: 1px solid #5b87a8;
+    border: 1px solid @ACCENT@;
 }
-QCheckBox { spacing: 7px; color: #c9d0d5; }
+QCheckBox { spacing: 7px; color: @SECONDARY@; }
 QPushButton {
-    color: #eceff1; background: #282c31; border: 1px solid #3b4148;
+    color: @TEXT@; background: @RAISED@; border: 1px solid @BORDER@;
     border-radius: 5px; padding: 6px 11px; font-weight: 500;
 }
-QPushButton:hover { background: #32373d; }
-QPushButton:disabled { color: #77818a; background: #202328; border-color: #30353b; }
-QPushButton#openButton, QPushButton#analyzeButton { background: #5b87a8; border-color: #5b87a8; color: #f5f7f8; }
-QPushButton#openButton:hover, QPushButton#analyzeButton:hover { background: #6a95b5; border-color: #6a95b5; }
-QPushButton#demoButton { background: transparent; border-color: #3b4148; color: #c8d0d5; }
-QPushButton#resetButton, QPushButton#copyButton { background: transparent; border-color: transparent; color: #a7afb7; }
-QPushButton#resetButton:hover, QPushButton#copyButton:hover { background: #282c31; border-color: #363b41; color: #eceff1; }
-QPushButton#detailLevelButton { background: transparent; border-color: transparent; padding: 4px 8px; color: #a7afb7; }
-QPushButton#detailLevelButton:hover { background: #282c31; border-color: transparent; color: #eceff1; }
-QPushButton#detailLevelButton:checked { background: #282c31; border-color: #3b4148; color: #eceff1; }
-QTabWidget::pane { border: none; border-top: 1px solid #363b41; background: #17191c; }
+QPushButton:hover { background: @BORDER@; }
+QPushButton:disabled { color: @DISABLED_TEXT@; background: @DISABLED_SURFACE@; border-color: @BORDER@; }
+QPushButton#openButton, QPushButton#analyzeButton { background: @ACCENT@; border-color: @ACCENT@; color: @ACCENT_TEXT@; }
+QPushButton#openButton:hover, QPushButton#analyzeButton:hover { background: @ACCENT_HOVER@; border-color: @ACCENT_HOVER@; }
+QPushButton#demoButton { background: transparent; border-color: @BORDER@; color: @SECONDARY@; }
+QPushButton#resetButton, QPushButton#copyButton { background: transparent; border-color: transparent; color: @MUTED@; }
+QPushButton#resetButton:hover, QPushButton#copyButton:hover { background: @RAISED@; border-color: @BORDER@; color: @TEXT@; }
+QPushButton#detailLevelButton { background: transparent; border-color: transparent; padding: 4px 8px; color: @MUTED@; }
+QPushButton#detailLevelButton:hover { background: @RAISED@; border-color: transparent; color: @TEXT@; }
+QPushButton#detailLevelButton:checked { background: @ACCENT_SURFACE@; border-color: @BORDER@; color: @ACCENT@; }
+QTabWidget::pane { border: none; border-top: 1px solid @BORDER@; background: @BACKGROUND@; }
 QTabBar::tab {
-    background: transparent; color: #a7afb7; border: none;
+    background: transparent; color: @MUTED@; border: none;
     border-bottom: 2px solid transparent; padding: 9px 11px; margin-right: 3px;
 }
-QTabBar::tab:hover { color: #eceff1; background: #202328; }
-QTabBar::tab:selected { color: #eceff1; border-bottom-color: #5b87a8; background: #202328; }
+QTabBar::tab:hover { color: @TEXT@; background: @SURFACE@; }
+QTabBar::tab:selected { color: @TEXT@; border-bottom-color: @ACCENT@; background: @SURFACE@; }
 QTextBrowser#analysisBrowser, QPlainTextEdit {
-    background: #17191c; color: #eceff1; border: none; padding: 4px;
-    selection-background-color: #476d89;
+    background: @BACKGROUND@; color: @TEXT@; border: none; padding: 4px;
+    selection-background-color: @SELECTION@;
 }
-QTableWidget { background: #17191c; alternate-background-color: #202328; color: #eceff1; gridline-color: #363b41; border: none; }
-QHeaderView::section { background: #202328; color: #c5cbd0; border: none; border-bottom: 1px solid #363b41; padding: 7px; font-weight: 600; }
-QStatusBar { background: #17191c; color: #a7afb7; border-top: 1px solid #363b41; }
-QProgressBar { color: #a7afb7; background: #202328; border: 1px solid #363b41; border-radius: 3px; min-height: 12px; text-align: center; }
-QProgressBar::chunk { background: #5b87a8; border-radius: 2px; }
+QTableWidget { background: @INPUT@; alternate-background-color: @SURFACE@; color: @TEXT@; gridline-color: @BORDER@; border: none; }
+QTableWidget::item:selected { background: @ACCENT_SURFACE@; color: @TEXT@; }
+QHeaderView::section { background: @SURFACE@; color: @SECONDARY@; border: none; border-bottom: 1px solid @BORDER@; padding: 7px; font-weight: 600; }
+QStatusBar { background: @BACKGROUND@; color: @SECONDARY@; border-top: 1px solid @BORDER@; }
+QProgressBar { color: @PROGRESS_TEXT@; background: @SURFACE@; border: 1px solid @BORDER@; border-radius: 3px; min-height: 12px; text-align: center; }
+QProgressBar::chunk { background: @PROGRESS_FILL@; border-radius: 2px; }
 QScrollArea { border: none; background: transparent; }
-QScrollArea#controlsScroll { background: #202328; border-right: 1px solid #363b41; }
-QWidget#settingsPane { background: #202328; }
-QScrollBar:vertical { background: #202328; width: 10px; margin: 0; }
-QScrollBar::handle:vertical { background: #454c54; min-height: 24px; border-radius: 4px; }
+QScrollArea#controlsScroll { background: @SURFACE@; border-right: 1px solid @BORDER@; }
+QWidget#settingsPane { background: @SURFACE@; }
+QScrollBar:vertical, QScrollBar:horizontal { background: @SURFACE@; width: 10px; height: 10px; margin: 0; }
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal { background: @BORDER_STRONG@; min-height: 24px; min-width: 24px; border-radius: 4px; }
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal { width: 0; }
+QToolTip { color: @TEXT@; background: @SURFACE@; border: 1px solid @BORDER_STRONG@; padding: 5px 7px; }
+QMenu { color: @TEXT@; background: @SURFACE@; border: 1px solid @BORDER@; }
+QMenu::item:selected { color: @TEXT@; background: @ACCENT_SURFACE@; }
 """
 
 
@@ -221,6 +310,17 @@ class MainWindow(QMainWindow):
     def __init__(self, analyzer: Analyzer | None = None) -> None:
         super().__init__()
         self.analyzer = analyzer or Analyzer()
+        self._settings = QSettings("NTRO", "NTRO Signal Analyzer")
+        stored_theme = str(self._settings.value("appearance/theme", "dark")).lower()
+        self._theme_name = stored_theme if stored_theme in _THEME_PALETTES else "dark"
+        self._theme_palette = _THEME_PALETTES[self._theme_name]
+        self._application_font_ids = self._register_local_fonts()
+        self._ui_font = self._preferred_font(
+            ("Segoe UI Variable", "Segoe UI", "Arial")
+        )
+        self._mono_font = self._preferred_font(
+            ("Cascadia Mono", "Consolas", "Courier New")
+        )
         self.selected_path: str | None = None
         self._thread: QThread | None = None
         self._worker: AnalysisWorker | None = None
@@ -232,6 +332,7 @@ class MainWindow(QMainWindow):
         self._summary_text = ""
         self._active_result_level = "short"
         self._overview_variants: dict[str, str] = {}
+        self._transient_overview: tuple[str, str, str, str] | None = None
         self._wav_channel_count: int | None = None
         self.setWindowTitle("NTRO Signal Analyzer")
         self.setMinimumSize(960, 640)
@@ -239,10 +340,9 @@ class MainWindow(QMainWindow):
         self._build_ui()
         self._install_wheel_filters()
         self._setup_shortcuts()
-        self._apply_ui_scale()
+        self._apply_theme(self._theme_name)
 
     def _build_ui(self) -> None:
-        self.setStyleSheet(_WORKSTATION_STYLE)
         root = QWidget(self)
         root_layout = QVBoxLayout(root)
         root_layout.setContentsMargins(16, 10, 16, 6)
@@ -262,6 +362,16 @@ class MainWindow(QMainWindow):
         title_stack.addWidget(subtitle)
         header_layout.addLayout(title_stack)
         header_layout.addStretch(1)
+        self.theme_toggle = QToolButton()
+        self.theme_toggle.setObjectName("themeToggle")
+        self.theme_toggle.setCheckable(True)
+        self.theme_toggle.setChecked(self._theme_name == "light")
+        self.theme_toggle.setText("Light" if self._theme_name == "light" else "Dark")
+        self.theme_toggle.setAccessibleName("Toggle light and dark appearance")
+        next_theme = "dark" if self._theme_name == "light" else "light"
+        self.theme_toggle.setToolTip(f"Switch to {next_theme} theme")
+        self.theme_toggle.toggled.connect(self._on_theme_toggle)
+        header_layout.addWidget(self.theme_toggle, 0, Qt.AlignmentFlag.AlignVCenter)
         self.header_state_label = QLabel("READY")
         self.header_state_label.setObjectName("headerState")
         self.header_state_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -506,7 +616,10 @@ class MainWindow(QMainWindow):
         fec_form.addRow("Expected payload (bits)", self.expected_payload)
         advanced_layout.addWidget(recovery_group)
         self.advanced_section = self._collapsible_section(
-            "Advanced settings", advanced_body, expanded=False
+            "Advanced settings",
+            advanced_body,
+            expanded=False,
+            description="Expert options for raw format, synchronization and recovery.",
         )
         controls_layout.addWidget(basic_group)
         controls_layout.addWidget(self.advanced_section)
@@ -704,7 +817,7 @@ class MainWindow(QMainWindow):
         self.details = QPlainTextEdit()
         self.details.setReadOnly(True)
         self.details.setObjectName("diagnosticsText")
-        self.details.setFont(QFont("Consolas", 9))
+        self.details.setFont(QFont(self._mono_font, 9))
         self.details.setPlaceholderText(
             "Technical diagnostics are unavailable until an analysis result is returned."
         )
@@ -737,6 +850,51 @@ class MainWindow(QMainWindow):
         self.statusBar().addWidget(self.status_label, 1)
         self.statusBar().addPermanentWidget(self.progress)
         self._update_input_context()
+
+    @staticmethod
+    def _preferred_font(preferences: tuple[str, ...]) -> str:
+        installed = {family.casefold() for family in QFontDatabase.families()}
+        for family in preferences:
+            if family.casefold() in installed:
+                return family
+        if preferences[0] == "Segoe UI Variable":
+            fallback = QFontDatabase.systemFont(
+                QFontDatabase.SystemFont.GeneralFont
+            ).family()
+            return fallback or "sans-serif"
+        fallback = QFontDatabase.systemFont(
+            QFontDatabase.SystemFont.FixedFont
+        ).family()
+        return fallback or "monospace"
+
+    @staticmethod
+    def _register_local_fonts() -> list[int]:
+        """Make preferred Windows fonts visible to Qt's offscreen/native font database."""
+        font_directory = Path(os.environ.get("WINDIR", r"C:\Windows")) / "Fonts"
+        candidates = (
+            ("Segoe UI Variable", "SegUIVar.ttf"),
+            ("Segoe UI", "segoeui.ttf"),
+            ("Arial", "arial.ttf"),
+            ("Cascadia Mono", "CascadiaMono.ttf"),
+            ("Consolas", "consola.ttf"),
+            ("Courier New", "cour.ttf"),
+        )
+        installed = {family.casefold() for family in QFontDatabase.families()}
+        registered_ids: list[int] = []
+        for family, filename in candidates:
+            if family.casefold() in installed:
+                continue
+            font_path = font_directory / filename
+            if not font_path.is_file():
+                continue
+            font_id = QFontDatabase.addApplicationFont(str(font_path))
+            if font_id >= 0:
+                registered_ids.append(font_id)
+                installed.update(
+                    family.casefold()
+                    for family in QFontDatabase.applicationFontFamilies(font_id)
+                )
+        return registered_ids
 
     def _install_wheel_filters(self) -> None:
         self._wheel_filter = _PassiveWheelFilter(self)
@@ -776,15 +934,117 @@ class MainWindow(QMainWindow):
 
     def _apply_ui_scale(self) -> None:
         scale = self._ui_scale
-        stylesheet = (
-            _WORKSTATION_STYLE
-            .replace("@BODY_FONT@", f"{10 * scale:.1f}pt")
-            .replace("@SMALL_FONT@", f"{9 * scale:.1f}pt")
-            .replace("@HEADING_FONT@", f"{14 * scale:.1f}pt")
-            .replace("@TITLE_FONT@", f"{18 * scale:.1f}pt")
-            .replace("@EMPTY_FONT@", f"{19 * scale:.1f}pt")
-        )
+        replacements = dict(self._theme_palette)
+        replacements.update({
+            "UI_FONT": self._ui_font,
+            "MONO_FONT": self._mono_font,
+            "BODY_FONT": f"{10 * scale:.1f}pt",
+            "SMALL_FONT": f"{9 * scale:.1f}pt",
+            "HEADING_FONT": f"{14 * scale:.1f}pt",
+            "TITLE_FONT": f"{18 * scale:.1f}pt",
+            "EMPTY_FONT": f"{19 * scale:.1f}pt",
+        })
+        stylesheet = _WORKSTATION_STYLE
+        for name, value in replacements.items():
+            stylesheet = stylesheet.replace(f"@{name}@", value)
         self.setStyleSheet(stylesheet)
+
+    def _on_theme_toggle(self, light_mode: bool) -> None:
+        self._apply_theme("light" if light_mode else "dark", persist=True)
+
+    def _apply_theme(self, theme: str, *, persist: bool = False) -> None:
+        """Apply one complete palette without changing analyzer state."""
+        theme = theme if theme in _THEME_PALETTES else "dark"
+        self._theme_name = theme
+        self._theme_palette = _THEME_PALETTES[theme]
+        application = QApplication.instance()
+        if application is not None:
+            application.setFont(QFont(self._ui_font))
+        self._apply_ui_scale()
+        if hasattr(self, "theme_toggle"):
+            self.theme_toggle.blockSignals(True)
+            self.theme_toggle.setChecked(theme == "light")
+            self.theme_toggle.setText("Light" if theme == "light" else "Dark")
+            next_theme = "dark" if theme == "light" else "light"
+            self.theme_toggle.setToolTip(f"Switch to {next_theme} theme")
+            self.theme_toggle.blockSignals(False)
+        if persist:
+            self._settings.setValue("appearance/theme", theme)
+        self._apply_plot_theme()
+        self._refresh_theme_dependent_content()
+
+    def _apply_plot_theme(self) -> None:
+        if not hasattr(self, "waveform_plot"):
+            return
+        palette = self._theme_palette
+        for plot in (
+            self.waveform_plot,
+            self.spectrum_plot,
+            self.waterfall_plot,
+            self.constellation_plot,
+        ):
+            plot.setBackground(palette["BACKGROUND"])
+            for axis_name in ("left", "bottom"):
+                axis = plot.getAxis(axis_name)
+                axis.setPen(palette["BORDER_STRONG"])
+                axis.setTextPen(palette["SECONDARY"])
+
+    def _refresh_theme_dependent_content(self) -> None:
+        if self._last_result is not None:
+            result = self._last_result
+            main_tab = self.tabs.currentIndex()
+            inner_tab = self.recovery_tabs.currentIndex()
+            result_level = self._active_result_level
+            plot_ranges = {
+                plot: (plot.viewRange(), plot.getViewBox().autoRangeEnabled())
+                for plot in (
+                    self.waveform_plot,
+                    self.spectrum_plot,
+                    self.waterfall_plot,
+                    self.constellation_plot,
+                )
+            }
+            self.populate_result(result)
+            self._active_result_level = result_level
+            if result_level == "technical":
+                self.result_level_buttons["technical"].setChecked(True)
+            else:
+                self.result_level_buttons[result_level].setChecked(True)
+                rendered = self._overview_variants.get(result_level)
+                if rendered:
+                    self.overview.setHtml(rendered)
+            for plot, ((x_range, y_range), auto_range) in plot_ranges.items():
+                if not any(auto_range):
+                    plot.setRange(xRange=x_range, yRange=y_range, padding=0)
+            self.tabs.setCurrentIndex(main_tab)
+            self.recovery_tabs.setCurrentIndex(inner_tab)
+            self._sync_result_level()
+        elif self._transient_overview is not None:
+            self.overview.setHtml(self._transient_overview_html())
+
+    def _transient_overview_html(self) -> str:
+        eyebrow, heading, message, tone = self._transient_overview or (
+            "", "", "", "normal"
+        )
+        colors = self._theme_palette
+        tone_color = {
+            "error": colors["ERROR"],
+            "warning": colors["WARNING"],
+            "normal": colors["ACCENT"],
+        }.get(tone, colors["ACCENT"])
+        return (
+            "<html><body style='background:{bg};color:{text};font-family:{font};margin:8px;'>"
+            "<div style='color:{secondary};'>{eyebrow}</div>"
+            "<div style='color:{tone};font-size:{size:.1f}pt;font-weight:600;margin-top:8px;'>{heading}</div>"
+            "<p style='color:{secondary};'>{message}</p>"
+            "</body></html>"
+        ).format(
+            bg=colors["BACKGROUND"], text=colors["TEXT"],
+            font=html.escape(self._ui_font), secondary=colors["SECONDARY"],
+            tone=tone_color, size=19 * self._ui_scale,
+            eyebrow=html.escape(eyebrow), heading=html.escape(heading),
+            message=html.escape(message),
+        )
 
     def _show_result_level(self, level: str) -> None:
         """Show the selected human or technical depth without duplicating the view."""
@@ -843,6 +1103,7 @@ class MainWindow(QMainWindow):
 
     def _clear_result_presentation(self) -> None:
         self._last_result = None
+        self._transient_overview = None
         self._summary_text = ""
         self._overview_variants.clear()
         self._active_result_level = "short"
@@ -1103,15 +1364,14 @@ class MainWindow(QMainWindow):
         layout.addStretch(3)
         return panel
 
-    @staticmethod
-    def _new_plot() -> pg.PlotWidget:
+    def _new_plot(self) -> pg.PlotWidget:
         plot = pg.PlotWidget()
-        plot.setBackground("#17191c")
+        plot.setBackground(self._theme_palette["BACKGROUND"])
         plot.getPlotItem().layout.setContentsMargins(10, 8, 14, 10)
         for axis_name in ("left", "bottom"):
             axis = plot.getAxis(axis_name)
-            axis.setPen("#454c54")
-            axis.setTextPen("#a7afb7")
+            axis.setPen(self._theme_palette["BORDER_STRONG"])
+            axis.setTextPen(self._theme_palette["SECONDARY"])
         return plot
 
     @classmethod
@@ -1142,10 +1402,21 @@ class MainWindow(QMainWindow):
         return tab, empty_state, stack
 
     @staticmethod
-    def _collapsible_section(title: str, content: QWidget, *, expanded: bool) -> QWidget:
+    def _collapsible_section(
+        title: str,
+        content: QWidget,
+        *,
+        expanded: bool,
+        description: str = "",
+    ) -> QWidget:
         section = QWidget()
+        section.setObjectName("advancedSection")
         layout = QVBoxLayout(section)
         layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(2)
+        divider = QFrame()
+        divider.setObjectName("sectionDivider")
+        divider.setFixedHeight(1)
         toggle = QToolButton()
         toggle.setText(title)
         toggle.setCheckable(True)
@@ -1154,25 +1425,34 @@ class MainWindow(QMainWindow):
         toggle.setArrowType(Qt.ArrowType.DownArrow if expanded else Qt.ArrowType.RightArrow)
         toggle.setObjectName("sectionToggle")
         content.setVisible(expanded)
+        layout.addWidget(divider)
+        layout.addWidget(toggle)
+        if description:
+            description_label = QLabel(description)
+            description_label.setObjectName("sectionDescription")
+            description_label.setWordWrap(True)
+            layout.addWidget(description_label)
 
         def set_expanded(checked: bool) -> None:
             content.setVisible(checked)
             toggle.setArrowType(Qt.ArrowType.DownArrow if checked else Qt.ArrowType.RightArrow)
 
         toggle.toggled.connect(set_expanded)
-        layout.addWidget(toggle)
         layout.addWidget(content)
         return section
 
     def open_file_dialog(self) -> None:
-        path, _ = QFileDialog.getOpenFileName(
-            self,
-            "Open signal file",
-            "",
-            "Supported signals (*.iq *.IQ *.wav *.WAV);;All files (*)",
-        )
-        if path:
-            self.select_file(path)
+        dialog = QFileDialog(self, "Open signal file")
+        dialog.setOption(QFileDialog.Option.DontUseNativeDialog, True)
+        dialog.setFileMode(QFileDialog.FileMode.ExistingFile)
+        dialog.setNameFilters([
+            "Supported signals (*.iq *.IQ *.wav *.WAV)",
+            "All files (*)",
+        ])
+        if dialog.exec() == QFileDialog.DialogCode.Accepted:
+            selected = dialog.selectedFiles()
+            if selected:
+                self.select_file(selected[0])
 
     def select_file(self, path: str | Path) -> None:
         """Select a file and inspect only its path and supported header metadata."""
@@ -1346,13 +1626,13 @@ class MainWindow(QMainWindow):
 
     def _start_worker(self, worker: AnalysisWorker, *, initial_status: str) -> None:
         self._clear_result_presentation()
-        self.overview.setHtml(
-            "<html><body style='background:#17191c;color:#eceff1;font-family:Segoe UI;'>"
-            "<div style='color:#a7afb7;'>Analysis in progress</div>"
-            "<div style='font-size:19pt;font-weight:600;margin-top:8px;'>Analyzing</div>"
-            "<p style='color:#a7afb7;'>The analyzer is running in the background. Progress appears below.</p>"
-            "</body></html>"
+        self._transient_overview = (
+            "Analysis in progress",
+            "Analyzing",
+            "The analyzer is running in the background. Progress appears below.",
+            "normal",
         )
+        self.overview.setHtml(self._transient_overview_html())
         self.analysis_stack.setCurrentIndex(1)
         self.open_button.setEnabled(False)
         self.analyze_button.setEnabled(False)
@@ -1414,13 +1694,13 @@ class MainWindow(QMainWindow):
         self._set_header_state("ERROR", "error")
         self.status_label.setText(f"Analysis error: {message}")
         self.status_label.setStyleSheet("")
-        self.overview.setHtml(
-            "<html><body style='background:#17191c;color:#eceff1;font-family:Segoe UI;'>"
-            "<div style='color:#d2a19d;font-size:18pt;font-weight:600;'>Error</div>"
-            "<p>Worker stopped before returning an AnalysisResult.</p>"
-            f"<p style='color:#a7afb7;'>{html.escape(message)}</p>"
-            "</body></html>"
+        self._transient_overview = (
+            "Analysis stopped before a result was returned",
+            "Error",
+            f"Worker stopped before returning an AnalysisResult. {message}",
+            "error",
         )
+        self.overview.setHtml(self._transient_overview_html())
         self._summary_text = f"NTRO Signal Analyzer\nERROR\n{message}"
         self.analysis_stack.setCurrentIndex(1)
         self.progress.setValue(100)
@@ -1448,6 +1728,7 @@ class MainWindow(QMainWindow):
 
     def populate_result(self, result: AnalysisResult) -> None:
         """Render the public AnalysisResult without changing backend semantics."""
+        self._transient_overview = None
         self._last_result = result
         phase_resolution = result.synchronization.get("phase_ambiguity_resolution", {})
         phase_unresolved = (
@@ -1593,25 +1874,25 @@ class MainWindow(QMainWindow):
 
         def detail_row(label: str, value: str, *, value_tone: str = "normal") -> str:
             value_color = {
-                "success": "#a8c9b2",
-                "warning": "#d6bf8a",
-                "error": "#d2a19d",
-                "normal": "#eceff1",
-            }.get(value_tone, "#eceff1")
+                "success": self._theme_palette["SUCCESS"],
+                "warning": self._theme_palette["WARNING"],
+                "error": self._theme_palette["ERROR"],
+                "normal": self._theme_palette["TEXT"],
+            }.get(value_tone, self._theme_palette["TEXT"])
             return (
-                "<tr style='border-bottom:1px solid #363b41;'>"
-                f"<td width='30%' valign='top' style='color:#a7afb7;padding:8px 10px 8px 2px;'>{escaped(label)}</td>"
+                f"<tr style='border-bottom:1px solid {self._theme_palette['BORDER']};'>"
+                f"<td width='30%' valign='top' style='color:{self._theme_palette['SECONDARY']};padding:8px 10px 8px 2px;'>{escaped(label)}</td>"
                 f"<td valign='top' style='color:{value_color};padding:8px 2px;'>{value}</td></tr>"
             )
 
         source = str(result.source or "UNKNOWN")
         filename = result.filename or Path(result.input_path).name or "Unknown file"
         status_color = {
-            "complete": "#a8c9b2",
-            "partial": "#d6bf8a",
-            "rejected": "#d2a19d",
-            "error": "#d2a19d",
-        }.get(display_status, "#a7afb7")
+            "complete": self._theme_palette["SUCCESS"],
+            "partial": self._theme_palette["WARNING"],
+            "rejected": self._theme_palette["ERROR"],
+            "error": self._theme_palette["ERROR"],
+        }.get(display_status, self._theme_palette["SECONDARY"])
         status_description = {
             "complete": "Analyzer completed the reported stages.",
             "partial": "The result remains partial; review the listed limitations and recovery state.",
@@ -1670,20 +1951,20 @@ class MainWindow(QMainWindow):
         alert_html = ""
         if result.errors:
             alert_html = (
-                "<p style='margin:9px 0 4px;color:#d2a19d;'>"
+                f"<p style='margin:9px 0 4px;color:{self._theme_palette['ERROR']};'>"
                 f"Analyzer detail · {escaped(error_detail)}</p>"
             )
         elif result.warnings:
             warning_text = escaped(result.warnings[0])
             alert_html = (
-                "<p style='margin:9px 0 4px;color:#d6bf8a;'>"
+                f"<p style='margin:9px 0 4px;color:{self._theme_palette['WARNING']};'>"
                 f"Analyzer note · {warning_text}</p>"
             )
         demo_html = ""
         if result.demo is not None:
             note = result.demo.get("note")
             demo_html = (
-                "<p style='margin:8px 0;color:#a7afb7;border-left:2px solid #5b87a8;padding:4px 8px;'>"
+                f"<p style='margin:8px 0;color:{self._theme_palette['SECONDARY']};border-left:2px solid {self._theme_palette['ACCENT']};padding:4px 8px;'>"
                 "DEMO / SYNTHETIC"
                 + (f" · {escaped(note)}" if note else "")
                 + "</p>"
@@ -1755,18 +2036,18 @@ class MainWindow(QMainWindow):
 
         def overview_html(rows: str) -> str:
             return f"""
-            <html><body style="background-color:#17191c;color:#eceff1;font-family:'Segoe UI';font-size:{font_size:.1f}pt;margin:8px;">
+            <html><body style="background-color:{self._theme_palette['BACKGROUND']};color:{self._theme_palette['TEXT']};font-family:'{html.escape(self._ui_font)}';font-size:{font_size:.1f}pt;margin:8px;">
               <table width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
                 <tr>
                   <td width="34%" valign="top" style="padding:8px 22px 8px 2px;">
                     <div style="color:{status_color};font-size:{10 * self._ui_scale:.1f}pt;font-weight:600;">{escaped(display_status.upper())}</div>
-                    <div style="color:#5b87a8;font-size:{modulation_size:.1f}pt;font-weight:600;margin:5px 0 2px;">{modulation_heading}</div>
-                    <div style="color:#a7afb7;margin:2px 0 10px;">Prediction: {escaped(modulation)} · Classifier state: {escaped(classifier_status)}</div>
-                    <div style="color:#c5cbd0;line-height:1.35;">{escaped(status_description)}</div>
+                    <div style="color:{self._theme_palette['ACCENT']};font-size:{modulation_size:.1f}pt;font-weight:600;margin:5px 0 2px;">{modulation_heading}</div>
+                    <div style="color:{self._theme_palette['SECONDARY']};margin:2px 0 10px;">Prediction: {escaped(modulation)} · Classifier state: {escaped(classifier_status)}</div>
+                    <div style="color:{self._theme_palette['TEXT']};line-height:1.35;">{escaped(status_description)}</div>
                     {demo_html}
                     {alert_html}
                   </td>
-                  <td valign="top" style="border-left:1px solid #363b41;padding:2px 2px 2px 22px;">
+                  <td valign="top" style="border-left:1px solid {self._theme_palette['BORDER']};padding:2px 2px 2px 22px;">
                     <table width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
                       {rows}
                     </table>
@@ -1917,9 +2198,17 @@ class MainWindow(QMainWindow):
                 if has_result else "Run an analysis to view the time-domain samples.",
             )
         if waveform_ready:
-            self.waveform_plot.plot(x, i_values, pen=pg.mkPen("#5b87a8", width=1.4), name="I")
+            self.waveform_plot.plot(
+                x, i_values,
+                pen=pg.mkPen(self._theme_palette["ACCENT"], width=1.5),
+                name="I",
+            )
             if q_values is not None and np.any(np.asarray(q_values) != 0):
-                self.waveform_plot.plot(x, q_values, pen=pg.mkPen("#a7afb7", width=1.1), name="Q")
+                self.waveform_plot.plot(
+                    x, q_values,
+                    pen=pg.mkPen(self._theme_palette["SECONDARY"], width=1.1),
+                    name="Q",
+                )
         spectrum_x = arrays.get("spectrum_frequency_hz")
         spectrum_y = arrays.get("spectrum_power")
         spectrum_ready = (
@@ -1945,7 +2234,7 @@ class MainWindow(QMainWindow):
             self.spectrum_plot.plot(
                 spectrum_x,
                 10.0 * np.log10(np.maximum(spectrum_y, np.finfo(float).tiny)),
-                pen=pg.mkPen("#5b87a8", width=1.5),
+                pen=pg.mkPen(self._theme_palette["ACCENT"], width=1.5),
             )
         self.waterfall_image.clear()
         waterfall = arrays.get("waterfall_magnitude_db")
@@ -1962,18 +2251,17 @@ class MainWindow(QMainWindow):
             )
         if waterfall_ready:
             self.waterfall_image.setImage(np.asarray(waterfall).T, autoLevels=True)
+            gradient_colors = [
+                self._theme_palette[name]
+                for name in ("PLOT_LOW", "PLOT_SOFT", "PLOT_MID", "PLOT_BRIGHT", "PLOT_HIGH")
+            ]
+            gradient_rgb = np.array([
+                [int(color[offset:offset + 2], 16) for offset in (1, 3, 5)]
+                for color in gradient_colors
+            ], dtype=np.ubyte)
             waterfall_colormap = pg.ColorMap(
                 pos=np.array([0.0, 0.25, 0.5, 0.75, 1.0]),
-                color=np.array(
-                    [
-                        [23, 25, 28],
-                        [40, 47, 55],
-                        [58, 73, 85],
-                        [94, 121, 143],
-                        [198, 209, 216],
-                    ],
-                    dtype=np.ubyte,
-                ),
+                color=gradient_rgb,
             )
             self.waterfall_image.setLookupTable(
                 waterfall_colormap.getLookupTable(0.0, 1.0, 256)
@@ -2034,8 +2322,8 @@ class MainWindow(QMainWindow):
                 pen=None,
                 symbol="o",
                 symbolSize=7,
-                symbolPen=pg.mkPen("#c5cbd0", width=0.8),
-                symbolBrush=pg.mkBrush("#5b87a8"),
+                symbolPen=pg.mkPen(self._theme_palette["TEXT"], width=0.8),
+                symbolBrush=pg.mkBrush(self._theme_palette["ACCENT"]),
             )
             combined = np.concatenate((
                 np.asarray(constellation_i, dtype=np.float64).reshape(-1),
