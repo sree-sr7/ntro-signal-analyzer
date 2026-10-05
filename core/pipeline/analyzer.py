@@ -45,6 +45,12 @@ from core.sync.timing_recovery import recover_timing
 
 ProgressCallback = Callable[[str, int], None]
 
+# Margin-weighted confidence is near-saturated on long captures. Treat a
+# corrected-pass difference below this absolute amount as a tie, provided the
+# corrected classifier result is valid and its features still pass the same
+# geometric signal-support floor as the original Analyzer gate.
+CFO_RETRY_CONFIDENCE_TIE_TOLERANCE = 1e-5
+
 
 def _safe_value(value: Any, *, include_arrays: bool) -> Any:
     """Convert project result values into JSON-compatible values."""
@@ -668,10 +674,21 @@ class Analyzer:
                     corrected_classification = self.classifier.classify(
                         corrected_samples, samples_per_symbol=classifier_sps
                     )
+                    corrected_fit_modulation, corrected_fit_score = strongest_modulation_evidence(
+                        corrected_features.as_dict()
+                    )
+                    cfo_classification.update({
+                        "corrected_signal_fit_modulation": corrected_fit_modulation.value,
+                        "corrected_signal_fit_score": corrected_fit_score,
+                        "minimum_geometric_fit_score": MIN_CLASS_EVIDENCE_SCORE,
+                        "confidence_tie_tolerance": CFO_RETRY_CONFIDENCE_TIE_TOLERANCE,
+                    })
                     if (
                         corrected_classification.status is ClassifierStatus.SUCCESS
                         and corrected_classification.modulation is not ModulationType.UNKNOWN
-                        and corrected_classification.confidence >= classification.confidence
+                        and corrected_fit_score >= MIN_CLASS_EVIDENCE_SCORE
+                        and corrected_classification.confidence + CFO_RETRY_CONFIDENCE_TIE_TOLERANCE
+                        >= classification.confidence
                     ):
                         classification = corrected_classification
                         feature_result = corrected_features
@@ -687,7 +704,7 @@ class Analyzer:
                         }
                         cfo_classification.update({
                             "status": "applied",
-                            "reason": "The CFO-corrected classifier result remained supported and did not lose confidence.",
+                            "reason": "The CFO-corrected classifier result remained valid, passed the geometric signal-support floor, and did not materially lose confidence.",
                             "modulation_after": classification.modulation.value,
                             "confidence_before": float(cfo_classification["confidence_before"]),
                             "confidence_after": float(classification.confidence),
@@ -695,7 +712,7 @@ class Analyzer:
                     else:
                         cfo_classification.update({
                             "status": "not_applied",
-                            "reason": "The corrected classifier result was unknown, unavailable, or less confident.",
+                            "reason": "The corrected classifier result was invalid, failed the geometric signal-support floor, or lost confidence beyond the tie tolerance.",
                             "modulation_after": corrected_classification.modulation.value,
                             "confidence_after": float(corrected_classification.confidence),
                         })

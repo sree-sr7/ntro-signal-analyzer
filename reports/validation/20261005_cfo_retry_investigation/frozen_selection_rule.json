@@ -1,0 +1,132 @@
+{
+  "rule": "epsilon_1e-5",
+  "frozen_before_confirmation_evaluation": true,
+  "development_metrics_sha256": "d4c00d979dfe8b7526b2355801b9f4c68e21b533f4feb9d5fc4e40ef067c23b3",
+  "development_metrics": {
+    "metrics": {
+      "count": 1840,
+      "accuracy": 0.9646739130434783,
+      "macro_precision": 0.9623573496848917,
+      "macro_recall": 0.9690972222222222,
+      "macro_f1": 0.963853540636402,
+      "per_class": {
+        "bpsk": {
+          "support": 480,
+          "precision": 1.0,
+          "recall": 0.9166666666666666,
+          "f1": 0.9565217391304348
+        },
+        "qpsk": {
+          "support": 480,
+          "precision": 1.0,
+          "recall": 0.9645833333333333,
+          "f1": 0.9819724284199364
+        },
+        "8psk": {
+          "support": 480,
+          "precision": 0.9320388349514563,
+          "recall": 1.0,
+          "f1": 0.9648241206030151
+        },
+        "16qam": {
+          "support": 120,
+          "precision": 1.0,
+          "recall": 0.9333333333333333,
+          "f1": 0.9655172413793104
+        },
+        "2fsk": {
+          "support": 120,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "ood": {
+          "support": 160,
+          "precision": 0.8421052631578947,
+          "recall": 1.0,
+          "f1": 0.9142857142857143
+        }
+      },
+      "confusion_matrix": [
+        [
+          440,
+          0,
+          17,
+          0,
+          0,
+          23
+        ],
+        [
+          0,
+          463,
+          16,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          480,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          112,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          120,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          160
+        ]
+      ],
+      "confusion_labels": [
+        "bpsk",
+        "qpsk",
+        "8psk",
+        "16qam",
+        "2fsk",
+        "ood"
+      ]
+    },
+    "changed_from_current": 70,
+    "previously_discarded_correct_retry_selected": 70,
+    "new_incorrect_decisions": 0,
+    "correct_recoveries_by_truth_class": {
+      "bpsk": 68,
+      "qpsk": 2,
+      "8psk": 0,
+      "16qam": 0,
+      "2fsk": 0,
+      "ood": 0
+    },
+    "introduced_errors_by_truth_class": {
+      "bpsk": 0,
+      "qpsk": 0,
+      "8psk": 0,
+      "16qam": 0,
+      "2fsk": 0,
+      "ood": 0
+    },
+    "selected_second_pass": 1431,
+    "rejected_second_pass": 3
+  },
+  "rationale": "Selected before opening confirmation metrics. In development, this tie-band rule recovered 70 previously discarded correct retry results, introduced zero incorrect decisions across all six target/control groups, and improved macro F1. The 1e-5 absolute band is only 0.0084% of the existing 0.12 minimum accepted classifier margin; it resolves near-ties only while retaining the existing valid-status, supported-class, and initial signal-gate requirements. Repeated identical-input inference showed exact determinism, so this is a decision tie band rather than a claim that the confidence gap is floating-point noise."
+}

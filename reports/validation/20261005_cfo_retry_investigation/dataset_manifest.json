@@ -1,0 +1,61 @@
+{
+  "schema": "ntro-cfo-retry-investigation-v1",
+  "model_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+  "branch": "gui-redesign",
+  "head": "4138cd4380ef1d374ace329b48d75672f86a6115",
+  "python": "3.12.10",
+  "numpy": "2.5.3",
+  "method": "fresh deterministic raw IQ passed through Analyzer.analyze_file; separate dev and confirm seeds; no prior evaluation arrays or Tier-2 payloads",
+  "samples_per_psk_cell": 40,
+  "snr_values_db": [
+    9.0,
+    14.0,
+    19.0
+  ],
+  "cfo_bands_abs_hz": [
+    [
+      0.0,
+      100.0
+    ],
+    [
+      100.0,
+      200.0
+    ],
+    [
+      200.0,
+      300.0
+    ],
+    [
+      300.0,
+      400.0
+    ]
+  ],
+  "class_order": [
+    "bpsk",
+    "qpsk",
+    "8psk",
+    "16qam",
+    "2fsk"
+  ],
+  "ood_controls": {
+    "noise_only_each_split": 80,
+    "ofdm_each_split": 80
+  },
+  "splits": {
+    "development": {
+      "seed": 2026100701,
+      "count": 1840,
+      "sha256_unique_including_prior_split": true,
+      "signal_archive": "signals_development.npz",
+      "metadata": "generated_development.jsonl"
+    },
+    "confirmation": {
+      "seed": 2026100702,
+      "count": 1840,
+      "sha256_unique_including_prior_split": true,
+      "signal_archive": "signals_confirmation.npz",
+      "metadata": "generated_confirmation.jsonl"
+    }
+  },
+  "total_unique_waveforms": 3680
+}

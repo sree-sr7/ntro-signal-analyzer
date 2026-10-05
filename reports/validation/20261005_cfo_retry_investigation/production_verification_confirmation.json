@@ -1,0 +1,116 @@
+{
+  "split": "confirmation",
+  "rule": "epsilon_1e-5",
+  "model_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+  "production_code_verification": true,
+  "signal_count": 1840,
+  "label_parity_mismatches": 0,
+  "selected_pass_parity_mismatches": 0,
+  "maximum_absolute_logits_difference": 0.0,
+  "maximum_absolute_features_difference": 0.0,
+  "maximum_absolute_confidence_difference": 0.0,
+  "actual_analyzer_metrics": {
+    "count": 1840,
+    "accuracy": 0.9630434782608696,
+    "macro_precision": 0.9589710884353742,
+    "macro_recall": 0.9690972222222222,
+    "macro_f1": 0.9617959978113063,
+    "per_class": {
+      "bpsk": {
+        "support": 480,
+        "precision": 1.0,
+        "recall": 0.91875,
+        "f1": 0.9576547231270358
+      },
+      "qpsk": {
+        "support": 480,
+        "precision": 1.0,
+        "recall": 0.9541666666666667,
+        "f1": 0.9765458422174841
+      },
+      "8psk": {
+        "support": 480,
+        "precision": 0.9375,
+        "recall": 1.0,
+        "f1": 0.967741935483871
+      },
+      "16qam": {
+        "support": 120,
+        "precision": 1.0,
+        "recall": 0.9416666666666667,
+        "f1": 0.9699570815450643
+      },
+      "2fsk": {
+        "support": 120,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "ood": {
+        "support": 160,
+        "precision": 0.8163265306122449,
+        "recall": 1.0,
+        "f1": 0.898876404494382
+      }
+    },
+    "confusion_matrix": [
+      [
+        441,
+        0,
+        11,
+        0,
+        0,
+        28
+      ],
+      [
+        0,
+        458,
+        17,
+        0,
+        0,
+        5
+      ],
+      [
+        0,
+        0,
+        480,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        4,
+        113,
+        0,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        160
+      ]
+    ],
+    "confusion_labels": [
+      "bpsk",
+      "qpsk",
+      "8psk",
+      "16qam",
+      "2fsk",
+      "ood"
+    ]
+  },
+  "matches_frozen_candidate_metrics": true
+}

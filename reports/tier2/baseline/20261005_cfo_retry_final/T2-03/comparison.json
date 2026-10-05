@@ -1,0 +1,41 @@
+{
+  "accepted_fec": "Conv_R12_K7",
+  "accepted_interleaver": "Convolutional_Depth_12",
+  "analysis_result_file": "analysis_result.json",
+  "analyzer_status": "complete",
+  "classifier_status": "success",
+  "crc": true,
+  "demodulated_bit_count": 4140,
+  "elapsed_seconds": 0.3365615000075195,
+  "estimated_cfo_hz": 400.97310813945046,
+  "failure_reason": "",
+  "fec_ground_truth": "Conv_R12_K7",
+  "fec_status": "accepted",
+  "gates": {
+    "demodulation": true,
+    "fec_interleaver_crc": true,
+    "input": true,
+    "modulation": true,
+    "ood_rejection": null,
+    "payload": true
+  },
+  "ground_truth_modulation": "8PSK",
+  "injected_cfo_hz": 400.0,
+  "interleaver_ground_truth": "Convolutional_Depth_12",
+  "modulation_confidence": 0.9999999485259768,
+  "ood_state": {
+    "accepted_candidate_count": 1,
+    "best_candidate_accepted": true,
+    "crc_valid_recovery": true,
+    "expected_ood": false,
+    "explicitly_rejected": false,
+    "fec_search_status": "accepted"
+  },
+  "payload_match": true,
+  "payload_sha256_expected": "0166a1fc7df59fb6b83c989689cb57e877c41f92c010acec7e636291330479c3",
+  "payload_sha256_recovered": "0166a1fc7df59fb6b83c989689cb57e877c41f92c010acec7e636291330479c3",
+  "predicted_modulation": "8psk",
+  "scenario_id": "T2-03",
+  "scenario_type": "in_scope",
+  "status": "PASS"
+}

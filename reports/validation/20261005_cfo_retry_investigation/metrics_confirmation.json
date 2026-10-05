@@ -1,0 +1,1756 @@
+{
+  "split": "confirmation",
+  "model_sha256": "0e0ea216116f8859775b1e55167520db63f95dd93a25a77243bff803ed7fb677",
+  "candidate_rules": {
+    "epsilon_1e-5": {
+      "metrics": {
+        "count": 1840,
+        "accuracy": 0.9630434782608696,
+        "macro_precision": 0.9589710884353742,
+        "macro_recall": 0.9690972222222222,
+        "macro_f1": 0.9617959978113063,
+        "per_class": {
+          "bpsk": {
+            "support": 480,
+            "precision": 1.0,
+            "recall": 0.91875,
+            "f1": 0.9576547231270358
+          },
+          "qpsk": {
+            "support": 480,
+            "precision": 1.0,
+            "recall": 0.9541666666666667,
+            "f1": 0.9765458422174841
+          },
+          "8psk": {
+            "support": 480,
+            "precision": 0.9375,
+            "recall": 1.0,
+            "f1": 0.967741935483871
+          },
+          "16qam": {
+            "support": 120,
+            "precision": 1.0,
+            "recall": 0.9416666666666667,
+            "f1": 0.9699570815450643
+          },
+          "2fsk": {
+            "support": 120,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "ood": {
+            "support": 160,
+            "precision": 0.8163265306122449,
+            "recall": 1.0,
+            "f1": 0.898876404494382
+          }
+        },
+        "confusion_matrix": [
+          [
+            441,
+            0,
+            11,
+            0,
+            0,
+            28
+          ],
+          [
+            0,
+            458,
+            17,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            480,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            4,
+            113,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            120,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            160
+          ]
+        ],
+        "confusion_labels": [
+          "bpsk",
+          "qpsk",
+          "8psk",
+          "16qam",
+          "2fsk",
+          "ood"
+        ]
+      },
+      "changed_from_current": 80,
+      "previously_discarded_correct_retry_selected": 80,
+      "new_incorrect_decisions": 0,
+      "correct_recoveries_by_truth_class": {
+        "bpsk": 77,
+        "qpsk": 3,
+        "8psk": 0,
+        "16qam": 0,
+        "2fsk": 0,
+        "ood": 0
+      },
+      "introduced_errors_by_truth_class": {
+        "bpsk": 0,
+        "qpsk": 0,
+        "8psk": 0,
+        "16qam": 0,
+        "2fsk": 0,
+        "ood": 0
+      },
+      "selected_second_pass": 1408,
+      "rejected_second_pass": 6
+    }
+  },
+  "current_metrics": {
+    "count": 1840,
+    "accuracy": 0.9195652173913044,
+    "macro_precision": 0.9378562235705092,
+    "macro_recall": 0.9413194444444444,
+    "macro_f1": 0.933362857981812,
+    "per_class": {
+      "bpsk": {
+        "support": 480,
+        "precision": 1.0,
+        "recall": 0.7583333333333333,
+        "f1": 0.8625592417061612
+      },
+      "qpsk": {
+        "support": 480,
+        "precision": 1.0,
+        "recall": 0.9479166666666666,
+        "f1": 0.9732620320855615
+      },
+      "8psk": {
+        "support": 480,
+        "precision": 0.8108108108108109,
+        "recall": 1.0,
+        "f1": 0.8955223880597014
+      },
+      "16qam": {
+        "support": 120,
+        "precision": 1.0,
+        "recall": 0.9416666666666667,
+        "f1": 0.9699570815450643
+      },
+      "2fsk": {
+        "support": 120,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "ood": {
+        "support": 160,
+        "precision": 0.8163265306122449,
+        "recall": 1.0,
+        "f1": 0.898876404494382
+      }
+    },
+    "confusion_matrix": [
+      [
+        364,
+        0,
+        88,
+        0,
+        0,
+        28
+      ],
+      [
+        0,
+        455,
+        20,
+        0,
+        0,
+        5
+      ],
+      [
+        0,
+        0,
+        480,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        4,
+        113,
+        0,
+        3
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        160
+      ]
+    ],
+    "confusion_labels": [
+      "bpsk",
+      "qpsk",
+      "8psk",
+      "16qam",
+      "2fsk",
+      "ood"
+    ]
+  },
+  "current_simulation_parity_mismatches": 0,
+  "retry_diagnostics": {
+    "attempted": 1414,
+    "selected_second_pass": 1086,
+    "rejected_second_pass": 328,
+    "otherwise_valid_correct_second_pass_discarded": 80,
+    "by_truth_class": {
+      "bpsk": {
+        "attempted": 446,
+        "current_selected": 364,
+        "current_rejected": 82,
+        "correct_retry_rejected": 82
+      },
+      "qpsk": {
+        "attempted": 468,
+        "current_selected": 404,
+        "current_rejected": 64,
+        "correct_retry_rejected": 63
+      },
+      "8psk": {
+        "attempted": 474,
+        "current_selected": 296,
+        "current_rejected": 178,
+        "correct_retry_rejected": 178
+      },
+      "16qam": {
+        "attempted": 26,
+        "current_selected": 22,
+        "current_rejected": 4,
+        "correct_retry_rejected": 0
+      },
+      "2fsk": {
+        "attempted": 0,
+        "current_selected": 0,
+        "current_rejected": 0,
+        "correct_retry_rejected": 0
+      },
+      "ood": {
+        "attempted": 0,
+        "current_selected": 0,
+        "current_rejected": 0,
+        "correct_retry_rejected": 0
+      }
+    },
+    "selected_second_pass_by_rule": {
+      "epsilon_1e-5": 1408
+    }
+  },
+  "by_cfo_snr": {
+    "bpsk|0-100|9dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "bpsk|0-100|14dB": {
+      "count": 40,
+      "attempted_retries": 34,
+      "current_accuracy": 0.85,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "bpsk|0-100|19dB": {
+      "count": 40,
+      "attempted_retries": 36,
+      "current_accuracy": 0.9,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "bpsk|100-200|9dB": {
+      "count": 40,
+      "attempted_retries": 36,
+      "current_accuracy": 0.85,
+      "initial_argmax_accuracy": 0.075,
+      "corrected_argmax_accuracy_on_retries": 0.9444444444444444
+    },
+    "bpsk|100-200|14dB": {
+      "count": 40,
+      "attempted_retries": 31,
+      "current_accuracy": 0.775,
+      "initial_argmax_accuracy": 0.15,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "bpsk|100-200|19dB": {
+      "count": 40,
+      "attempted_retries": 31,
+      "current_accuracy": 0.7,
+      "initial_argmax_accuracy": 0.1,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "bpsk|200-300|9dB": {
+      "count": 40,
+      "attempted_retries": 39,
+      "current_accuracy": 0.85,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "bpsk|200-300|14dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 0.75,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "bpsk|200-300|19dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 0.475,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "bpsk|300-400|9dB": {
+      "count": 40,
+      "attempted_retries": 39,
+      "current_accuracy": 0.8,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 0.9230769230769231
+    },
+    "bpsk|300-400|14dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 0.575,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "bpsk|300-400|19dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 0.575,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "qpsk|0-100|9dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 0.975,
+      "initial_argmax_accuracy": 0.9,
+      "corrected_argmax_accuracy_on_retries": 0.975
+    },
+    "qpsk|0-100|14dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "qpsk|0-100|19dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 0.95,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "qpsk|100-200|9dB": {
+      "count": 40,
+      "attempted_retries": 35,
+      "current_accuracy": 0.775,
+      "initial_argmax_accuracy": 0.025,
+      "corrected_argmax_accuracy_on_retries": 0.8857142857142857
+    },
+    "qpsk|100-200|14dB": {
+      "count": 40,
+      "attempted_retries": 37,
+      "current_accuracy": 0.925,
+      "initial_argmax_accuracy": 0.025,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "qpsk|100-200|19dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 0.975,
+      "initial_argmax_accuracy": 0.025,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "qpsk|200-300|9dB": {
+      "count": 40,
+      "attempted_retries": 39,
+      "current_accuracy": 0.875,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 0.8974358974358975
+    },
+    "qpsk|200-300|14dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "qpsk|200-300|19dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "qpsk|300-400|9dB": {
+      "count": 40,
+      "attempted_retries": 37,
+      "current_accuracy": 0.9,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 0.972972972972973
+    },
+    "qpsk|300-400|14dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "qpsk|300-400|19dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 0.95,
+      "initial_argmax_accuracy": 0.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|0-100|9dB": {
+      "count": 40,
+      "attempted_retries": 37,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|0-100|14dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|0-100|19dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|100-200|9dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|100-200|14dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|100-200|19dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|200-300|9dB": {
+      "count": 40,
+      "attempted_retries": 37,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|200-300|14dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|200-300|19dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|300-400|9dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|300-400|14dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    },
+    "8psk|300-400|19dB": {
+      "count": 40,
+      "attempted_retries": 40,
+      "current_accuracy": 1.0,
+      "initial_argmax_accuracy": 1.0,
+      "corrected_argmax_accuracy_on_retries": 1.0
+    }
+  },
+  "repeatability": {
+    "identical_waveforms_replayed": 60,
+    "maximum_absolute_logit_delta": 0.0,
+    "maximum_absolute_confidence_delta": 0.0
+  },
+  "errors": [
+    {
+      "key": "signal_01560",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01561",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01562",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01563",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01564",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01565",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01566",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01567",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01568",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01569",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01570",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01571",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01572",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01573",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01574",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01575",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01576",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01577",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01578",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01579",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01580",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01581",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01582",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01583",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01584",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01585",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01586",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01587",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01588",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01589",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01590",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01591",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01592",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01593",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01594",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01595",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01596",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01597",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01598",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01599",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01600",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01601",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01602",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01603",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01604",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01605",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01606",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01607",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01608",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01609",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01610",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01611",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01612",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01613",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01614",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01615",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01616",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01617",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01618",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01619",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01620",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01621",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01622",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01623",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01624",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01625",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01626",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01627",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01628",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01629",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01630",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01631",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01632",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01633",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01634",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01635",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01636",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01637",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01638",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01639",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01640",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01641",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01642",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01643",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01644",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01645",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01646",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01647",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01648",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01649",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01650",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01651",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01652",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01653",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01654",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01655",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01656",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01657",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01658",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01659",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01660",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01661",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01662",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01663",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01664",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01665",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01666",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01667",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01668",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01669",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01670",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01671",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01672",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01673",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01674",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01675",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01676",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01677",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01678",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    },
+    {
+      "key": "signal_01679",
+      "errors": [
+        {
+          "stage": "demodulation",
+          "code": "demodulation_error",
+          "message": "2FSK demodulation requires explicit (bit-0, bit-1) tone_frequencies_hz."
+        }
+      ]
+    }
+  ],
+  "confidence_gap_summary": {
+    "retry_count": 1414,
+    "corrected_lower_confidence_count": 328,
+    "corrected_higher_or_equal_confidence_count": 1086,
+    "mean": -0.01588035057157527,
+    "median": -7.445030625885529e-07,
+    "p90_abs": 0.003010705858637187,
+    "within_1e-6": 632,
+    "within_1e-5": 994,
+    "min": -0.8746153304134756,
+    "max": 0.5842703435298404
+  }
+}
